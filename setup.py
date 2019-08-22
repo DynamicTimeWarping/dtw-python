@@ -11,11 +11,14 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = ['Click>=6.0', ]
+# requirements = ['Click>=6.0', ]
 
-setup_requirements = [ ]
+requirements = [ ]
+
+setup_requirements = [  ]
 
 test_requirements = [ ]
+
 
 setup(
     author="Toni Giorgino",
@@ -45,7 +48,8 @@ setup(
     include_package_data=True,
     keywords='rdtw',
     name='rdtw',
-    packages=find_packages(include=['rdtw']),
+#    packages=find_packages(include=['rdtw']),
+    packages=['rdtw'],
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
