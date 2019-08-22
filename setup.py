@@ -4,7 +4,12 @@
 """The setup script."""
 
 from setuptools import setup, find_packages
+from setuptools.extension import Extension
+from Cython.Build import cythonize
+#from numpy.distutils.misc_util import Configuration
+import numpy
 
+    
 with open('README.rst') as readme_file:
     readme = readme_file.read()
 
@@ -13,11 +18,16 @@ with open('HISTORY.rst') as history_file:
 
 # requirements = ['Click>=6.0', ]
 
-requirements = [ ]
+requirements = [ 'numpy' ]
 
 setup_requirements = [  ]
 
 test_requirements = [ ]
+
+ext=Extension('rdtw._dtw_utils',
+              sources=['rdtw/dtw_computeCM.c','rdtw/_dtw_utils.pyx'],
+              include_dirs=[numpy.get_include()]
+)
 
 
 setup(
@@ -25,7 +35,8 @@ setup(
     author_email='toni.giorgino@gmail.com',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
-        'Intended Audience :: Developers',
+        'Intended Audience :: Science/Research',
+        'Topic :: Scientific/Engineering :: Bio-Informatics',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Natural Language :: English',
         "Programming Language :: Python :: 2",
@@ -50,6 +61,7 @@ setup(
     name='rdtw',
 #    packages=find_packages(include=['rdtw']),
     packages=['rdtw'],
+    ext_modules=cythonize(ext),
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
@@ -57,3 +69,6 @@ setup(
     version='0.1.0',
     zip_safe=False,
 )
+
+
+
