@@ -7,17 +7,20 @@
 #    1548-7660. doi:10.18637/jss.v031.i07. http://www.jstatsoft.org/v31/i07/
 
 
-from __future__ import division, print_function, absolute_import
 
-import numpy as np
-from ._dtw_utils import *
+
+import numpy
+
 from .stepPattern import *
+from .backtrack import _backtrack
+from .globalCostMatrix import _globalCostMatrix
+from .window import *
 
-# from scipy.spatial.distance import cdist
 
 
-#__all__ = ['dtw',
-#           'symmetric1', 'symmetric2', 'asymmetric']
+from scipy.spatial.distance import cdist
+
+
 
 
 # --------------------
@@ -97,150 +100,145 @@ def dtw(x, y=None,
     Rabiner-Juang's book (Exercise 4.7 page 226).
 
     >>> from scipy.signal.dtw import *
-    >>> lm = np.array( [[ 1,1,2,2,3,3 ],
+    >>> lm = numpy.array( [[ 1,1,2,2,3,3 ],
                         [ 1,1,1,2,2,2 ],
                         [ 3,1,2,2,3,3 ],
                         [ 3,1,2,1,1,2 ],
                         [ 3,2,1,2,1,2 ],
-                        [ 3,3,3,2,1,2 ]], dtype=np.double)
+                        [ 3,3,3,2,1,2 ]], dtype=numpy.double)
     >>> alignment = dtw(lm, step_pattern=asymmetric)
     >>> alignment.costMatrix
 
     """
 
-    if open_end or open_begin or window_type:
-        raise ValueError("Only the basic DTW functionality is implemented in scipy. Please use the R version.")
 
     if y is None:
-        x = np.array(x)
+        x = numpy.array(x)
         if len(x.shape) != 2:
             raise ValueError("A 2D local distance matrix was expected")
-        lm = np.array(x)
+        lm = numpy.array(x)
     else:
-        x = np.atleast_2d(x)
-        y = np.atleast_2d(y)
+        x = numpy.atleast_2d(x)
+        y = numpy.atleast_2d(y)
         if x.shape[0] == 1:
             x = x.T
         if y.shape[0] == 1:
             y = y.T
         lm = cdist(x, y, metric=dist_method)
 
+        
+    wfun = _canonicalizeWindowFunction(window_type)
+
+    # dir = numpy.array(step_pattern.get_p(), dtype=numpy.double)
+    norm = step_pattern.hint
+
     n, m = lm.shape
 
-    w = np.ones_like(lm, dtype=np.int32)
+    if open_begin:
+        if norm != "N":
+            error("Open-begin requires step patterns with 'N' normalization (e.g. asymmetric, or R-J types (c)). See Tormene et al.")
+        lm = numpy.vstack( [ numpy.zeros((1,lm.shape[1])), lm ] ) # prepend null row
+        np = n+1
+        precm = numpy.full_like(lm, numpy.nan, dtype=numpy.double)
+        precm[0,:] = 0
+    else:
+        precm = numpy.full_like(lm, numpy.nan, dtype=numpy.double)
+        np = n
+    
 
-    sp = np.array(step_pattern.get_p(), dtype=np.double)
+    gcm = _globalCostMatrix(lm,
+                           step_pattern=step_pattern,
+                           window_function=wfun,
+                           seed=precm)
 
-    nsp = np.array([step_pattern.get_n_rows()], dtype=np.int32)
+    gcm['N'] = n
+    gcm['M'] = m
 
-    cm = np.full_like(lm, np.nan, dtype=np.double)
-    cm[0, 0] = lm[0, 0]
+    gcm['openEnd'] = open_end
+    gcm['openBegin'] = open_begin
+    gcm['windowFunction'] = wfun
 
-    ncm, sm = _computeCM(w,
-                         lm,
-                         nsp,
-                         sp,
-                         cm)
+    # misnamed
+    lastcol = gcm['costMatrix'][-1,]
 
-    dist = ncm[n - 1, m - 1]
+    if norm == "NA":
+        pass
+    elif norm == "N+M":
+        lastcol = lastcol/(n+numpy.range(m)+1)
+    elif norm == "N":
+        lastcol = lastcol / n
+    elif norm == "M":
+        lastcol = lastcol / (1+numpy.range(m))
 
-    jmin = m - 1
+    gcm['jmin'] = m
 
-    if dist != dist:  # nan
+    if open_end:
+        if norm == "NA":
+            error("Open-end alignments require normalizable step patterns")
+        gcm['jmin'] = numpy.argmin(lastcol)
+
+    gcm['distance'] = gcm['costMatrix'][-1, gcm['jmin']]
+        
+    if gcm['distance'] != gcm['distance']: # nan
         raise ValueError("No warping path found compatible with the local constraints")
 
-    if step_pattern.hint == "N+M":
-        ndist = dist/(n+m)
-    elif step_pattern.hint == "N":
-        ndist = dist/n
-    elif step_pattern.hint == "M":
-        ndist = dist/m
+    if step_pattern.hint != "NA":
+        gcm['normalizedDistance'] = lastcol[gcm['jmin']]
     else:
-        ndist = np.nan
-    
-    out = {
-        'N': n,
-        'M': m,
-        'jmin': jmin,
-        'distance': dist,
-        'normalizedDistance': ndist,
-        'costMatrix': ncm,
-        'directionMatrix': sm,
-        'localCostMatrix': lm,
-        'stepPattern': step_pattern,
-    }
+        gcm['normalizedDistance'] = numpy.nan
 
-    dout = DTW(out)
-    
     if not distance_only:
-        bt = _backtrack(dout)
-        dout.__dict__.update(bt)
+        mapping = _backtrack(gcm)
+        gcm.__dict__.update(mapping)
 
-    return dout
+    if open_begin:
+        gcm['index1'] = gcm['index1'][1:]-1
+        gcm['index1s'] = gcm['index1s'][1:]-1
+        gcm['index2'] = gcm['index2'][1:]-1
+        gcm['index2s'] = gcm['index2s'][1:]-1
+        lm = lm[1:,:]
+        gcm['costMatrix'] = gcm['costMatrix'][1:,:]
+        gcm['directionMatrix'] = gcm['directionMatrix'][1:,:]
 
-
-
-# ----------------------------------------
-
-# This is O(n). Let's not make it unreadable.
-def _backtrack(al):
-    n = al.N
-    m = al.M
-    i = n-1
-    j = al.jmin
-
-    iis=[i]; ii=[i];
-    jjs=[j]; jj=[j];
-    ss=[]
-
-    # Drop null deltas
-    dir = al.stepPattern.mx
-    dir = dir[ np.bitwise_or( dir[:,1] != 0,
-                              dir[:,2] != 0), : ]
-
-    # Split by 1st column
-    npat = al.stepPattern.get_n_patterns()
-    stepsCache = dict()
-    for q in range(1,npat+1):
-        tmp = dir[ dir[:,0] == q, ]
-        stepsCache[q] = np.array(tmp[:,[1,2]],
-                                 dtype=np.int)
+    if not keep_internals:
+        del gcm['costMatrix']
+        del gcm['directionMatrix']
+    else:
+        gcm['localCostMatrix'] = lm
+        if y is not None:
+            gcm['query'] = x
+            gcm['reference'] = y
         
+    return DTW(gcm)
+            
+   
+    # out = {
+    #     'N': n,
+    #     'M': m,
+    #     'jmin': jmin,
+    #     'distance': dist,
+    #     'normalizedDistance': ndist,
+    #     'costMatrix': ncm,
+    #     'directionMatrix': sm,
+    #     'localCostMatrix': lm,
+    #     'stepPattern': step_pattern,
+    # }
 
-    while True:
-        if i==0 and j==0: break
-
-        # Direction taken, 1-based
-        s = al.directionMatrix[i,j]
-
-        if s != s: break        # nan
-
-        # undo the steps
-        ss.insert(0,s)
-        steps = stepsCache[s]
-
-        ns = steps.shape[0]
-        for k in range(ns):
-            ii.insert(0, i-steps[k,0])
-            jj.insert(0, j-steps[k,1])
-
-        i -= steps[k,0]
-        j -= steps[k,1]
-
-        iis.insert(0,i)
-        jjs.insert(0,j)
-
-    out = { 'index1': ii,
-            'index2': jj,
-            'index1s': iis,
-            'index2s': jjs,
-            'stepsTaken': ss }
-
-    return(out)
+    
 
 
-# ----------------------------------------
+# Return a callable object representing the window
+def _canonicalizeWindowFunction(window_type):
+    if callable(window_type):
+        return window_type
 
+    if window_type is None:
+        return noWindow
 
-print("Importing the dtw module. When using in academic works please cite:\n T. Giorgino. Computing and Visualizing Dynamic Time Warping Alignments in R: The dtw Package.\n J. Stat. Soft., doi:10.18637/jss.v031.i07.\n")
+    return {
+        "none": noWindow,
+        "sakoechiba": sakoeChibaWindow,
+        "itakura": itakuraWindow,
+        "slantedband": slantedBandWindow
+    }.get(w, lambda: error("Window function undefined"))
 

@@ -18,7 +18,7 @@ from cpython cimport array
 
 
 
-__all__ = ["_computeCM"]
+__all__ = ["_computeCM_wrapper"]
 
 
 
@@ -37,12 +37,12 @@ cdef extern from "dtw_computeCM.h":
 
 
   
-def _computeCM(int [:,::1] wm not None,
-               double [:,::1] lm not None,
-               int [:] nstepsp not None,
-               double [::1] dir not None,
-               double [:,::1] cm not None,
-               int [:,::1] sm = None  ):
+def _computeCM_wrapper(int [:,::1] wm not None,
+                       double [:,::1] lm not None,
+                       int [:] nstepsp not None,
+                       double [::1] dir not None,
+                       double [:,::1] cm not None,
+                       int [:,::1] sm = None  ):
 
     # Memory ordering is transposed (fortran-like in R). 
     st = np.array([wm.shape[1],
@@ -59,9 +59,8 @@ def _computeCM(int [:,::1] wm not None,
               &cm[0,0],
               &sm[0,0])
 
-    return (cm.base, sm.base)
-
-
+    return { 'costMatrix': cm.base,
+             'directionMatrix': sm.base }
 
 
     
@@ -85,11 +84,11 @@ def _test_computeCM(TS=5):
     tcm = np.full_like(tlm, np.nan, dtype=np.double)
     tcm[0,0] = tlm[0,0]
 
-    a, b = _computeCM(twm,
-                      tlm,
-                      tnstepsp,
-                      tdir,
-                      tcm)
-    return (a,b)
+    out = _computeCM_wrapper(twm,
+                             tlm,
+                             tnstepsp,
+                             tdir,
+                             tcm)
+    return out
     
     
