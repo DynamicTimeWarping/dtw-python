@@ -11,55 +11,13 @@ from __future__ import division, print_function, absolute_import
 
 import numpy as np
 from ._dtw_utils import *
-from scipy.spatial.distance import cdist
+from .stepPattern import *
 
-__all__ = ['dtw',
-           'symmetric1', 'symmetric2', 'asymmetric']
-
-
-# --------------------
-
-class StepPattern:
-    def __init__(self, mx, hint):
-        self.mx = np.array(mx, dtype=np.double)
-        self.hint = hint
-
-    def get_p(self):
-        # Dimensions are reversed wrt R
-        s = self.mx[:, [0, 2, 1, 3]]
-        return s.T.reshape(-1)
-
-    def get_n_rows(self):
-        return self.mx.shape[0]
-
-    def get_n_patterns(self):
-        return int(np.max(self.mx[:,0]))
+# from scipy.spatial.distance import cdist
 
 
-# TODO: all step patterns and generation functions
-symmetric2 = StepPattern(np.array([[1, 1, 1, -1, ],
-                                   [1, 0, 0, 2, ],
-                                   [2, 0, 1, -1, ],
-                                   [2, 0, 0, 1, ],
-                                   [3, 1, 0, -1, ],
-                                   [3, 0, 0, 1]]),
-                         "N+M")
-
-symmetric1 = StepPattern(np.array([[1, 1, 1, -1, ],
-                                   [1, 0, 0, 1, ],
-                                   [2, 0, 1, -1, ],
-                                   [2, 0, 0, 1, ],
-                                   [3, 1, 0, -1, ],
-                                   [3, 0, 0, 1]]),
-                         "NA")
-
-asymmetric = StepPattern(np.array([[1, 1, 0, -1],
-                                   [1, 0, 0, 1],
-                                   [2, 1, 1, -1],
-                                   [2, 0, 0, 1],
-                                   [3, 1, 2, -1],
-                                   [3, 0, 0, 1]]),
-                         "N")
+#__all__ = ['dtw',
+#           'symmetric1', 'symmetric2', 'asymmetric']
 
 
 # --------------------
