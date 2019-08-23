@@ -20,7 +20,7 @@ with open('HISTORY.rst') as history_file:
 
 requirements = [ 'numpy' ]
 
-setup_requirements = [  ]
+setup_requirements = [ ]
 
 test_requirements = [ ]
 

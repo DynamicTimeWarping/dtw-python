@@ -1,12 +1,14 @@
 from __future__ import division, print_function, absolute_import
 
+import unittest
+
 import numpy as np
 from numpy import nan
 from numpy.testing import (assert_approx_equal,
                            assert_array_equal, assert_raises)
-from pytest import raises as assert_raises
 
-from scipy.signal.dtw import *
+from rdtw import *
+
 
 """
 # As in the JSS paper
@@ -28,7 +30,7 @@ alignment.distance
 """
 
 
-class TestDTW(object):
+class TestDTW(unittest.TestCase):
     def test_matrix(self):
         dm = 10 * np.ones((4, 4)) + np.eye(4)
         al = dtw(dm)
