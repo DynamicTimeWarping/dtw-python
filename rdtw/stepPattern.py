@@ -44,7 +44,7 @@ class StepPattern:
                 dijs = f"i{dis:2},j{djs:2}"
 
                 if cc==-1:
-                    gs = f"  g[{dijs}]"
+                    gs = f"    g[{dijs}]"
                     body = body + " " + gs
                 else:
                     ccs = "    " if cc==1 else f"{cc:2.2g} *"
@@ -88,14 +88,14 @@ class _P:
         self.i = [0]
         self.j = [0]
 
-    def addStep(self, di, dj):  # equivalent to .Pstep
+    def step(self, di, dj):  # equivalent to .Pstep
         self.i.append(di)
         self.j.append(dj)
         return self
 
-    def getMx(self):             # eqv to .Pend
-        ia = numpy.array(self.i)
-        ja = numpy.array(self.j)
+    def get(self):             # eqv to .Pend
+        ia = numpy.array(self.i, dtype=numpy.double)
+        ja = numpy.array(self.j, dtype=numpy.double)
         si = numpy.cumsum(ia)
         sj = numpy.cumsum(ja)
         ni = numpy.max(si)-si # ?
@@ -112,7 +112,8 @@ class _P:
             error("Unsupported subtype")
 
         if self.smoothing:
-            w = numpy.mean(w[1:])
+            # if self.pid==3:                import ipdb; ipdb.set_trace()
+            w[1:] = numpy.mean(w[1:])
 
         w[0] = -1.0
 
@@ -128,12 +129,12 @@ class _P:
 def rabinerJuangStepPattern(ptype, slope_weighting="d", smoothed=False):
     f = {
         1: _RJtypeI,
-        # 2: _RJtypeII,
-        # 3: _RJtypeIII,
-        # 4: _RJtypeIV,
-        # 5: _RJtypeV,
-        # 6: _RJtypeVI,
-        # 7: _RJtypeVII
+        2: _RJtypeII,
+        3: _RJtypeIII,
+        4: _RJtypeIV,
+        5: _RJtypeV,
+        6: _RJtypeVI,
+        7: _RJtypeVII
     }.get(ptype, lambda: error("Invalid type"))
 
     r = f(slope_weighting, smoothed)
@@ -148,32 +149,60 @@ def rabinerJuangStepPattern(ptype, slope_weighting="d", smoothed=False):
 
 def _RJtypeI(s,m):
     return numpy.vstack( [
-        _P(1, s, m).addStep(1,0).getMx(),
-        _P(2, s, m).addStep(1,1).getMx(),
-        _P(3, s, m).addStep(0,1).getMx() ] )
+        _P(1, s, m).step(1,0).get(),
+        _P(2, s, m).step(1,1).get(),
+        _P(3, s, m).step(0,1).get() ] )
 
 def _RJtypeII(s,m):
     return numpy.vstack( [
-        _P(1, s, m).addStep(1,1).addStep(1,0).getMx(),
-        _P(2, s, m).addStep(1,1).getMx(),
-        _P(3, s, m).addStep(1,1).addStep(0,1).getMx() ] )
+        _P(1, s, m).step(1,1).step(1,0).get(),
+        _P(2, s, m).step(1,1).get(),
+        _P(3, s, m).step(1,1).step(0,1).get() ] )
 
 def _RJtypeIII(s,m):
     return numpy.vstack( [
-        _P(1, s, m).addStep(2,1).getMx(),
-        _P(2, s, m).addStep(1,1).getMx(),
-        _P(3, s, m).addStep(1,2).getMx() ] )
+        _P(1, s, m).step(2,1).get(),
+        _P(2, s, m).step(1,1).get(),
+        _P(3, s, m).step(1,2).get() ] )
 
 
 def _RJtypeIV(s,m):
     return numpy.vstack( [
-        _P(1, s, m).addStep(1,1).addStep(1,0).getMx(),
-        _P(2, s, m).addStep(1,2).addStep(1,0).getMx(),
-        _P(3, s, m).addStep(1,1).getMx(),
-        _P(4, s, m).addStep(1,2).getMx(),
+        _P(1, s, m).step(1,1).step(1,0).get(),
+        _P(2, s, m).step(1,2).step(1,0).get(),
+        _P(3, s, m).step(1,1).get(),
+        _P(4, s, m).step(1,2).get(),
+    ] )
+
+def _RJtypeV(s,m):
+    return numpy.vstack( [
+        _P(1, s, m).step(1,1).step(1,0).step(1,0).get(),
+        _P(2, s, m).step(1,1).step(1,0).get(),
+        _P(3, s, m).step(1,1).get(),
+        _P(4, s, m).step(1,1).step(0,1).get(),
+        _P(5, s, m).step(1,1).step(0,1).step(0,1).get(),
     ] )
 
 
+def _RJtypeVI(s,m):
+    return numpy.vstack( [
+        _P(1, s, m).step(1,1).step(1,1).step(1,0).get(),
+        _P(2, s, m).step(1,1).get(),
+        _P(3, s, m).step(1,1).step(1,1).step(0,1).get()
+    ] )
+
+def _RJtypeVII(s,m):
+    return numpy.vstack( [
+        _P(1, s, m).step(1,1).step(1,0).step(1,0).get(),
+        _P(2, s, m).step(1,2).step(1,0).step(1,0).get(),
+        _P(3, s, m).step(1,3).step(1,0).step(1,0).get(),
+        _P(4, s, m).step(1,1).step(1,0).get(),
+        _P(5, s, m).step(1,2).step(1,0).get(),
+        _P(6, s, m).step(1,3).step(1,0).get(),
+        _P(7, s, m).step(1,1).get(),
+        _P(8, s, m).step(1,2).get(),
+        _P(9, s, m).step(1,3).get(),
+    ] )
 
 
 
