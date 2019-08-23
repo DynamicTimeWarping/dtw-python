@@ -152,6 +152,30 @@ def _RJtypeI(s,m):
         _P(2, s, m).addStep(1,1).getMx(),
         _P(3, s, m).addStep(0,1).getMx() ] )
 
+def _RJtypeII(s,m):
+    return numpy.vstack( [
+        _P(1, s, m).addStep(1,1).addStep(1,0).getMx(),
+        _P(2, s, m).addStep(1,1).getMx(),
+        _P(3, s, m).addStep(1,1).addStep(0,1).getMx() ] )
+
+def _RJtypeIII(s,m):
+    return numpy.vstack( [
+        _P(1, s, m).addStep(2,1).getMx(),
+        _P(2, s, m).addStep(1,1).getMx(),
+        _P(3, s, m).addStep(1,2).getMx() ] )
+
+
+def _RJtypeIV(s,m):
+    return numpy.vstack( [
+        _P(1, s, m).addStep(1,1).addStep(1,0).getMx(),
+        _P(2, s, m).addStep(1,2).addStep(1,0).getMx(),
+        _P(3, s, m).addStep(1,1).getMx(),
+        _P(4, s, m).addStep(1,2).getMx(),
+    ] )
+
+
+
+
 
     
 ##########################################################################################
