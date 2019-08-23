@@ -27,7 +27,7 @@ from scipy.spatial.distance import cdist
 
 class DTW:
     def __init__(self, obj):
-        self.__dict__.update(obj)
+        self.__dict__.update(obj) # Convert dict to object 
 
     def __repr__(self):
         s = "DTW alignment object of size (query x reference): {:d} x {:d}".format(self.N, self.M)
@@ -142,7 +142,7 @@ def dtw(x, y=None,
         precm = numpy.full_like(lm, numpy.nan, dtype=numpy.double)
         precm[0,:] = 0
     else:
-        precm = numpy.full_like(lm, numpy.nan, dtype=numpy.double)
+        precm = None
         np = n
     
 
@@ -164,13 +164,13 @@ def dtw(x, y=None,
     if norm == "NA":
         pass
     elif norm == "N+M":
-        lastcol = lastcol/(n+numpy.range(m)+1)
+        lastcol = lastcol/(n+numpy.arange(m)+1)
     elif norm == "N":
         lastcol = lastcol / n
     elif norm == "M":
-        lastcol = lastcol / (1+numpy.range(m))
+        lastcol = lastcol / (1+numpy.arange(m))
 
-    gcm['jmin'] = m
+    gcm['jmin'] = m-1
 
     if open_end:
         if norm == "NA":
