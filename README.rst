@@ -1,5 +1,5 @@
 ====================================================================
-Python port of R's Comprehensive Dynamic Time Warp algorithm package
+Python's Comprehensive Dynamic Time Warp algorithm package
 ====================================================================
 
 
@@ -14,7 +14,7 @@ Python port of R's Comprehensive Dynamic Time Warp algorithm package
         :alt: Documentation Status
 
 
-Comprehensive implementation of Dynamic Time Warping algorithms in R.
+Comprehensive implementation of Dynamic Time Warping algorithms.
 Supports arbitrary local (eg symmetric, asymmetric, slope-limited) and
 global (windowing) constraints, fast native code, several plot styles,
 and more.
@@ -25,7 +25,9 @@ Welcome
 
 This package provides
 the most complete, freely-available (GPL) implementation of Dynamic Time
-Warping-type (DTW) algorithms up to date.
+Warping-type (DTW) algorithms up to date. It is a faithful Python equivalent
+of [R's DTW package](http://dtw.r-forge.r-project.org/).
+
 
 The package is described in a `companion
 paper <http://www.jstatsoft.org/v31/i07/>`__, including detailed
