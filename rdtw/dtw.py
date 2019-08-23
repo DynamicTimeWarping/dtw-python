@@ -150,16 +150,17 @@ def dtw(x, y=None,
                            step_pattern=step_pattern,
                            window_function=wfun,
                            seed=precm)
+    gcm = DTW(gcm)              # now it's an object, use dots
 
-    gcm['N'] = n
-    gcm['M'] = m
+    gcm.N = n
+    gcm.M = m
 
-    gcm['openEnd'] = open_end
-    gcm['openBegin'] = open_begin
-    gcm['windowFunction'] = wfun
+    gcm.openEnd = open_end
+    gcm.openBegin = open_begin
+    gcm.windowFunction = wfun
 
     # misnamed
-    lastcol = gcm['costMatrix'][-1,]
+    lastcol = gcm.costMatrix[-1,]
 
     if norm == "NA":
         pass
@@ -170,61 +171,47 @@ def dtw(x, y=None,
     elif norm == "M":
         lastcol = lastcol / (1+numpy.arange(m))
 
-    gcm['jmin'] = m-1
+    gcm.jmin = m-1
 
     if open_end:
         if norm == "NA":
             error("Open-end alignments require normalizable step patterns")
-        gcm['jmin'] = numpy.argmin(lastcol)
+        gcm.jmin = numpy.argmin(lastcol)
 
-    gcm['distance'] = gcm['costMatrix'][-1, gcm['jmin']]
+    gcm.distance = gcm.costMatrix[-1, gcm.jmin]
         
-    if gcm['distance'] != gcm['distance']: # nan
+    if gcm.distance != gcm.distance: # nan
         raise ValueError("No warping path found compatible with the local constraints")
 
     if step_pattern.hint != "NA":
-        gcm['normalizedDistance'] = lastcol[gcm['jmin']]
+        gcm.normalizedDistance = lastcol[gcm.jmin]
     else:
-        gcm['normalizedDistance'] = numpy.nan
+        gcm.normalizedDistance = numpy.nan
 
     if not distance_only:
         mapping = _backtrack(gcm)
         gcm.__dict__.update(mapping)
 
     if open_begin:
-        gcm['index1'] = gcm['index1'][1:]-1
-        gcm['index1s'] = gcm['index1s'][1:]-1
-        gcm['index2'] = gcm['index2'][1:]-1
-        gcm['index2s'] = gcm['index2s'][1:]-1
+        gcm.index1 = gcm.index1[1:]-1
+        gcm.index1s = gcm.index1s[1:]-1
+        gcm.index2 = gcm.index2[1:]-1
+        gcm.index2s = gcm.index2s[1:]-1
         lm = lm[1:,:]
-        gcm['costMatrix'] = gcm['costMatrix'][1:,:]
-        gcm['directionMatrix'] = gcm['directionMatrix'][1:,:]
+        gcm.costMatrix = gcm.costMatrix[1:,:]
+        gcm.directionMatrix = gcm.directionMatrix[1:,:]
 
     if not keep_internals:
-        del gcm['costMatrix']
-        del gcm['directionMatrix']
+        del gcm.costMatrix
+        del gcm.directionMatrix
     else:
-        gcm['localCostMatrix'] = lm
+        gcm.localCostMatrix = lm
         if y is not None:
-            gcm['query'] = x
-            gcm['reference'] = y
+            gcm.query = x
+            gcm.reference = y
         
-    return DTW(gcm)
+    return gcm
             
-   
-    # out = {
-    #     'N': n,
-    #     'M': m,
-    #     'jmin': jmin,
-    #     'distance': dist,
-    #     'normalizedDistance': ndist,
-    #     'costMatrix': ncm,
-    #     'directionMatrix': sm,
-    #     'localCostMatrix': lm,
-    #     'stepPattern': step_pattern,
-    # }
-
-    
 
 
 # Return a callable object representing the window
