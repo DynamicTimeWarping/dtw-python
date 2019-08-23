@@ -33,7 +33,7 @@ alignment.distance
 class TestDTW(unittest.TestCase):
     def test_matrix(self):
         dm = 10 * np.ones((4, 4)) + np.eye(4)
-        al = dtw(dm)
+        al = dtw(dm, keep_internals=True)
         assert_array_equal(al.costMatrix,
                            np.array([[11., 21., 31., 41.],
                                      [21., 32., 41., 51.],
@@ -44,7 +44,7 @@ class TestDTW(unittest.TestCase):
         # Hand-checked
         x = np.array([1, 2, 3])
         y = np.array([2, 3, 4, 5, 6])
-        al = dtw(x, y)
+        al = dtw(x, y, keep_internals=True)
         assert_array_equal(al.costMatrix,
                            np.array([[1., 3., 6., 10., 15.],
                                      [1., 2., 4., 7., 11.],
@@ -75,7 +75,7 @@ class TestDTW(unittest.TestCase):
                        [3, 1, 2, 1, 1, 2],
                        [3, 2, 1, 2, 1, 2],
                        [3, 3, 3, 2, 1, 2]], dtype=np.double)
-        alignment = dtw(lm, step_pattern=asymmetric)
+        alignment = dtw(lm, step_pattern=asymmetric, keep_internals=True)
         assert_array_equal(alignment.costMatrix,
                            np.array([[1., nan, nan, nan, nan, nan],
                                      [2., 2., 2., nan, nan, nan],
