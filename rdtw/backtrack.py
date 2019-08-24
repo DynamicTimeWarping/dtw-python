@@ -3,38 +3,38 @@
 
 
 
-import numpy as np
+import numpy 
 
 # This is O(n). Let's not make it unreadable.
-def _backtrack(al):
-    n = al.N
-    m = al.M
+def _backtrack(gcm):
+    n = gcm.N
+    m = gcm.M
     i = n-1
-    j = al.jmin
+    j = gcm.jmin
 
     iis=[i]; ii=[i];
     jjs=[j]; jj=[j];
     ss=[]
 
     # Drop null deltas
-    dir = al.stepPattern.mx
-    dir = dir[ np.bitwise_or( dir[:,1] != 0,
+    dir = gcm.stepPattern.mx
+    dir = dir[ numpy.bitwise_or( dir[:,1] != 0,
                               dir[:,2] != 0), : ]
 
     # Split by 1st column
-    npat = al.stepPattern.get_n_patterns()
+    npat = gcm.stepPattern.get_n_patterns()
     stepsCache = dict()
     for q in range(1,npat+1):
         tmp = dir[ dir[:,0] == q, ]
-        stepsCache[q] = np.array(tmp[:,[1,2]],
-                                 dtype=np.int)
+        stepsCache[q] = numpy.array(tmp[:,[1,2]],
+                                 dtype=numpy.int)
         
 
     while True:
         if i==0 and j==0: break
 
         # Direction taken, 1-based
-        s = al.directionMatrix[i,j]
+        s = gcm.directionMatrix[i,j]
 
         if s != s: break        # nan
 
