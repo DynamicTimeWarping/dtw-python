@@ -9,6 +9,7 @@ r2=importr("roxygen2")
 import glob
 import sys
 import re
+import os
 
 
 rlist = glob.glob("../dtw/R/*.R")
@@ -34,4 +35,100 @@ for rfile in rlist:
         roxy[ex] = k
 
 
+print("\n\n")
+
+
+
+def p(k,w):
+    try:
+        return k.rx2(w)[0]
+    except:
+        return "(None)"
+
+
+def getdoc(n):
+    k=roxy[n]
+
+    parameters = []
+
+    o=f"""    \"\"\"{p(k,'title')}
+
+{p(k,'description')}
+
+Details
+-------
+
+{p(k,'details')}
+
+
+Parameters
+----------
+
+
+
+
+Returns
+-------
+
+{p(k,'return')}
+
+
+Notes
+-----
+
+{p(k,'note')}
+
+
+Examples
+--------
+
+{p(k,'examples')}
+
+
+Keywords
+--------
+
+{p(k,'keywords')}
+
+
+\"\"\"
+"""
+    return o
+
+
+
+
+
+
+
+
+
+plist = glob.glob("rdtw/*.py")
+
+for pfile in plist:
+    print(f"Modifying {pfile}...")
+
+    pfile_back = pfile+".back"
+    os.rename(pfile, pfile_back )
+    fin=open(pfile_back,"r")
+    fout=open(pfile, "w")
+
+    for l in fin:
+        if "IMPORT_RDOCSTRING" in l:
+            n = l.split()[2]
+            fout.write(l)
+            print(f" Inserting {n}")
+            ds = getdoc(n)
+            fout.write(ds)
+            while True:
+                l = fin.readline()
+                if "ENDIMPORT" in l:
+                    fout.write(l)
+                    break
+        else:
+            fout.write(l)
+
+    fin.close()
+    fout.close()
     
+                    
