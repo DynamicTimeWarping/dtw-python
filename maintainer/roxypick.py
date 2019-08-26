@@ -29,7 +29,8 @@ for rfile in rlist:
             print("found... "+ex)
         except:
             try:
-                print("Not exported: "+k.rx2('name')[0])
+                print("Using instead: "+k.rx2('name')[0])
+                ex = k.rx2('name')[0]
             except:
                 print("Real missing: "+rfile)
         roxy[ex] = k
