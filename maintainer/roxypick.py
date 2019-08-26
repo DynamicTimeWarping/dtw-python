@@ -38,6 +38,17 @@ for rfile in rlist:
 print("\n\n")
 
 
+# ==================================================
+
+def getParameters(k):
+    o=[]
+    for i in range(1,len(k)+1):
+        if k.rx(i).names[0] == "param":
+            o.append( k.rx(i)[0][0][0] + " : ")
+            o.append( "    " + k.rx(i)[0][1][0] )
+    return "\n".join(o)
+
+
 
 def p(k,w):
     try:
@@ -46,10 +57,9 @@ def p(k,w):
         return "(None)"
 
 
+    
 def getdoc(n):
     k=roxy[n]
-
-    parameters = []
 
     o=f"""    \"\"\"{p(k,'title')}
 
@@ -64,7 +74,7 @@ Details
 Parameters
 ----------
 
-
+{getParameters(k)}
 
 
 Returns
@@ -96,7 +106,7 @@ Keywords
     return o
 
 
-
+# ==================================================
 
 
 
