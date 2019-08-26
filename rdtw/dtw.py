@@ -159,6 +159,7 @@ def dtw(x, y=None,
     gcm.openEnd = open_end
     gcm.openBegin = open_begin
     gcm.windowFunction = wfun
+    gcm.args = kwargs           # py
 
     # misnamed
     lastcol = gcm.costMatrix[-1,]
