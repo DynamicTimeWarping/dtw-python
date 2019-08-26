@@ -68,6 +68,245 @@ def dtw(x, y=None,
         open_end=False,
         open_begin=False):
     #IMPORT_RDOCSTRING dtw
+    """Dynamic Time Warp
+
+Compute Dynamic Time Warp and find optimal alignment between two time
+series.
+
+Details
+-------
+
+The function performs Dynamic Time Warp (DTW) and computes the optimal
+alignment between two time series `x` and `y`, given as numeric
+vectors.  The ``optimal'' alignment minimizes the sum of distances between
+aligned elements. Lengths of `x` and `y` may differ.
+
+The local distance between elements of `x` (query) and `y`
+(reference) can be computed in one of the following ways:
+
+1. if `dist.method` is a string, `x` and `y`
+are passed to the [proxy::dist()] function in package \pkg{proxy}
+with the method given; 
+ 2. if `dist.method` is a function of two
+arguments, it invoked repeatedly on all pairs `x[i],y[j]` to build the
+local cost matrix; 
+ 3. multivariate time series and arbitrary distance
+metrics can be handled by supplying a local-distance matrix. Element
+`[i,j]` of the local-distance matrix is understood as the distance
+between element `x[i]` and `y[j]`. The distance matrix has
+therefore `n=length(x)` rows and `m=length(y)` columns (see note
+below).
+
+Several common variants of the DTW recursion are supported via the
+`step.pattern` argument, which defaults to `symmetric2`. Step
+patterns are commonly used to *locally* constrain the slope of the
+alignment function. See [stepPattern()] for details.
+
+Windowing enforces a *global* constraint on the envelope of the warping
+path. It is selected by passing a string or function to the
+`window.type` argument. Commonly used windows are (abbreviations
+allowed):
+
+* `"none"` No windowing (default) 
+ * `"sakoechiba"` A band around main diagonal 
+ * `"slantedband"` A band around slanted diagonal 
+ * `"itakura"` So-called Itakura parallelogram
+
+`window.type` can also be an user-defined windowing function.  See
+[dtwWindowingFunctions()] for all available windowing functions,
+details on user-defined windowing, and a discussion of the (mis)naming of
+the "Itakura" parallelogram as a global constraint.  Some windowing
+functions may require parameters, such as the `window.size` argument.
+
+Open-ended alignment, i.e. semi-unconstrained alignment, can be selected via
+the `open.end` switch.  Open-end DTW computes the alignment which best
+matches all of the query with a *leading part* of the reference. This
+is proposed e.g. by Mori (2006), Sakoe (1979) and others. Similarly,
+open-begin is enabled via `open.begin`; it makes sense when
+`open.end` is also enabled (subsequence finding). Subsequence
+alignments are similar e.g. to UE2-1 algorithm by Rabiner (1978) and others.
+Please find a review in Tormene et al. (2009).
+
+If the warping function is not required, computation can be sped up enabling
+the `distance.only=TRUE` switch, which skips the backtracking step. The
+output object will then lack the \code{index{1,2,1s,2s}} and
+`stepsTaken` fields.
+
+`is.dtw` tests whether the argument is of class `dtw`.
+
+
+Parameters
+----------
+
+x : 
+    query vector *or* local cost matrix
+y : 
+    reference vector, unused if `x` given as cost matrix
+dist.method : 
+    pointwise (local) distance function to use. See
+[proxy::dist()] in package \pkg{proxy}
+step.pattern : 
+    a stepPattern object describing the local warping steps
+allowed with their cost (see [stepPattern()])
+window.type : 
+    windowing function. Character: "none", "itakura",
+"sakoechiba", "slantedband", or a function (see details).
+open.begin,open.end : 
+    perform open-ended alignments
+keep.internals : 
+    preserve the cumulative cost matrix, inputs, and other
+internal structures
+distance.only : 
+    only compute distance (no backtrack, faster)
+d : 
+    an arbitrary R object
+... : 
+    additional arguments, passed to `window.type`
+
+
+Returns
+-------
+
+An object of class `dtw` with the following items:
+ * `distance` the minimum global distance computed, *not* normalized.
+ * `normalizedDistance` distance computed, *normalized* for path length, if normalization is known for chosen step pattern.
+ * `N,M` query and reference length
+ * `call` the function call that #' created the object
+ * `index1` matched elements: indices in `x`
+ * `index2` corresponding mapped indices in `y`
+ * `stepPattern` the `stepPattern` object used for the computation
+ * `jmin` last element of reference matched, if `open.end=TRUE`
+ * `directionMatrix` if `keep.internals=TRUE`, the directions of steps that would be taken at each alignment pair (integers indexing  production rules in the chosen step pattern)
+ * `stepsTaken` the list of steps taken from the beginning to the end of the alignment (integers indexing chosen step pattern)
+ * `index1s, index2s` same as `index1/2`, excluding intermediate steps for multi-step patterns like [asymmetricP05()] 
+ * `costMatrix` if `keep.internals=TRUE`, the cumulative cost matrix
+ * `query, reference` if `keep.internals=TRUE` and passed as the `x` and `y` arguments, the query and reference timeseries.
+
+
+Notes
+-----
+
+Cost matrices (both input and output) have query elements arranged
+row-wise (first index), and reference elements column-wise (second index).
+They print according to the usual convention, with indexes increasing down-
+and rightwards.  Many DTW papers and tutorials show matrices according to
+plot-like conventions, i.e.  reference index growing upwards. This may be
+confusing.
+
+A fast compiled version of the function is normally used.  Should it be
+unavailable, the interpreted equivalent will be used as a fall-back with a
+warning.
+
+
+Examples
+--------
+
+
+
+## A noisy sine wave as query
+idx<-seq(0,6.28,len=100);
+query<-sin(idx)+runif(100)/10;
+
+## A cosine is for reference; sin and cos are offset by 25 samples
+reference<-cos(idx)
+plot(reference); lines(query,col="blue");
+
+## Find the best match
+alignment<-dtw(query,reference);
+
+
+## Display the mapping, AKA warping function - may be multiple-valued
+## Equivalent to: plot(alignment,type="alignment")
+plot(alignment$index1,alignment$index2,main="Warping function");
+
+## Confirm: 25 samples off-diagonal alignment
+lines(1:100-25,col="red")
+
+
+
+
+#########
+##
+## Partial alignments are allowed.
+##
+
+alignmentOBE <-
+  dtw(query[44:88],reference,
+      keep=TRUE,step=asymmetric,
+      open.end=TRUE,open.begin=TRUE);
+plot(alignmentOBE,type="two",off=1);
+
+
+#########
+##
+## Subsetting allows warping and unwarping of
+## timeseries according to the warping curve. 
+## See first example below.
+##
+
+## Most useful: plot the warped query along with reference 
+plot(reference)
+lines(query[alignment$index1]~alignment$index2,col="blue")
+
+## Plot the (unwarped) query and the inverse-warped reference
+plot(query,type="l",col="blue")
+points(reference[alignment$index2]~alignment$index1)
+
+
+
+#########
+##
+## Contour plots of the cumulative cost matrix
+##    similar to: plot(alignment,type="density") or
+##                dtwPlotDensity(alignment)
+## See more plots in ?plot.dtw 
+##
+
+## keep = TRUE so we can look into the cost matrix
+
+alignment<-dtw(query,reference,keep=TRUE);
+
+contour(alignment$costMatrix,col=terrain.colors(100),x=1:100,y=1:100,
+	xlab="Query (noisy sine)",ylab="Reference (cosine)");
+
+lines(alignment$index1,alignment$index2,col="red",lwd=2);
+
+
+
+
+#########
+##
+## An hand-checkable example
+##
+
+ldist<-matrix(1,nrow=6,ncol=6);  # Matrix of ones
+ldist[2,]<-0; ldist[,5]<-0;      # Mark a clear path of zeroes
+ldist[2,5]<-.01;		 # Forcely cut the corner
+
+ds<-dtw(ldist);			 # DTW with user-supplied local
+                                 #   cost matrix
+da<-dtw(ldist,step=asymmetric);	 # Also compute the asymmetric 
+plot(ds$index1,ds$index2,pch=3); # Symmetric: alignment follows
+                                 #   the low-distance marked path
+points(da$index1,da$index2,col="red");  # Asymmetric: visiting
+                                        #   1 is required twice
+
+ds$distance;
+da$distance;
+
+
+
+
+
+
+
+Keywords
+--------
+
+ts
+
+
+"""
     #ENDIMPORT
 
     if y is None:

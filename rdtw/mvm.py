@@ -24,6 +24,85 @@ from .stepPattern import *
 
 def mvmStepPattern(elasticity=20):
     #IMPORT_RDOCSTRING mvmStepPattern
+    """Minimum Variance Matching algorithm
+
+Step patterns to compute the Minimum Variance Matching (MVM) correspondence
+between time series
+
+Details
+-------
+
+The Minimum Variance Matching algorithm (1) finds the non-contiguous parts
+of reference which best match the query, allowing for arbitrarily long
+"stretches" of reference to be excluded from the match. All elements of the
+query have to be matched. First and last elements of the query are anchored
+at the boundaries of the reference.
+
+The `mvmStepPattern` function creates a `stepPattern` object which
+implements this behavior, to be used with the usual [dtw()] call
+(see example). MVM is computed as a special case of DTW, with a very large,
+asymmetric-like step pattern.
+
+The `elasticity` argument limits the maximum run length of reference
+which can be skipped at once. If no limit is desired, set `elasticity`
+to an integer at least as large as the reference (computation time grows
+linearly).
+
+
+Parameters
+----------
+
+elasticity : 
+    integer: maximum consecutive reference elements skippable
+
+
+Returns
+-------
+
+A step pattern object.
+
+
+Notes
+-----
+
+(None)
+
+
+Examples
+--------
+
+
+
+## The hand-checkable example given in Fig. 5, ref. [1] above
+diffmx <- matrix( byrow=TRUE, nrow=5, c(
+  0,  1,  8,  2,  2,  4,  8,
+  1,  0,  7,  1,  1,  3,  7,
+ -7, -6,  1, -5, -5, -3,  1,
+ -5, -4,  3, -3, -3, -1,  3,
+ -7, -6,  1, -5, -5, -3,  1 ) ) ;
+
+## Cost matrix
+costmx <- diffmx^2;
+
+## Compute the alignment
+al <- dtw(costmx,step.pattern=mvmStepPattern(10))
+
+## Elements 4,5 are skipped
+print(al$index2)
+
+plot(al,main="Minimum Variance Matching alignment")
+
+
+
+
+
+Keywords
+--------
+
+ts
+
+
+"""
     #ENDIMPORT
 
     size = elasticity

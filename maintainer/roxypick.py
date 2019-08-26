@@ -41,6 +41,11 @@ print("\n\n")
 
 # ==================================================
 
+def indent_as(l):
+    c = l.find('#')
+    return l[:c]
+
+
 def getParameters(k):
     o=[]
     for i in range(1,len(k)+1):
@@ -62,7 +67,7 @@ def p(k,w):
 def getdoc(n):
     k=roxy[n]
 
-    o=f"""    \"\"\"{p(k,'title')}
+    o=f"""\"\"\"{p(k,'title')}
 
 {p(k,'description')}
 
@@ -126,12 +131,17 @@ for pfile in plist:
 
     for l in fin:
         if "IMPORT_RDOCSTRING" in l:
-            n = l.split()[1]
-            fout.write(l)
+            fout.write(l)       # Copy the tag
+
+            fout.write(indent_as(l)) # Copy indentation
+
+            n = l.split()[1]    # Extract name
             print(f" Inserting {n}")
+
             ds = getdoc(n)
             fout.write(ds)
-            while True:
+
+            while True:         # Skip until the closing tag
                 l = fin.readline()
                 if "ENDIMPORT" in l:
                     fout.write(l)
