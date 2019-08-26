@@ -67,72 +67,8 @@ def dtw(x, y=None,
         distance_only=False,
         open_end=False,
         open_begin=False):
-    """Compute Dynamic Time Warp and find optimal alignment between two time series.
-
-    Under development. The syntax mirrors the one in R 'dtw' package
-    (please see links below), except that dots in argument names are
-    replaced by underscores.
-
-    Parameters
-    ----------
-
-    x : array_like
-       First input. A timeseries (1D or higher dimension), with time in rows.
-       If y = None, interpreted as the local distance matrix instead.
-    y : array_like
-       Second input. A timeseries (1D or higher dimension), with time in rows.
-    dist_method : str, optional
-       One of the distance metrics supported by scipy.spatial.distance.cdist
-       Defaults to 'euclidean'
-    step_pattern : object, optional
-       An object representing the recursion form, i.e. local slope constraints.
-       Currenly only symmetric1 and symmetric2 are implemented.
-    distance_only : bool, optional
-       Only compute the distance, not the alignment (may be slightly faster
-       and memory-efficient)
-
-
-    Returns
-    -------
-    alignment : object
-        an instance of type DTW encapsulating the same properties as the R implementation (q.v.),
-        and in particular see:
-            .distance
-            .costMatrix
-            .index1 etc.
-
-    See also
-    --------
-     * https://cran.r-project.org/web/packages/dtw/index.html
-     * http://dtw.r-forge.r-project.org
-     * https://www.rdocumentation.org/packages/dtw/versions/1.20-1/topics/dtw
-
-    Citation
-    --------
-    If you use this software in academic work, please cite:
-
-     * T. Giorgino. Computing and Visualizing Dynamic Time Warping
-       Alignments in R: The dtw Package. Journal of Statistical
-       Software, v. 31, Issue 7, p. 1 - 24, aug. 2009. ISSN
-       1548-7660. doi:10.18637/jss.v031.i07. http://www.jstatsoft.org/v31/i07/
-
-    Examples
-    --------
-    The worked-out exercise in section 3.9 of http://www.jstatsoft.org/v31/i07/ and
-    Rabiner-Juang's book (Exercise 4.7 page 226).
-
-    >>> from scipy.signal.dtw import *
-    >>> lm = numpy.array( [[ 1,1,2,2,3,3 ],
-                        [ 1,1,1,2,2,2 ],
-                        [ 3,1,2,2,3,3 ],
-                        [ 3,1,2,1,1,2 ],
-                        [ 3,2,1,2,1,2 ],
-                        [ 3,3,3,2,1,2 ]], dtype=numpy.double)
-    >>> alignment = dtw(lm, step_pattern=asymmetric)
-    >>> alignment.costMatrix
-
-    """
-
+    #IMPORT_RDOCSTRING dtw
+    #ENDIMPORT
 
     if y is None:
         x = numpy.array(x)

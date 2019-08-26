@@ -125,7 +125,7 @@ for pfile in plist:
 
     for l in fin:
         if "IMPORT_RDOCSTRING" in l:
-            n = l.split()[2]
+            n = l.split()[1]
             fout.write(l)
             print(f" Inserting {n}")
             ds = getdoc(n)

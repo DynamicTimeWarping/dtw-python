@@ -23,6 +23,8 @@ import numpy
 from scipy.interpolate import interp1d
 
 def warpArea(d):
+    #IMPORT_RDOCSTRING warpArea
+    #ENDIMPORT
 
     # interp1d is buggy. it does not deal with duplicated values of x
     # leading. it returns different values depending on the dtypes of

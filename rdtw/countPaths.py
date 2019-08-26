@@ -25,7 +25,7 @@ import numpy
 
 
 def countPaths(d, debug=False):
-    # IMPORT_RDOCSTRING countPaths
+    #IMPORT_RDOCSTRING countPaths
     """Count the number of warping paths consistent with the constraints.
 
 Count how many possible warping paths exist in the alignment problem passed
@@ -46,7 +46,10 @@ returned instead of the final result.
 Parameters
 ----------
 
-
+d : 
+    an object of class `dtw`
+debug : 
+    return an intermediate result
 
 
 Returns

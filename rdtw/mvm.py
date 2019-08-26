@@ -23,6 +23,9 @@ import numpy
 from .stepPattern import *
 
 def mvmStepPattern(elasticity=20):
+    #IMPORT_RDOCSTRING mvmStepPattern
+    #ENDIMPORT
+
     size = elasticity
 
     pn = numpy.repeat( numpy.arange(size)+1, 2)

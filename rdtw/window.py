@@ -18,6 +18,8 @@
 ##
 
 
+#IMPORT_RDOCSTRING noWindow
+#ENDIMPORT
 
 
 def noWindow(iw, jw, query_size, reference_size):

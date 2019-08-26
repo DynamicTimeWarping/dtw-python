@@ -22,6 +22,9 @@
 import numpy
 
 class StepPattern:
+    #IMPORT_RDOCSTRING stepPattern
+    #ENDIMPORT
+
     def __init__(self, mx, hint="NA"):
         self.mx = numpy.array(mx, dtype=numpy.double)
         self.hint = hint
@@ -190,6 +193,9 @@ class _P:
 
 
 def rabinerJuangStepPattern(ptype, slope_weighting="d", smoothed=False):
+    #IMPORT_RDOCSTRING rabinerJuangStepPattern
+    #ENDIMPORT
+
     f = {
         1: _RJtypeI,
         2: _RJtypeII,
