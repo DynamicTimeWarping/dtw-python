@@ -11,7 +11,7 @@ from rdtw import rdtw
 from rdtw import cli
 
 
-class TestRdtw(unittest.TestCase):
+class TestRDTW(unittest.TestCase):
     """Tests for `rdtw` package."""
 
     def setUp(self):
@@ -32,3 +32,8 @@ class TestRdtw(unittest.TestCase):
         help_result = runner.invoke(cli.main, ['--help'])
         assert help_result.exit_code == 0
         assert '--help  Show this message and exit.' in help_result.output
+
+
+
+
+        

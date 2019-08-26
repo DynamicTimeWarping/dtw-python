@@ -197,8 +197,8 @@ def dtw(x, y=None,
     if open_begin:
         gcm.index1 = gcm.index1[1:]-1
         gcm.index1s = gcm.index1s[1:]-1
-        gcm.index2 = gcm.index2[1:]-1
-        gcm.index2s = gcm.index2s[1:]-1
+        gcm.index2 = gcm.index2[1:]
+        gcm.index2s = gcm.index2s[1:]
         lm = lm[1:,:]
         gcm.costMatrix = gcm.costMatrix[1:,:]
         gcm.directionMatrix = gcm.directionMatrix[1:,:]

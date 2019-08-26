@@ -53,11 +53,11 @@ def _backtrack(gcm):
         iis.insert(0,i)
         jjs.insert(0,j)
 
-    out = { 'index1': ii,
-            'index2': jj,
-            'index1s': iis,
-            'index2s': jjs,
-            'stepsTaken': ss }
+    out = { 'index1': numpy.array(ii),
+            'index2': numpy.array(jj),
+            'index1s': numpy.array(iis),
+            'index2s': numpy.array(jjs),
+            'stepsTaken': numpy.array(ss) }
 
     return(out)
 
