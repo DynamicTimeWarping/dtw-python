@@ -41,11 +41,11 @@ def dtw(x, y=None,
         dist_method="euclidean",
         step_pattern=symmetric2,
         window_type=None,
+        window_args={},
         keep_internals=False,
         distance_only=False,
         open_end=False,
-        open_begin=False,
-        **kwargs):
+        open_begin=False):
     """Compute Dynamic Time Warp and find optimal alignment between two time series.
 
     Under development. The syntax mirrors the one in R 'dtw' package
@@ -129,7 +129,6 @@ def dtw(x, y=None,
 
         
     wfun = _canonicalizeWindowFunction(window_type)
-    win_args = kwargs
 
     norm = step_pattern.hint
 
@@ -151,7 +150,7 @@ def dtw(x, y=None,
                             step_pattern=step_pattern,
                             window_function=wfun,
                             seed=precm,
-                            win_args=win_args)
+                            win_args=window_args)
     gcm = DTW(gcm)              # turn into an object, use dot to access properties
 
     gcm.N = n
@@ -160,7 +159,7 @@ def dtw(x, y=None,
     gcm.openEnd = open_end
     gcm.openBegin = open_begin
     gcm.windowFunction = wfun
-    gcm.win_args = win_args           # py
+    gcm.windowArgs = window_args           # py
 
     # misnamed
     lastcol = gcm.costMatrix[-1,]
