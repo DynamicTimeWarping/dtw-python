@@ -1,4 +1,4 @@
-Welcome to Python port of R's Comprehensive Dynamic Time Warp algorithm package's documentation!
+Welcome to the Comprehensive Dynamic Time Warp package
 ======================================
 
 .. toctree::

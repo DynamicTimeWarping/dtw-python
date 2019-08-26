@@ -1,5 +1,5 @@
 ====================================================================
-Python's Comprehensive Dynamic Time Warp algorithm package
+The Comprehensive Dynamic Time Warp package (Python bindings)
 ====================================================================
 
 

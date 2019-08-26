@@ -30,8 +30,7 @@ for the minimum-distance path.  DTW variants are implemented by passing one
 of the objects described in this page to the `stepPattern` argument of
 the [dtw()] call.
 
-Details
--------
+**Details**
 
 A step pattern characterizes the matching model and slope constraint
 specific of a DTW variant. They also known as local- or slope-constraints,
@@ -192,62 +191,6 @@ Notes
 Constructing `stepPattern` objects is tricky and thus undocumented. For a commented example please see source code for  `symmetricP1`.
 
 
-Examples
---------
-
-
-
-#########
-##
-## The usual (normalizable) symmetric step pattern
-## Step pattern recursion, defined as:
-## g[i,j] = min(
-##      g[i,j-1] + d[i,j] ,
-##      g[i-1,j-1] + 2 * d[i,j] ,
-##      g[i-1,j] + d[i,j] ,
-##   )
-
-print(symmetric2)   # or just "symmetric2"
-
-
-
-#########
-##
-## The well-known plotting style for step patterns
-
-plot(symmetricP2,main="Sakoe's Symmetric P=2 recursion")
-
-
-
-#########
-##
-## Same example seen in ?dtw , now with asymmetric step pattern
-
-idx<-seq(0,6.28,len=100);
-query<-sin(idx)+runif(100)/10;
-reference<-cos(idx);
-
-## Do the computation 
-asy<-dtw(query,reference,keep=TRUE,step=asymmetric);
-
-dtwPlot(asy,type="density",main="Sine and cosine, asymmetric step")
-
-
-#########
-##
-##  Hand-checkable example given in [Myers1980] p 61
-##
-
-`tm` <-
-structure(c(1, 3, 4, 4, 5, 2, 2, 3, 3, 4, 3, 1, 1, 1, 3, 4, 2,
-3, 3, 2, 5, 3, 4, 4, 1), .Dim = c(5L, 5L))
-
-
-
-Keywords
---------
-
-ts
 
 
 """
@@ -426,8 +369,7 @@ def rabinerJuangStepPattern(ptype, slope_weighting="d", smoothed=False):
 
 (None)
 
-Details
--------
+**Details**
 
 (None)
 
@@ -450,16 +392,6 @@ Notes
 (None)
 
 
-Examples
---------
-
-(None)
-
-
-Keywords
---------
-
-(None)
 
 
 """

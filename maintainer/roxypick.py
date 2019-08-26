@@ -71,8 +71,7 @@ def getdoc(n):
 
 {p(k,'description')}
 
-Details
--------
+**Details**
 
 {p(k,'details')}
 
@@ -95,16 +94,6 @@ Notes
 {p(k,'note')}
 
 
-Examples
---------
-
-{p(k,'examples')}
-
-
-Keywords
---------
-
-{p(k,'keywords')}
 
 
 \"\"\"

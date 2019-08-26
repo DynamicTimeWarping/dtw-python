@@ -18,8 +18,56 @@
 ##
 
 
+
+#IMPORT_RDOCSTRING aami
+"""ANSI/AAMI EC13 Test Waveforms, 3a and 3b
+
+ANSI/AAMI EC13 Test Waveforms 3a and 3b, as obtained from the PhysioBank
+database.
+
+**Details**
+
+The following text is reproduced (abridged) from PhysioBank, page
+<https://www.physionet.org/content/aami-ec13/1.0.0/>.  Other
+recordings belong to the dataset and can be obtained from the same page.
+
+The files in this set can be used for testing a variety of devices that
+monitor the electrocardiogram.  The recordings include both synthetic and
+real waveforms. For details on these test waveforms and how to use them,
+please refer to section 5.1.2.1, paragraphs (e) and (g) in the reference
+below.  Each recording contains one ECG signal sampled at 720 Hz with 12-bit
+resolution.
+
+
+Parameters
+----------
+
+
+
+
+Returns
+-------
+
+(None)
+
+
+Notes
+-----
+
+Timestamps in the datasets have been re-created at the indicated
+frequency of 720 Hz, whereas the original timestamps in ms (at least in text
+format) only had three decimal digits' precision, and were therefore
+affected by substantial jittering.
+
+
+
+
+"""
+#ENDIMPORT
+
 import numpy
 from pkg_resources import resource_string
+
 
 
 aami3a = numpy.fromstring( resource_string(__name__, '../data/aami3a.csv') , sep="\n" )

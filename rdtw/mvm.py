@@ -29,8 +29,7 @@ def mvmStepPattern(elasticity=20):
 Step patterns to compute the Minimum Variance Matching (MVM) correspondence
 between time series
 
-Details
--------
+**Details**
 
 The Minimum Variance Matching algorithm (1) finds the non-contiguous parts
 of reference which best match the query, allowing for arbitrarily long
@@ -68,38 +67,6 @@ Notes
 (None)
 
 
-Examples
---------
-
-
-
-## The hand-checkable example given in Fig. 5, ref. [1] above
-diffmx <- matrix( byrow=TRUE, nrow=5, c(
-  0,  1,  8,  2,  2,  4,  8,
-  1,  0,  7,  1,  1,  3,  7,
- -7, -6,  1, -5, -5, -3,  1,
- -5, -4,  3, -3, -3, -1,  3,
- -7, -6,  1, -5, -5, -3,  1 ) ) ;
-
-## Cost matrix
-costmx <- diffmx^2;
-
-## Compute the alignment
-al <- dtw(costmx,step.pattern=mvmStepPattern(10))
-
-## Elements 4,5 are skipped
-print(al$index2)
-
-plot(al,main="Minimum Variance Matching alignment")
-
-
-
-
-
-Keywords
---------
-
-ts
 
 
 """

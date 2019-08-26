@@ -33,8 +33,7 @@ as an argument. The object passed as an argument is used to look up the
 problem parameters such as the used step pattern, windowing, open ends, and
 so on. The actual alignment is ignored.
 
-Details
--------
+**Details**
 
 Note that the number of paths grows exponentially with problems size. The
 result may be approximate when windowing functions are used.
@@ -64,20 +63,6 @@ Notes
 (None)
 
 
-Examples
---------
-
-
-  ds<-dtw(1:7+2,1:8,keep=TRUE,step=asymmetric);
-  countPaths(ds)
-  ## Result: 126
-
-
-
-Keywords
---------
-
-ts
 
 
 """
