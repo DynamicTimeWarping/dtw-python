@@ -56,6 +56,44 @@ class StepPattern:
         ntxt = f"Normalization hint: {self.hint}\n"
 
         return "Step pattern recursion:\n"+head+body+tail+ntxt
+
+    
+    def plot(self):
+        import matplotlib.pyplot as plt
+        x = self.mx
+        pats = 1+numpy.arange(self.get_n_patterns()+1)
+
+        alpha = .5
+        fudge = [-.05, .1]
+        fudge = [0, 0]
+
+        fig, ax = plt.subplots(figsize=(6, 6))
+        for i in pats:
+            ss = x[:,0] == i
+            ax.plot(-x[ss,1],-x[ss,2], lw=2, color="tab:blue")
+            ax.plot(-x[ss,1],-x[ss,2], 'o', color="black", marker="o", fillstyle="none" )
+
+            if numpy.sum(ss)==1: continue
+
+            xss = x[ss,:]
+            xh = alpha * xss[:-1,1] + (1-alpha) * xss[1:,1]
+            yh = alpha * xss[:-1,2] + (1-alpha) * xss[1:,2]
+
+            for xx, yy, tt in zip(xh, yh, xss[1:,3]):
+                ax.annotate( "{:.2g}".format(tt), (-xx-fudge[0],
+                                                   -yy-fudge[1]))
+            
+
+        endpts = x[:,3] == -1
+        ax.plot( -x[endpts,1], -x[endpts,2], 'o', color="black")
+        
+        ax.set_xlabel("Query index")
+        ax.set_ylabel("Reference index")
+        ax.set_xticks(numpy.unique(-x[:,1]))
+        ax.set_yticks(numpy.unique(-x[:,2]))
+        plt.show()
+        return ax
+    
         
 
     def _extractpattern(self, sn):
