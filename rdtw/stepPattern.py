@@ -65,7 +65,7 @@ class StepPattern:
         return numpy.flip(spl,0)
 
     def _mkDirDeltas(self):
-        out = self.mx
+        out = numpy.array(self.mx, dtype=numpy.int32)
         out = out[ out[:,3] == -1, : ]
         out = out[:, [1,2]]
         return out

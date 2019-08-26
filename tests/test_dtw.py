@@ -90,3 +90,13 @@ class TestDTW(unittest.TestCase):
         y = np.ones(20)
         with assert_raises(ValueError):
             dtw(x, y, step_pattern=asymmetric)
+
+
+    # From dtw()'s example
+    def test_example(self):
+        ldist = np.full( (6,6), 1.0)
+        ldist[1,:] = 0
+        ldist[:,4] = 0
+        ldist[1,4] = .01
+        ds = dtw(ldist)
+        

@@ -3,7 +3,6 @@ from .window import noWindow
 from ._dtw_utils import _computeCM_wrapper
 
 
-DTYPE = numpy.int32
 
 
 def _globalCostMatrix(lm,
@@ -12,15 +11,21 @@ def _globalCostMatrix(lm,
                       seed,
                       win_args):
 
-    wm = numpy.full_like(lm, True, dtype=DTYPE)
+    ITYPE = numpy.int32
+
+
+    wm = numpy.full_like(lm, True, dtype=ITYPE)
+    n, m = wm.shape
     if window_function != noWindow: # for performance
         for i in range(n):
             for j in range(m):
-                wm[i,j] = window_function(i, j, query_size=n, reference_size=m, **win_args)
+                wm[i,j] = window_function(i, j,
+                                          query_size = n,
+                                          reference_size = m,
+                                          **win_args)
 
-    n, m = lm.shape
      
-    nsteps = numpy.array([step_pattern.get_n_rows()], dtype=DTYPE)
+    nsteps = numpy.array([step_pattern.get_n_rows()], dtype=ITYPE)
 
     dir = numpy.array(step_pattern.get_p(), dtype=numpy.double)
 
@@ -42,18 +47,20 @@ def _globalCostMatrix(lm,
     return out
 
 
-import numpy as np
+
+
 def _test_computeCM2(TS=5):
-    DTYPE = np.int32
+    import numpy as np
+    ITYPE = np.int32
    
-    twm = np.ones((TS, TS), dtype=DTYPE)
+    twm = np.ones((TS, TS), dtype=ITYPE)
 
     tlm = np.zeros( (TS,TS), dtype=np.double)
     for i in range(TS):
         for j in range(TS):
             tlm[i,j]=(i+1)*(j+1)
 
-    tnstepsp = np.array([6], dtype=DTYPE)
+    tnstepsp = np.array([6], dtype=ITYPE)
 
     tdir = np.array( (1, 1, 2, 2, 3, 3, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0,-1, 1,-1, 1,-1, 1),
                                      dtype=np.double)

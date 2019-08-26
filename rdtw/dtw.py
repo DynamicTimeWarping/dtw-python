@@ -129,6 +129,7 @@ def dtw(x, y=None,
 
         
     wfun = _canonicalizeWindowFunction(window_type)
+    win_args = kwargs
 
     norm = step_pattern.hint
 
@@ -150,7 +151,7 @@ def dtw(x, y=None,
                             step_pattern=step_pattern,
                             window_function=wfun,
                             seed=precm,
-                            win_args=kwargs)
+                            win_args=win_args)
     gcm = DTW(gcm)              # turn into an object, use dot to access properties
 
     gcm.N = n
@@ -159,7 +160,7 @@ def dtw(x, y=None,
     gcm.openEnd = open_end
     gcm.openBegin = open_begin
     gcm.windowFunction = wfun
-    gcm.args = kwargs           # py
+    gcm.win_args = win_args           # py
 
     # misnamed
     lastcol = gcm.costMatrix[-1,]

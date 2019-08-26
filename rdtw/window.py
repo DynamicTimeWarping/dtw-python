@@ -1,9 +1,9 @@
 
 
-def noWindow(iw, jw):
+def noWindow(iw, jw, query_size, reference_size):
     return True
 
-def sakoeChibaWindow(iw, jw, window_size):
+def sakoeChibaWindow(iw, jw, query_size, reference_size, window_size):
     ok = abs(jw-iw) <= window_size
     return ok
 
