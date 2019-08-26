@@ -229,7 +229,7 @@ For a commented example please see source code for ``symmetricP1``.
             tsp.hint = "N"
         return tsp
 
-    def __repr__(self):
+    def __str__(self):
         np = self.get_n_patterns()
         head = " g[i,j] = min(\n"
 

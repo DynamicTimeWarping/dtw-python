@@ -1,5 +1,5 @@
 Welcome to the Comprehensive Dynamic Time Warp package
-======================================
+======================================================
 
 .. toctree::
    :maxdepth: 2

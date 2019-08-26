@@ -129,8 +129,8 @@ others. Please find a review in Tormene et al. (2009).
 
 If the warping function is not required, computation can be sped up
 enabling the ``distance.only=TRUE`` switch, which skips the backtracking
-step. The output object will then lack the
-:raw-latex:`\code{index{1,2,1s,2s}}` and ``stepsTaken`` fields.
+step. The output object will then lack the ``index{1,2,1s,2s}`` and
+``stepsTaken`` fields.
 
 ``is.dtw`` tests whether the argument is of class ``dtw``.
 
@@ -168,24 +168,27 @@ d :
 Returns
 -------
 
-An object of class ``dtw`` with the following items: \* ``distance`` the
-minimum global distance computed, *not* normalized. \*
-``normalizedDistance`` distance computed, *normalized* for path length,
-if normalization is known for chosen step pattern. \* ``N,M`` query and
-reference length \* ``call`` the function call that #’ created the
-object \* ``index1`` matched elements: indices in ``x`` \* ``index2``
-corresponding mapped indices in ``y`` \* ``stepPattern`` the
-``stepPattern`` object used for the computation \* ``jmin`` last element
-of reference matched, if ``open.end=TRUE`` \* ``directionMatrix`` if
-``keep.internals=TRUE``, the directions of steps that would be taken at
-each alignment pair (integers indexing production rules in the chosen
-step pattern) \* ``stepsTaken`` the list of steps taken from the
-beginning to the end of the alignment (integers indexing chosen step
-pattern) \* ``index1s, index2s`` same as ``index1/2``, excluding
-intermediate steps for multi-step patterns like [asymmetricP05()] \*
-``costMatrix`` if ``keep.internals=TRUE``, the cumulative cost matrix \*
-``query, reference`` if ``keep.internals=TRUE`` and passed as the ``x``
-and ``y`` arguments, the query and reference timeseries.
+An object of class ``dtw`` with the following items:
+
+-  ``distance`` the minimum global distance computed, *not* normalized.
+-  ``normalizedDistance`` distance computed, *normalized* for path
+   length, if normalization is known for chosen step pattern.
+-  ``N,M`` query and reference length
+-  ``call`` the function call that created the object
+-  ``index1`` matched elements: indices in ``x``
+-  ``index2`` corresponding mapped indices in ``y``
+-  ``stepPattern`` the ``stepPattern`` object used for the computation
+-  ``jmin`` last element of reference matched, if ``open.end=TRUE``
+-  ``directionMatrix`` if ``keep.internals=TRUE``, the directions of
+   steps that would be taken at each alignment pair (integers indexing
+   production rules in the chosen step pattern)
+-  ``stepsTaken`` the list of steps taken from the beginning to the end
+   of the alignment (integers indexing chosen step pattern)
+-  ``index1s, index2s`` same as ``index1/2``, excluding intermediate
+   steps for multi-step patterns like [asymmetricP05()]
+-  ``costMatrix`` if ``keep.internals=TRUE``, the cumulative cost matrix
+-  ``query, reference`` if ``keep.internals=TRUE`` and passed as the
+   ``x`` and ``y`` arguments, the query and reference timeseries.
 
 
 
