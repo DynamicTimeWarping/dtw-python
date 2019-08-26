@@ -1,63 +1,36 @@
 #!/usr/bin/env python3
 
+
+
+import rpy2
+from rpy2.robjects.packages import importr
+r2=importr("roxygen2")
+
 import glob
 import sys
 import re
 
+
 rlist = glob.glob("../dtw/R/*.R")
 
-roxy = []
-
-
-def get_export(b):
-    o = "UNKNOWN"
-    for l in b:
-        if l.startswith("@export"):
-            try:
-                o=l.split()[1]
-            except:
-                pass
-    return o
-
-def reformat(b):
-    o = []
-    p = []
-    r = []
-    for i,l in enumerate(b):
-        if l.startswith("@note"):
-            o.append("")
-            o.append("Note")  
-            o.append("----")
-            l=l.replace("@note ","")
-        if l.startswith("@param"):
-            p.append({'name': l.split()[1],
-                      'text': l.split()[2:] })
-            l=""
-        if l.startswith("@param"):
-
-        o.append(l)
-    return o
-            
+roxy = {}
 
 
 for rfile in rlist:
-    with open(rfile) as rf:
-        print(f"Parsing {rfile}...")
-        inside = False
-        current_block = []
-        for line in rf:
-            if line.startswith("#' "):
-                inside = True
-                line=line[3:]
-                current_block.append(line.rstrip())
-            else:
-                if inside:
-                    inside = False
-                    export = get_export(current_block)
-                    reformatted = reformat(current_block)
-                    roxy.append({ 'file': rfile,
-                                  'export': export,
-                                  'text': reformatted })
-                    current_block  = []
+    print(f"Parsing {rfile}...")
 
-                
+    elts = r2.parse_file(rfile)
+
+    for k in elts:
+        try:
+            ex = k.rx2('export')[0]
+            print("found... "+ex)
+        except:
+            try:
+                print("Not exported: "+k.rx2('name')[0])
+            except:
+                print("Real missing: "+rfile)
+        roxy[ex] = k
+
+
+    
