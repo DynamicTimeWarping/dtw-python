@@ -21,12 +21,20 @@ def get_export(b):
 
 def reformat(b):
     o = []
+    p = []
+    r = []
     for i,l in enumerate(b):
         if l.startswith("@note"):
             o.append("")
             o.append("Note")  
             o.append("----")
             l=l.replace("@note ","")
+        if l.startswith("@param"):
+            p.append({'name': l.split()[1],
+                      'text': l.split()[2:] })
+            l=""
+        if l.startswith("@param"):
+
         o.append(l)
     return o
             
