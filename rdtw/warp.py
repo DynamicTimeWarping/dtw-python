@@ -23,6 +23,54 @@ from scipy.interpolate import interp1d
 
 
 def warp(d, index_reference=False):
+    #IMPORT_RDOCSTRING warp
+    """Apply a warping to a given timeseries
+
+
+Returns the indexing required to apply the optimal warping curve to a
+given timeseries (warps either into a query or into a reference).
+
+
+**Details**
+
+The warping is returned as a set of indices, which can be used to
+subscript the timeseries to be warped (or rows in a matrix, if one wants
+to warp a multivariate time series). In other words, ``warp`` converts
+the warping curve, or its inverse, into a function in the explicit form.
+
+Multiple indices that would be mapped to a single point are averaged,
+with a warning. Gaps in the index sequence are filled by linear
+interpolation.
+
+
+
+Parameters
+----------
+
+d : 
+    `dtw` object specifying the warping curve to apply
+index.reference : 
+    `TRUE` to warp a reference, `FALSE` to warp
+a query
+
+
+Returns
+-------
+
+A list of indices to subscript the timeseries.
+
+
+
+Notes
+-----
+
+(None)
+
+
+
+
+"""
+    #ENDIMPORT
     if not index_reference:
         iset = d.index1
         jset = d.index2

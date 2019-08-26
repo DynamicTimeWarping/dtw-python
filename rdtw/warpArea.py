@@ -26,19 +26,22 @@ def warpArea(d):
     #IMPORT_RDOCSTRING warpArea
     """Compute Warping Path Area
 
-Compute the area between the warping function and the diagonal (no-warping)
-path, in unit steps.
+
+Compute the area between the warping function and the diagonal
+(no-warping) path, in unit steps.
+
 
 **Details**
 
 Above- and below- diagonal unit areas all count *plus* one (they do not
-cancel with each other).  The "diagonal" goes from one corner to the other
-of the possibly rectangular cost matrix, therefore having a slope of
-`M/N`, not 1, as in [slantedBandWindow()].
+cancel with each other). The “diagonal” goes from one corner to the
+other of the possibly rectangular cost matrix, therefore having a slope
+of ``M/N``, not 1, as in [slantedBandWindow()].
 
-The computation is approximate: points having multiple correspondences are
-averaged, and points without a match are interpolated. Therefore, the area
-can be fractionary.
+The computation is approximate: points having multiple correspondences
+are averaged, and points without a match are interpolated. Therefore,
+the area can be fractionary.
+
 
 
 Parameters
@@ -54,11 +57,13 @@ Returns
 The area, not normalized by path length or else.
 
 
+
 Notes
 -----
 
 There could be alternative definitions to the area, including
 considering the envelope of the path.
+
 
 
 

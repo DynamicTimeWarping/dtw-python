@@ -25,52 +25,55 @@ class StepPattern:
     #IMPORT_RDOCSTRING stepPattern
     """Step patterns for DTW
 
-A `stepPattern` object lists the transitions allowed while searching
-for the minimum-distance path.  DTW variants are implemented by passing one
-of the objects described in this page to the `stepPattern` argument of
-the [dtw()] call.
+
+A ``stepPattern`` object lists the transitions allowed while searching
+for the minimum-distance path. DTW variants are implemented by passing
+one of the objects described in this page to the ``stepPattern``
+argument of the [dtw()] call.
+
 
 **Details**
 
 A step pattern characterizes the matching model and slope constraint
-specific of a DTW variant. They also known as local- or slope-constraints,
-transition types, production or recursion rules (GiorginoJSS).
+specific of a DTW variant. They also known as local- or
+slope-constraints, transition types, production or recursion rules
+(GiorginoJSS).
 
 **Pre-defined step patterns**
 
-```
-   ## Well-known step patterns
-   symmetric1
-   symmetric2
-   asymmetric
-   
-   ## Step patterns classified according to Rabiner-Juang (Rabiner1993)
-   rabinerJuangStepPattern(type,slope.weighting="d",smoothed=FALSE)
-   
-   ## Slope-constrained step patterns from Sakoe-Chiba (Sakoe1978)
-   symmetricP0;  asymmetricP0
-   symmetricP05; asymmetricP05
-   symmetricP1;  asymmetricP1
-   symmetricP2;  asymmetricP2
-   
-   ## Step patterns classified according to Rabiner-Myers (Myers1980)
-   typeIa;   typeIb;   typeIc;   typeId;
-   typeIas;  typeIbs;  typeIcs;  typeIds;  # smoothed
-   typeIIa;  typeIIb;  typeIIc;  typeIId;
-   typeIIIc; typeIVc;
-   
-   ## Miscellaneous
-   mori2006;
-   rigid;
- ```
+::
 
-A variety of classification schemes have been proposed for step patterns, including
-Sakoe-Chiba (Sakoe1978); Rabiner-Juang (Rabiner1993); and Rabiner-Myers
-(Myers1980).  The `dtw` package implements all of the transition types
-found in those papers, with the exception of Itakura's and
-Velichko-Zagoruyko's steps, which require subtly different algorithms (this
-may be rectified in the future). Itakura recursion is almost, but not quite,
-equivalent to `typeIIIc`.
+      ## Well-known step patterns
+      symmetric1
+      symmetric2
+      asymmetric
+      
+      ## Step patterns classified according to Rabiner-Juang (Rabiner1993)
+      rabinerJuangStepPattern(type,slope.weighting="d",smoothed=FALSE)
+      
+      ## Slope-constrained step patterns from Sakoe-Chiba (Sakoe1978)
+      symmetricP0;  asymmetricP0
+      symmetricP05; asymmetricP05
+      symmetricP1;  asymmetricP1
+      symmetricP2;  asymmetricP2
+      
+      ## Step patterns classified according to Rabiner-Myers (Myers1980)
+      typeIa;   typeIb;   typeIc;   typeId;
+      typeIas;  typeIbs;  typeIcs;  typeIds;  # smoothed
+      typeIIa;  typeIIb;  typeIIc;  typeIId;
+      typeIIIc; typeIVc;
+      
+      ## Miscellaneous
+      mori2006;
+      rigid;
+
+A variety of classification schemes have been proposed for step
+patterns, including Sakoe-Chiba (Sakoe1978); Rabiner-Juang
+(Rabiner1993); and Rabiner-Myers (Myers1980). The ``dtw`` package
+implements all of the transition types found in those papers, with the
+exception of Itakura’s and Velichko-Zagoruyko’s steps, which require
+subtly different algorithms (this may be rectified in the future).
+Itakura recursion is almost, but not quite, equivalent to ``typeIIIc``.
 
 For convenience, we shall review pre-defined step patterns grouped by
 classification. Note that the same pattern may be listed under different
@@ -81,87 +84,90 @@ names. Refer to paper (GiorginoJSS) for full details.
 Common DTW implementations are based on one of the following transition
 types.
 
-`symmetric2` is the normalizable, symmetric, with no local slope
-constraints.  Since one diagonal step costs as much as the two equivalent
-steps along the sides, it can be normalized dividing by `N+M`
+``symmetric2`` is the normalizable, symmetric, with no local slope
+constraints. Since one diagonal step costs as much as the two equivalent
+steps along the sides, it can be normalized dividing by ``N+M``
 (query+reference lengths). It is widely used and the default.
 
-`asymmetric` is asymmetric, slope constrained between 0 and 2. Matches
+``asymmetric`` is asymmetric, slope constrained between 0 and 2. Matches
 each element of the query time series exactly once, so the warping path
-`index2~index1` is guaranteed to be single-valued.  Normalized by
-`N` (length of query).
+``index2~index1`` is guaranteed to be single-valued. Normalized by ``N``
+(length of query).
 
-`symmetric1` (or White-Neely) is quasi-symmetric, no local constraint,
+``symmetric1`` (or White-Neely) is quasi-symmetric, no local constraint,
 non-normalizable. It is biased in favor of oblique steps.
 
 **2. The Rabiner-Juang set**
 
-A comprehensive table of step patterns is proposed in Rabiner-Juang's book
-(Rabiner1993), tab. 4.5.  All of them can be constructed through the
-`rabinerJuangStepPattern(type,slope.weighting,smoothed)` function.
+A comprehensive table of step patterns is proposed in Rabiner-Juang’s
+book (Rabiner1993), tab. 4.5. All of them can be constructed through the
+``rabinerJuangStepPattern(type,slope.weighting,smoothed)`` function.
 
 The classification foresees seven families, labelled with Roman numerals
-I-VII; here, they are selected through the integer argument `type`.
-Each family has four slope weighting sub-types, named in sec. 4.7.2.5 as
-"Type (a)" to "Type (d)"; they are selected passing a character argument
-`slope.weighting`, as in the table below. Furthermore, each subtype can
-be either plain or smoothed (figure 4.44); smoothing is enabled setting the
-logical argument `smoothed`.  (Not all combinations of arguments make
-sense.)
+I-VII; here, they are selected through the integer argument ``type``.
+Each family has four slope weighting sub-types, named in sec. 4.7.2.5 as
+“Type (a)” to “Type (d)”; they are selected passing a character argument
+``slope.weighting``, as in the table below. Furthermore, each subtype
+can be either plain or smoothed (figure 4.44); smoothing is enabled
+setting the logical argument ``smoothed``. (Not all combinations of
+arguments make sense.)
 
-```
-  Subtype | Rule       | Norm | Unbiased 
-  --------|------------|------|---------
-     a    | min step   |  --  |   NO 
-     b    | max step   |  --  |   NO 
-     c    | Di step    |   N  |  YES 
-     d    | Di+Dj step | N+M  |  YES 
-```
+::
+
+     Subtype | Rule       | Norm | Unbiased 
+     --------|------------|------|---------
+        a    | min step   |  --  |   NO 
+        b    | max step   |  --  |   NO 
+        c    | Di step    |   N  |  YES 
+        d    | Di+Dj step | N+M  |  YES 
 
 **3. The Sakoe-Chiba set**
 
-Sakoe-Chiba (Sakoe1978) discuss a family of slope-constrained patterns; they
-are implemented as shown in page 47, table I.  Here, they are called
-`symmetricP<x>` and `asymmetricP<x>`, where `<x>` corresponds
-to Sakoe's integer slope parameter *P*.  Values available are
-accordingly: `0` (no constraint), `1`, `05` (one half) and
-`2`. See (Sakoe1978) for details.
+Sakoe-Chiba (Sakoe1978) discuss a family of slope-constrained patterns;
+they are implemented as shown in page 47, table I. Here, they are called
+``symmetricP<x>`` and ``asymmetricP<x>``, where ``<x>`` corresponds to
+Sakoe’s integer slope parameter *P*. Values available are accordingly:
+``0`` (no constraint), ``1``, ``05`` (one half) and ``2``. See
+(Sakoe1978) for details.
 
 **4. The Rabiner-Myers set**
 
-The `type<XX><y>` step patterns follow the older Rabiner-Myers'
-classification proposed in (Myers1980) and (MRR1980). Note that this is a
-subset of the Rabiner-Juang set (Rabiner1993), and the latter should be
-preferred in order to avoid confusion. `<XX>` is a Roman numeral
-specifying the shape of the transitions; `<y>` is a letter in the range
-`a-d` specifying the weighting used per step, as above; `typeIIx`
-patterns also have a version ending in `s`, meaning the smoothing is
-used (which does not permit skipping points). The `typeId, typeIId` and
-`typeIIds` are unbiased and symmetric.
+The ``type<XX><y>`` step patterns follow the older Rabiner-Myers’
+classification proposed in (Myers1980) and (MRR1980). Note that this is
+a subset of the Rabiner-Juang set (Rabiner1993), and the latter should
+be preferred in order to avoid confusion. ``<XX>`` is a Roman numeral
+specifying the shape of the transitions; ``<y>`` is a letter in the
+range ``a-d`` specifying the weighting used per step, as above;
+``typeIIx`` patterns also have a version ending in ``s``, meaning the
+smoothing is used (which does not permit skipping points). The
+``typeId, typeIId`` and ``typeIIds`` are unbiased and symmetric.
 
 **5. Others**
 
-The `rigid` pattern enforces a fixed unitary slope. It only makes sense
-in combination with `open.begin=T`, `open.end=T` to find gapless
-subsequences. It may be seen as the \eqn{P \to \infty}{P->inf} limiting case in Sakoe's classification.
+The ``rigid`` pattern enforces a fixed unitary slope. It only makes
+sense in combination with ``open.begin=T``, ``open.end=T`` to find
+gapless subsequences. It may be seen as the
+:raw-latex:`\eqn{P \to \infty}{P->inf}` limiting case in Sakoe’s
+classification.
 
-`mori2006` is Mori's asymmetric step-constrained pattern (Mori2006). It
-is normalized by the matched reference length.
+``mori2006`` is Mori’s asymmetric step-constrained pattern (Mori2006).
+It is normalized by the matched reference length.
 
-[mvmStepPattern()] implements Latecki's Minimum Variance
-Matching algorithm, and it is described in its own page.
+[mvmStepPattern()] implements Latecki’s Minimum Variance Matching
+algorithm, and it is described in its own page.
 
 **Methods**
 
-`print.stepPattern` prints an user-readable description of the
+``print.stepPattern`` prints an user-readable description of the
 recurrence equation defined by the given pattern.
 
-`plot.stepPattern` graphically displays the step patterns productions
-which can lead to element (0,0). Weights are shown along the step leading to
-the corresponding element.
+``plot.stepPattern`` graphically displays the step patterns productions
+which can lead to element (0,0). Weights are shown along the step
+leading to the corresponding element.
 
-`t.stepPattern` transposes the productions and normalization hint so
+``t.stepPattern`` transposes the productions and normalization hint so
 that roles of query and reference become reversed.
+
 
 
 Parameters
@@ -188,7 +194,9 @@ Returns
 Notes
 -----
 
-Constructing `stepPattern` objects is tricky and thus undocumented. For a commented example please see source code for  `symmetricP1`.
+Constructing ``stepPattern`` objects is tricky and thus undocumented.
+For a commented example please see source code for ``symmetricP1``.
+
 
 
 

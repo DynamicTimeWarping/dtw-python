@@ -28,18 +28,21 @@ def countPaths(d, debug=False):
     #IMPORT_RDOCSTRING countPaths
     """Count the number of warping paths consistent with the constraints.
 
-Count how many possible warping paths exist in the alignment problem passed
-as an argument. The object passed as an argument is used to look up the
-problem parameters such as the used step pattern, windowing, open ends, and
-so on. The actual alignment is ignored.
+
+Count how many possible warping paths exist in the alignment problem
+passed as an argument. The object passed as an argument is used to look
+up the problem parameters such as the used step pattern, windowing, open
+ends, and so on. The actual alignment is ignored.
+
 
 **Details**
 
-Note that the number of paths grows exponentially with problems size. The
-result may be approximate when windowing functions are used.
+Note that the number of paths grows exponentially with problems size.
+The result may be approximate when windowing functions are used.
 
-If `debug=TRUE`, a matrix used for the computation is
-returned instead of the final result.
+If ``debug=TRUE``, a matrix used for the computation is returned instead
+of the final result.
+
 
 
 Parameters
@@ -55,6 +58,7 @@ Returns
 -------
 
 The number of paths.
+
 
 
 Notes

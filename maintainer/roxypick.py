@@ -10,6 +10,7 @@ import glob
 import sys
 import re
 import os
+import pypandoc
 
 
 rlist = glob.glob("../dtw/R/*.R")
@@ -58,7 +59,9 @@ def getParameters(k):
 
 def p(k,w):
     try:
-        return k.rx2(w)[0]
+        txt = k.rx2(w)[0]
+        txt_m = pypandoc.convert_text(txt,'rst',format="md")
+        return txt_m
     except:
         return "(None)"
 

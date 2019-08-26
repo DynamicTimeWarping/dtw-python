@@ -70,59 +70,70 @@ def dtw(x, y=None,
     #IMPORT_RDOCSTRING dtw
     """Dynamic Time Warp
 
+
 Compute Dynamic Time Warp and find optimal alignment between two time
 series.
+
 
 **Details**
 
 The function performs Dynamic Time Warp (DTW) and computes the optimal
-alignment between two time series `x` and `y`, given as numeric
-vectors.  The ``optimal'' alignment minimizes the sum of distances between
-aligned elements. Lengths of `x` and `y` may differ.
+alignment between two time series ``x`` and ``y``, given as numeric
+vectors. The
+\`\ ``optimal'' alignment minimizes the sum of distances between aligned elements. Lengths of``\ x\ ``and``\ y\`
+may differ.
 
-The local distance between elements of `x` (query) and `y`
+The local distance between elements of ``x`` (query) and ``y``
 (reference) can be computed in one of the following ways:
 
-1. if `dist.method` is a string, `x` and `y` are passed to the [proxy::dist()] function in package \pkg{proxy} with the method given; 
- 2. if `dist.method` is a function of two arguments, it invoked repeatedly on all pairs `x[i],y[j]` to build the local cost matrix; 
- 3. multivariate time series and arbitrary distance metrics can be handled by supplying a local-distance matrix. Element `[i,j]` of the local-distance matrix is understood as the distance between element `x[i]` and `y[j]`. The distance matrix has therefore `n=length(x)` rows and `m=length(y)` columns (see note below).
+1. if ``dist.method`` is a string, ``x`` and ``y`` are passed to the
+   [proxy::dist()] function in package :raw-latex:`\pkg{proxy}` with the
+   method given;
+2. if ``dist.method`` is a function of two arguments, it invoked
+   repeatedly on all pairs ``x[i],y[j]`` to build the local cost matrix;
+3. multivariate time series and arbitrary distance metrics can be
+   handled by supplying a local-distance matrix. Element ``[i,j]`` of
+   the local-distance matrix is understood as the distance between
+   element ``x[i]`` and ``y[j]``. The distance matrix has therefore
+   ``n=length(x)`` rows and ``m=length(y)`` columns (see note below).
 
 Several common variants of the DTW recursion are supported via the
-`step.pattern` argument, which defaults to `symmetric2`. Step
+``step.pattern`` argument, which defaults to ``symmetric2``. Step
 patterns are commonly used to *locally* constrain the slope of the
 alignment function. See [stepPattern()] for details.
 
 Windowing enforces a *global* constraint on the envelope of the warping
 path. It is selected by passing a string or function to the
-`window.type` argument. Commonly used windows are (abbreviations
+``window.type`` argument. Commonly used windows are (abbreviations
 allowed):
 
-* `"none"` No windowing (default) 
- * `"sakoechiba"` A band around main diagonal 
- * `"slantedband"` A band around slanted diagonal 
- * `"itakura"` So-called Itakura parallelogram
+-  ``"none"`` No windowing (default)
+-  ``"sakoechiba"`` A band around main diagonal
+-  ``"slantedband"`` A band around slanted diagonal
+-  ``"itakura"`` So-called Itakura parallelogram
 
-`window.type` can also be an user-defined windowing function.  See
-[dtwWindowingFunctions()] for all available windowing functions,
-details on user-defined windowing, and a discussion of the (mis)naming of
-the "Itakura" parallelogram as a global constraint.  Some windowing
-functions may require parameters, such as the `window.size` argument.
+``window.type`` can also be an user-defined windowing function. See
+[dtwWindowingFunctions()] for all available windowing functions, details
+on user-defined windowing, and a discussion of the (mis)naming of the
+“Itakura” parallelogram as a global constraint. Some windowing functions
+may require parameters, such as the ``window.size`` argument.
 
-Open-ended alignment, i.e. semi-unconstrained alignment, can be selected via
-the `open.end` switch.  Open-end DTW computes the alignment which best
-matches all of the query with a *leading part* of the reference. This
-is proposed e.g. by Mori (2006), Sakoe (1979) and others. Similarly,
-open-begin is enabled via `open.begin`; it makes sense when
-`open.end` is also enabled (subsequence finding). Subsequence
-alignments are similar e.g. to UE2-1 algorithm by Rabiner (1978) and others.
-Please find a review in Tormene et al. (2009).
+Open-ended alignment, i.e. semi-unconstrained alignment, can be selected
+via the ``open.end`` switch. Open-end DTW computes the alignment which
+best matches all of the query with a *leading part* of the reference.
+This is proposed e.g. by Mori (2006), Sakoe (1979) and others.
+Similarly, open-begin is enabled via ``open.begin``; it makes sense when
+``open.end`` is also enabled (subsequence finding). Subsequence
+alignments are similar e.g. to UE2-1 algorithm by Rabiner (1978) and
+others. Please find a review in Tormene et al. (2009).
 
-If the warping function is not required, computation can be sped up enabling
-the `distance.only=TRUE` switch, which skips the backtracking step. The
-output object will then lack the \code{index{1,2,1s,2s}} and
-`stepsTaken` fields.
+If the warping function is not required, computation can be sped up
+enabling the ``distance.only=TRUE`` switch, which skips the backtracking
+step. The output object will then lack the
+:raw-latex:`\code{index{1,2,1s,2s}}` and ``stepsTaken`` fields.
 
-`is.dtw` tests whether the argument is of class `dtw`.
+``is.dtw`` tests whether the argument is of class ``dtw``.
+
 
 
 Parameters
@@ -157,35 +168,41 @@ d :
 Returns
 -------
 
-An object of class `dtw` with the following items:
- * `distance` the minimum global distance computed, *not* normalized.
- * `normalizedDistance` distance computed, *normalized* for path length, if normalization is known for chosen step pattern.
- * `N,M` query and reference length
- * `call` the function call that #' created the object
- * `index1` matched elements: indices in `x`
- * `index2` corresponding mapped indices in `y`
- * `stepPattern` the `stepPattern` object used for the computation
- * `jmin` last element of reference matched, if `open.end=TRUE`
- * `directionMatrix` if `keep.internals=TRUE`, the directions of steps that would be taken at each alignment pair (integers indexing  production rules in the chosen step pattern)
- * `stepsTaken` the list of steps taken from the beginning to the end of the alignment (integers indexing chosen step pattern)
- * `index1s, index2s` same as `index1/2`, excluding intermediate steps for multi-step patterns like [asymmetricP05()] 
- * `costMatrix` if `keep.internals=TRUE`, the cumulative cost matrix
- * `query, reference` if `keep.internals=TRUE` and passed as the `x` and `y` arguments, the query and reference timeseries.
+An object of class ``dtw`` with the following items: \* ``distance`` the
+minimum global distance computed, *not* normalized. \*
+``normalizedDistance`` distance computed, *normalized* for path length,
+if normalization is known for chosen step pattern. \* ``N,M`` query and
+reference length \* ``call`` the function call that #’ created the
+object \* ``index1`` matched elements: indices in ``x`` \* ``index2``
+corresponding mapped indices in ``y`` \* ``stepPattern`` the
+``stepPattern`` object used for the computation \* ``jmin`` last element
+of reference matched, if ``open.end=TRUE`` \* ``directionMatrix`` if
+``keep.internals=TRUE``, the directions of steps that would be taken at
+each alignment pair (integers indexing production rules in the chosen
+step pattern) \* ``stepsTaken`` the list of steps taken from the
+beginning to the end of the alignment (integers indexing chosen step
+pattern) \* ``index1s, index2s`` same as ``index1/2``, excluding
+intermediate steps for multi-step patterns like [asymmetricP05()] \*
+``costMatrix`` if ``keep.internals=TRUE``, the cumulative cost matrix \*
+``query, reference`` if ``keep.internals=TRUE`` and passed as the ``x``
+and ``y`` arguments, the query and reference timeseries.
+
 
 
 Notes
 -----
 
 Cost matrices (both input and output) have query elements arranged
-row-wise (first index), and reference elements column-wise (second index).
-They print according to the usual convention, with indexes increasing down-
-and rightwards.  Many DTW papers and tutorials show matrices according to
-plot-like conventions, i.e.  reference index growing upwards. This may be
-confusing.
+row-wise (first index), and reference elements column-wise (second
+index). They print according to the usual convention, with indexes
+increasing down- and rightwards. Many DTW papers and tutorials show
+matrices according to plot-like conventions, i.e. reference index
+growing upwards. This may be confusing.
 
-A fast compiled version of the function is normally used.  Should it be
-unavailable, the interpreted equivalent will be used as a fall-back with a
-warning.
+A fast compiled version of the function is normally used. Should it be
+unavailable, the interpreted equivalent will be used as a fall-back with
+a warning.
+
 
 
 

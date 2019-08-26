@@ -26,26 +26,29 @@ def mvmStepPattern(elasticity=20):
     #IMPORT_RDOCSTRING mvmStepPattern
     """Minimum Variance Matching algorithm
 
-Step patterns to compute the Minimum Variance Matching (MVM) correspondence
-between time series
+
+Step patterns to compute the Minimum Variance Matching (MVM)
+correspondence between time series
+
 
 **Details**
 
-The Minimum Variance Matching algorithm (1) finds the non-contiguous parts
-of reference which best match the query, allowing for arbitrarily long
-"stretches" of reference to be excluded from the match. All elements of the
-query have to be matched. First and last elements of the query are anchored
-at the boundaries of the reference.
+The Minimum Variance Matching algorithm (1) finds the non-contiguous
+parts of reference which best match the query, allowing for arbitrarily
+long “stretches” of reference to be excluded from the match. All
+elements of the query have to be matched. First and last elements of the
+query are anchored at the boundaries of the reference.
 
-The `mvmStepPattern` function creates a `stepPattern` object which
-implements this behavior, to be used with the usual [dtw()] call
-(see example). MVM is computed as a special case of DTW, with a very large,
+The ``mvmStepPattern`` function creates a ``stepPattern`` object which
+implements this behavior, to be used with the usual [dtw()] call (see
+example). MVM is computed as a special case of DTW, with a very large,
 asymmetric-like step pattern.
 
-The `elasticity` argument limits the maximum run length of reference
-which can be skipped at once. If no limit is desired, set `elasticity`
+The ``elasticity`` argument limits the maximum run length of reference
+which can be skipped at once. If no limit is desired, set ``elasticity``
 to an integer at least as large as the reference (computation time grows
 linearly).
+
 
 
 Parameters
@@ -59,6 +62,7 @@ Returns
 -------
 
 A step pattern object.
+
 
 
 Notes
