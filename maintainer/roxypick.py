@@ -23,7 +23,8 @@ for rfile in rlist:
 
     for k in elts:
         try:
-            ex = k.rx2('export')[0]
+            # ex = k.rx2('export')[0]
+            ex = k.slots['object'].rx2('alias')[0]
             print("found... "+ex)
         except:
             try:

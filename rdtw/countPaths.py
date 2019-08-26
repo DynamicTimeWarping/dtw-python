@@ -25,6 +25,9 @@ import numpy
 
 
 def countPaths(d, debug=False):
+    # IMPORT RDOCSTRING countPaths
+    """I am"""
+    # ENDIMPORT
     N = d.N
     M = d.M
     m = numpy.full((N,M), numpy.nan)
