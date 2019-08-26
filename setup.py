@@ -61,6 +61,7 @@ setup(
     name='rdtw',
 #    packages=find_packages(include=['rdtw']),
     packages=['rdtw'],
+    package_data={'rdtw': ['data/*.csv']},
     ext_modules=cythonize(ext),
     setup_requires=setup_requirements,
     test_suite='tests',
