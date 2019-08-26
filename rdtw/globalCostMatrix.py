@@ -9,13 +9,14 @@ DTYPE = numpy.int32
 def _globalCostMatrix(lm,
                       step_pattern,
                       window_function,
-                      seed=None):
+                      seed,
+                      win_args):
 
     wm = numpy.full_like(lm, True, dtype=DTYPE)
     if window_function != noWindow: # for performance
         for i in range(n):
             for j in range(m):
-                wm[i,j] = window_function(i, j, query_size=n, reference_size=m)
+                wm[i,j] = window_function(i, j, query_size=n, reference_size=m, **win_args)
 
     n, m = lm.shape
      
