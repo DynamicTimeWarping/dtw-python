@@ -259,6 +259,80 @@ def dtwPlotThreeWay(d, xts=None, yts=None,
                     xlab = "Query index",
                     ylab = "Reference index", **kwargs):
     #IMPORT_RDOCSTRING dtwPlotThreeWay
+    """Plotting of dynamic time warp results: annotated warping function
+
+
+Display the query and reference time series and their warping curve,
+arranged for visual inspection.
+
+
+**Details**
+
+The query time series is plotted in the bottom panel, with indices
+growing rightwards and values upwards. Reference is in the left panel,
+indices growing upwards and values leftwards. The warping curve panel
+matches indices, and therefore element (1,1) will be at the lower left,
+(N,M) at the upper right.
+
+Argument ``match.indices`` is used to draw a visual guide to matches; if
+a vector is given, guides are drawn for the corresponding indices in the
+warping curve (match lines). If integer, it is used as the number of
+guides to be plotted. The corresponding style is customized via the
+``match.col`` and ``match.lty`` arguments.
+
+If ``xts`` and ``yts`` are not supplied, they will be recovered from
+``d``, as long as it was created with the two-argument call of [dtw()]
+with ``keep.internals=T``. Only single-variate time series can be
+plotted.
+
+
+
+Parameters
+----------
+
+d : 
+    an alignment result, object of class `dtw`
+xts : 
+    query vector
+yts : 
+    reference vector
+xlab : 
+    label for the query axis
+ylab : 
+    label for the reference axis
+main : 
+    main title
+type.align : 
+    line style for warping curve plot
+type.ts : 
+    line style for timeseries plot
+match.indices : 
+    indices for which to draw a visual guide
+margin : 
+    outer figure margin
+inner.margin : 
+    inner figure margin
+title.margin : 
+    space on the top of figure
+... : 
+    additional arguments, used for the warping curve
+
+
+Returns
+-------
+
+(None)
+
+
+Notes
+-----
+
+(None)
+
+
+
+
+"""
     #ENDIMPORT
     import matplotlib.pyplot as plt
     import matplotlib.gridspec as gridspec
@@ -311,7 +385,47 @@ def dtwPlotThreeWay(d, xts=None, yts=None,
     lc = mc.LineCollection( col, linewidths=1, linestyles=":", colors=match_col )
     ax.add_collection(lc)
 
-    
-
     plt.show()
     return fig
+
+
+
+
+def dtwPlotDensity(d, normalize=False,
+                   xlab = "Query index",
+                   ylab = "Reference index", **kwargs):
+    #IMPORT_RDOCSTRING dtwPlotDensity
+    #ENDIMPORT
+    import matplotlib.pyplot as plt
+
+    try:
+        cm = d.costMatrix
+    except:
+        raise ValueError("dtwPlotDensity requires dtw internals (set keep.internals=True on dtw() call)")
+
+    if normalize:
+        norm = d.stepPattern.hint
+        row, col = numpy.indices( cm.shape )
+        if norm == "NA":
+            raise ValueError("Step pattern has no normalization")
+        elif norm == "N":
+            cm = cm / (row+1)
+        elif norm == "N+M":
+            cm = cm / (row+col+2)
+        elif norm == "M":
+            cm = cm / (col+1)
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+
+    ax.imshow(cm.T, origin="lower", cmap=plt.get_cmap("terrain"))
+    co=ax.contour(cm.T, colors = "white")
+    ax.clabel(co)
+
+    ax.plot(d.index1, d.index2, color="blue", linewidth=2)
+
+    ax.set_xlabel(xlab)
+    ax.set_ylabel(ylab)
+
+    plt.show()
+    return ax
+
