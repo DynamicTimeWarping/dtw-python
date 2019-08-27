@@ -51,6 +51,7 @@ def dot_underscore(s):
     s = re.sub(rex,"_",s)
     s = s.replace("TRUE","True")
     s = s.replace("FALSE","False")
+    return s
 
 
 def getParameters(k):
@@ -63,7 +64,7 @@ def getParameters(k):
     if len(o) > 0:
         out =  "Parameters\n"
         out += "----------\n"
-        out += "\n".join(o)
+        out += ("\n".join(o))
         return out
     else:
         return ""
