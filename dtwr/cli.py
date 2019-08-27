@@ -33,7 +33,7 @@ def main():
     parser = argparse.ArgumentParser(description='Command line DTW utility.')
     parser.add_argument("--query", default="query.csv", help="Query timeseries (tsv)")
     parser.add_argument("--reference", default="reference.csv", help="Reference timeseries (tsv)")
-    parser.add_argument("--step_pattern", default="symmetric2", help="Step pattern, i.e. recursion rule")
+    parser.add_argument("--step_pattern", default="symmetric2", help="Step pattern, aka recursion rule. E.g. symmetric2, asymmetric, ...")
     opts = parser.parse_args(sys.argv[1:])
     
     out=main2(opts.query, opts.reference, opts.step_pattern)

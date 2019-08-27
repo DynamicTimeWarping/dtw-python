@@ -22,7 +22,7 @@ def _globalCostMatrix(lm,
 
     nsteps = numpy.array([step_pattern.get_n_rows()], dtype=ITYPE)
 
-    dir = numpy.array(step_pattern.get_p(), dtype=numpy.double)
+    dir = numpy.array(step_pattern._get_p(), dtype=numpy.double)
 
     if seed is not None:
         cm = seed

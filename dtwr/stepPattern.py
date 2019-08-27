@@ -113,16 +113,14 @@ can be either plain or smoothed (figure 4_44); smoothing is enabled
 setting the logical argument ``smoothed``. (Not all combinations of
 arguments make sense.)
 
-.. raw:: latex
+::
 
-   \tabular{cccc}{ 
-   Subtype \tab Rule \tab Norm \tab Unbiased \cr 
-   % -------------------------------- 
-   a \tab min step \tab -- \tab NO \cr 
-   b \tab max step \tab -- \tab NO \cr 
-   c \tab Di step \tab N \tab YES \cr 
-   d \tab Di+Dj step \tab N+M \tab YES \cr 
-   }
+     Subtype | Rule       | Norm | Unbiased 
+     --------|------------|------|---------
+        a    | min step   |  --  |   NO 
+        b    | max step   |  --  |   NO 
+        c    | Di step    |   N  |  YES 
+        d    | Di+Dj step | N+M  |  YES 
 
 **3. The Sakoe-Chiba set**
 
@@ -181,11 +179,9 @@ x :
 type : 
     path specification, integer 1..7 (see (Rabiner1993), table 4.5)
 slope_weighting : 
-    slope weighting rule: character `"a"` to
-`"d"` (see (Rabiner1993), sec. 4.7.2.5)
+    slope weighting rule: character `"a"` to `"d"` (see (Rabiner1993), sec. 4.7.2.5)
 smoothed : 
-    logical, whether to use smoothing (see (Rabiner1993), fig.
-4.44)
+    logical, whether to use smoothing (see (Rabiner1993), fig. 4.44)
 ... : 
     additional arguments to [print()].
 
@@ -213,19 +209,16 @@ For a commented example please see source code for ``symmetricP1``.
         self.mx = numpy.array(mx, dtype=numpy.double)
         self.hint = hint
 
-    def get_p(self):
-        # Dimensions are reversed wrt R
-        s = self.mx[:, [0, 2, 1, 3]]
-        return s.T.reshape(-1)
-
     def get_n_rows(self):
+        """Total number of steps in the recursion."""
         return self.mx.shape[0]
 
     def get_n_patterns(self):
+        """Number of rules in the recursion."""
         return int(numpy.max(self.mx[:, 0]))
 
     def T(self):
-        """ Transpose a step pattern. """
+        """Transpose a step pattern."""
         tsp = self
         tsp.mx = tsp.mx[:, [0, 2, 1, 3]]
         if tsp.hint == "N":
@@ -265,6 +258,7 @@ For a commented example please see source code for ``symmetricP1``.
         return "Step pattern recursion:\n" + head + body + tail + ntxt
 
     def plot(self):
+        """Provide a visual description of a StepPattern object"""
         import matplotlib.pyplot as plt
         x = self.mx
         pats = 1 + numpy.arange(self.get_n_patterns() + 1)
@@ -309,6 +303,12 @@ For a commented example please see source code for ``symmetricP1``.
         out = out[out[:, 3] == -1, :]
         out = out[:, [1, 2]]
         return out
+
+    def _get_p(self):
+        # Dimensions are reversed wrt R
+        s = self.mx[:, [0, 2, 1, 3]]
+        return s.T.reshape(-1)
+
 
 
 # Alternate constructor for ease of R import

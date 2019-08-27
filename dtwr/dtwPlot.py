@@ -19,7 +19,9 @@
 
 import numpy
 
+from ._docs_utils import moddoc
 
+@moddoc("bubu")
 def dtwPlot(x, type, **kwargs):
     # IMPORT_RDOCSTRING plot.dtw
     """Plotting of dynamic time warp results
@@ -42,7 +44,7 @@ argument (may be abbreviated):
 -  ``threeway`` vis-a-vis inspection of the timeseries and their warping
    curve; see [dtwPlotThreeWay()];
 -  ``density`` displays the cumulative cost landscape with the warping
-   path overimposed; see [dtwPlotDensity()]
+   path overimposed
 
 If ``normalize`` is ``TRUE``, the *average* cost per step is plotted
 instead of the cumulative one. Step averaging depends on the
@@ -82,7 +84,8 @@ Returns
 Notes
 -----
 
-(None)
+The density plot is more colorful than useful.
+
 
 
 
@@ -390,34 +393,19 @@ def dtwPlotDensity(d, normalize=False,
                    xlab="Query index",
                    ylab="Reference index", **kwargs):
     # IMPORT_RDOCSTRING dtwPlotDensity
-    """Display the cumulative cost landscape with the warping path overimposed
+    """(None)
 
-
-The plot is based on the cumulative cost matrix. It displays the optimal
-alignment as a “ridge” in the global cost landscape.
-
+(None)
 
 **Details**
 
-Normalization plots the average cost per step instead of the cumulative
-cost. The alignment must have been constructed with the
-``keep_internals=TRUE`` parameter set.
-
+(None)
 
 
 Parameters
 ----------
 
-d : 
-    an alignment result, object of class `dtw`
-normalize : 
-    whether to show the normalized cost
-xlab : 
-    label for the query axis
-ylab : 
-    label for the reference axis
-... : 
-    additional parameters forwarded to plotting functions
+
 
 
 Returns
