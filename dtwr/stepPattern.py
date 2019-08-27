@@ -313,17 +313,20 @@ For a commented example please see source code for ``symmetricP1``.
     
     
 
-  
-
     
 # Alternate constructor for ease of R import
 def _c(*v):
     va = numpy.array([*v])
     if len(va) % 4 != 0:
-        error("Internal error in _c constructor")
+        _error("Internal error in _c constructor")
     va = va.reshape((-1,4))
     return(va)
-    
+
+
+# Kludge because lambda: raise doesn't work
+def _error(s):
+    raise ValueError(s)
+
 
 ##################################################
 ##################################################
@@ -359,7 +362,7 @@ class _P:
         elif self.subtype == "d":
             w = ia+ja
         else:
-            error("Unsupported subtype")
+            _error("Unsupported subtype")
 
         if self.smoothing:
             # if self.pid==3:                import ipdb; ipdb.set_trace()
@@ -418,7 +421,7 @@ Notes
         5: _RJtypeV,
         6: _RJtypeVI,
         7: _RJtypeVII
-    }.get(ptype, lambda: error("Invalid type"))
+    }.get(ptype, lambda: _error("Invalid type"))
 
     r = f(slope_weighting, smoothed)
     norm = "NA"

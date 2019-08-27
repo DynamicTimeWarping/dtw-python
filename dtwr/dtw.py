@@ -223,7 +223,7 @@ a warning.
     if y is None:
         x = numpy.array(x)
         if len(x.shape) != 2:
-            raise ValueError("A 2D local distance matrix was expected")
+            _error("A 2D local distance matrix was expected")
         lm = numpy.array(x)
     else:
         x = numpy.atleast_2d(x)
@@ -244,7 +244,7 @@ a warning.
 
     if open_begin:
         if norm != "N":
-            error("Open-begin requires step patterns with 'N' normalization (e.g. asymmetric, or R-J types (c)). See Tormene et al.")
+            _error("Open-begin requires step patterns with 'N' normalization (e.g. asymmetric, or R-J types (c)). See Tormene et al.")
         lm = numpy.vstack( [ numpy.zeros((1,lm.shape[1])), lm ] ) # prepend null row
         np = n+1
         precm = numpy.full_like(lm, numpy.nan, dtype=numpy.double)
@@ -285,13 +285,13 @@ a warning.
 
     if open_end:
         if norm == "NA":
-            error("Open-end alignments require normalizable step patterns")
+            _error("Open-end alignments require normalizable step patterns")
         gcm.jmin = numpy.argmin(lastcol)
 
     gcm.distance = gcm.costMatrix[-1, gcm.jmin]
         
     if gcm.distance != gcm.distance: # nan
-        raise ValueError("No warping path found compatible with the local constraints")
+        _error("No warping path found compatible with the local constraints")
 
     if step_pattern.hint != "NA":
         gcm.normalizedDistance = lastcol[gcm.jmin]
@@ -337,7 +337,7 @@ def _canonicalizeWindowFunction(window_type):
         "sakoechiba": sakoeChibaWindow,
         "itakura": itakuraWindow,
         "slantedband": slantedBandWindow
-    }.get(w, lambda: error("Window function undefined"))
+    }.get(w, lambda: _error("Window function undefined"))
 
 
 def _canonicalizeStepPattern(s):
@@ -346,3 +346,8 @@ def _canonicalizeStepPattern(s):
         return s
     else:
         return getattr(sys.modules["dtwr.stepPattern"], s)
+
+    
+# Kludge because lambda: raise doesn't work
+def _error(s):
+    raise ValueError(s)
