@@ -111,8 +111,6 @@ the [typeIIIc()] step pattern.
 
 
 """
-
-
 # ENDIMPORT
 
 

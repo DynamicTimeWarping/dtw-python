@@ -8,25 +8,29 @@ import dtwr
 
 
 @click.command()
-@click.option("--query", None, "Query timeseries (tsv)")
-@click.option("--reference", None, "Reference timeseries (tsv)")
-@click.option("--step_pattern", "symmetric2", "Step pattern, i.e. recursion rule")
+@click.option("--query", default="query.csv", help="Query timeseries (tsv)")
+@click.option("--reference", default="reference.csv", help="Reference timeseries (tsv)")
+@click.option("--step_pattern", default="symmetric2", help="Step pattern, i.e. recursion rule")
 def main(query, reference, step_pattern):
     """Console script for dtwr."""
-    click.echo("Replace this message by putting your code into "
-               "dtwr.cli.main")
-    click.echo("See click documentation at http://click.pocoo.org/")
+
+    click.echo(
+        "Command line DTW utility. The Python and R interface provide the full functionality, including plots.")
+    click.echo("See http://dtw.r-forge.r-project.org/\n")
     q = numpy.genfromtxt(query)
     r = numpy.genfromtxt(reference)
     al = dtwr.dtw(q, r, step_pattern=step_pattern)
 
-    wp = numpy.hstack([al.index1, al.index2])
+    wp = numpy.vstack([al.index1, al.index2])
 
-    print(f"Distance: {al.distance}")
     try:
-        print(f"Normalized distance: {al.normalizedDistance}")
+        print(f"Normalized distance: {al.normalizedDistance:.4g}")
     except:
         pass
+
+    print(f"Distance: {al.distance:.4g}")
+
+    print(f"Warping path: {wp}")
 
     return 0
 

@@ -207,7 +207,6 @@ For a commented example please see source code for ``symmetricP1``.
 
 
 """
-
     # ENDIMPORT
 
     def __init__(self, mx, hint="NA"):
