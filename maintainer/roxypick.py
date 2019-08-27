@@ -46,12 +46,18 @@ def indent_as(l):
     c = l.find('#')
     return l[:c]
 
+def dot_underscore(s):
+    import re
+    rex = r"\b\.\b"
+    return re.sub(rex,"_",s)
+
 
 def getParameters(k):
     o=[]
     for i in range(1,len(k)+1):
         if k.rx(i).names[0] == "param":
-            o.append( k.rx(i)[0][0][0] + " : ")
+            pn = dot_underscore(k.rx(i)[0][0][0])
+            o.append(pn + " : ")
             o.append( "    " + k.rx(i)[0][1][0] )
     return "\n".join(o)
 
@@ -60,6 +66,7 @@ def getParameters(k):
 def p(k,w):
     try:
         txt = k.rx2(w)[0]
+        txt = dot_underscore(txt)
         txt_m = pypandoc.convert_text(txt,'rst',format="md")
         return txt_m
     except:
