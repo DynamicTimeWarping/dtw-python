@@ -26,7 +26,7 @@ Welcome
 This package provides
 the most complete, freely-available (GPL) implementation of Dynamic Time
 Warping-type (DTW) algorithms up to date. It is a faithful Python equivalent
-of [R's DTW package](http://dtw.r-forge.r-project.org/).
+of `R's DTW package <http://dtw.r-forge.r-project.org/>`__.
 
 
 The package is described in a `companion
