@@ -22,18 +22,6 @@ class TestRDTW(unittest.TestCase):
     def test_000_something(self):
         """Test something."""
 
-    def test_command_line_interface(self):
-        """Test the CLI."""
-        runner = CliRunner()
-        result = runner.invoke(cli.main,
-                               '--query tests/query.csv --reference tests/reference.csv'.split())
-        assert result.exit_code == 0
-        assert '0.1292' in result.output
-
-        help_result = runner.invoke(cli.main, ['--help'])
-        assert help_result.exit_code == 0
-        assert 'Show this message and exit.' in help_result.output
-
 
 
 
