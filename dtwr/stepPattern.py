@@ -20,6 +20,8 @@
 
 
 import numpy
+import sys
+
 
 class StepPattern:
     #IMPORT_RDOCSTRING stepPattern
@@ -311,6 +313,9 @@ For a commented example please see source code for ``symmetricP1``.
     
     
 
+  
+
+    
 # Alternate constructor for ease of R import
 def _c(*v):
     va = numpy.array([*v])

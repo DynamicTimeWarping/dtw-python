@@ -31,6 +31,7 @@
 
 
 import numpy
+import sys
 
 from .stepPattern import *
 from ._backtrack import _backtrack
@@ -60,7 +61,7 @@ class DTW:
 
 def dtw(x, y=None,
         dist_method="euclidean",
-        step_pattern=symmetric2,
+        step_pattern="symmetric2",
         window_type=None,
         window_args={},
         keep_internals=False,
@@ -230,6 +231,7 @@ a warning.
         
     wfun = _canonicalizeWindowFunction(window_type)
 
+    step_pattern = _canonicalizeStepPattern(step_pattern)
     norm = step_pattern.hint
 
     n, m = lm.shape
@@ -331,3 +333,10 @@ def _canonicalizeWindowFunction(window_type):
         "slantedband": slantedBandWindow
     }.get(w, lambda: error("Window function undefined"))
 
+
+def _canonicalizeStepPattern(s):
+    """Return object by string"""
+    if isinstance(s,StepPattern):
+        return s
+    else:
+        return getattr(sys.modules["dtwr.stepPattern"], s)
