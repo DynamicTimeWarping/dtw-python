@@ -33,8 +33,8 @@
 import numpy
 
 from .stepPattern import *
-from .backtrack import _backtrack
-from .globalCostMatrix import _globalCostMatrix
+from ._backtrack import _backtrack
+from ._globalCostMatrix import _globalCostMatrix
 from .window import *
 
 
