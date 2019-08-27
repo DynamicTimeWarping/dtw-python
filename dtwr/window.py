@@ -23,30 +23,30 @@
 
 
 Various global constraints (windows) which can be applied to the
-``window.type`` argument of [dtw()], including the Sakoe-Chiba band, the
+``window_type`` argument of [dtw()], including the Sakoe-Chiba band, the
 Itakura parallelogram, and custom functions.
 
 
 **Details**
 
-Windowing functions can be passed to the ``window.type`` argument in
+Windowing functions can be passed to the ``window_type`` argument in
 [dtw()] to put a global constraint to the warping paths allowed. They
 take two integer arguments (plus optional parameters) and must return a
 boolean value ``TRUE`` if the coordinates fall within the allowed region
 for warping paths, ``FALSE`` otherwise.
 
-User-defined functions can read variables ``reference.size``,
-``query.size`` and ``window.size``; these are pre-set upon invocation.
-Some functions require additional parameters which must be set (e.g.
-``window.size``). User-defined functions are free to implement any
+User-defined functions can read variables ``reference_size``,
+``query_size`` and ``window_size``; these are pre-set upon invocation.
+Some functions require additional parameters which must be set (e_g.
+``window_size``). User-defined functions are free to implement any
 window shape, as long as at least one path is allowed between the
-initial and final alignment points, i.e., they are compatible with the
+initial and final alignment points, i_e., they are compatible with the
 DTW constraints.
 
-The ``sakoeChibaWindow`` function implements the Sakoe-Chiba band, i.e.
-``window.size`` elements around the ``main`` diagonal. If the window
-size is too small, i.e. if ``reference.size``-``query.size`` >
-``window.size``, warping becomes impossible.
+The ``sakoeChibaWindow`` function implements the Sakoe-Chiba band, i_e.
+``window_size`` elements around the ``main`` diagonal. If the window
+size is too small, i_e. if ``reference_size``-``query_size`` >
+``window_size``, warping becomes impossible.
 
 An ``itakuraWindow`` global constraint is still provided with this
 package. See example below for a demonstration of the difference between
@@ -54,14 +54,14 @@ a local the two.
 
 The ``slantedBandWindow`` (package-specific) is a band centered around
 the (jagged) line segment which joins element ``[1,1]`` to element
-``[query.size,reference.size]``, and will be ``window.size`` columns
+``[query_size,reference_size]``, and will be ``window_size`` columns
 wide. In other words, the “diagonal” goes from one corner to the other
 of the possibly rectangular cost matrix, therefore having a slope of
 ``M/N``, not 1.
 
-``dtwWindow.plot`` visualizes a windowing function. By default it plots
+``dtwWindow_plot`` visualizes a windowing function. By default it plots
 a 200 x 220 rectangular region, which can be changed via
-``reference.size`` and ``query.size`` arguments.
+``reference_size`` and ``query_size`` arguments.
 
 
 
@@ -72,11 +72,11 @@ iw :
     index in the query (row) -- automatically set
 jw : 
     index in the reference (column) -- automatically set
-query.size : 
+query_size : 
     size of the query time series -- automatically set
-reference.size : 
+reference_size : 
     size of the reference time series -- automatically set
-window.size : 
+window_size : 
     window size, used by some windowing functions -- must be
 set
 fun : 
@@ -97,11 +97,11 @@ User-defined functions should do the same.
 Notes
 -----
 
-Although ``dtwWindow.plot`` resembles object-oriented notation, there is
+Although ``dtwWindow_plot`` resembles object-oriented notation, there is
 not a such a dtwWindow class currently.
 
 A widely held misconception is that the “Itakura parallelogram” (as
-described in reference 2) is a *global* constraint, i.e. a window. To
+described in reference 2) is a *global* constraint, i_e. a window. To
 the author’s knowledge, it instead arises from the local slope
 restrictions imposed to the warping path, such as the one implemented by
 the [typeIIIc()] step pattern.

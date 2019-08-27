@@ -51,7 +51,7 @@ slope-constraints, transition types, production or recursion rules
       asymmetric
       
       ## Step patterns classified according to Rabiner-Juang (Rabiner1993)
-      rabinerJuangStepPattern(type,slope.weighting="d",smoothed=FALSE)
+      rabinerJuangStepPattern(type,slope_weighting="d",smoothed=FALSE)
       
       ## Slope-constrained step patterns from Sakoe-Chiba (Sakoe1978)
       symmetricP0;  asymmetricP0
@@ -102,15 +102,15 @@ non-normalizable. It is biased in favor of oblique steps.
 **2. The Rabiner-Juang set**
 
 A comprehensive table of step patterns is proposed in Rabiner-Juang’s
-book (Rabiner1993), tab. 4.5. All of them can be constructed through the
-``rabinerJuangStepPattern(type,slope.weighting,smoothed)`` function.
+book (Rabiner1993), tab. 4_5. All of them can be constructed through the
+``rabinerJuangStepPattern(type,slope_weighting,smoothed)`` function.
 
 The classification foresees seven families, labelled with Roman numerals
 I-VII; here, they are selected through the integer argument ``type``.
-Each family has four slope weighting sub-types, named in sec. 4.7.2.5 as
+Each family has four slope weighting sub-types, named in sec. 4_7_2_5 as
 “Type (a)” to “Type (d)”; they are selected passing a character argument
-``slope.weighting``, as in the table below. Furthermore, each subtype
-can be either plain or smoothed (figure 4.44); smoothing is enabled
+``slope_weighting``, as in the table below. Furthermore, each subtype
+can be either plain or smoothed (figure 4_44); smoothing is enabled
 setting the logical argument ``smoothed``. (Not all combinations of
 arguments make sense.)
 
@@ -149,7 +149,7 @@ smoothing is used (which does not permit skipping points). The
 **5. Others**
 
 The ``rigid`` pattern enforces a fixed unitary slope. It only makes
-sense in combination with ``open.begin=T``, ``open.end=T`` to find
+sense in combination with ``open_begin=T``, ``open_end=T`` to find
 gapless subsequences. It may be seen as the
 :raw-latex:`\eqn{P \to \infty}{P->inf}` limiting case in Sakoe’s
 classification.
@@ -162,14 +162,14 @@ algorithm, and it is described in its own page.
 
 **Methods**
 
-``print.stepPattern`` prints an user-readable description of the
+``print_stepPattern`` prints an user-readable description of the
 recurrence equation defined by the given pattern.
 
-``plot.stepPattern`` graphically displays the step patterns productions
+``plot_stepPattern`` graphically displays the step patterns productions
 which can lead to element (0,0). Weights are shown along the step
 leading to the corresponding element.
 
-``t.stepPattern`` transposes the productions and normalization hint so
+``t_stepPattern`` transposes the productions and normalization hint so
 that roles of query and reference become reversed.
 
 
@@ -181,7 +181,7 @@ x :
     a step pattern object
 type : 
     path specification, integer 1..7 (see (Rabiner1993), table 4.5)
-slope.weighting : 
+slope_weighting : 
     slope weighting rule: character `"a"` to
 `"d"` (see (Rabiner1993), sec. 4.7.2.5)
 smoothed : 

@@ -30,13 +30,13 @@ database.
 **Details**
 
 The following text is reproduced (abridged) from PhysioBank, page
-https://www.physionet.org/content/aami-ec13/1.0.0/. Other recordings
+https://www_physionet_org/content/aami-ec13/1_0_0/. Other recordings
 belong to the dataset and can be obtained from the same page.
 
 The files in this set can be used for testing a variety of devices that
 monitor the electrocardiogram. The recordings include both synthetic and
 real waveforms. For details on these test waveforms and how to use them,
-please refer to section 5.1.2.1, paragraphs (e) and (g) in the reference
+please refer to section 5_1_2_1, paragraphs (e) and (g) in the reference
 below. Each recording contains one ECG signal sampled at 720 Hz with
 12-bit resolution.
 

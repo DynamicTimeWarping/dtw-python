@@ -42,7 +42,7 @@ argument (may be abbreviated):
 -  ``threeway`` vis-a-vis inspection of the timeseries and their warping
    curve; see [dtwPlotThreeWay()];
 -  ``density`` displays the cumulative cost landscape with the warping
-   path overimposed
+   path overimposed; see [dtwPlotDensity()]
 
 If ``normalize`` is ``TRUE``, the *average* cost per step is plotted
 instead of the cumulative one. Step averaging depends on the
@@ -64,7 +64,7 @@ ylab :
     label for the reference axis
 type : 
     general style for the alignment plot
-plot.type : 
+plot_type : 
     type of line to be drawn, used as the `type` argument
 in the underlying `plot` call
 normalize : 
@@ -137,15 +137,15 @@ appearance can be customized via the ``type`` and ``pch`` arguments
 reference is shifted vertically by the given amount; this will be
 reflected by the *right-hand* axis.
 
-Argument ``match.indices`` is used to draw a visual guide to matches; if
+Argument ``match_indices`` is used to draw a visual guide to matches; if
 a vector is given, guides are drawn for the corresponding indices in the
 warping curve (match lines). If integer, it is used as the number of
 guides to be plotted. The corresponding style is customized via the
-``match.col`` and ``match.lty`` arguments.
+``match_col`` and ``match_lty`` arguments.
 
 If ``xts`` and ``yts`` are not supplied, they will be recovered from
 ``d``, as long as it was created with the two-argument call of [dtw()]
-with ``keep.internals=T``. Only single-variate time series can be
+with ``keep_internals=T``. Only single-variate time series can be
 plotted this way.
 
 
@@ -163,11 +163,11 @@ xlab,ylab :
     axis labels
 offset : 
     displacement between the timeseries, summed to reference
-match.col,match.lty : 
+match_col,match_lty : 
     color and line type of the match guide lines
-match.indices : 
+match_indices : 
     indices for which to draw a visual guide
-ts.type,pch : 
+ts_type,pch : 
     graphical parameters for timeseries plotting, passed to
 `matplot`
 ... : 
@@ -273,15 +273,15 @@ indices growing upwards and values leftwards. The warping curve panel
 matches indices, and therefore element (1,1) will be at the lower left,
 (N,M) at the upper right.
 
-Argument ``match.indices`` is used to draw a visual guide to matches; if
+Argument ``match_indices`` is used to draw a visual guide to matches; if
 a vector is given, guides are drawn for the corresponding indices in the
 warping curve (match lines). If integer, it is used as the number of
 guides to be plotted. The corresponding style is customized via the
-``match.col`` and ``match.lty`` arguments.
+``match_col`` and ``match_lty`` arguments.
 
 If ``xts`` and ``yts`` are not supplied, they will be recovered from
 ``d``, as long as it was created with the two-argument call of [dtw()]
-with ``keep.internals=T``. Only single-variate time series can be
+with ``keep_internals=T``. Only single-variate time series can be
 plotted.
 
 
@@ -301,17 +301,17 @@ ylab :
     label for the reference axis
 main : 
     main title
-type.align : 
+type_align : 
     line style for warping curve plot
-type.ts : 
+type_ts : 
     line style for timeseries plot
-match.indices : 
+match_indices : 
     indices for which to draw a visual guide
 margin : 
     outer figure margin
-inner.margin : 
+inner_margin : 
     inner figure margin
-title.margin : 
+title_margin : 
     space on the top of figure
 ... : 
     additional arguments, used for the warping curve
@@ -405,7 +405,7 @@ alignment as a “ridge” in the global cost landscape.
 
 Normalization plots the average cost per step instead of the cumulative
 cost. The alignment must have been constructed with the
-``keep.internals=TRUE`` parameter set.
+``keep_internals=TRUE`` parameter set.
 
 
 

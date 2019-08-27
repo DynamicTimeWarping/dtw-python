@@ -12,13 +12,6 @@ dtwr.aami module
    :undoc-members:
    :show-inheritance:
 
-dtwr.backtrack module
----------------------
-
-.. automodule:: dtwr.backtrack
-   :members:
-   :undoc-members:
-   :show-inheritance:
 
 dtwr.cli module
 ---------------
@@ -40,14 +33,6 @@ dtwr.dtw module
 ---------------
 
 .. automodule:: dtwr.dtw
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-dtwr.globalCostMatrix module
-----------------------------
-
-.. automodule:: dtwr.globalCostMatrix
    :members:
    :undoc-members:
    :show-inheritance:
