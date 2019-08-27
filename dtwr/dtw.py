@@ -37,8 +37,7 @@ from .stepPattern import *
 from ._backtrack import _backtrack
 from ._globalCostMatrix import _globalCostMatrix
 from .window import *
-
-import dtwPlot
+from .dtwPlot import *
 
 
 from scipy.spatial.distance import cdist
@@ -56,10 +55,10 @@ class DTW:
         s = "DTW alignment object of size (query x reference): {:d} x {:d}".format(self.N, self.M)
         return (s)
 
-    def plot(self, type="alignment", *args, **kwargs):
+    def plot(self, type="alignment", **kwargs):
         #IMPORT_RDOCSTRING plot.dtw
         #ENDIMPORT
-        dtwPlot.plot(self, type, **kwargs)
+        dtwPlot(self, type, **kwargs)
         
 
 

@@ -20,7 +20,7 @@
 
 import numpy
 
-def plot(x, type, **kwargs):
+def dtwPlot(x, type, **kwargs):
     #IMPORT_RDOCSTRING plot.dtw
     #ENDIMPORT
 
@@ -43,13 +43,13 @@ def dtwPlotAlignment(d, xlab="Query index", ylab="Reference index", **kwargs):
     ax.set_xlabel(xlab)
     ax.set_ylabel(ylab)
 
-    plot.show()
+    plt.show()
     return ax
     
 
 def dtwPlotTwoWay(d, xts=None, yts=None,
                   offset=0,
-                  ts.type="l",
+                  ts_type="l",
                   match_indices=None,
                   match_col = "gray70",
                   xlab = "Index",
@@ -65,13 +65,13 @@ def dtwPlotTwoWay(d, xts=None, yts=None,
             xts = d.query
             yts = d.reference
         except:
-            error("Original timeseries are required")
+            raise ValueError("Original timeseries are required")
 
     # ytso = yts + offset
     ytso = yts
 
     maxlen = max(len(xts),len(ytso))
-    times = np.arange(maxlen)
+    times = numpy.arange(maxlen)
     # xts = numpy.pad(xts,maxlen)
     # ytso = numpy.pad(ytso.maxlen)
 
