@@ -14,7 +14,7 @@ class TestCLI(unittest.TestCase):
 
     def test_command_line_interface(self):
         """Test the CLI."""
-        out = cli.main("tests/query.csv","tests/reference.csv","symmetric2")
+        out = cli.main2("tests/query.csv","tests/reference.csv","symmetric2")
         assert '0.1292' in out
 
         

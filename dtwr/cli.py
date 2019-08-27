@@ -7,7 +7,7 @@ import dtwr
 import argparse
 
 
-def main(query, reference, step_pattern):
+def main2(query, reference, step_pattern):
     """Console script for dtwr."""
 
     out = "The Python and R interface provide the full functionality, including plots.\n"+\
@@ -29,15 +29,17 @@ def main(query, reference, step_pattern):
 
     return out
 
-
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description='Command line DTW utility.')
     parser.add_argument("--query", default="query.csv", help="Query timeseries (tsv)")
     parser.add_argument("--reference", default="reference.csv", help="Reference timeseries (tsv)")
     parser.add_argument("--step_pattern", default="symmetric2", help="Step pattern, i.e. recursion rule")
     opts = parser.parse_args(sys.argv[1:])
     
-    out=main(opts.query, opts.reference, opts.step_pattern)
+    out=main2(opts.query, opts.reference, opts.step_pattern)
     print(out)
     
-    
+
+if __name__ == "__main__":
+    main()
+
