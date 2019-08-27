@@ -82,8 +82,7 @@ Returns
 Notes
 -----
 
-The density plot is more colorful than useful.
-
+(None)
 
 
 
@@ -395,19 +394,34 @@ def dtwPlotDensity(d, normalize=False,
                    xlab = "Query index",
                    ylab = "Reference index", **kwargs):
     #IMPORT_RDOCSTRING dtwPlotDensity
-    """(None)
+    """Display the cumulative cost landscape with the warping path overimposed
 
-(None)
+
+The plot is based on the cumulative cost matrix. It displays the optimal
+alignment as a “ridge” in the global cost landscape.
+
 
 **Details**
 
-(None)
+Normalization plots the average cost per step instead of the cumulative
+cost. The alignment must have been constructed with the
+``keep.internals=TRUE`` parameter set.
+
 
 
 Parameters
 ----------
 
-
+d : 
+    an alignment result, object of class `dtw`
+normalize : 
+    whether to show the normalized cost
+xlab : 
+    label for the query axis
+ylab : 
+    label for the reference axis
+... : 
+    additional parameters forwarded to plotting functions
 
 
 Returns

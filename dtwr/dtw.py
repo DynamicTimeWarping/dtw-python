@@ -117,8 +117,7 @@ Returns
 Notes
 -----
 
-The density plot is more colorful than useful.
-
+(None)
 
 
 
