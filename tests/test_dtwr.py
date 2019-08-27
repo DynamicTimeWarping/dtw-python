@@ -1,18 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""Tests for `rdtw` package."""
+"""Tests for `dtwr` package."""
 
 
 import unittest
 from click.testing import CliRunner
 
-from rdtw import rdtw
-from rdtw import cli
+from dtwr import cli
 
 
 class TestRDTW(unittest.TestCase):
-    """Tests for `rdtw` package."""
+    """Tests for `dtwr` package."""
 
     def setUp(self):
         """Set up test fixtures, if any."""
@@ -28,7 +27,7 @@ class TestRDTW(unittest.TestCase):
         runner = CliRunner()
         result = runner.invoke(cli.main)
         assert result.exit_code == 0
-        assert 'rdtw.cli.main' in result.output
+        assert 'dtwr.cli.main' in result.output
         help_result = runner.invoke(cli.main, ['--help'])
         assert help_result.exit_code == 0
         assert '--help  Show this message and exit.' in help_result.output

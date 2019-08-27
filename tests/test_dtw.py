@@ -6,7 +6,7 @@ from numpy import nan
 from numpy.testing import (assert_approx_equal,
                            assert_array_equal, assert_raises)
 
-from rdtw import *
+from dtwr import *
 
 
 """
