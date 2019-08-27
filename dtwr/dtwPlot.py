@@ -51,7 +51,7 @@ def dtwPlotTwoWay(d, xts=None, yts=None,
                   offset=0,
                   ts_type="l",
                   match_indices=None,
-                  match_col = "gray70",
+                  match_col = "gray",
                   xlab = "Index",
                   ylab = "Query value",
                   **kwargs):
@@ -59,7 +59,8 @@ def dtwPlotTwoWay(d, xts=None, yts=None,
     #ENDIMPORT
 
     import matplotlib.pyplot as plt
-
+    from matplotlib import collections  as mc
+    
     if xts is None or yts is None:
         try:
             xts = d.query
@@ -78,10 +79,11 @@ def dtwPlotTwoWay(d, xts=None, yts=None,
     fig, ax = plt.subplots()
     if offset != 0:
         ax2 = ax.twinx()
+        ax2.tick_params('y',colors='b')
     else:
         ax2 = ax
 
-    ax.plot(times, xts, **kwargs)
+    ax.plot(times, xts, color='k', **kwargs)
     ax2.plot(times, yts, **kwargs)
 
     ql, qh = ax.get_ylim()
@@ -91,8 +93,25 @@ def dtwPlotTwoWay(d, xts=None, yts=None,
         ax.set_ylim(ql-offset, qh)
         ax2.set_ylim(rl, rh+offset)
     elif offset < 0:
-        ax.set_ylim(ql, qh+offset)
-        ax2.set_ylim(rl-offset, rh)
+        ax.set_ylim(ql, qh-offset)
+        ax2.set_ylim(rl+offset, rh)
+
+    # https://stackoverflow.com/questions/21352580/matplotlib-plotting-numerous-disconnected-line-segments-with-different-colors
+    if match_indices is None:
+        idx = numpy.linspace(0, len(d.index1)-1)
+    elif not hasattr(match_indices, "__len__"):
+        idx = numpy.linspace(0, len(d.index1)-1, num=match_indices)
+    else:
+        idx = match_indices
+    idx = numpy.array(idx).astype(int)
+
+    col=[]
+    for i in idx:
+        col.append([ (d.index1[i], xts[d.index1[i]]),
+                     (d.index2[i], -offset+yts[d.index2[i]]) ])
+        
+    lc = mc.LineCollection( col, linewidths=.5, colors=match_col )
+    ax.add_collection(lc)
         
     plt.show()
     return ax, ax2
