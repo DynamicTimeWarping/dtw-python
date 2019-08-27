@@ -22,8 +22,12 @@
 """ANSI/AAMI EC13 Test Waveforms, 3a and 3b
 
 
+
+
 ANSI/AAMI EC13 Test Waveforms 3a and 3b, as obtained from the PhysioBank
 database.
+
+
 
 
 **Details**
@@ -41,16 +45,10 @@ below. Each recording contains one ECG signal sampled at 720 Hz with
 
 
 
-Parameters
-----------
 
 
 
 
-Returns
--------
-
-(None)
 
 
 Notes
@@ -60,6 +58,8 @@ Timestamps in the datasets have been re-created at the indicated
 frequency of 720 Hz, whereas the original timestamps in ms (at least in
 text format) only had three decimal digits’ precision, and were
 therefore affected by substantial jittering.
+
+
 
 
 

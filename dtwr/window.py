@@ -22,9 +22,13 @@
 """Global constraints and windowing functions for DTW
 
 
+
+
 Various global constraints (windows) which can be applied to the
 ``window_type`` argument of [dtw()], including the Sakoe-Chiba band, the
 Itakura parallelogram, and custom functions.
+
+
 
 
 **Details**
@@ -32,8 +36,8 @@ Itakura parallelogram, and custom functions.
 Windowing functions can be passed to the ``window_type`` argument in
 [dtw()] to put a global constraint to the warping paths allowed. They
 take two integer arguments (plus optional parameters) and must return a
-boolean value ``TRUE`` if the coordinates fall within the allowed region
-for warping paths, ``FALSE`` otherwise.
+boolean value ``True`` if the coordinates fall within the allowed region
+for warping paths, ``False`` otherwise.
 
 User-defined functions can read variables ``reference_size``,
 ``query_size`` and ``window_size``; these are pre-set upon invocation.
@@ -65,9 +69,10 @@ a 200 x 220 rectangular region, which can be changed via
 
 
 
+
+
 Parameters
 ----------
-
 iw : 
     index in the query (row) -- automatically set
 jw : 
@@ -84,13 +89,13 @@ fun :
 ... : 
     additional arguments passed to windowing functions
 
-
 Returns
 -------
 
-Windowing functions return ``TRUE`` if the coordinates passed as
-arguments fall within the chosen warping window, ``FALSE`` otherwise.
+Windowing functions return ``True`` if the coordinates passed as
+arguments fall within the chosen warping window, ``False`` otherwise.
 User-defined functions should do the same.
+
 
 
 
@@ -105,6 +110,8 @@ described in reference 2) is a *global* constraint, i_e. a window. To
 the author’s knowledge, it instead arises from the local slope
 restrictions imposed to the warping path, such as the one implemented by
 the [typeIIIc()] step pattern.
+
+
 
 
 

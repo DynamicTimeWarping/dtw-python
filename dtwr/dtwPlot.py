@@ -27,8 +27,12 @@ def dtwPlot(x, type, **kwargs):
     """Plotting of dynamic time warp results
 
 
+
+
 Methods for plotting dynamic time warp alignment objects returned by
 [dtw()].
+
+
 
 
 **Details**
@@ -44,9 +48,9 @@ argument (may be abbreviated):
 -  ``threeway`` vis-a-vis inspection of the timeseries and their warping
    curve; see [dtwPlotThreeWay()];
 -  ``density`` displays the cumulative cost landscape with the warping
-   path overimposed
+   path overimposed; see [dtwPlotDensity()]
 
-If ``normalize`` is ``TRUE``, the *average* cost per step is plotted
+If ``normalize`` is ``True``, the *average* cost per step is plotted
 instead of the cumulative one. Step averaging depends on the
 [stepPattern()] used.
 
@@ -55,9 +59,10 @@ care.
 
 
 
+
+
 Parameters
 ----------
-
 x,d : 
     `dtw` object, usually result of call to [dtw()]
 xlab : 
@@ -75,16 +80,7 @@ normalize :
     additional arguments, passed to plotting functions
 
 
-Returns
--------
 
-(None)
-
-
-Notes
------
-
-The density plot is more colorful than useful.
 
 
 
@@ -127,8 +123,12 @@ def dtwPlotTwoWay(d, xts=None, yts=None,
     """Plotting of dynamic time warp results: pointwise comparison
 
 
+
+
 Display the query and reference time series and their alignment,
 arranged for visual inspection.
+
+
 
 
 **Details**
@@ -147,14 +147,15 @@ guides to be plotted. The corresponding style is customized via the
 
 If ``xts`` and ``yts`` are not supplied, they will be recovered from
 ``d``, as long as it was created with the two-argument call of [dtw()]
-with ``keep_internals=T``. Only single-variate time series can be
+with ``keep_internals=True``. Only single-variate time series can be
 plotted this way.
+
+
 
 
 
 Parameters
 ----------
-
 d : 
     an alignment result, object of class `dtw`
 xts : 
@@ -176,16 +177,13 @@ ts_type,pch :
     additional arguments, passed to `matplot`
 
 
-Returns
--------
-
-(None)
-
 
 Notes
 -----
 
 When ``offset`` is set values on the left axis only apply to the query.
+
+
 
 
 
@@ -262,8 +260,12 @@ def dtwPlotThreeWay(d, xts=None, yts=None,
     """Plotting of dynamic time warp results: annotated warping function
 
 
+
+
 Display the query and reference time series and their warping curve,
 arranged for visual inspection.
+
+
 
 
 **Details**
@@ -282,14 +284,15 @@ guides to be plotted. The corresponding style is customized via the
 
 If ``xts`` and ``yts`` are not supplied, they will be recovered from
 ``d``, as long as it was created with the two-argument call of [dtw()]
-with ``keep_internals=T``. Only single-variate time series can be
+with ``keep_internals=True``. Only single-variate time series can be
 plotted.
+
+
 
 
 
 Parameters
 ----------
-
 d : 
     an alignment result, object of class `dtw`
 xts : 
@@ -318,16 +321,8 @@ title_margin :
     additional arguments, used for the warping curve
 
 
-Returns
--------
-
-(None)
 
 
-Notes
------
-
-(None)
 
 
 
@@ -393,31 +388,43 @@ def dtwPlotDensity(d, normalize=False,
                    xlab="Query index",
                    ylab="Reference index", **kwargs):
     # IMPORT_RDOCSTRING dtwPlotDensity
-    """(None)
+    """Display the cumulative cost landscape with the warping path overimposed
 
-(None)
+
+
+
+The plot is based on the cumulative cost matrix. It displays the optimal
+alignment as a “ridge” in the global cost landscape.
+
+
+
 
 **Details**
 
-(None)
+Normalization plots the average cost per step instead of the cumulative
+cost. The alignment must have been constructed with the
+``keep_internals=True`` parameter set.
+
+
+
 
 
 Parameters
 ----------
+d : 
+    an alignment result, object of class `dtw`
+normalize : 
+    whether to show the normalized cost
+xlab : 
+    label for the query axis
+ylab : 
+    label for the reference axis
+... : 
+    additional parameters forwarded to plotting functions
 
 
 
 
-Returns
--------
-
-(None)
-
-
-Notes
------
-
-(None)
 
 
 

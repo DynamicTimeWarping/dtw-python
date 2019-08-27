@@ -78,7 +78,7 @@ def p(k,w,h=None):
         txt_m = pypandoc.convert_text(txt,'rst',format="md")
         out = ""
         if h is not None:
-            out = h + "\n\n"
+            out = h + "\n"
             out += ("-" * len(h)) + "\n\n"
         out += txt_m + "\n\n"
         return out

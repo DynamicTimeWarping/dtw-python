@@ -27,10 +27,14 @@ class StepPattern:
     """Step patterns for DTW
 
 
+
+
 A ``stepPattern`` object lists the transitions allowed while searching
 for the minimum-distance path. DTW variants are implemented by passing
 one of the objects described in this page to the ``stepPattern``
 argument of the [dtw()] call.
+
+
 
 
 **Details**
@@ -50,7 +54,7 @@ slope-constraints, transition types, production or recursion rules
       asymmetric
       
       ## Step patterns classified according to Rabiner-Juang (Rabiner1993)
-      rabinerJuangStepPattern(type,slope_weighting="d",smoothed=FALSE)
+      rabinerJuangStepPattern(type,slope_weighting="d",smoothed=False)
       
       ## Slope-constrained step patterns from Sakoe-Chiba (Sakoe1978)
       symmetricP0;  asymmetricP0
@@ -146,10 +150,9 @@ smoothing is used (which does not permit skipping points). The
 **5. Others**
 
 The ``rigid`` pattern enforces a fixed unitary slope. It only makes
-sense in combination with ``open_begin=T``, ``open_end=T`` to find
-gapless subsequences. It may be seen as the
-:raw-latex:`\eqn{P \to \infty}{P->inf}` limiting case in Sakoe’s
-classification.
+sense in combination with ``open_begin=True``, ``open_end=True`` to find
+gapless subsequences. It may be seen as the ``P->inf`` limiting case in
+Sakoe’s classification.
 
 ``mori2006`` is Mori’s asymmetric step-constrained pattern (Mori2006).
 It is normalized by the matched reference length.
@@ -171,9 +174,10 @@ that roles of query and reference become reversed.
 
 
 
+
+
 Parameters
 ----------
-
 x : 
     a step pattern object
 type : 
@@ -186,17 +190,14 @@ smoothed :
     additional arguments to [print()].
 
 
-Returns
--------
-
-(None)
-
 
 Notes
 -----
 
 Constructing ``stepPattern`` objects is tricky and thus undocumented.
 For a commented example please see source code for ``symmetricP1``.
+
+
 
 
 
@@ -378,31 +379,20 @@ class _P:
 
 def rabinerJuangStepPattern(ptype, slope_weighting="d", smoothed=False):
     # IMPORT_RDOCSTRING rabinerJuangStepPattern
-    """(None)
+    """
 
-(None)
+
 
 **Details**
 
-(None)
-
-
-Parameters
-----------
 
 
 
 
-Returns
--------
-
-(None)
 
 
-Notes
------
 
-(None)
+
 
 
 

@@ -54,8 +54,12 @@ class DTW:
         """Plotting of dynamic time warp results
 
 
+
+
 Methods for plotting dynamic time warp alignment objects returned by
 [dtw()].
+
+
 
 
 **Details**
@@ -71,9 +75,9 @@ argument (may be abbreviated):
 -  ``threeway`` vis-a-vis inspection of the timeseries and their warping
    curve; see [dtwPlotThreeWay()];
 -  ``density`` displays the cumulative cost landscape with the warping
-   path overimposed
+   path overimposed; see [dtwPlotDensity()]
 
-If ``normalize`` is ``TRUE``, the *average* cost per step is plotted
+If ``normalize`` is ``True``, the *average* cost per step is plotted
 instead of the cumulative one. Step averaging depends on the
 [stepPattern()] used.
 
@@ -82,9 +86,10 @@ care.
 
 
 
+
+
 Parameters
 ----------
-
 x,d : 
     `dtw` object, usually result of call to [dtw()]
 xlab : 
@@ -102,16 +107,7 @@ normalize :
     additional arguments, passed to plotting functions
 
 
-Returns
--------
 
-(None)
-
-
-Notes
------
-
-The density plot is more colorful than useful.
 
 
 
@@ -138,17 +134,20 @@ def dtw(x, y=None,
     """Dynamic Time Warp
 
 
+
+
 Compute Dynamic Time Warp and find optimal alignment between two time
 series.
+
+
 
 
 **Details**
 
 The function performs Dynamic Time Warp (DTW) and computes the optimal
 alignment between two time series ``x`` and ``y``, given as numeric
-vectors. The
-\`\ ``optimal'' alignment minimizes the sum of distances between aligned elements. Lengths of``\ x\ ``and``\ y\`
-may differ.
+vectors. The “optimal” alignment minimizes the sum of distances between
+aligned elements. Lengths of ``x`` and ``y`` may differ.
 
 The local distance between elements of ``x`` (query) and ``y``
 (reference) can be computed in one of the following ways:
@@ -195,7 +194,7 @@ alignments are similar e_g. to UE2-1 algorithm by Rabiner (1978) and
 others. Please find a review in Tormene et al. (2009).
 
 If the warping function is not required, computation can be sped up
-enabling the ``distance_only=TRUE`` switch, which skips the backtracking
+enabling the ``distance_only=True`` switch, which skips the backtracking
 step. The output object will then lack the ``index{1,2,1s,2s}`` and
 ``stepsTaken`` fields.
 
@@ -203,9 +202,10 @@ step. The output object will then lack the ``index{1,2,1s,2s}`` and
 
 
 
+
+
 Parameters
 ----------
-
 x : 
     query vector *or* local cost matrix
 y : 
@@ -231,7 +231,6 @@ d :
 ... : 
     additional arguments, passed to `window.type`
 
-
 Returns
 -------
 
@@ -245,17 +244,18 @@ An object of class ``dtw`` with the following items:
 -  ``index1`` matched elements: indices in ``x``
 -  ``index2`` corresponding mapped indices in ``y``
 -  ``stepPattern`` the ``stepPattern`` object used for the computation
--  ``jmin`` last element of reference matched, if ``open_end=TRUE``
--  ``directionMatrix`` if ``keep_internals=TRUE``, the directions of
+-  ``jmin`` last element of reference matched, if ``open_end=True``
+-  ``directionMatrix`` if ``keep_internals=True``, the directions of
    steps that would be taken at each alignment pair (integers indexing
    production rules in the chosen step pattern)
 -  ``stepsTaken`` the list of steps taken from the beginning to the end
    of the alignment (integers indexing chosen step pattern)
 -  ``index1s, index2s`` same as ``index1/2``, excluding intermediate
    steps for multi-step patterns like [asymmetricP05()]
--  ``costMatrix`` if ``keep_internals=TRUE``, the cumulative cost matrix
--  ``query, reference`` if ``keep_internals=TRUE`` and passed as the
+-  ``costMatrix`` if ``keep_internals=True``, the cumulative cost matrix
+-  ``query, reference`` if ``keep_internals=True`` and passed as the
    ``x`` and ``y`` arguments, the query and reference timeseries.
+
 
 
 
@@ -272,6 +272,8 @@ growing upwards. This may be confusing.
 A fast compiled version of the function is normally used. Should it be
 unavailable, the interpreted equivalent will be used as a fall-back with
 a warning.
+
+
 
 
 

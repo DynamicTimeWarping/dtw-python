@@ -27,8 +27,12 @@ def warp(d, index_reference=False):
     """Apply a warping to a given timeseries
 
 
+
+
 Returns the indexing required to apply the optimal warping curve to a
 given timeseries (warps either into a query or into a reference).
+
+
 
 
 **Details**
@@ -44,15 +48,15 @@ interpolation.
 
 
 
+
+
 Parameters
 ----------
-
 d : 
     `dtw` object specifying the warping curve to apply
 index_reference : 
     `TRUE` to warp a reference, `FALSE` to warp
 a query
-
 
 Returns
 -------
@@ -61,10 +65,8 @@ A list of indices to subscript the timeseries.
 
 
 
-Notes
------
 
-(None)
+
 
 
 

@@ -26,8 +26,12 @@ def mvmStepPattern(elasticity=20):
     """Minimum Variance Matching algorithm
 
 
+
+
 Step patterns to compute the Minimum Variance Matching (MVM)
 correspondence between time series
+
+
 
 
 **Details**
@@ -50,12 +54,12 @@ linearly).
 
 
 
+
+
 Parameters
 ----------
-
 elasticity : 
     integer: maximum consecutive reference elements skippable
-
 
 Returns
 -------
@@ -64,10 +68,8 @@ A step pattern object.
 
 
 
-Notes
------
 
-(None)
+
 
 
 
