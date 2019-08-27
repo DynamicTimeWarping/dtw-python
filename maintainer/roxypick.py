@@ -48,7 +48,9 @@ def indent_as(l):
 
 def dot_underscore(s):
     rex = r"\b\.\b"
-    return re.sub(rex,"_",s)
+    s = re.sub(rex,"_",s)
+    s = s.replace("TRUE","True")
+    s = s.replace("FALSE","False")
 
 
 def getParameters(k):
@@ -58,18 +60,29 @@ def getParameters(k):
             pn = dot_underscore(k.rx(i)[0][0][0])
             o.append(pn + " : ")
             o.append( "    " + k.rx(i)[0][1][0] )
-    return "\n".join(o)
+    if len(o) > 0:
+        out =  "Parameters\n"
+        out += "----------\n"
+        out += "\n".join(o)
+        return out
+    else:
+        return ""
 
 
 
-def p(k,w):
+def p(k,w,h=None):
     try:
         txt = k.rx2(w)[0]
         txt = dot_underscore(txt)
         txt_m = pypandoc.convert_text(txt,'rst',format="md")
-        return txt_m
+        out = ""
+        if h is not None:
+            out = h + "\n\n"
+            out += ("-" * len(h)) + "\n\n"
+        out += txt_m + "\n\n"
+        return out
     except:
-        return "(None)"
+        return ""
 
 
     
@@ -85,22 +98,11 @@ def getdoc(n):
 {p(k,'details')}
 
 
-Parameters
-----------
-
 {getParameters(k)}
 
+{p(k,'return','Returns')}
 
-Returns
--------
-
-{p(k,'return')}
-
-
-Notes
------
-
-{p(k,'note')}
+{p(k,'note','Notes')}
 
 
 
