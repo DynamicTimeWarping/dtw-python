@@ -18,14 +18,12 @@
 ##
 
 
-
-
 from .dtw import DTW
 import numpy
 
 
 def countPaths(d, debug=False):
-    #IMPORT_RDOCSTRING countPaths
+    # IMPORT_RDOCSTRING countPaths
     """Count the number of possible warping paths
 
 
@@ -75,12 +73,12 @@ Notes
     # ENDIMPORT
     N = d.N
     M = d.M
-    m = numpy.full((N,M), numpy.nan)
+    m = numpy.full((N, M), numpy.nan)
 
     if d.openBegin:
-        m[0,:] = 1.0
+        m[0, :] = 1.0
     else:
-        m[0,0] = 1.0
+        m[0, 0] = 1.0
 
     dir = d.stepPattern
     npats = dir.get_n_patterns()
@@ -91,32 +89,30 @@ Notes
 
     for ii in range(N):
         for jj in range(M):
-            if numpy.isfinite(m[ii,jj]):
+            if numpy.isfinite(m[ii, jj]):
                 continue
 
             if not wf(ii, jj,
-                      query_size = N,
-                      reference_size = M,
+                      query_size=N,
+                      reference_size=M,
                       **d.windowArgs):
-                m[ii,jj] = 0
+                m[ii, jj] = 0
                 continue
 
             np = 0
             for k in range(npats):
-                ni = ii - deltas[k,0]
-                nj = jj - deltas[k,1]
+                ni = ii - deltas[k, 0]
+                nj = jj - deltas[k, 1]
 
-                if ni>=0 and nj>=0:
-                    np += m[ni,nj]
+                if ni >= 0 and nj >= 0:
+                    np += m[ni, nj]
 
-            m[ii,jj] = np
-              
+            m[ii, jj] = np
+
     if debug:
         return m
 
     if d.openEnd:
         return numpy.sum(m[-1,])
     else:
-        return m[-1,-1]
-
-    
+        return m[-1, -1]

@@ -47,7 +47,6 @@ def indent_as(l):
     return l[:c]
 
 def dot_underscore(s):
-    import re
     rex = r"\b\.\b"
     return re.sub(rex,"_",s)
 
@@ -134,7 +133,7 @@ for pfile in plist:
 
             fout.write(indent_as(l)) # Copy indentation
 
-            n = l.split()[1]    # Extract name
+            n = l.split()[2]    # Extract name
             print(f" Inserting {n}")
 
             ds = getdoc(n)

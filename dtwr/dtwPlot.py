@@ -1,4 +1,3 @@
-
 ##
 ## Copyright (c) 2006-2019 of Toni Giorgino
 ##
@@ -20,8 +19,9 @@
 
 import numpy
 
+
 def dtwPlot(x, type, **kwargs):
-    #IMPORT_RDOCSTRING plot.dtw
+    # IMPORT_RDOCSTRING plot.dtw
     """Plotting of dynamic time warp results
 
 
@@ -88,40 +88,39 @@ Notes
 
 
 """
-    #ENDIMPORT
+    # ENDIMPORT
 
     if type == "alignment":
-        dtwPlotAlignment(x,  **kwargs)
+        dtwPlotAlignment(x, **kwargs)
     elif type == "twoway":
-        dtwPlotTwoWay(x,  **kwargs)
+        dtwPlotTwoWay(x, **kwargs)
     elif type == "threeway":
-        dtwPlotThreeWay(x,  **kwargs)
+        dtwPlotThreeWay(x, **kwargs)
     elif type == "density":
-        dtwPlotDensity(x,  **kwargs)
-
+        dtwPlotDensity(x, **kwargs)
 
 
 def dtwPlotAlignment(d, xlab="Query index", ylab="Reference index", **kwargs):
     import matplotlib.pyplot as plt
     fig, ax = plt.subplots(figsize=(6, 6))
 
-    ax.plot( d.index1, d.index2, **kwargs)
+    ax.plot(d.index1, d.index2, **kwargs)
     ax.set_xlabel(xlab)
     ax.set_ylabel(ylab)
 
     plt.show()
     return ax
-    
+
 
 def dtwPlotTwoWay(d, xts=None, yts=None,
                   offset=0,
                   ts_type="l",
                   match_indices=None,
-                  match_col = "gray",
-                  xlab = "Index",
-                  ylab = "Query value",
+                  match_col="gray",
+                  xlab="Index",
+                  ylab="Query value",
                   **kwargs):
-    #IMPORT_RDOCSTRING dtwPlotTwoWay
+    # IMPORT_RDOCSTRING dtwPlotTwoWay
     """Plotting of dynamic time warp results: pointwise comparison
 
 
@@ -190,11 +189,11 @@ When ``offset`` is set values on the left axis only apply to the query.
 
 
 """
-    #ENDIMPORT
+    # ENDIMPORT
 
     import matplotlib.pyplot as plt
     from matplotlib import collections  as mc
-    
+
     if xts is None or yts is None:
         try:
             xts = d.query
@@ -205,7 +204,7 @@ When ``offset`` is set values on the left axis only apply to the query.
     # ytso = yts + offset
     ytso = yts
 
-    maxlen = max(len(xts),len(ytso))
+    maxlen = max(len(xts), len(ytso))
     times = numpy.arange(maxlen)
     # xts = numpy.pad(xts,maxlen)
     # ytso = numpy.pad(ytso.maxlen)
@@ -213,7 +212,7 @@ When ``offset`` is set values on the left axis only apply to the query.
     fig, ax = plt.subplots()
     if offset != 0:
         ax2 = ax.twinx()
-        ax2.tick_params('y',colors='b')
+        ax2.tick_params('y', colors='b')
     else:
         ax2 = ax
 
@@ -222,42 +221,41 @@ When ``offset`` is set values on the left axis only apply to the query.
 
     ql, qh = ax.get_ylim()
     rl, rh = ax2.get_ylim()
-    
+
     if offset > 0:
-        ax.set_ylim(ql-offset, qh)
-        ax2.set_ylim(rl, rh+offset)
+        ax.set_ylim(ql - offset, qh)
+        ax2.set_ylim(rl, rh + offset)
     elif offset < 0:
-        ax.set_ylim(ql, qh-offset)
-        ax2.set_ylim(rl+offset, rh)
+        ax.set_ylim(ql, qh - offset)
+        ax2.set_ylim(rl + offset, rh)
 
     # https://stackoverflow.com/questions/21352580/matplotlib-plotting-numerous-disconnected-line-segments-with-different-colors
     if match_indices is None:
-        idx = numpy.linspace(0, len(d.index1)-1)
+        idx = numpy.linspace(0, len(d.index1) - 1)
     elif not hasattr(match_indices, "__len__"):
-        idx = numpy.linspace(0, len(d.index1)-1, num=match_indices)
+        idx = numpy.linspace(0, len(d.index1) - 1, num=match_indices)
     else:
         idx = match_indices
     idx = numpy.array(idx).astype(int)
 
-    col=[]
+    col = []
     for i in idx:
-        col.append([ (d.index1[i], xts[d.index1[i]]),
-                     (d.index2[i], -offset+yts[d.index2[i]]) ])
-        
-    lc = mc.LineCollection( col, linewidths=1, linestyles=":", colors=match_col )
+        col.append([(d.index1[i], xts[d.index1[i]]),
+                    (d.index2[i], -offset + yts[d.index2[i]])])
+
+    lc = mc.LineCollection(col, linewidths=1, linestyles=":", colors=match_col)
     ax.add_collection(lc)
-        
+
     plt.show()
     return ax, ax2
-    
-        
+
 
 def dtwPlotThreeWay(d, xts=None, yts=None,
                     match_indices=None,
-                    match_col = "gray",
-                    xlab = "Query index",
-                    ylab = "Reference index", **kwargs):
-    #IMPORT_RDOCSTRING dtwPlotThreeWay
+                    match_col="gray",
+                    xlab="Query index",
+                    ylab="Reference index", **kwargs):
+    # IMPORT_RDOCSTRING dtwPlotThreeWay
     """Plotting of dynamic time warp results: annotated warping function
 
 
@@ -332,7 +330,7 @@ Notes
 
 
 """
-    #ENDIMPORT
+    # ENDIMPORT
     import matplotlib.pyplot as plt
     import matplotlib.gridspec as gridspec
     from matplotlib import collections  as mc
@@ -348,19 +346,19 @@ Notes
     mm = len(yts)
     nn1 = numpy.arange(nn)
     mm1 = numpy.arange(mm)
-        
-    fig=plt.figure()
-    gs=gridspec.GridSpec(2,2,
-                         width_ratios=[1,3],
-                         height_ratios=[3,1])
-    axr=plt.subplot(gs[0])
-    ax=plt.subplot(gs[1])
-    axq=plt.subplot(gs[3])
 
-    axq.plot(nn1, xts)          # query, horizontal, bottom
+    fig = plt.figure()
+    gs = gridspec.GridSpec(2, 2,
+                           width_ratios=[1, 3],
+                           height_ratios=[3, 1])
+    axr = plt.subplot(gs[0])
+    ax = plt.subplot(gs[1])
+    axq = plt.subplot(gs[3])
+
+    axq.plot(nn1, xts)  # query, horizontal, bottom
     axq.set_xlabel(xlab)
-    
-    axr.plot(yts, mm1)          # ref, vertical
+
+    axr.plot(yts, mm1)  # ref, vertical
     axr.invert_xaxis()
     axr.set_ylabel(ylab)
 
@@ -369,31 +367,29 @@ Notes
     if match_indices is None:
         idx = []
     elif not hasattr(match_indices, "__len__"):
-        idx = numpy.linspace(0, len(d.index1)-1, num=match_indices)
+        idx = numpy.linspace(0, len(d.index1) - 1, num=match_indices)
     else:
         idx = match_indices
     idx = numpy.array(idx).astype(int)
 
-    col=[]
+    col = []
     for i in idx:
-        col.append([ (d.index1[i], 0),
-                     (d.index1[i], d.index2[i]) ])
-        col.append([ (0,d.index2[i]),
-                     (d.index1[i], d.index2[i]) ])
-        
-    lc = mc.LineCollection( col, linewidths=1, linestyles=":", colors=match_col )
+        col.append([(d.index1[i], 0),
+                    (d.index1[i], d.index2[i])])
+        col.append([(0, d.index2[i]),
+                    (d.index1[i], d.index2[i])])
+
+    lc = mc.LineCollection(col, linewidths=1, linestyles=":", colors=match_col)
     ax.add_collection(lc)
 
     plt.show()
     return fig
 
 
-
-
 def dtwPlotDensity(d, normalize=False,
-                   xlab = "Query index",
-                   ylab = "Reference index", **kwargs):
-    #IMPORT_RDOCSTRING dtwPlotDensity
+                   xlab="Query index",
+                   ylab="Reference index", **kwargs):
+    # IMPORT_RDOCSTRING dtwPlotDensity
     """Display the cumulative cost landscape with the warping path overimposed
 
 
@@ -439,7 +435,7 @@ Notes
 
 
 """
-    #ENDIMPORT
+    # ENDIMPORT
     import matplotlib.pyplot as plt
 
     try:
@@ -449,20 +445,20 @@ Notes
 
     if normalize:
         norm = d.stepPattern.hint
-        row, col = numpy.indices( cm.shape )
+        row, col = numpy.indices(cm.shape)
         if norm == "NA":
             raise ValueError("Step pattern has no normalization")
         elif norm == "N":
-            cm = cm / (row+1)
+            cm = cm / (row + 1)
         elif norm == "N+M":
-            cm = cm / (row+col+2)
+            cm = cm / (row + col + 2)
         elif norm == "M":
-            cm = cm / (col+1)
+            cm = cm / (col + 1)
 
     fig, ax = plt.subplots(figsize=(6, 6))
 
     ax.imshow(cm.T, origin="lower", cmap=plt.get_cmap("terrain"))
-    co=ax.contour(cm.T, colors = "white")
+    co = ax.contour(cm.T, colors="white")
     ax.clabel(co)
 
     ax.plot(d.index1, d.index2, color="blue", linewidth=2)
@@ -472,4 +468,3 @@ Notes
 
     plt.show()
     return ax
-

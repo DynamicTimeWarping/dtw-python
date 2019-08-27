@@ -18,7 +18,6 @@
 ##
 
 
-
 # Author: Toni Giorgino 2018
 #
 # If you use this software in academic work, please cite:
@@ -26,8 +25,6 @@
 #    Alignments in R: The dtw Package. Journal of Statistical
 #    Software, v. 31, Issue 7, p. 1 - 24, aug. 2009. ISSN
 #    1548-7660. doi:10.18637/jss.v031.i07. http://www.jstatsoft.org/v31/i07/
-
-
 
 
 import numpy
@@ -39,24 +36,21 @@ from ._globalCostMatrix import _globalCostMatrix
 from .window import *
 from .dtwPlot import *
 
-
 from scipy.spatial.distance import cdist
-
-
 
 
 # --------------------
 
 class DTW:
     def __init__(self, obj):
-        self.__dict__.update(obj) # Convert dict to object 
+        self.__dict__.update(obj)  # Convert dict to object
 
     def __repr__(self):
         s = "DTW alignment object of size (query x reference): {:d} x {:d}".format(self.N, self.M)
         return (s)
 
     def plot(self, type="alignment", **kwargs):
-        #IMPORT_RDOCSTRING plot.dtw
+        # IMPORT_RDOCSTRING plot.dtw
         """Plotting of dynamic time warp results
 
 
@@ -123,9 +117,8 @@ Notes
 
 
 """
-        #ENDIMPORT
+        # ENDIMPORT
         dtwPlot(self, type, **kwargs)
-        
 
 
 # --------------------
@@ -140,7 +133,7 @@ def dtw(x, y=None,
         distance_only=False,
         open_end=False,
         open_begin=False):
-    #IMPORT_RDOCSTRING dtw
+    # IMPORT_RDOCSTRING dtw
     """Dynamic Time Warp
 
 
@@ -280,7 +273,7 @@ a warning.
 
 
 """
-    #ENDIMPORT
+    # ENDIMPORT
 
     if y is None:
         x = numpy.array(x)
@@ -296,7 +289,6 @@ a warning.
             y = y.T
         lm = cdist(x, y, metric=dist_method)
 
-        
     wfun = _canonicalizeWindowFunction(window_type)
 
     step_pattern = _canonicalizeStepPattern(step_pattern)
@@ -306,22 +298,22 @@ a warning.
 
     if open_begin:
         if norm != "N":
-            _error("Open-begin requires step patterns with 'N' normalization (e.g. asymmetric, or R-J types (c)). See Tormene et al.")
-        lm = numpy.vstack( [ numpy.zeros((1,lm.shape[1])), lm ] ) # prepend null row
-        np = n+1
+            _error(
+                "Open-begin requires step patterns with 'N' normalization (e.g. asymmetric, or R-J types (c)). See Tormene et al.")
+        lm = numpy.vstack([numpy.zeros((1, lm.shape[1])), lm])  # prepend null row
+        np = n + 1
         precm = numpy.full_like(lm, numpy.nan, dtype=numpy.double)
-        precm[0,:] = 0
+        precm[0, :] = 0
     else:
         precm = None
         np = n
-    
 
     gcm = _globalCostMatrix(lm,
                             step_pattern=step_pattern,
                             window_function=wfun,
                             seed=precm,
                             win_args=window_args)
-    gcm = DTW(gcm)              # turn into an object, use dot to access properties
+    gcm = DTW(gcm)  # turn into an object, use dot to access properties
 
     gcm.N = n
     gcm.M = m
@@ -329,7 +321,7 @@ a warning.
     gcm.openEnd = open_end
     gcm.openBegin = open_begin
     gcm.windowFunction = wfun
-    gcm.windowArgs = window_args           # py
+    gcm.windowArgs = window_args  # py
 
     # misnamed
     lastcol = gcm.costMatrix[-1,]
@@ -337,13 +329,13 @@ a warning.
     if norm == "NA":
         pass
     elif norm == "N+M":
-        lastcol = lastcol/(n+numpy.arange(m)+1)
+        lastcol = lastcol / (n + numpy.arange(m) + 1)
     elif norm == "N":
         lastcol = lastcol / n
     elif norm == "M":
-        lastcol = lastcol / (1+numpy.arange(m))
+        lastcol = lastcol / (1 + numpy.arange(m))
 
-    gcm.jmin = m-1
+    gcm.jmin = m - 1
 
     if open_end:
         if norm == "NA":
@@ -351,8 +343,8 @@ a warning.
         gcm.jmin = numpy.argmin(lastcol)
 
     gcm.distance = gcm.costMatrix[-1, gcm.jmin]
-        
-    if gcm.distance != gcm.distance: # nan
+
+    if gcm.distance != gcm.distance:  # nan
         _error("No warping path found compatible with the local constraints")
 
     if step_pattern.hint != "NA":
@@ -365,13 +357,13 @@ a warning.
         gcm.__dict__.update(mapping)
 
     if open_begin:
-        gcm.index1 = gcm.index1[1:]-1
-        gcm.index1s = gcm.index1s[1:]-1
+        gcm.index1 = gcm.index1[1:] - 1
+        gcm.index1s = gcm.index1s[1:] - 1
         gcm.index2 = gcm.index2[1:]
         gcm.index2s = gcm.index2s[1:]
-        lm = lm[1:,:]
-        gcm.costMatrix = gcm.costMatrix[1:,:]
-        gcm.directionMatrix = gcm.directionMatrix[1:,:]
+        lm = lm[1:, :]
+        gcm.costMatrix = gcm.costMatrix[1:, :]
+        gcm.directionMatrix = gcm.directionMatrix[1:, :]
 
     if not keep_internals:
         del gcm.costMatrix
@@ -381,9 +373,8 @@ a warning.
         if y is not None:
             gcm.query = x
             gcm.reference = y
-        
+
     return gcm
-            
 
 
 # Return a callable object representing the window
@@ -404,12 +395,12 @@ def _canonicalizeWindowFunction(window_type):
 
 def _canonicalizeStepPattern(s):
     """Return object by string"""
-    if isinstance(s,StepPattern):
+    if isinstance(s, StepPattern):
         return s
     else:
         return getattr(sys.modules["dtwr.stepPattern"], s)
 
-    
+
 # Kludge because lambda: raise doesn't work
 def _error(s):
     raise ValueError(s)

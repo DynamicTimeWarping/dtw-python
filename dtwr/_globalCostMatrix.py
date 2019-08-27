@@ -3,28 +3,23 @@ from .window import noWindow
 from ._dtw_utils import _computeCM_wrapper
 
 
-
-
 def _globalCostMatrix(lm,
                       step_pattern,
                       window_function,
                       seed,
                       win_args):
-
     ITYPE = numpy.int32
-
 
     wm = numpy.full_like(lm, True, dtype=ITYPE)
     n, m = wm.shape
-    if window_function != noWindow: # for performance
+    if window_function != noWindow:  # for performance
         for i in range(n):
             for j in range(m):
-                wm[i,j] = window_function(i, j,
-                                          query_size = n,
-                                          reference_size = m,
-                                          **win_args)
+                wm[i, j] = window_function(i, j,
+                                           query_size=n,
+                                           reference_size=m,
+                                           **win_args)
 
-     
     nsteps = numpy.array([step_pattern.get_n_rows()], dtype=ITYPE)
 
     dir = numpy.array(step_pattern.get_p(), dtype=numpy.double)
@@ -47,26 +42,24 @@ def _globalCostMatrix(lm,
     return out
 
 
-
-
 def _test_computeCM2(TS=5):
     import numpy as np
     ITYPE = np.int32
-   
+
     twm = np.ones((TS, TS), dtype=ITYPE)
 
-    tlm = np.zeros( (TS,TS), dtype=np.double)
+    tlm = np.zeros((TS, TS), dtype=np.double)
     for i in range(TS):
         for j in range(TS):
-            tlm[i,j]=(i+1)*(j+1)
+            tlm[i, j] = (i + 1) * (j + 1)
 
     tnstepsp = np.array([6], dtype=ITYPE)
 
-    tdir = np.array( (1, 1, 2, 2, 3, 3, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0,-1, 1,-1, 1,-1, 1),
-                                     dtype=np.double)
+    tdir = np.array((1, 1, 2, 2, 3, 3, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0, -1, 1, -1, 1, -1, 1),
+                    dtype=np.double)
 
     tcm = np.full_like(tlm, np.nan, dtype=np.double)
-    tcm[0,0] = tlm[0,0]
+    tcm[0, 0] = tlm[0, 0]
 
     out = _computeCM_wrapper(twm,
                              tlm,
@@ -74,5 +67,3 @@ def _test_computeCM2(TS=5):
                              tdir,
                              tcm)
     return out
-    
-    

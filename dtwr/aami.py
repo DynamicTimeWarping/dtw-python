@@ -18,8 +18,7 @@
 ##
 
 
-
-#IMPORT_RDOCSTRING aami
+# IMPORT_RDOCSTRING aami
 """ANSI/AAMI EC13 Test Waveforms, 3a and 3b
 
 
@@ -67,12 +66,10 @@ therefore affected by substantial jittering.
 
 
 """
-#ENDIMPORT
+# ENDIMPORT
 
 import numpy
 from pkg_resources import resource_string
 
-
-
-aami3a = numpy.fromstring( resource_string(__name__, '../data/aami3a.csv') , sep="\n" )
-aami3b = numpy.fromstring( resource_string(__name__, '../data/aami3b.csv') , sep="\n" )
+aami3a = numpy.fromstring(resource_string(__name__, '../data/aami3a.csv'), sep="\n")
+aami3b = numpy.fromstring(resource_string(__name__, '../data/aami3b.csv'), sep="\n")
