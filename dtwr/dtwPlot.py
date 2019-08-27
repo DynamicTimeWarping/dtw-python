@@ -395,6 +395,36 @@ def dtwPlotDensity(d, normalize=False,
                    xlab = "Query index",
                    ylab = "Reference index", **kwargs):
     #IMPORT_RDOCSTRING dtwPlotDensity
+    """(None)
+
+(None)
+
+**Details**
+
+(None)
+
+
+Parameters
+----------
+
+
+
+
+Returns
+-------
+
+(None)
+
+
+Notes
+-----
+
+(None)
+
+
+
+
+"""
     #ENDIMPORT
     import matplotlib.pyplot as plt
 
