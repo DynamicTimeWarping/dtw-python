@@ -114,14 +114,16 @@ can be either plain or smoothed (figure 4.44); smoothing is enabled
 setting the logical argument ``smoothed``. (Not all combinations of
 arguments make sense.)
 
-::
+.. raw:: latex
 
-     Subtype | Rule       | Norm | Unbiased 
-     --------|------------|------|---------
-        a    | min step   |  --  |   NO 
-        b    | max step   |  --  |   NO 
-        c    | Di step    |   N  |  YES 
-        d    | Di+Dj step | N+M  |  YES 
+   \tabular{cccc}{ 
+   Subtype \tab Rule \tab Norm \tab Unbiased \cr 
+   % -------------------------------- 
+   a \tab min step \tab -- \tab NO \cr 
+   b \tab max step \tab -- \tab NO \cr 
+   c \tab Di step \tab N \tab YES \cr 
+   d \tab Di+Dj step \tab N+M \tab YES \cr 
+   }
 
 **3. The Sakoe-Chiba set**
 
@@ -180,9 +182,11 @@ x :
 type : 
     path specification, integer 1..7 (see (Rabiner1993), table 4.5)
 slope.weighting : 
-    slope weighting rule: character `"a"` to `"d"` (see (Rabiner1993), sec. 4.7.2.5)
+    slope weighting rule: character `"a"` to
+`"d"` (see (Rabiner1993), sec. 4.7.2.5)
 smoothed : 
-    logical, whether to use smoothing (see (Rabiner1993), fig. 4.44)
+    logical, whether to use smoothing (see (Rabiner1993), fig.
+4.44)
 ... : 
     additional arguments to [print()].
 

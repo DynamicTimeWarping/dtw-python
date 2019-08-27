@@ -26,16 +26,18 @@ import numpy
 
 def countPaths(d, debug=False):
     #IMPORT_RDOCSTRING countPaths
-    """Count the number of warping paths consistent with the constraints.
+    """Count the number of possible warping paths
 
+
+Count the number of warping paths compatible with the constraints.
+
+
+**Details**
 
 Count how many possible warping paths exist in the alignment problem
 passed as an argument. The object passed as an argument is used to look
 up the problem parameters such as the used step pattern, windowing, open
 ends, and so on. The actual alignment is ignored.
-
-
-**Details**
 
 Note that the number of paths grows exponentially with problems size.
 The result may be approximate when windowing functions are used.

@@ -57,6 +57,73 @@ class DTW:
 
     def plot(self, type="alignment", **kwargs):
         #IMPORT_RDOCSTRING plot.dtw
+        """Plotting of dynamic time warp results
+
+
+Methods for plotting dynamic time warp alignment objects returned by
+[dtw()].
+
+
+**Details**
+
+``dtwPlot`` displays alignment contained in ``dtw`` objects.
+
+Various plotting styles are available, passing strings to the ``type``
+argument (may be abbreviated):
+
+-  ``alignment`` plots the warping curve in ``d``;
+-  ``twoway`` plots a point-by-point comparison, with matching lines;
+   see [dtwPlotTwoWay()];
+-  ``threeway`` vis-a-vis inspection of the timeseries and their warping
+   curve; see [dtwPlotThreeWay()];
+-  ``density`` displays the cumulative cost landscape with the warping
+   path overimposed
+
+If ``normalize`` is ``TRUE``, the *average* cost per step is plotted
+instead of the cumulative one. Step averaging depends on the
+[stepPattern()] used.
+
+Additional parameters are carried on to the plotting functions: use with
+care.
+
+
+
+Parameters
+----------
+
+x,d : 
+    `dtw` object, usually result of call to [dtw()]
+xlab : 
+    label for the query axis
+ylab : 
+    label for the reference axis
+type : 
+    general style for the alignment plot
+plot.type : 
+    type of line to be drawn, used as the `type` argument
+in the underlying `plot` call
+normalize : 
+    show per-step average cost instead of cumulative cost
+... : 
+    additional arguments, passed to plotting functions
+
+
+Returns
+-------
+
+(None)
+
+
+Notes
+-----
+
+The density plot is more colorful than useful.
+
+
+
+
+
+"""
         #ENDIMPORT
         dtwPlot(self, type, **kwargs)
         
@@ -86,9 +153,8 @@ series.
 
 The function performs Dynamic Time Warp (DTW) and computes the optimal
 alignment between two time series ``x`` and ``y``, given as numeric
-vectors. The
-\`\ ``optimal'' alignment minimizes the sum of distances between aligned elements. Lengths of``\ x\ ``and``\ y\`
-may differ.
+vectors. The “optimal” alignment minimizes the sum of distances between
+aligned elements. Lengths of ``x`` and ``y`` may differ.
 
 The local distance between elements of ``x`` (query) and ``y``
 (reference) can be computed in one of the following ways:
@@ -136,8 +202,8 @@ others. Please find a review in Tormene et al. (2009).
 
 If the warping function is not required, computation can be sped up
 enabling the ``distance.only=TRUE`` switch, which skips the backtracking
-step. The output object will then lack the ``index{1,2,1s,2s}`` and
-``stepsTaken`` fields.
+step. The output object will then lack the
+:raw-latex:`\code{index{1,2,1s,2s}}` and ``stepsTaken`` fields.
 
 ``is.dtw`` tests whether the argument is of class ``dtw``.
 
@@ -175,27 +241,24 @@ d :
 Returns
 -------
 
-An object of class ``dtw`` with the following items:
-
--  ``distance`` the minimum global distance computed, *not* normalized.
--  ``normalizedDistance`` distance computed, *normalized* for path
-   length, if normalization is known for chosen step pattern.
--  ``N,M`` query and reference length
--  ``call`` the function call that created the object
--  ``index1`` matched elements: indices in ``x``
--  ``index2`` corresponding mapped indices in ``y``
--  ``stepPattern`` the ``stepPattern`` object used for the computation
--  ``jmin`` last element of reference matched, if ``open.end=TRUE``
--  ``directionMatrix`` if ``keep.internals=TRUE``, the directions of
-   steps that would be taken at each alignment pair (integers indexing
-   production rules in the chosen step pattern)
--  ``stepsTaken`` the list of steps taken from the beginning to the end
-   of the alignment (integers indexing chosen step pattern)
--  ``index1s, index2s`` same as ``index1/2``, excluding intermediate
-   steps for multi-step patterns like [asymmetricP05()]
--  ``costMatrix`` if ``keep.internals=TRUE``, the cumulative cost matrix
--  ``query, reference`` if ``keep.internals=TRUE`` and passed as the
-   ``x`` and ``y`` arguments, the query and reference timeseries.
+An object of class ``dtw`` with the following items: \* ``distance`` the
+minimum global distance computed, *not* normalized. \*
+``normalizedDistance`` distance computed, *normalized* for path length,
+if normalization is known for chosen step pattern. \* ``N,M`` query and
+reference length \* ``call`` the function call that #’ created the
+object \* ``index1`` matched elements: indices in ``x`` \* ``index2``
+corresponding mapped indices in ``y`` \* ``stepPattern`` the
+``stepPattern`` object used for the computation \* ``jmin`` last element
+of reference matched, if ``open.end=TRUE`` \* ``directionMatrix`` if
+``keep.internals=TRUE``, the directions of steps that would be taken at
+each alignment pair (integers indexing production rules in the chosen
+step pattern) \* ``stepsTaken`` the list of steps taken from the
+beginning to the end of the alignment (integers indexing chosen step
+pattern) \* ``index1s, index2s`` same as ``index1/2``, excluding
+intermediate steps for multi-step patterns like [asymmetricP05()] \*
+``costMatrix`` if ``keep.internals=TRUE``, the cumulative cost matrix \*
+``query, reference`` if ``keep.internals=TRUE`` and passed as the ``x``
+and ``y`` arguments, the query and reference timeseries.
 
 
 

@@ -111,7 +111,7 @@ Notes
 
 
 
-plist = glob.glob("rdtw/*.py")
+plist = glob.glob("dtwr/*.py")
 
 for pfile in plist:
     print(f"Modifying {pfile}...")
