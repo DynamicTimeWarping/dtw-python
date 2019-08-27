@@ -116,7 +116,7 @@ plist = glob.glob("rdtw/*.py")
 for pfile in plist:
     print(f"Modifying {pfile}...")
 
-    pfile_back = pfile+".back"
+    pfile_back = pfile+"~"
     os.rename(pfile, pfile_back )
     fin=open(pfile_back,"r")
     fout=open(pfile, "w")
