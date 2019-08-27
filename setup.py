@@ -24,8 +24,8 @@ setup_requirements = [ ]
 
 test_requirements = [ ]
 
-ext=Extension('rdtw._dtw_utils',
-              sources=['rdtw/dtw_computeCM.c','rdtw/_dtw_utils.pyx'],
+ext=Extension('dtwr._dtw_utils',
+              sources=['dtwr/dtw_computeCM.c','dtwr/_dtw_utils.pyx'],
               include_dirs=[numpy.get_include()]
 )
 
@@ -50,23 +50,23 @@ setup(
     description="A comprehensive implementation of dynamic time warping (DTW) algorithms in R. DTW computes the optimal (least cumulative distance) alignment between points of two time series. Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions, normalizations, minimum variance matching, and so on. Provides cumulative distances, alignments, specialized plot styles, etc.",
     entry_points={
         'console_scripts': [
-            'rdtw=rdtw.cli:main',
+            'dtwr=dtwr.cli:main',
         ],
     },
     install_requires=requirements,
     license="GNU General Public License v3",
     long_description=readme + '\n\n' + history,
     include_package_data=True,
-    keywords='rdtw',
-    name='rdtw',
-#    packages=find_packages(include=['rdtw']),
-    packages=['rdtw'],
-    package_data={'rdtw': ['data/*.csv']},
+    keywords='dtwr',
+    name='dtwr',
+#    packages=find_packages(include=['dtwr']),
+    packages=['dtwr'],
+    package_data={'dtwr': ['data/*.csv']},
     ext_modules=cythonize(ext),
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/tonigi/rdtw',
+    url='https://github.com/tonigi/dtwr-py',
     version='0.1.0',
     zip_safe=False,
 )

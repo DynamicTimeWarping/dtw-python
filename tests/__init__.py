@@ -1,3 +1,3 @@
 # -*- coding: utf-8 -*-
 
-"""Unit test package for rdtw."""
+"""Unit test package for dtwr."""
