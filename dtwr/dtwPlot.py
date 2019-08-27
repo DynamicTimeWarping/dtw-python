@@ -245,7 +245,7 @@ When ``offset`` is set values on the left axis only apply to the query.
         col.append([ (d.index1[i], xts[d.index1[i]]),
                      (d.index2[i], -offset+yts[d.index2[i]]) ])
         
-    lc = mc.LineCollection( col, linewidths=.5, colors=match_col )
+    lc = mc.LineCollection( col, linewidths=1, linestyles=":", colors=match_col )
     ax.add_collection(lc)
         
     plt.show()
@@ -256,16 +256,62 @@ When ``offset`` is set values on the left axis only apply to the query.
 def dtwPlotThreeWay(d, xts=None, yts=None,
                     match_indices=None,
                     match_col = "gray",
-                    xlab = "Index",
-                    ylab = "Query value", **kwargs):
+                    xlab = "Query index",
+                    ylab = "Reference index", **kwargs):
     #IMPORT_RDOCSTRING dtwPlotThreeWay
     #ENDIMPORT
     import matplotlib.pyplot as plt
+    import matplotlib.gridspec as gridspec
     from matplotlib import collections  as mc
-    
+
     if xts is None or yts is None:
         try:
             xts = d.query
             yts = d.reference
         except:
             raise ValueError("Original timeseries are required")
+
+    nn = len(xts)
+    mm = len(yts)
+    nn1 = numpy.arange(nn)
+    mm1 = numpy.arange(mm)
+        
+    fig=plt.figure()
+    gs=gridspec.GridSpec(2,2,
+                         width_ratios=[1,3],
+                         height_ratios=[3,1])
+    axr=plt.subplot(gs[0])
+    ax=plt.subplot(gs[1])
+    axq=plt.subplot(gs[3])
+
+    axq.plot(nn1, xts)          # query, horizontal, bottom
+    axq.set_xlabel(xlab)
+    
+    axr.plot(yts, mm1)          # ref, vertical
+    axr.invert_xaxis()
+    axr.set_ylabel(ylab)
+
+    ax.plot(d.index1, d.index2)
+
+    if match_indices is None:
+        idx = []
+    elif not hasattr(match_indices, "__len__"):
+        idx = numpy.linspace(0, len(d.index1)-1, num=match_indices)
+    else:
+        idx = match_indices
+    idx = numpy.array(idx).astype(int)
+
+    col=[]
+    for i in idx:
+        col.append([ (d.index1[i], 0),
+                     (d.index1[i], d.index2[i]) ])
+        col.append([ (0,d.index2[i]),
+                     (d.index1[i], d.index2[i]) ])
+        
+    lc = mc.LineCollection( col, linewidths=1, linestyles=":", colors=match_col )
+    ax.add_collection(lc)
+
+    
+
+    plt.show()
+    return fig
