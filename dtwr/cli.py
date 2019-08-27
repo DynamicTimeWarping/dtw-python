@@ -8,9 +8,9 @@ import dtwr
 
 
 @click.command()
-@click.option("--query",None,"Query timeseries (tsv)")
-@click.option("--reference",None,"Reference timeseries (tsv)")
-@click.option("--step_pattern","symmetric2","Step pattern, i.e. recursion rule")
+@click.option("--query", None, "Query timeseries (tsv)")
+@click.option("--reference", None, "Reference timeseries (tsv)")
+@click.option("--step_pattern", "symmetric2", "Step pattern, i.e. recursion rule")
 def main(query, reference, step_pattern):
     """Console script for dtwr."""
     click.echo("Replace this message by putting your code into "
@@ -18,9 +18,9 @@ def main(query, reference, step_pattern):
     click.echo("See click documentation at http://click.pocoo.org/")
     q = numpy.genfromtxt(query)
     r = numpy.genfromtxt(reference)
-    al = dtwr.dtw(q,r,step_pattern=step_pattern)
+    al = dtwr.dtw(q, r, step_pattern=step_pattern)
 
-    wp = numpy.hstack([al.index1,al.index2])
+    wp = numpy.hstack([al.index1, al.index2])
 
     print(f"Distance: {al.distance}")
     try:
