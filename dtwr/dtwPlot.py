@@ -19,9 +19,6 @@
 
 import numpy
 
-from ._docs_utils import moddoc
-
-@moddoc("bubu")
 def dtwPlot(x, type, **kwargs):
     # IMPORT_RDOCSTRING plot.dtw
     """Plotting of dynamic time warp results
@@ -50,11 +47,7 @@ argument (may be abbreviated):
 -  ``density`` displays the cumulative cost landscape with the warping
    path overimposed; see [dtwPlotDensity()]
 
-If ``normalize`` is ``True``, the *average* cost per step is plotted
-instead of the cumulative one. Step averaging depends on the
-[stepPattern()] used.
-
-Additional parameters are carried on to the plotting functions: use with
+Additional parameters are passed to the plotting functions: use with
 care.
 
 
@@ -70,12 +63,10 @@ xlab :
 ylab : 
     label for the reference axis
 type : 
-    general style for the alignment plot
+    general style for the plot, see below
 plot_type : 
     type of line to be drawn, used as the `type` argument
 in the underlying `plot` call
-normalize : 
-    show per-step average cost instead of cumulative cost
 ... : 
     additional arguments, passed to plotting functions
 
@@ -84,6 +75,33 @@ normalize :
 
 
 
+
+
+Examples
+--------
+>>> 
+>>> ## Same example as in dtw
+>>> 
+>>> idx = seq(0,6_28,len=100);
+>>> query = sin(idx)+runif(100)/10;
+>>> reference = cos(idx)
+>>> 
+>>> alignment = dtw(query,reference,keep=True);
+>>> 
+>>> # A sample of the plot styles. See individual plotting functions for details
+>>> 
+>>> plot(alignment, type="alignment",
+>>>   main="DTW sine/cosine: simple alignment plot")
+>>>   
+>>> plot(alignment, type="twoway",
+>>>   main="DTW sine/cosine: dtwPlotTwoWay")
+>>> 
+>>> plot(alignment, type="threeway",
+>>>   main="DTW sine/cosine: dtwPlotThreeWay")
+>>>   
+>>> plot(alignment, type="density",
+>>>   main="DTW sine/cosine: dtwPlotDensity")
+>>>   
 
 
 """
@@ -186,6 +204,44 @@ When ``offset`` is set values on the left axis only apply to the query.
 
 
 
+
+
+
+Examples
+--------
+>>> 
+>>> 
+>>> ## A noisy sine wave as query
+>>> ## A cosine is for reference; sin and cos are offset by 25 samples
+>>> 
+>>> idx = seq(0,6_28,len=100);
+>>> query = sin(idx)+runif(100)/10;
+>>> reference = cos(idx)
+>>> dtw(query,reference,step=asymmetricP1,keep=True)->alignment;
+>>> 
+>>> 
+>>> ## Equivalent to plot(alignment,type="two");
+>>> dtwPlotTwoWay(alignment);
+>>> 
+>>> 
+>>> ## Highlight matches of chosen QUERY indices. We will do some index
+>>> ## arithmetics to recover the corresponding indices along the warping
+>>> ## curve
+>>> 
+>>> hq  =  (0:8)/8              
+>>> hq  =  round(hq*100)      #  indices in query for  pi/4 .. 7/4 pi
+>>> 
+>>> hw  =  (alignment$index1 \%in\% hq)   # where are they on the w. curve?
+>>> hi  =  (1:length(alignment$index1))[hw];   # get the indices of True elems
+>>> 
+>>> 
+>>> ## Beware of the reference's y axis, may be confusing
+>>> plot(alignment,offset=-2,type="two", lwd=3, match_col="grey50",
+>>>      match_indices=hi,main="Match lines shown every pi/4 on query");
+>>> 
+>>> legend("topright",c("Query","Reference (rt. axis)"), pch=21, col=1:6)
+>>> 
+>>> 
 
 
 
@@ -327,6 +383,38 @@ title_margin :
 
 
 
+Examples
+--------
+>>> 
+>>> 
+>>> ## A noisy sine wave as query
+>>> ## A cosine is for reference; sin and cos are offset by 25 samples
+>>> 
+>>> idx = seq(0,6_28,len=100);
+>>> query = sin(idx)+runif(100)/10;
+>>> reference = cos(idx)
+>>> dtw(query,reference,keep=True)->alignment;
+>>> 
+>>> 
+>>> ## Beware of the reference's y axis, may be confusing
+>>> ## Equivalent to plot(alignment,type="three");
+>>> dtwPlotThreeWay(alignment);
+>>> 
+>>> 
+>>> ## Highlight matches of chosen QUERY indices. We will do some index
+>>> ## arithmetics to recover the corresponding indices along the warping
+>>> ## curve
+>>> 
+>>> hq  =  (0:8)/8              
+>>> hq  =  round(hq*100)      #  indices in query for  pi/4 .. 7/4 pi
+>>> 
+>>> hw  =  (alignment$index1 \%in\% hq)   # where are they on the w. curve?
+>>> hi  =  (1:length(alignment$index1))[hw];   # get the indices of True elems
+>>> 
+>>> dtwPlotThreeWay(alignment,match_indices=hi);
+
+
+
 """
     # ENDIMPORT
     import matplotlib.pyplot as plt
@@ -388,7 +476,7 @@ def dtwPlotDensity(d, normalize=False,
                    xlab="Query index",
                    ylab="Reference index", **kwargs):
     # IMPORT_RDOCSTRING dtwPlotDensity
-    """Display the cumulative cost landscape with the warping path overimposed
+    """Display the cumulative cost density with the warping path overimposed
 
 
 
@@ -401,9 +489,12 @@ alignment as a “ridge” in the global cost landscape.
 
 **Details**
 
-Normalization plots the average cost per step instead of the cumulative
-cost. The alignment must have been constructed with the
+The alignment must have been constructed with the
 ``keep_internals=True`` parameter set.
+
+If ``normalize`` is ``True``, the *average* cost per step is plotted
+instead of the cumulative one. Step averaging depends on the
+[stepPattern()] used.
 
 
 
@@ -414,7 +505,7 @@ Parameters
 d : 
     an alignment result, object of class `dtw`
 normalize : 
-    whether to show the normalized cost
+    show per-step average cost instead of cumulative cost
 xlab : 
     label for the query axis
 ylab : 
@@ -426,6 +517,33 @@ ylab :
 
 
 
+
+
+
+Examples
+--------
+>>> 
+>>> ## A study of the "Itakura" parallelogram
+>>> ##
+>>> ## A widely held misconception is that the "Itakura parallelogram" (as
+>>> ## described in the original article) is a global constraint.  Instead,
+>>> ## it arises from local slope restrictions. Anyway, an "itakuraWindow",
+>>> ## is provided in this package. A comparison between the two follows.
+>>> 
+>>> ## The local constraint: three sides of the parallelogram are seen
+>>> idx = seq(0,6_28,len=100);
+>>> query = sin(idx)+runif(100)/10;
+>>> reference = cos(idx)
+>>> 
+>>> ita  =  dtw(query,reference,keep=True,step=typeIIIc)
+>>> dtwPlotDensity(ita, main="Slope-limited asymmetric step (Itakura)")
+>>> 
+>>> ## Symmetric step with global parallelogram-shaped constraint. Note how
+>>> ## long (>2 steps) horizontal stretches are allowed within the window.
+>>> 
+>>> dtw(query,reference,keep=True,window=itakuraWindow)->ita;
+>>> dtwPlotDensity(ita,
+>>>         main="Symmetric step with Itakura parallelogram window")
 
 
 

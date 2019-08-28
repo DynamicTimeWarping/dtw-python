@@ -77,11 +77,7 @@ argument (may be abbreviated):
 -  ``density`` displays the cumulative cost landscape with the warping
    path overimposed; see [dtwPlotDensity()]
 
-If ``normalize`` is ``True``, the *average* cost per step is plotted
-instead of the cumulative one. Step averaging depends on the
-[stepPattern()] used.
-
-Additional parameters are carried on to the plotting functions: use with
+Additional parameters are passed to the plotting functions: use with
 care.
 
 
@@ -97,12 +93,10 @@ xlab :
 ylab : 
     label for the reference axis
 type : 
-    general style for the alignment plot
+    general style for the plot, see below
 plot_type : 
     type of line to be drawn, used as the `type` argument
 in the underlying `plot` call
-normalize : 
-    show per-step average cost instead of cumulative cost
 ... : 
     additional arguments, passed to plotting functions
 
@@ -111,6 +105,33 @@ normalize :
 
 
 
+
+
+Examples
+--------
+>>> 
+>>> ## Same example as in dtw
+>>> 
+>>> idx = seq(0,6_28,len=100);
+>>> query = sin(idx)+runif(100)/10;
+>>> reference = cos(idx)
+>>> 
+>>> alignment = dtw(query,reference,keep=True);
+>>> 
+>>> # A sample of the plot styles. See individual plotting functions for details
+>>> 
+>>> plot(alignment, type="alignment",
+>>>   main="DTW sine/cosine: simple alignment plot")
+>>>   
+>>> plot(alignment, type="twoway",
+>>>   main="DTW sine/cosine: dtwPlotTwoWay")
+>>> 
+>>> plot(alignment, type="threeway",
+>>>   main="DTW sine/cosine: dtwPlotThreeWay")
+>>>   
+>>> plot(alignment, type="density",
+>>>   main="DTW sine/cosine: dtwPlotDensity")
+>>>   
 
 
 """
@@ -276,6 +297,136 @@ a warning.
 
 
 
+References
+----------
+
+1. Toni Giorgino. *Computing and Visualizing Dynamic Time Warping
+   Alignments in R: The dtw Package.* Journal of Statistical Software,
+   31(7), 1-24. http://www_jstatsoft_org/v31/i07/
+2. Tormene, P.; Giorgino, T.; Quaglini, S. & Stefanelli, M. *Matching
+   incomplete time series with dynamic time warping: an algorithm and an
+   application to post-stroke rehabilitation.* Artif Intell Med, 2009,
+   45, 11-34. http://dx_doi_org/10_1016/j_artmed_2008_11_007
+3. Sakoe, H.; Chiba, S., *Dynamic programming algorithm optimization for
+   spoken word recognition,* Acoustics, Speech, and Signal Processing,
+   IEEE Transactions on , vol_26, no_1, pp. 43-49, Feb 1978.
+   http://ieeexplore_ieee_org/xpls/abs_all_jsp?arnumber=1163055
+4. Mori, A.; Uchida, S.; Kurazume, R.; Taniguchi, R.; Hasegawa, T. &
+   Sakoe, H. *Early Recognition and Prediction of Gestures* Proc. 18th
+   International Conference on Pattern Recognition ICPR 2006, 2006, 3,
+   560-563
+5. Sakoe, H. *Two-level DP-matching–A dynamic programming-based pattern
+   matching algorithm for connected word recognition* Acoustics, Speech,
+   and Signal Processing, IEEE Transactions on, 1979, 27, 588-595
+6. Rabiner L, Rosenberg A, Levinson S (1978). *Considerations in dynamic
+   time warping algorithms for discrete word recognition.* IEEE Trans.
+   Acoust., Speech, Signal Process., 26(6), 575-582. ISSN 0096-3518.
+7. Muller M. *Dynamic Time Warping* in *Information Retrieval for Music
+   and Motion*. Springer Berlin Heidelberg; 2007. p. 69-84.
+   http://link_springer_com/chapter/10_1007/978-3-540-74048-3_4
+
+
+
+
+
+Examples
+--------
+>>> 
+>>> 
+>>> ## A noisy sine wave as query
+>>> idx = seq(0,6_28,len=100);
+>>> query = sin(idx)+runif(100)/10;
+>>> 
+>>> ## A cosine is for reference; sin and cos are offset by 25 samples
+>>> reference = cos(idx)
+>>> plot(reference); lines(query,col="blue");
+>>> 
+>>> ## Find the best match
+>>> alignment = dtw(query,reference);
+>>> 
+>>> 
+>>> ## Display the mapping, AKA warping function - may be multiple-valued
+>>> ## Equivalent to: plot(alignment,type="alignment")
+>>> plot(alignment$index1,alignment$index2,main="Warping function");
+>>> 
+>>> ## Confirm: 25 samples off-diagonal alignment
+>>> lines(1:100-25,col="red")
+>>> 
+>>> 
+>>> 
+>>> 
+>>> #########
+>>> ##
+>>> ## Partial alignments are allowed.
+>>> ##
+>>> 
+>>> alignmentOBE  = 
+>>>   dtw(query[44:88],reference,
+>>>       keep=True,step=asymmetric,
+>>>       open_end=True,open_begin=True);
+>>> plot(alignmentOBE,type="two",off=1);
+>>> 
+>>> 
+>>> #########
+>>> ##
+>>> ## Subsetting allows warping and unwarping of
+>>> ## timeseries according to the warping curve. 
+>>> ## See first example below.
+>>> ##
+>>> 
+>>> ## Most useful: plot the warped query along with reference 
+>>> plot(reference)
+>>> lines(query[alignment$index1]~alignment$index2,col="blue")
+>>> 
+>>> ## Plot the (unwarped) query and the inverse-warped reference
+>>> plot(query,type="l",col="blue")
+>>> points(reference[alignment$index2]~alignment$index1)
+>>> 
+>>> 
+>>> 
+>>> #########
+>>> ##
+>>> ## Contour plots of the cumulative cost matrix
+>>> ##    similar to: plot(alignment,type="density") or
+>>> ##                dtwPlotDensity(alignment)
+>>> ## See more plots in ?plot_dtw 
+>>> ##
+>>> 
+>>> ## keep = True so we can look into the cost matrix
+>>> 
+>>> alignment = dtw(query,reference,keep=True);
+>>> 
+>>> contour(alignment$costMatrix,col=terrain_colors(100),x=1:100,y=1:100,
+>>> 	xlab="Query (noisy sine)",ylab="Reference (cosine)");
+>>> 
+>>> lines(alignment$index1,alignment$index2,col="red",lwd=2);
+>>> 
+>>> 
+>>> 
+>>> 
+>>> #########
+>>> ##
+>>> ## An hand-checkable example
+>>> ##
+>>> 
+>>> ldist = matrix(1,nrow=6,ncol=6);  # Matrix of ones
+>>> ldist[2,] = 0; ldist[,5] = 0;      # Mark a clear path of zeroes
+>>> ldist[2,5] = .01;		 # Forcely cut the corner
+>>> 
+>>> ds = dtw(ldist);			 # DTW with user-supplied local
+>>>                                  #   cost matrix
+>>> da = dtw(ldist,step=asymmetric);	 # Also compute the asymmetric 
+>>> plot(ds$index1,ds$index2,pch=3); # Symmetric: alignment follows
+>>>                                  #   the low-distance marked path
+>>> points(da$index1,da$index2,col="red");  # Asymmetric: visiting
+>>>                                         #   1 is required twice
+>>> 
+>>> ds$distance;
+>>> da$distance;
+>>> 
+>>> 
+>>> 
+>>> 
 
 
 

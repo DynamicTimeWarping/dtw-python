@@ -200,6 +200,89 @@ For a commented example please see source code for ``symmetricP1``.
 
 
 
+References
+----------
+
+-  (GiorginoJSS) Toni Giorgino. *Computing and Visualizing Dynamic Time
+   Warping Alignments in R: The dtw Package.* Journal of Statistical
+   Software, 31(7), 1-24. http://www_jstatsoft_org/v31/i07/
+-  (Itakura1975) Itakura, F., *Minimum prediction residual principle
+   applied to speech recognition,* Acoustics, Speech, and Signal
+   Processing, IEEE Transactions on , vol_23, no_1, pp. 67-72, Feb 1975.
+   URL: http://dx_doi_org/10_1109/TASSP_1975_1162641
+-  (MRR1980) Myers, C.; Rabiner, L. & Rosenberg, A. *Performance
+   tradeoffs in dynamic time warping algorithms for isolated word
+   recognition*, IEEE Trans. Acoust., Speech, Signal Process., 1980, 28,
+   623-635. URL: http://dx_doi_org/10_1109/TASSP_1980_1163491
+-  (Mori2006) Mori, A.; Uchida, S.; Kurazume, R.; Taniguchi, R.;
+   Hasegawa, T. & Sakoe, H. Early Recognition and Prediction of Gestures
+   Proc. 18th International Conference on Pattern Recognition ICPR 2006,
+   2006, 3, 560-563. URL: http://dx_doi_org/10_1109/ICPR_2006_467
+-  (Myers1980) Myers, Cory S. *A Comparative Study Of Several Dynamic
+   Time Warping Algorithms For Speech Recognition*, MS and BS thesis,
+   Dept. of Electrical Engineering and Computer Science, Massachusetts
+   Institute of Technology, archived Jun 20 1980,
+   http://hdl_handle_net/1721_1/27909
+-  (Rabiner1993) Rabiner, L. R., & Juang, B.-H. (1993). *Fundamentals of
+   speech recognition.* Englewood Cliffs, NJ: Prentice Hall.
+-  (Sakoe1978) Sakoe, H.; Chiba, S., *Dynamic programming algorithm
+   optimization for spoken word recognition,* Acoustics, Speech, and
+   Signal Processing, IEEE Transactions on , vol_26, no_1, pp. 43-49,
+   Feb 1978 URL:
+   http://ieeexplore_ieee_org/xpls/abs_all_jsp?arnumber=1163055
+
+
+
+
+
+Examples
+--------
+>>> 
+>>> 
+>>> #########
+>>> ##
+>>> ## The usual (normalizable) symmetric step pattern
+>>> ## Step pattern recursion, defined as:
+>>> ## g[i,j] = min(
+>>> ##      g[i,j-1] + d[i,j] ,
+>>> ##      g[i-1,j-1] + 2 * d[i,j] ,
+>>> ##      g[i-1,j] + d[i,j] ,
+>>> ##   )
+>>> 
+>>> print(symmetric2)   # or just "symmetric2"
+>>> 
+>>> 
+>>> 
+>>> #########
+>>> ##
+>>> ## The well-known plotting style for step patterns
+>>> 
+>>> plot(symmetricP2,main="Sakoe's Symmetric P=2 recursion")
+>>> 
+>>> 
+>>> 
+>>> #########
+>>> ##
+>>> ## Same example seen in ?dtw , now with asymmetric step pattern
+>>> 
+>>> idx = seq(0,6_28,len=100);
+>>> query = sin(idx)+runif(100)/10;
+>>> reference = cos(idx);
+>>> 
+>>> ## Do the computation 
+>>> asy = dtw(query,reference,keep=True,step=asymmetric);
+>>> 
+>>> dtwPlot(asy,type="density",main="Sine and cosine, asymmetric step")
+>>> 
+>>> 
+>>> #########
+>>> ##
+>>> ##  Hand-checkable example given in [Myers1980] p 61
+>>> ##
+>>> 
+>>> `tm`  = 
+>>> structure(c(1, 3, 4, 4, 5, 2, 2, 3, 3, 4, 3, 1, 1, 1, 3, 4, 2,
+>>> 3, 3, 2, 5, 3, 4, 4, 1), .Dim = c(5L, 5L))
 
 
 
@@ -384,6 +467,7 @@ def rabinerJuangStepPattern(ptype, slope_weighting="d", smoothed=False):
 
 
 **Details**
+
 
 
 

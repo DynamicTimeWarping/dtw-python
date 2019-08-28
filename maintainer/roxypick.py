@@ -4,7 +4,6 @@
 
 import rpy2
 from rpy2.robjects.packages import importr
-r2=importr("roxygen2")
 
 import glob
 import sys
@@ -13,48 +12,30 @@ import os
 import pypandoc
 
 
-rlist = glob.glob("../dtw/R/*.R")
-
-roxy = {}
-
-
-for rfile in rlist:
-    print(f"Parsing {rfile}...")
-
-    elts = r2.parse_file(rfile)
-
-    for k in elts:
-        try:
-            # ex = k.rx2('export')[0]
-            ex = k.slots['object'].rx2('alias')[0]
-            print("found... "+ex)
-        except:
-            try:
-                print("Using instead: "+k.rx2('name')[0])
-                ex = k.rx2('name')[0]
-            except:
-                print("Real missing: "+rfile)
-        roxy[ex] = k
-
-
-print("\n\n")
-
 
 # ==================================================
+# Misc functions
 
 def indent_as(l):
+    """Return the indentation before hash"""
     c = l.find('#')
     return l[:c]
 
 def dot_underscore(s):
+    """R to Py"""
     rex = r"\b\.\b"
     s = re.sub(rex,"_",s)
     s = s.replace("TRUE","True")
     s = s.replace("FALSE","False")
     return s
 
+def unarrow(s):
+    s=s.replace("<-"," = ")
+    return s
+
 
 def getParameters(k):
+    """Print out parameters list"""
     o=[]
     for i in range(1,len(k)+1):
         if k.rx(i).names[0] == "param":
@@ -72,6 +53,7 @@ def getParameters(k):
 
 
 def p(k,w,h=None):
+    """Get section w of key k"""
     try:
         txt = k.rx2(w)[0]
         txt = dot_underscore(txt)
@@ -105,20 +87,90 @@ def getdoc(n):
 
 {p(k,'note','Notes')}
 
+{p(k,'references','References')}
 
 
-
+{getex(n)}
 \"\"\"
 """
     return o
 
 
+def getex(n):
+    o=""
+    try:
+        with open(f"maintainer/examples/{n}.ex.py") as f:
+            o =  "Examples\n"
+            o += "--------\n"
+            for l in f:
+                o+=">>> "+l
+            o += "\n\n"
+    except:
+        print("No examples")
+    return o
+
+
+
+# ========================================
+# ========================================
+
+
+
+
+
+
+roxy = {}
+
+# ========================================
+# Parse the roxygen headers
+
+rlist = glob.glob("../dtw/R/*.R")
+
+r2=importr("roxygen2")
+
+for rfile in rlist:
+    print(f"Parsing {rfile}...")
+
+    elts = r2.parse_file(rfile)
+
+    for k in elts:
+        try:
+            # ex = k.rx2('export')[0]
+            ex = k.slots['object'].rx2('alias')[0]
+            print("found... "+ex)
+        except:
+            try:
+                print("Using instead: "+k.rx2('name')[0])
+                ex = k.rx2('name')[0]
+            except:
+                print("Real missing: "+rfile)
+        roxy[ex] = k
+
+
+print("\n\n")
+
+
+
 # ==================================================
+# Write examples
+for k in roxy:
+    try:
+        ex = roxy[k].rx2("examples")[0]
+    except:
+        continue
+    ex = dot_underscore(ex)
+    ex = unarrow(ex)
+    with open(f"maintainer/examples/{k}.ex", "w") as f:
+        print(f"Writing example: {k}")
+        f.write(ex)
+    
+    
+
+print("\n\n")
 
 
-
-
-
+# ==================================================
+# Process all the python files
 
 plist = glob.glob("dtwr/*.py")
 

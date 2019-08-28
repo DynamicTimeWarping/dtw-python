@@ -114,6 +114,46 @@ the [typeIIIc()] step pattern.
 
 
 
+References
+----------
+
+1. Sakoe, H.; Chiba, S., *Dynamic programming algorithm optimization for
+   spoken word recognition,* Acoustics, Speech, and Signal Processing,
+   IEEE Transactions on , vol_26, no_1, pp. 43-49, Feb 1978 URL:
+   http://ieeexplore_ieee_org/xpls/abs_all_jsp?arnumber=1163055
+2. Itakura, F., *Minimum prediction residual principle applied to speech
+   recognition,* Acoustics, Speech, and Signal Processing, IEEE
+   Transactions on , vol_23, no_1, pp. 67-72, Feb 1975. URL:
+   http://ieeexplore_ieee_org/xpls/abs_all_jsp?arnumber=1162641
+
+
+
+
+
+Examples
+--------
+>>> 
+>>> 
+>>> ## Display some windowing functions
+>>> dtwWindow_plot(itakuraWindow, main="So-called Itakura parallelogram window")
+>>> dtwWindow_plot(slantedBandWindow, window_size=2,
+>>>   reference=13, query=17, main="The slantedBandWindow at window_size=2")
+>>> 
+>>> 
+>>> ## Asymmetric step with Sakoe-Chiba band
+>>> 
+>>> idx = seq(0,6_28,len=100); 
+>>> query = sin(idx)+runif(100)/10;
+>>> reference = cos(idx);
+>>> 
+>>> asyband = dtw(query,reference,keep=True,
+>>>              step=asymmetric,
+>>>              window_type=sakoeChibaWindow,
+>>>              window_size=30                  );
+>>> 
+>>> dtwPlot(asyband,type="density",main="Sine/cosine: asymmetric step, S-C window")
+>>> 
+>>> 
 
 
 

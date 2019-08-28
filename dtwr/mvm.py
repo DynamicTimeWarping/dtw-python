@@ -71,6 +71,41 @@ A step pattern object.
 
 
 
+References
+----------
+
+Latecki, L. J.; Megalooikonomou, V.; Wang, Q. & Yu, D. *An elastic
+partial shape matching technique* Pattern Recognition, 2007, 40,
+3069-3080. http://dx_doi_org/10_1016/j_patcog_2007_03_004
+
+
+
+
+
+Examples
+--------
+>>> 
+>>> 
+>>> ## The hand-checkable example given in Fig. 5, ref. [1] above
+>>> diffmx  =  matrix( byrow=True, nrow=5, c(
+>>>   0,  1,  8,  2,  2,  4,  8,
+>>>   1,  0,  7,  1,  1,  3,  7,
+>>>  -7, -6,  1, -5, -5, -3,  1,
+>>>  -5, -4,  3, -3, -3, -1,  3,
+>>>  -7, -6,  1, -5, -5, -3,  1 ) ) ;
+>>> 
+>>> ## Cost matrix
+>>> costmx  =  diffmx^2;
+>>> 
+>>> ## Compute the alignment
+>>> al  =  dtw(costmx,step_pattern=mvmStepPattern(10))
+>>> 
+>>> ## Elements 4,5 are skipped
+>>> print(al$index2)
+>>> 
+>>> plot(al,main="Minimum Variance Matching alignment")
+>>> 
+>>> 
 
 
 

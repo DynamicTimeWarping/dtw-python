@@ -71,6 +71,51 @@ A list of indices to subscript the timeseries.
 
 
 
+Examples
+--------
+>>> 
+>>> idx = seq(0,6_28,len=100);
+>>> query = sin(idx)+runif(100)/10;
+>>> reference = cos(idx)
+>>> 
+>>> alignment = dtw(query,reference);
+>>> 
+>>> 
+>>> wq = warp(alignment,index_reference=False);
+>>> wt = warp(alignment,index_reference=True);
+>>> 
+>>> old_par  =  par(no_readonly = True);
+>>> par(mfrow=c(2,1));
+>>> 
+>>> plot(reference,main="Warping query");
+>>>   lines(query[wq],col="blue");
+>>> 
+>>> plot(query,type="l",col="blue",
+>>>   main="Warping reference");
+>>>   points(reference[wt]);
+>>> 
+>>> par(old_par);
+>>> 
+>>> 
+>>> ##############
+>>> ##
+>>> ## Asymmetric step makes it "natural" to warp
+>>> ## the reference, because every query index has
+>>> ## exactly one image (q->t is a function)
+>>> ##
+>>> 
+>>> alignment = dtw(query,reference,step=asymmetric)
+>>> wt = warp(alignment,index_reference=True);
+>>> 
+>>> plot(query,type="l",col="blue",
+>>>   main="Warping reference, asymmetric step");
+>>>   points(reference[wt]);
+>>> 
+>>> 
+>>> 
+
+
+
 """
     # ENDIMPORT
     if not index_reference:
