@@ -7,8 +7,8 @@ described in the original article) is a global constraint.  Instead,
 it arises from local slope restrictions. Anyway, an "itakuraWindow",
 is provided in this package. A comparison between the two follows.
 
-
 The local constraint: three sides of the parallelogram are seen
+
 >>> (query, reference) = sin_cos_data()
 >>> ita = dtw(query, reference, keep_internals=True, step_pattern=typeIIIc)
 

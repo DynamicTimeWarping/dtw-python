@@ -48,28 +48,28 @@ class DTW:
 Objects of class DTW contain alignments computed by the [dtw()]
 function. 
 
-Attributes
-----------
+**Attributes:**
 
--  ``distance`` the minimum global distance computed, *not* normalized.
--  ``normalizedDistance`` distance computed, *normalized* for path
-   length, if normalization is known for chosen step pattern.
--  ``N,M`` query and reference length
--  ``call`` the function call that created the object
--  ``index1`` matched elements: indices in ``x``
--  ``index2`` corresponding mapped indices in ``y``
--  ``stepPattern`` the ``stepPattern`` object used for the computation
--  ``jmin`` last element of reference matched, if ``open_end=True``
--  ``directionMatrix`` if ``keep_internals=True``, the directions of
-   steps that would be taken at each alignment pair (integers indexing
-   production rules in the chosen step pattern)
--  ``stepsTaken`` the list of steps taken from the beginning to the end
-   of the alignment (integers indexing chosen step pattern)
--  ``index1s, index2s`` same as ``index1/2``, excluding intermediate
-   steps for multi-step patterns like [asymmetricP05()]
--  ``costMatrix`` if ``keep_internals=True``, the cumulative cost matrix
--  ``query, reference`` if ``keep_internals=True`` and passed as the
-   ``x`` and ``y`` arguments, the query and reference timeseries.
+- ``distance`` the minimum global distance computed, *not* normalized.
+- ``normalizedDistance`` distance computed, *normalized* for path
+  length, if normalization is known for chosen step pattern.
+- ``N,M`` query and reference length
+- ``call`` the function call that created the object
+- ``index1`` matched elements: indices in ``x``
+- ``index2`` corresponding mapped indices in ``y``
+- ``stepPattern`` the ``stepPattern`` object used for the computation
+- ``jmin`` last element of reference matched, if ``open_end=True``
+- ``directionMatrix`` if ``keep_internals=True``, the directions of
+  steps that would be taken at each alignment pair (integers indexing
+  production rules in the chosen step pattern)
+- ``stepsTaken`` the list of steps taken from the beginning to the end
+  of the alignment (integers indexing chosen step pattern)
+- ``index1s, index2s`` same as ``index1/2``, excluding intermediate
+  steps for multi-step patterns like [asymmetricP05()]
+- ``costMatrix`` if ``keep_internals=True``, the cumulative cost matrix
+- ``query, reference`` if ``keep_internals=True`` and passed as the
+  ``x`` and ``y`` arguments, the query and reference timeseries.
+
 """
     
     def __init__(self, obj):
@@ -137,9 +137,7 @@ def dtw(x, y=None,
         distance_only=False,
         open_end=False,
         open_begin=False):
-    """Dynamic Time Warp
-
-Compute Dynamic Time Warp and find optimal alignment between two time
+    """Compute Dynamic Time Warp and find optimal alignment between two time
 series.
 
 **Details**
@@ -290,7 +288,7 @@ Find the best match
 Display the mapping, AKA warping function - may be multiple-valued
 Equivalent to: plot(alignment,type="alignment")
 
->> plot(alignment.index1,alignment.index2,main="Warping function");
+>>> #TODO plot(alignment.index1,alignment.index2,main="Warping function");
 
 Partial alignments are allowed.
 
@@ -299,19 +297,21 @@ Partial alignments are allowed.
 ...                      step_pattern=asymmetric,
 ...                      open_end=True,open_begin=True);
 
->> plot(alignmentOBE,type="two",off=1);
+>>> #TODO plot(alignmentOBE,type="two",off=1);
 
 Subsetting allows warping and unwarping of
 timeseries according to the warping curve. 
 See first example below.
 
 Most useful: plot the warped query along with reference 
->> plot(reference)
->> lines(query[alignment.index1]~alignment.index2,col="blue")
+
+>>> #TODO plot(reference)
+>>> #TODO lines(query[alignment.index1]~alignment.index2,col="blue")
 
 Plot the (unwarped) query and the inverse-warped reference
->> plot(query,type="l",col="blue")
->> points(reference[alignment.index2]~alignment.index1)
+
+>>> #TODO plot(query,type="l",col="blue")
+>>> #TODO points(reference[alignment.index2]~alignment.index1)
 
 Contour plots of the cumulative cost matrix
 similar to: plot(alignment,type="density") or
@@ -321,9 +321,9 @@ keep = True so we can look into the cost matrix
 
 >>> alignment = dtw(query,reference,keep_internals=True);
 
->> contour(alignment.costMatrix,col=terrain_colors(100),x=1:100,y=1:100, xlab="Query (noisy sine)",ylab="Reference (cosine)");
+>>> #TODO contour(alignment.costMatrix,col=terrain_colors(100),x=1:100,y=1:100, xlab="Query (noisy sine)",ylab="Reference (cosine)");
 
->> lines(alignment.index1,alignment.index2,col="red",lwd=2);
+>>> #TODO lines(alignment.index1,alignment.index2,col="red",lwd=2);
 
 A hand-checkable example
 
@@ -336,10 +336,10 @@ A hand-checkable example
 >>> da = dtw(ldist,step_pattern=asymmetric);	 # Also compute the asymmetric 
 
 Symmetric: alignment follows the low-distance marked path
->> plot(ds.index1,ds.index2,pch=3)
+>>> #TODO plot(ds.index1,ds.index2,pch=3)
 
 Asymmetric: visiting 1 is required twice
->> points(da.index1,da.index2,col="red");  
+>>> #TODO points(da.index1,da.index2,col="red");  
 
 >>> ds.distance
 2.0

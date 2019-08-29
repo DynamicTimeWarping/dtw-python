@@ -2,6 +2,7 @@
 >>> import numpy as np
 
 Default test data
+
 >>> (query, reference) = sin_cos_data()
 
 >>> alignment = dtw(query,reference);
@@ -26,8 +27,6 @@ Default test data
 Asymmetric step makes it "natural" to warp
 the reference, because every query index has
 exactly one image (q->t is a function)
-
-
 
 >>> alignment = dtw(query,reference,step_pattern=asymmetric)
 >>> wt = warp(alignment,index_reference=True);

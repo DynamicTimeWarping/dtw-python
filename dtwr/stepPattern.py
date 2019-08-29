@@ -249,7 +249,8 @@ Same example seen in ?dtw , now with asymmetric step pattern
 
 >>> (query, reference) = sin_cos_data()
 
-Do the computation 
+Do the computation
+
 >>> asy = dtw(query,reference,keep_internals=True,step_pattern=asymmetric);
 
 >>> #TODO dtwPlot(asy,type="density",main="Sine and cosine, asymmetric step")

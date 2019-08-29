@@ -60,6 +60,7 @@ Examples
 >>> import numpy as np
 
 Default test data
+
 >>> (query, reference) = sin_cos_data()
 
 >>> alignment = dtw(query,reference);

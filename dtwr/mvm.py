@@ -72,6 +72,7 @@ Examples
 >>> from dtwr import *
 
 The hand-checkable example given in Fig. 5, ref. [1] above
+
 >>> diffmx  =  np.array(
 ... [[  0,  1,  8,  2,  2,  4,  8 ],
 ...  [  1,  0,  7,  1,  1,  3,  7 ],
@@ -80,12 +81,15 @@ The hand-checkable example given in Fig. 5, ref. [1] above
 ...  [ -7, -6,  1, -5, -5, -3,  1 ]], dtype=np.double )
 
 Cost matrix
+
 >>> costmx  =  diffmx**2;
 
 Compute the alignment
+
 >>> al  =  dtw(costmx,step_pattern=mvmStepPattern(10))
 
 Elements 4,5 are skipped
+
 >>> al.index2+1
 array([1, 2, 3, 6, 7])
 

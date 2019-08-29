@@ -1,7 +1,6 @@
 >>> from dtwr import *
 >>> import numpy as np
 
-
 The usual (normalizable) symmetric step pattern
 Step pattern recursion, defined as:
  g[i,j] = min(
@@ -34,7 +33,8 @@ Same example seen in ?dtw , now with asymmetric step pattern
 
 >>> (query, reference) = sin_cos_data()
 
-Do the computation 
+Do the computation
+
 >>> asy = dtw(query,reference,keep_internals=True,step_pattern=asymmetric);
 
 
