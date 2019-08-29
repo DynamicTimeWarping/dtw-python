@@ -126,12 +126,13 @@ Asymmetric step with Sakoe-Chiba band
 ...     window_type=sakoeChibaWindow,
 ...     window_args={'window_size': 30}                  );
 
->> dtwPlot(asyband,type="density")
+>>> #TODO dtwPlot(asyband,type="density")
 
-Display some windowing functions TODO
->> dtwWindow_plot(itakuraWindow, main="So-called Itakura parallelogram window")
->> dtwWindow_plot(slantedBandWindow, window_size=2,
->> reference=13, query=17, main="The slantedBandWindow at window_size=2")
+Display some windowing functions 
+
+>>> #TODO dtwWindow_plot(itakuraWindow, main="So-called Itakura parallelogram window")
+>>> #TODO dtwWindow_plot(slantedBandWindow, window_size=2,
+>>> #TODO reference=13, query=17, main="The slantedBandWindow at window_size=2")
 
 """
 # ENDIMPORT

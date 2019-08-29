@@ -25,7 +25,7 @@ Normalization hint: N+M
 
 The well-known plotting style for step patterns
 
->> plot(symmetricP2,main="Sakoe's Symmetric P=2 recursion")
+>>> #TODO plot(symmetricP2,main="Sakoe's Symmetric P=2 recursion")
 
 
 
@@ -38,7 +38,7 @@ Do the computation
 >>> asy = dtw(query,reference,keep_internals=True,step_pattern=asymmetric);
 
 
->> dtwPlot(asy,type="density",main="Sine and cosine, asymmetric step")
+>>> #TODO dtwPlot(asy,type="density",main="Sine and cosine, asymmetric step")
 
 
 

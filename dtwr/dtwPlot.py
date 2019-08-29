@@ -371,14 +371,14 @@ The local constraint: three sides of the parallelogram are seen
 >>> (query, reference) = sin_cos_data()
 >>> ita = dtw(query, reference, keep_internals=True, step_pattern=typeIIIc)
 
->> dtwPlotDensity(ita)
+>>> #TODO dtwPlotDensity(ita)
 
 Symmetric step with global parallelogram-shaped constraint. Note how
 long (>2 steps) horizontal stretches are allowed within the window.
 
 >>> ita = dtw(query, reference, keep_internals=True, window_type=itakuraWindow)
 
->> dtwPlotDensity(ita)
+>>> #TODO dtwPlotDensity(ita)
 
 """
     # ENDIMPORT

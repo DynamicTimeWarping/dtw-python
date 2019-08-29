@@ -19,7 +19,7 @@ Find the best match
 Display the mapping, AKA warping function - may be multiple-valued
 Equivalent to: plot(alignment,type="alignment")
 
->> plot(alignment.index1,alignment.index2,main="Warping function");
+>>> #TODO plot(alignment.index1,alignment.index2,main="Warping function");
 
 
 Partial alignments are allowed.
@@ -29,7 +29,7 @@ Partial alignments are allowed.
 ...                      step_pattern=asymmetric,
 ...                      open_end=True,open_begin=True);
 
->> plot(alignmentOBE,type="two",off=1);
+>>> #TODO plot(alignmentOBE,type="two",off=1);
 
 
 Subsetting allows warping and unwarping of
@@ -37,12 +37,12 @@ timeseries according to the warping curve.
 See first example below.
 
 Most useful: plot the warped query along with reference 
->> plot(reference)
->> lines(query[alignment.index1]~alignment.index2,col="blue")
+>>> #TODO plot(reference)
+>>> #TODO lines(query[alignment.index1]~alignment.index2,col="blue")
 
 Plot the (unwarped) query and the inverse-warped reference
->> plot(query,type="l",col="blue")
->> points(reference[alignment.index2]~alignment.index1)
+>>> #TODO plot(query,type="l",col="blue")
+>>> #TODO points(reference[alignment.index2]~alignment.index1)
 
 
 
@@ -58,10 +58,10 @@ keep = True so we can look into the cost matrix
 >>> alignment = dtw(query,reference,keep_internals=True);
 
 
->> contour(alignment.costMatrix,col=terrain_colors(100),x=1:100,y=1:100, xlab="Query (noisy sine)",ylab="Reference (cosine)");
+>>> #TODO contour(alignment.costMatrix,col=terrain_colors(100),x=1:100,y=1:100, xlab="Query (noisy sine)",ylab="Reference (cosine)");
 
 
->> lines(alignment.index1,alignment.index2,col="red",lwd=2);
+>>> #TODO lines(alignment.index1,alignment.index2,col="red",lwd=2);
 
 
 
@@ -78,10 +78,10 @@ A hand-checkable example
 >>> da = dtw(ldist,step_pattern=asymmetric);	 # Also compute the asymmetric 
 
 Symmetric: alignment follows the low-distance marked path
->> plot(ds.index1,ds.index2,pch=3)
+>>> #TODO plot(ds.index1,ds.index2,pch=3)
 
 Asymmetric: visiting 1 is required twice
->> points(da.index1,da.index2,col="red");  
+>>> #TODO points(da.index1,da.index2,col="red");  
 
 >>> ds.distance
 2.0

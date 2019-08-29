@@ -89,7 +89,7 @@ Elements 4,5 are skipped
 >>> al.index2+1
 array([1, 2, 3, 6, 7])
 
->> al.plot()
+>>> #TODO al.plot()
 
 """
     # ENDIMPORT

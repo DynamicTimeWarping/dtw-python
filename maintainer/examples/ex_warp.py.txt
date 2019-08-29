@@ -12,12 +12,12 @@ Default test data
 
 
 
->> plot(reference,main="Warping query");
->> lines(query[wq],col="blue");
+>>> #TODO plot(reference,main="Warping query");
+>>> #TODO lines(query[wq],col="blue");
 
 
->> plot(query,type="l",col="blue", main="Warping reference");
->> points(reference[wt]);
+>>> #TODO plot(query,type="l",col="blue", main="Warping reference");
+>>> #TODO points(reference[wt]);
 
 
 
@@ -33,8 +33,8 @@ exactly one image (q->t is a function)
 >>> wt = warp(alignment,index_reference=True);
 
 
->> plot(query,type="l",col="blue")
->> points(reference[wt]);
+>>> #TODO plot(query,type="l",col="blue")
+>>> #TODO points(reference[wt]);
 
 
 

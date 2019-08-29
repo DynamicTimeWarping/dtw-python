@@ -63,7 +63,7 @@ Examples
 
 >>> ds = dtw( [1,2,3,4], [1,2,3,4,5,6,7,8]);
 
->> plot(ds);lines(seq(1,8,len=4),col="red");
+>>> #TODO plot(ds);lines(seq(1,8,len=4),col="red");
 
 >>> warpArea(ds)
 8.0

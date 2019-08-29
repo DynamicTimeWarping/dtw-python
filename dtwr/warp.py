@@ -67,11 +67,11 @@ Default test data
 >>> wq = warp(alignment,index_reference=False)
 >>> wt = warp(alignment,index_reference=True)
 
->> plot(reference,main="Warping query");
->> lines(query[wq],col="blue");
+>>> #TODO plot(reference,main="Warping query");
+>>> #TODO lines(query[wq],col="blue");
 
->> plot(query,type="l",col="blue", main="Warping reference");
->> points(reference[wt]);
+>>> #TODO plot(query,type="l",col="blue", main="Warping reference");
+>>> #TODO points(reference[wt]);
 
 Asymmetric step makes it "natural" to warp
 the reference, because every query index has
@@ -80,8 +80,8 @@ exactly one image (q->t is a function)
 >>> alignment = dtw(query,reference,step_pattern=asymmetric)
 >>> wt = warp(alignment,index_reference=True);
 
->> plot(query,type="l",col="blue")
->> points(reference[wt]);
+>>> #TODO plot(query,type="l",col="blue")
+>>> #TODO points(reference[wt]);
 
 """
     # ENDIMPORT
