@@ -26,16 +26,10 @@ class StepPattern:
     # IMPORT_RDOCSTRING stepPattern
     """Step patterns for DTW
 
-
-
-
 A ``stepPattern`` object lists the transitions allowed while searching
 for the minimum-distance path. DTW variants are implemented by passing
 one of the objects described in this page to the ``stepPattern``
 argument of the [dtw()] call.
-
-
-
 
 **Details**
 
@@ -52,22 +46,22 @@ slope-constraints, transition types, production or recursion rules
       symmetric1
       symmetric2
       asymmetric
-      
+
       ## Step patterns classified according to Rabiner-Juang (Rabiner1993)
       rabinerJuangStepPattern(type,slope_weighting="d",smoothed=False)
-      
+
       ## Slope-constrained step patterns from Sakoe-Chiba (Sakoe1978)
       symmetricP0;  asymmetricP0
       symmetricP05; asymmetricP05
       symmetricP1;  asymmetricP1
       symmetricP2;  asymmetricP2
-      
+
       ## Step patterns classified according to Rabiner-Myers (Myers1980)
       typeIa;   typeIb;   typeIc;   typeId;
       typeIas;  typeIbs;  typeIcs;  typeIds;  # smoothed
       typeIIa;  typeIIb;  typeIIc;  typeIId;
       typeIIIc; typeIVc;
-      
+
       ## Miscellaneous
       mori2006;
       rigid;
@@ -172,9 +166,6 @@ leading to the corresponding element.
 ``t_stepPattern`` transposes the productions and normalization hint so
 that roles of query and reference become reversed.
 
-
-
-
 Parameters
 ----------
 x : 
@@ -188,16 +179,11 @@ smoothed :
 ... : 
     additional arguments to [print()].
 
-
-
 Notes
 -----
 
 Constructing ``stepPattern`` objects is tricky and thus undocumented.
 For a commented example please see source code for ``symmetricP1``.
-
-
-
 
 References
 ----------
@@ -230,14 +216,10 @@ References
    Feb 1978 URL:
    http://ieeexplore_ieee_org/xpls/abs_all_jsp?arnumber=1163055
 
-
-
-
 Examples
 --------
 >>> from dtwr import *
 >>> import numpy as np
-
 
 The usual (normalizable) symmetric step pattern
 Step pattern recursion, defined as:
@@ -246,7 +228,6 @@ Step pattern recursion, defined as:
    g[i-1,j-1] + 2 * d[i,j] ,
    g[i-1,j] + d[i,j] ,
 )
-
 
 >>> print(symmetric2)		 #doctest: +NORMALIZE_WHITESPACE
 Step pattern recursion:
@@ -259,13 +240,9 @@ Step pattern recursion:
 Normalization hint: N+M
 <BLANKLINE>
 
-
 The well-known plotting style for step patterns
 
 >> plot(symmetricP2,main="Sakoe's Symmetric P=2 recursion")
-
-
-
 
 Same example seen in ?dtw , now with asymmetric step pattern
 
@@ -274,19 +251,12 @@ Same example seen in ?dtw , now with asymmetric step pattern
 Do the computation 
 >>> asy = dtw(query,reference,keep_internals=True,step_pattern=asymmetric);
 
-
 >> dtwPlot(asy,type="density",main="Sine and cosine, asymmetric step")
-
-
-
 
 Hand-checkable example given in [Myers1980] p 61
 
 >>> tm = numpy.reshape( [1, 3, 4, 4, 5, 2, 2, 3, 3, 4, 3, 1, 1, 1, 3, 4, 2,
 ...                      3, 3, 2, 5, 3, 4, 4, 1], (5,5), "F" )
-
-
-
 
 """
     # ENDIMPORT
@@ -466,20 +436,7 @@ def rabinerJuangStepPattern(ptype, slope_weighting="d", smoothed=False):
     # IMPORT_RDOCSTRING rabinerJuangStepPattern
     """
 
-
-
 **Details**
-
-
-
-
-
-
-
-
-
-
-
 
 """
     # ENDIMPORT

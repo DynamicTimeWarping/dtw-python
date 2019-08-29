@@ -21,15 +21,9 @@
 # IMPORT_RDOCSTRING dtwWindowingFunctions
 """Global constraints and windowing functions for DTW
 
-
-
-
 Various global constraints (windows) which can be applied to the
 ``window_type`` argument of [dtw()], including the Sakoe-Chiba band, the
 Itakura parallelogram, and custom functions.
-
-
-
 
 **Details**
 
@@ -67,9 +61,6 @@ of the possibly rectangular cost matrix, therefore having a slope of
 a 200 x 220 rectangular region, which can be changed via
 ``reference_size`` and ``query_size`` arguments.
 
-
-
-
 Parameters
 ----------
 iw : 
@@ -95,9 +86,6 @@ Windowing functions return ``True`` if the coordinates passed as
 arguments fall within the chosen warping window, ``False`` otherwise.
 User-defined functions should do the same.
 
-
-
-
 Notes
 -----
 
@@ -109,9 +97,6 @@ described in reference 2) is a *global* constraint, i_e. a window. To
 the author’s knowledge, it instead arises from the local slope
 restrictions imposed to the warping path, such as the one implemented by
 the [typeIIIc()] step pattern.
-
-
-
 
 References
 ----------
@@ -125,9 +110,6 @@ References
    Transactions on , vol_23, no_1, pp. 67-72, Feb 1975. URL:
    http://ieeexplore_ieee_org/xpls/abs_all_jsp?arnumber=1162641
 
-
-
-
 Examples
 --------
 >>> from dtwr import *
@@ -136,7 +118,6 @@ Examples
 Default test data
 >>> (query, reference) = sin_cos_data()
 
-
 Asymmetric step with Sakoe-Chiba band
 
 >>> asyband = dtw(query,reference,
@@ -144,18 +125,12 @@ Asymmetric step with Sakoe-Chiba band
 ...     window_type=sakoeChibaWindow,
 ...     window_args={'window_size': 30}                  );
 
-
 >> dtwPlot(asyband,type="density")
-
-
-
 
 Display some windowing functions TODO
 >> dtwWindow_plot(itakuraWindow, main="So-called Itakura parallelogram window")
 >> dtwWindow_plot(slantedBandWindow, window_size=2,
 >> reference=13, query=17, main="The slantedBandWindow at window_size=2")
-
-
 
 """
 # ENDIMPORT

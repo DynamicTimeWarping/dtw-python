@@ -91,8 +91,12 @@ def getdoc(n):
 {getex(n)}
 \"\"\"
 """
+    o=sanitize_whitespace(o)
     return o
 
+def sanitize_whitespace(o):
+    """Remove duplicated empty lines"""
+    return re.sub(r'\n\s*\n', '\n\n', o)
 
 
 def convex(txt):

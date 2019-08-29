@@ -21,14 +21,8 @@
 # IMPORT_RDOCSTRING aami
 """ANSI/AAMI EC13 Test Waveforms, 3a and 3b
 
-
-
-
 ANSI/AAMI EC13 Test Waveforms 3a and 3b, as obtained from the PhysioBank
 database.
-
-
-
 
 **Details**
 
@@ -43,13 +37,6 @@ please refer to section 5_1_2_1, paragraphs (e) and (g) in the reference
 below. Each recording contains one ECG signal sampled at 720 Hz with
 12-bit resolution.
 
-
-
-
-
-
-
-
 Notes
 -----
 
@@ -57,9 +44,6 @@ Timestamps in the datasets have been re-created at the indicated
 frequency of 720 Hz, whereas the original timestamps in ms (at least in
 text format) only had three decimal digits’ precision, and were
 therefore affected by substantial jittering.
-
-
-
 
 References
 ----------
@@ -72,10 +56,6 @@ References
 -  Cardiac monitors, heart rate meters, and alarms; American National
    Standard (ANSI/AAMI EC13:2002). Arlington, VA: Association for the
    Advancement of Medical Instrumentation, 2002.
-
-
-
-
 
 """
 # ENDIMPORT

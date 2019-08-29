@@ -26,14 +26,8 @@ def warpArea(d):
     # IMPORT_RDOCSTRING warpArea
     """Compute Warping Path Area
 
-
-
-
 Compute the area between the warping function and the diagonal
 (no-warping) path, in unit steps.
-
-
-
 
 **Details**
 
@@ -46,9 +40,6 @@ The computation is approximate: points having multiple correspondences
 are averaged, and points without a match are interpolated. Therefore,
 the area can be fractionary.
 
-
-
-
 Parameters
 ----------
 d : 
@@ -59,19 +50,11 @@ Returns
 
 The area, not normalized by path length or else.
 
-
-
-
 Notes
 -----
 
 There could be alternative definitions to the area, including
 considering the envelope of the path.
-
-
-
-
-
 
 Examples
 --------
@@ -79,9 +62,7 @@ Examples
 
 >>> ds = dtw( [1,2,3,4], [1,2,3,4,5,6,7,8]);
 
-
 >> plot(ds);lines(seq(1,8,len=4),col="red");
-
 
 >>> warpArea(ds)
 8.0
@@ -95,9 +76,6 @@ used in the scipy.interpolate.interp1d funtion.
 >>> ##        4   4:8 (avg to 6)    8   (+2  )
 >>> ##                                 --------
 >>> ##                                     6
-
-
-
 
 """
     # ENDIMPORT

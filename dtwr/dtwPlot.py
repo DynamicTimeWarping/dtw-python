@@ -23,14 +23,8 @@ def dtwPlot(x, type, **kwargs):
     # IMPORT_RDOCSTRING plot.dtw
     """Plotting of dynamic time warp results
 
-
-
-
 Methods for plotting dynamic time warp alignment objects returned by
 [dtw()].
-
-
-
 
 **Details**
 
@@ -50,9 +44,6 @@ argument (may be abbreviated):
 Additional parameters are passed to the plotting functions: use with
 care.
 
-
-
-
 Parameters
 ----------
 x,d : 
@@ -68,13 +59,6 @@ plot_type :
 in the underlying `plot` call
 ... : 
     additional arguments, passed to plotting functions
-
-
-
-
-
-
-
 
 """
     # ENDIMPORT
@@ -112,14 +96,8 @@ def dtwPlotTwoWay(d, xts=None, yts=None,
     # IMPORT_RDOCSTRING dtwPlotTwoWay
     """Plotting of dynamic time warp results: pointwise comparison
 
-
-
-
 Display the query and reference time series and their alignment,
 arranged for visual inspection.
-
-
-
 
 **Details**
 
@@ -139,9 +117,6 @@ If ``xts`` and ``yts`` are not supplied, they will be recovered from
 ``d``, as long as it was created with the two-argument call of [dtw()]
 with ``keep_internals=True``. Only single-variate time series can be
 plotted this way.
-
-
-
 
 Parameters
 ----------
@@ -165,18 +140,10 @@ ts_type,pch :
 ... : 
     additional arguments, passed to `matplot`
 
-
-
 Notes
 -----
 
 When ``offset`` is set values on the left axis only apply to the query.
-
-
-
-
-
-
 
 """
     # ENDIMPORT
@@ -248,14 +215,8 @@ def dtwPlotThreeWay(d, xts=None, yts=None,
     # IMPORT_RDOCSTRING dtwPlotThreeWay
     """Plotting of dynamic time warp results: annotated warping function
 
-
-
-
 Display the query and reference time series and their warping curve,
 arranged for visual inspection.
-
-
-
 
 **Details**
 
@@ -275,9 +236,6 @@ If ``xts`` and ``yts`` are not supplied, they will be recovered from
 ``d``, as long as it was created with the two-argument call of [dtw()]
 with ``keep_internals=True``. Only single-variate time series can be
 plotted.
-
-
-
 
 Parameters
 ----------
@@ -307,13 +265,6 @@ title_margin :
     space on the top of figure
 ... : 
     additional arguments, used for the warping curve
-
-
-
-
-
-
-
 
 """
     # ENDIMPORT
@@ -378,14 +329,8 @@ def dtwPlotDensity(d, normalize=False,
     # IMPORT_RDOCSTRING dtwPlotDensity
     """Display the cumulative cost density with the warping path overimposed
 
-
-
-
 The plot is based on the cumulative cost matrix. It displays the optimal
 alignment as a “ridge” in the global cost landscape.
-
-
-
 
 **Details**
 
@@ -395,9 +340,6 @@ The alignment must have been constructed with the
 If ``normalize`` is ``True``, the *average* cost per step is plotted
 instead of the cumulative one. Step averaging depends on the
 [stepPattern()] used.
-
-
-
 
 Parameters
 ----------
@@ -412,12 +354,6 @@ ylab :
 ... : 
     additional parameters forwarded to plotting functions
 
-
-
-
-
-
-
 Examples
 --------
 >>> from dtwr import *
@@ -429,13 +365,11 @@ described in the original article) is a global constraint.  Instead,
 it arises from local slope restrictions. Anyway, an "itakuraWindow",
 is provided in this package. A comparison between the two follows.
 
-
 The local constraint: three sides of the parallelogram are seen
 >>> (query, reference) = sin_cos_data()
 >>> ita = dtw(query, reference, keep_internals=True, step_pattern=typeIIIc)
 
 >> dtwPlotDensity(ita)
-
 
 Symmetric step with global parallelogram-shaped constraint. Note how
 long (>2 steps) horizontal stretches are allowed within the window.
@@ -443,9 +377,6 @@ long (>2 steps) horizontal stretches are allowed within the window.
 >>> ita = dtw(query, reference, keep_internals=True, window_type=itakuraWindow)
 
 >> dtwPlotDensity(ita)
-
-
-
 
 """
     # ENDIMPORT

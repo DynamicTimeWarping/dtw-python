@@ -26,14 +26,8 @@ def warp(d, index_reference=False):
     # IMPORT_RDOCSTRING warp
     """Apply a warping to a given timeseries
 
-
-
-
 Returns the indexing required to apply the optimal warping curve to a
 given timeseries (warps either into a query or into a reference).
-
-
-
 
 **Details**
 
@@ -45,9 +39,6 @@ the warping curve, or its inverse, into a function in the explicit form.
 Multiple indices that would be mapped to a single point are averaged,
 with a warning. Gaps in the index sequence are filled by linear
 interpolation.
-
-
-
 
 Parameters
 ----------
@@ -62,13 +53,6 @@ Returns
 
 A list of indices to subscript the timeseries.
 
-
-
-
-
-
-
-
 Examples
 --------
 >>> from dtwr import *
@@ -79,44 +63,24 @@ Default test data
 
 >>> alignment = dtw(query,reference);
 
-
 >>> wq = warp(alignment,index_reference=False)
 >>> wt = warp(alignment,index_reference=True)
-
-
 
 >> plot(reference,main="Warping query");
 >> lines(query[wq],col="blue");
 
-
 >> plot(query,type="l",col="blue", main="Warping reference");
 >> points(reference[wt]);
-
-
-
-
 
 Asymmetric step makes it "natural" to warp
 the reference, because every query index has
 exactly one image (q->t is a function)
 
-
-
 >>> alignment = dtw(query,reference,step_pattern=asymmetric)
 >>> wt = warp(alignment,index_reference=True);
 
-
 >> plot(query,type="l",col="blue")
 >> points(reference[wt]);
-
-
-
-
-
-
-
-
-
 
 """
     # ENDIMPORT

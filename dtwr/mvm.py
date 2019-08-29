@@ -25,14 +25,8 @@ def mvmStepPattern(elasticity=20):
     # IMPORT_RDOCSTRING mvmStepPattern
     """Minimum Variance Matching algorithm
 
-
-
-
 Step patterns to compute the Minimum Variance Matching (MVM)
 correspondence between time series
-
-
-
 
 **Details**
 
@@ -52,9 +46,6 @@ which can be skipped at once. If no limit is desired, set ``elasticity``
 to an integer at least as large as the reference (computation time grows
 linearly).
 
-
-
-
 Parameters
 ----------
 elasticity : 
@@ -65,11 +56,6 @@ Returns
 
 A step pattern object.
 
-
-
-
-
-
 References
 ----------
 
@@ -77,12 +63,8 @@ Latecki, L. J.; Megalooikonomou, V.; Wang, Q. & Yu, D. *An elastic
 partial shape matching technique* Pattern Recognition, 2007, 40,
 3069-3080. http://dx_doi_org/10_1016/j_patcog_2007_03_004
 
-
-
-
 Examples
 --------
-
 
 >>> import numpy as np
 >>> from dtwr import *
@@ -95,27 +77,17 @@ The hand-checkable example given in Fig. 5, ref. [1] above
 ...  [ -5, -4,  3, -3, -3, -1,  3 ],
 ...  [ -7, -6,  1, -5, -5, -3,  1 ]], dtype=np.double )
 
-
 Cost matrix
 >>> costmx  =  diffmx**2;
 
-
 Compute the alignment
 >>> al  =  dtw(costmx,step_pattern=mvmStepPattern(10))
-
 
 Elements 4,5 are skipped
 >>> al.index2+1
 array([1, 2, 3, 6, 7])
 
 >> al.plot()
-
-
-
-
-
-
-
 
 """
     # ENDIMPORT

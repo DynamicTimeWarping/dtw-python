@@ -53,14 +53,8 @@ class DTW:
         # IMPORT_RDOCSTRING plot.dtw
         """Plotting of dynamic time warp results
 
-
-
-
 Methods for plotting dynamic time warp alignment objects returned by
 [dtw()].
-
-
-
 
 **Details**
 
@@ -80,9 +74,6 @@ argument (may be abbreviated):
 Additional parameters are passed to the plotting functions: use with
 care.
 
-
-
-
 Parameters
 ----------
 x,d : 
@@ -98,13 +89,6 @@ plot_type :
 in the underlying `plot` call
 ... : 
     additional arguments, passed to plotting functions
-
-
-
-
-
-
-
 
 """
         # ENDIMPORT
@@ -126,14 +110,8 @@ def dtw(x, y=None,
     # IMPORT_RDOCSTRING dtw
     """Dynamic Time Warp
 
-
-
-
 Compute Dynamic Time Warp and find optimal alignment between two time
 series.
-
-
-
 
 **Details**
 
@@ -193,9 +171,6 @@ step. The output object will then lack the ``index{1,2,1s,2s}`` and
 
 ``is_dtw`` tests whether the argument is of class ``dtw``.
 
-
-
-
 Parameters
 ----------
 x : 
@@ -248,9 +223,6 @@ An object of class ``dtw`` with the following items:
 -  ``query, reference`` if ``keep_internals=True`` and passed as the
    ``x`` and ``y`` arguments, the query and reference timeseries.
 
-
-
-
 Notes
 -----
 
@@ -264,9 +236,6 @@ growing upwards. This may be confusing.
 A fast compiled version of the function is normally used. Should it be
 unavailable, the interpreted equivalent will be used as a fall-back with
 a warning.
-
-
-
 
 References
 ----------
@@ -296,12 +265,8 @@ References
    and Motion*. Springer Berlin Heidelberg; 2007. p. 69-84.
    http://link_springer_com/chapter/10_1007/978-3-540-74048-3_4
 
-
-
-
 Examples
 --------
-
 
 >>> import numpy as np
 >>> from dtwr import *
@@ -324,7 +289,6 @@ Equivalent to: plot(alignment,type="alignment")
 
 >> plot(alignment.index1,alignment.index2,main="Warping function");
 
-
 Partial alignments are allowed.
 
 >>> alignmentOBE = dtw(query[44:88], reference,
@@ -333,7 +297,6 @@ Partial alignments are allowed.
 ...                      open_end=True,open_begin=True);
 
 >> plot(alignmentOBE,type="two",off=1);
-
 
 Subsetting allows warping and unwarping of
 timeseries according to the warping curve. 
@@ -347,28 +310,17 @@ Plot the (unwarped) query and the inverse-warped reference
 >> plot(query,type="l",col="blue")
 >> points(reference[alignment.index2]~alignment.index1)
 
-
-
-
-
 Contour plots of the cumulative cost matrix
 similar to: plot(alignment,type="density") or
 dtwPlotDensity(alignment)
 See more plots in ?plot.dtw 
 keep = True so we can look into the cost matrix
 
-
 >>> alignment = dtw(query,reference,keep_internals=True);
-
 
 >> contour(alignment.costMatrix,col=terrain_colors(100),x=1:100,y=1:100, xlab="Query (noisy sine)",ylab="Reference (cosine)");
 
-
 >> lines(alignment.index1,alignment.index2,col="red",lwd=2);
-
-
-
-
 
 A hand-checkable example
 
@@ -390,9 +342,6 @@ Asymmetric: visiting 1 is required twice
 2.0
 >>> da.distance
 2.0
-
-
-
 
 """
     # ENDIMPORT
