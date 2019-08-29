@@ -64,7 +64,7 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/tonigi/dtwr-py',
-    version='0.1.1',
+    version='0.2.0',
     zip_safe=False,
 )
 
