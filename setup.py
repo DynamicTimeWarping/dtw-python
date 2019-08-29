@@ -6,6 +6,7 @@
 from setuptools import setup, find_packages
 from setuptools.extension import Extension
 from Cython.Build import cythonize
+import Cython
 #from numpy.distutils.misc_util import Configuration
 import numpy
 
@@ -19,14 +20,13 @@ with open('HISTORY.rst') as history_file:
 
 install_requirements = [  'numpy', 'scipy' ]
 
-setup_requirements = [ 'cython', 'numpy' ]
+setup_requirements = [ 'cython>=0.x', 'numpy' ]
 
 test_requirements = [ 'numpy' ]
 
-ext=Extension('dtwr._dtw_utils',
-              sources=['dtwr/dtw_computeCM.c','dtwr/_dtw_utils.pyx'],
-              include_dirs=[numpy.get_include()]
-)
+ext=[ Extension('dtwr._dtw_utils',
+                sources=['dtwr/dtw_computeCM.c','dtwr/_dtw_utils.pyx'],
+                include_dirs=[numpy.get_include()] ) ]
 
 
 setup(
@@ -61,6 +61,7 @@ setup(
     package_data={'dtwr': ['data/*.csv']},
     ext_modules=cythonize(ext),
     setup_requires=setup_requirements,
+    cmdclass={'build_ext': Cython.Build.build_ext},
     test_suite='tests',
     tests_require=test_requirements,
     url='https://DynamicTimeWarping.github.io',
