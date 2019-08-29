@@ -17,6 +17,7 @@
 ## along with DTW.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
+"""Count the number of warping paths consistent with the constraints."""
 
 import numpy
 

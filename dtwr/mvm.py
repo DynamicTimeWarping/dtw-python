@@ -17,8 +17,10 @@
 ## along with DTW.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
+"""Minimum Variance Matching pattern"""
 
-from .stepPattern import *
+
+from dtwr.stepPattern import StepPattern
 
 
 def mvmStepPattern(elasticity=20):

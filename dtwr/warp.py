@@ -17,6 +17,7 @@
 ## along with DTW.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
+"""Warp one timeseries into the other"""
 
 import numpy
 from scipy.interpolate import interp1d

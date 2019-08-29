@@ -26,6 +26,7 @@
 #    Software, v. 31, Issue 7, p. 1 - 24, aug. 2009. ISSN
 #    1548-7660. doi:10.18637/jss.v031.i07. http://www.jstatsoft.org/v31/i07/
 
+"""Main dtw module"""
 
 import numpy
 import sys
@@ -42,6 +43,35 @@ from scipy.spatial.distance import cdist
 # --------------------
 
 class DTW:
+    """The results of an alignment operation.
+
+Objects of class DTW contain alignments computed by the [dtw()]
+function. 
+
+Attributes
+----------
+
+-  ``distance`` the minimum global distance computed, *not* normalized.
+-  ``normalizedDistance`` distance computed, *normalized* for path
+   length, if normalization is known for chosen step pattern.
+-  ``N,M`` query and reference length
+-  ``call`` the function call that created the object
+-  ``index1`` matched elements: indices in ``x``
+-  ``index2`` corresponding mapped indices in ``y``
+-  ``stepPattern`` the ``stepPattern`` object used for the computation
+-  ``jmin`` last element of reference matched, if ``open_end=True``
+-  ``directionMatrix`` if ``keep_internals=True``, the directions of
+   steps that would be taken at each alignment pair (integers indexing
+   production rules in the chosen step pattern)
+-  ``stepsTaken`` the list of steps taken from the beginning to the end
+   of the alignment (integers indexing chosen step pattern)
+-  ``index1s, index2s`` same as ``index1/2``, excluding intermediate
+   steps for multi-step patterns like [asymmetricP05()]
+-  ``costMatrix`` if ``keep_internals=True``, the cumulative cost matrix
+-  ``query, reference`` if ``keep_internals=True`` and passed as the
+   ``x`` and ``y`` arguments, the query and reference timeseries.
+"""
+    
     def __init__(self, obj):
         self.__dict__.update(obj)  # Convert dict to object
 
@@ -193,27 +223,8 @@ window_args :
 Returns
 -------
 
-An object of class ``DTW`` with the following items:
+An object of class ``DTW``. See docs for the corresponding properties. 
 
--  ``distance`` the minimum global distance computed, *not* normalized.
--  ``normalizedDistance`` distance computed, *normalized* for path
-   length, if normalization is known for chosen step pattern.
--  ``N,M`` query and reference length
--  ``call`` the function call that created the object
--  ``index1`` matched elements: indices in ``x``
--  ``index2`` corresponding mapped indices in ``y``
--  ``stepPattern`` the ``stepPattern`` object used for the computation
--  ``jmin`` last element of reference matched, if ``open_end=True``
--  ``directionMatrix`` if ``keep_internals=True``, the directions of
-   steps that would be taken at each alignment pair (integers indexing
-   production rules in the chosen step pattern)
--  ``stepsTaken`` the list of steps taken from the beginning to the end
-   of the alignment (integers indexing chosen step pattern)
--  ``index1s, index2s`` same as ``index1/2``, excluding intermediate
-   steps for multi-step patterns like [asymmetricP05()]
--  ``costMatrix`` if ``keep_internals=True``, the cumulative cost matrix
--  ``query, reference`` if ``keep_internals=True`` and passed as the
-   ``x`` and ``y`` arguments, the query and reference timeseries.
 
 Notes
 -----

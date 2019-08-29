@@ -17,6 +17,7 @@
 ## along with DTW.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
+"""Step Pattern handling"""
 
 import numpy
 import sys

@@ -17,6 +17,7 @@
 ## along with DTW.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
+"""Warping path area computation"""
 
 import numpy
 from scipy.interpolate import interp1d

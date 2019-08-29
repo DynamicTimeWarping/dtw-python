@@ -17,6 +17,8 @@
 ## along with DTW.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
+"""DTW plotting functions"""
+
 import numpy
 
 def dtwPlot(x, type, **kwargs):
