@@ -115,7 +115,7 @@ def convex(txt):
 def getex(n):
     o=""
     try:
-        with open(f"maintainer/examples/{n}.ex.py") as f:
+        with open(f"maintainer/examples/ex_{n}.py.txt") as f:
             o =  "Examples\n"
             o += "--------\n"
             o += f.read()
@@ -172,10 +172,10 @@ for k in roxy:
         ex = roxy[k].rx2("examples")[0]
     except:
         continue
-    with open(f"maintainer/examples/{k}.ex.R", "w") as f:
+    with open(f"maintainer/examples/ex_{k}.R", "w") as f:
         print(f"Writing example: {k}")
         f.write(ex)
-    with open(f"maintainer/examples/{k}.ex.py.draft", "w") as f:
+    with open(f"maintainer/examples/ex_{k}.py.draft", "w") as f:
         print(f"Writing draft: {k}")
         f.write(convex(ex))
     
