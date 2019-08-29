@@ -471,7 +471,7 @@ long (>2 steps) horizontal stretches are allowed within the window.
     fig, ax = plt.subplots(figsize=(6, 6))
 
     ax.imshow(cm.T, origin="lower", cmap=plt.get_cmap("terrain"))
-    co = ax.contour(cm.T, colors="white")
+    co = ax.contour(cm.T, colors="black", linewidths = 1)
     ax.clabel(co)
 
     ax.plot(d.index1, d.index2, color="blue", linewidth=2)

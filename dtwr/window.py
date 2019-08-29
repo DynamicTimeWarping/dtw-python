@@ -128,6 +128,34 @@ References
 
 
 
+Examples
+--------
+>>> from dtwr import *
+>>> import numpy as np
+
+Default test data
+>>> (query, reference) = sin_cos_data()
+
+
+Asymmetric step with Sakoe-Chiba band
+
+>>> asyband = dtw(query,reference,
+...     keep_internals=True, step_pattern=asymmetric,
+...     window_type=sakoeChibaWindow,
+...     window_args={'window_size': 30}                  );
+
+
+>> dtwPlot(asyband,type="density")
+
+
+
+
+Display some windowing functions TODO
+>> dtwWindow_plot(itakuraWindow, main="So-called Itakura parallelogram window")
+>> dtwWindow_plot(slantedBandWindow, window_size=2,
+>> reference=13, query=17, main="The slantedBandWindow at window_size=2")
+
+
 
 """
 # ENDIMPORT
