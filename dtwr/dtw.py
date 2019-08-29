@@ -107,7 +107,6 @@ def dtw(x, y=None,
         distance_only=False,
         open_end=False,
         open_begin=False):
-    # IMPORT_RDOCSTRING dtw
     """Dynamic Time Warp
 
 Compute Dynamic Time Warp and find optimal alignment between two time
@@ -124,11 +123,8 @@ The local distance between elements of ``x`` (query) and ``y``
 (reference) can be computed in one of the following ways:
 
 1. if ``dist_method`` is a string, ``x`` and ``y`` are passed to the
-   [proxy::dist()] function in package :raw-latex:`\pkg{proxy}` with the
-   method given;
-2. if ``dist_method`` is a function of two arguments, it invoked
-   repeatedly on all pairs ``x[i],y[j]`` to build the local cost matrix;
-3. multivariate time series and arbitrary distance metrics can be
+   `scipy.spatial.distance.cdist` function with the method given;
+2. multivariate time series and arbitrary distance metrics can be
    handled by supplying a local-distance matrix. Element ``[i,j]`` of
    the local-distance matrix is understood as the distance between
    element ``x[i]`` and ``y[j]``. The distance matrix has therefore
@@ -169,7 +165,6 @@ enabling the ``distance_only=True`` switch, which skips the backtracking
 step. The output object will then lack the ``index{1,2,1s,2s}`` and
 ``stepsTaken`` fields.
 
-``is_dtw`` tests whether the argument is of class ``dtw``.
 
 Parameters
 ----------
@@ -178,30 +173,27 @@ x :
 y : 
     reference vector, unused if `x` given as cost matrix
 dist_method : 
-    pointwise (local) distance function to use. See
-[proxy::dist()] in package \pkg{proxy}
+    pointwise (local) distance function to use. 
 step_pattern : 
     a stepPattern object describing the local warping steps
-allowed with their cost (see [stepPattern()])
+    allowed with their cost (see [stepPattern()])
 window_type : 
     windowing function. Character: "none", "itakura",
-"sakoechiba", "slantedband", or a function (see details).
+    "sakoechiba", "slantedband", or a function (see details).
 open_begin,open_end : 
     perform open-ended alignments
 keep_internals : 
     preserve the cumulative cost matrix, inputs, and other
-internal structures
+    internal structures
 distance_only : 
     only compute distance (no backtrack, faster)
-d : 
-    an arbitrary R object
-... : 
-    additional arguments, passed to `window.type`
+window_args : 
+    additional arguments, passed to the windowing function
 
 Returns
 -------
 
-An object of class ``dtw`` with the following items:
+An object of class ``DTW`` with the following items:
 
 -  ``distance`` the minimum global distance computed, *not* normalized.
 -  ``normalizedDistance`` distance computed, *normalized* for path
@@ -344,7 +336,7 @@ Asymmetric: visiting 1 is required twice
 2.0
 
 """
-    # ENDIMPORT
+
 
     if y is None:
         x = numpy.array(x)
