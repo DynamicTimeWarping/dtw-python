@@ -73,6 +73,31 @@ considering the envelope of the path.
 
 
 
+Examples
+--------
+>>> from dtwr import *
+
+>>> ds = dtw( [1,2,3,4], [1,2,3,4,5,6,7,8]);
+
+
+>> plot(ds);lines(seq(1,8,len=4),col="red");
+
+
+>>> warpArea(ds)
+8.0
+
+The area is not the expected result due different assumptions
+used in the scipy.interpolate.interp1d funtion.
+
+>>> ## Result: 6
+>>> ##  index 2 is 2 while diag is 3_3  (+1_3)
+>>> ##        3    3               5_7  (+2_7)
+>>> ##        4   4:8 (avg to 6)    8   (+2  )
+>>> ##                                 --------
+>>> ##                                     6
+
+
+
 
 """
     # ENDIMPORT
@@ -84,9 +109,10 @@ considering the envelope of the path.
     ii = ifun(numpy.arange(d.N))
 
     # Kludge
-    ii[numpy.isnan(ii)] = d.index2[0]
+    if numpy.isnan(ii[0]):
+        ii[numpy.isnan(ii)] = d.index2[0]
 
-    dg = np.linspace(0, d.M - 1, num=d.N - 1)
+    dg = numpy.linspace(0, d.M - 1, num=d.N)
 
     ad = numpy.abs(ii - dg)
     return numpy.sum(ad)

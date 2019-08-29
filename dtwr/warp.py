@@ -69,6 +69,54 @@ A list of indices to subscript the timeseries.
 
 
 
+Examples
+--------
+>>> from dtwr import *
+>>> import numpy as np
+
+Default test data
+>>> (query, reference) = sin_cos_data()
+
+>>> alignment = dtw(query,reference);
+
+
+>>> wq = warp(alignment,index_reference=False)
+>>> wt = warp(alignment,index_reference=True)
+
+
+
+>> plot(reference,main="Warping query");
+>> lines(query[wq],col="blue");
+
+
+>> plot(query,type="l",col="blue", main="Warping reference");
+>> points(reference[wt]);
+
+
+
+
+
+Asymmetric step makes it "natural" to warp
+the reference, because every query index has
+exactly one image (q->t is a function)
+
+
+
+>>> alignment = dtw(query,reference,step_pattern=asymmetric)
+>>> wt = warp(alignment,index_reference=True);
+
+
+>> plot(query,type="l",col="blue")
+>> points(reference[wt]);
+
+
+
+
+
+
+
+
+
 
 """
     # ENDIMPORT
@@ -76,7 +124,7 @@ A list of indices to subscript the timeseries.
         iset = d.index1
         jset = d.index2
     else:
-        iset = d.index2,
+        iset = d.index2
         jset = d.index1
 
     jmax = numpy.max(jset)
@@ -88,5 +136,6 @@ A list of indices to subscript the timeseries.
     ii = ifun(numpy.arange(jmax))
 
     # Quick fix for bug
-    ii[numpy.isnan(ii)] = iset[0]
+    if numpy.isnan(ii[0]):
+        ii[numpy.isnan(ii)] = iset[0]
     return ii
