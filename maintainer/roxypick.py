@@ -23,8 +23,8 @@ def indent_as(l):
 
 def dot_underscore(s):
     """R to Py"""
-    rex = r"\b\.\b"
-    s = re.sub(rex,"_",s)
+    rex = r"([a-zA-Z])\.([a-zA-Z])"
+    s = re.sub(rex,r"\1_\2",s)
     s = s.replace("TRUE","True")
     s = s.replace("FALSE","False")
     return s

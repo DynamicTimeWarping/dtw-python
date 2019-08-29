@@ -100,15 +100,15 @@ non-normalizable. It is biased in favor of oblique steps.
 **2. The Rabiner-Juang set**
 
 A comprehensive table of step patterns is proposed in Rabiner-Juang’s
-book (Rabiner1993), tab. 4_5. All of them can be constructed through the
+book (Rabiner1993), tab. 4.5. All of them can be constructed through the
 ``rabinerJuangStepPattern(type,slope_weighting,smoothed)`` function.
 
 The classification foresees seven families, labelled with Roman numerals
 I-VII; here, they are selected through the integer argument ``type``.
-Each family has four slope weighting sub-types, named in sec. 4_7_2_5 as
+Each family has four slope weighting sub-types, named in sec. 4.7.2.5 as
 “Type (a)” to “Type (d)”; they are selected passing a character argument
 ``slope_weighting``, as in the table below. Furthermore, each subtype
-can be either plain or smoothed (figure 4_44); smoothing is enabled
+can be either plain or smoothed (figure 4.44); smoothing is enabled
 setting the logical argument ``smoothed``. (Not all combinations of
 arguments make sense.)
 
@@ -194,26 +194,26 @@ References
    Software, 31(7), 1-24. http://www_jstatsoft_org/v31/i07/
 -  (Itakura1975) Itakura, F., *Minimum prediction residual principle
    applied to speech recognition,* Acoustics, Speech, and Signal
-   Processing, IEEE Transactions on , vol_23, no_1, pp. 67-72, Feb 1975.
-   URL: http://dx_doi_org/10_1109/TASSP_1975_1162641
+   Processing, IEEE Transactions on , vol.23, no.1, pp. 67-72, Feb 1975.
+   URL: http://dx_doi_org/10.1109/TASSP.1975.1162641
 -  (MRR1980) Myers, C.; Rabiner, L. & Rosenberg, A. *Performance
    tradeoffs in dynamic time warping algorithms for isolated word
    recognition*, IEEE Trans. Acoust., Speech, Signal Process., 1980, 28,
-   623-635. URL: http://dx_doi_org/10_1109/TASSP_1980_1163491
+   623-635. URL: http://dx_doi_org/10.1109/TASSP.1980.1163491
 -  (Mori2006) Mori, A.; Uchida, S.; Kurazume, R.; Taniguchi, R.;
    Hasegawa, T. & Sakoe, H. Early Recognition and Prediction of Gestures
    Proc. 18th International Conference on Pattern Recognition ICPR 2006,
-   2006, 3, 560-563. URL: http://dx_doi_org/10_1109/ICPR_2006_467
+   2006, 3, 560-563. URL: http://dx_doi_org/10.1109/ICPR.2006.467
 -  (Myers1980) Myers, Cory S. *A Comparative Study Of Several Dynamic
    Time Warping Algorithms For Speech Recognition*, MS and BS thesis,
    Dept. of Electrical Engineering and Computer Science, Massachusetts
    Institute of Technology, archived Jun 20 1980,
-   http://hdl_handle_net/1721_1/27909
+   http://hdl_handle_net/1721.1/27909
 -  (Rabiner1993) Rabiner, L. R., & Juang, B.-H. (1993). *Fundamentals of
    speech recognition.* Englewood Cliffs, NJ: Prentice Hall.
 -  (Sakoe1978) Sakoe, H.; Chiba, S., *Dynamic programming algorithm
    optimization for spoken word recognition,* Acoustics, Speech, and
-   Signal Processing, IEEE Transactions on , vol_26, no_1, pp. 43-49,
+   Signal Processing, IEEE Transactions on , vol.26, no.1, pp. 43-49,
    Feb 1978 URL:
    http://ieeexplore_ieee_org/xpls/abs_all_jsp?arnumber=1163055
 

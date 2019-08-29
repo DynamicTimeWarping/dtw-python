@@ -63,7 +63,7 @@ References
 
 Latecki, L. J.; Megalooikonomou, V.; Wang, Q. & Yu, D. *An elastic
 partial shape matching technique* Pattern Recognition, 2007, 40,
-3069-3080. http://dx_doi_org/10_1016/j_patcog_2007_03_004
+3069-3080. http://dx_doi_org/10.1016/j_patcog.2007.03.004
 
 Examples
 --------

@@ -103,11 +103,11 @@ References
 
 1. Sakoe, H.; Chiba, S., *Dynamic programming algorithm optimization for
    spoken word recognition,* Acoustics, Speech, and Signal Processing,
-   IEEE Transactions on , vol_26, no_1, pp. 43-49, Feb 1978 URL:
+   IEEE Transactions on , vol.26, no.1, pp. 43-49, Feb 1978 URL:
    http://ieeexplore_ieee_org/xpls/abs_all_jsp?arnumber=1163055
 2. Itakura, F., *Minimum prediction residual principle applied to speech
    recognition,* Acoustics, Speech, and Signal Processing, IEEE
-   Transactions on , vol_23, no_1, pp. 67-72, Feb 1975. URL:
+   Transactions on , vol.23, no.1, pp. 67-72, Feb 1975. URL:
    http://ieeexplore_ieee_org/xpls/abs_all_jsp?arnumber=1162641
 
 Examples
@@ -116,6 +116,7 @@ Examples
 >>> import numpy as np
 
 Default test data
+
 >>> (query, reference) = sin_cos_data()
 
 Asymmetric step with Sakoe-Chiba band
