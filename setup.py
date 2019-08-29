@@ -17,11 +17,11 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 
-requirements = [  'numpy', 'scipy' ]
+install_requirements = [  'numpy', 'scipy' ]
 
-setup_requirements = [ ]
+setup_requirements = [ 'cython', 'numpy' ]
 
-test_requirements = [ ]
+test_requirements = [ 'numpy' ]
 
 ext=Extension('dtwr._dtw_utils',
               sources=['dtwr/dtw_computeCM.c','dtwr/_dtw_utils.pyx'],
@@ -47,10 +47,10 @@ setup(
     description="A comprehensive implementation of dynamic time warping (DTW) algorithms in R. DTW computes the optimal (least cumulative distance) alignment between points of two time series. Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions, normalizations, minimum variance matching, and so on. Provides cumulative distances, alignments, specialized plot styles, etc.",
     entry_points={
         'console_scripts': [
-            'dtw=dtwr.cli:main',
+            'dtw=dtwr._cli:_main',
         ],
     },
-    install_requires=requirements,
+    install_requires=install_requirements,
     license="GNU General Public License v3",
     long_description=readme + '\n\n' + history,
     include_package_data=True,
