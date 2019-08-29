@@ -65,7 +65,7 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://DynamicTimeWarping.github.io',
-    version='0.3.3',
+    version='0.3.4',
     zip_safe=False,
 )
 
