@@ -80,7 +80,6 @@ def getdoc(n):
 
 {p(k,'details')}
 
-
 {getParameters(k)}
 
 {p(k,'return','Returns')}
@@ -89,11 +88,28 @@ def getdoc(n):
 
 {p(k,'references','References')}
 
-
 {getex(n)}
 \"\"\"
 """
     return o
+
+
+
+def convex(txt):
+    o = []
+    for l in txt.split("\n"):
+        if l.startswith("##"):
+            l = l.replace("#","")
+            l = l.lstrip()
+        elif re.match(r'^ *$',l):
+            l = "\n"
+        else:
+            l = l.lstrip()
+            l = dot_underscore(l)
+            l = unarrow(l)
+            l = ">>> "+l
+        o.append(l)
+    return "\n".join(o)
 
 
 def getex(n):
@@ -102,20 +118,10 @@ def getex(n):
         with open(f"maintainer/examples/{n}.ex.py") as f:
             o =  "Examples\n"
             o += "--------\n"
-            for l in f:
-                if l.startswith("##"):
-                    l = l.replace("#","")
-                    l = l.lstrip()
-                elif re.match(r'^ *$',l):
-                    l = "\n"
-                else:
-                    l = dot_underscore(l)
-                    l = unarrow(l)
-                    l = ">>> "+l
-                o+=l
+            o += f.read()
             o += "\n\n"
     except:
-        print("No examples")
+        print(f"No examples for {n}")
     return o
 
 
@@ -129,6 +135,7 @@ def getex(n):
 
 
 roxy = {}
+pyex = {}
 
 # ========================================
 # Parse the roxygen headers
@@ -141,7 +148,6 @@ for rfile in rlist:
     print(f"Parsing {rfile}...")
 
     elts = r2.parse_file(rfile)
-
     for k in elts:
         try:
             # ex = k.rx2('export')[0]
@@ -155,7 +161,6 @@ for rfile in rlist:
                 print("Real missing: "+rfile)
         roxy[ex] = k
 
-
 print("\n\n")
 
 
@@ -167,9 +172,12 @@ for k in roxy:
         ex = roxy[k].rx2("examples")[0]
     except:
         continue
-    with open(f"maintainer/examples/{k}.ex", "w") as f:
+    with open(f"maintainer/examples/{k}.ex.R", "w") as f:
         print(f"Writing example: {k}")
         f.write(ex)
+    with open(f"maintainer/examples/{k}.ex.py.draft", "w") as f:
+        print(f"Writing draft: {k}")
+        f.write(convex(ex))
     
     
 

@@ -9,8 +9,18 @@ __version__ = '0.1.1'
 
 from .dtw import *
 from .stepPattern import *
+from .aami import *
+from .countPaths import *
+from .dtwPlot import *
+from .mvm import *
+from .warp import *
+from .warpArea import *
+from .window import *
 
-
-print("""Importing the dtwr module. When using in academic works please cite:
+import __main__ as main
+if not hasattr(main, '__file__'):
+    print("""Importing the dtwr module. When using in academic works please cite:
   T. Giorgino. Computing and Visualizing Dynamic Time Warping Alignments in R: The dtw Package.
   J. Stat. Soft., doi:10.18637/jss.v031.i07.\n""")
+
+

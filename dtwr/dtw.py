@@ -83,7 +83,6 @@ care.
 
 
 
-
 Parameters
 ----------
 x,d : 
@@ -103,34 +102,6 @@ in the underlying `plot` call
 
 
 
-
-
-
-
-Examples
---------
-
-Same example as in dtw
-
->>> idx = seq(0,6_28,len=100);
->>> query = sin(idx)+runif(100)/10;
->>> reference = cos(idx)
-
->>> alignment = dtw(query,reference,keep=True);
-
->>> # A sample of the plot styles. See individual plotting functions for details
-
->>> plot(alignment, type="alignment",
->>>   main="DTW sine/cosine: simple alignment plot")
-
->>> plot(alignment, type="twoway",
->>>   main="DTW sine/cosine: dtwPlotTwoWay")
-
->>> plot(alignment, type="threeway",
->>>   main="DTW sine/cosine: dtwPlotThreeWay")
-
->>> plot(alignment, type="density",
->>>   main="DTW sine/cosine: dtwPlotDensity")
 
 
 
@@ -221,7 +192,6 @@ step. The output object will then lack the ``index{1,2,1s,2s}`` and
 ``stepsTaken`` fields.
 
 ``is_dtw`` tests whether the argument is of class ``dtw``.
-
 
 
 
@@ -325,95 +295,6 @@ References
 7. Muller M. *Dynamic Time Warping* in *Information Retrieval for Music
    and Motion*. Springer Berlin Heidelberg; 2007. p. 69-84.
    http://link_springer_com/chapter/10_1007/978-3-540-74048-3_4
-
-
-
-
-
-Examples
---------
-
-
-A noisy sine wave as query
->>> idx = seq(0,6_28,len=100);
->>> query = sin(idx)+runif(100)/10;
-
-A cosine is for reference; sin and cos are offset by 25 samples
->>> reference = cos(idx)
->>> plot(reference); lines(query,col="blue");
-
-Find the best match
->>> alignment = dtw(query,reference);
-
-
-Display the mapping, AKA warping function - may be multiple-valued
-Equivalent to: plot(alignment,type="alignment")
->>> plot(alignment$index1,alignment$index2,main="Warping function");
-
-Confirm: 25 samples off-diagonal alignment
->>> lines(1:100-25,col="red")
-
-
-
-
-Partial alignments are allowed.
-
->>> alignmentOBE  = 
->>>   dtw(query[44:88],reference,
->>>       keep=True,step=asymmetric,
->>>       open_end=True,open_begin=True);
->>> plot(alignmentOBE,type="two",off=1);
-
-
-Subsetting allows warping and unwarping of
-timeseries according to the warping curve. 
-See first example below.
-
-Most useful: plot the warped query along with reference 
->>> plot(reference)
->>> lines(query[alignment$index1]~alignment$index2,col="blue")
-
-Plot the (unwarped) query and the inverse-warped reference
->>> plot(query,type="l",col="blue")
->>> points(reference[alignment$index2]~alignment$index1)
-
-
-
-Contour plots of the cumulative cost matrix
-similar to: plot(alignment,type="density") or
-dtwPlotDensity(alignment)
-See more plots in ?plot.dtw 
-
-keep = TRUE so we can look into the cost matrix
-
->>> alignment = dtw(query,reference,keep=True);
-
->>> contour(alignment$costMatrix,col=terrain_colors(100),x=1:100,y=1:100,
->>> 	xlab="Query (noisy sine)",ylab="Reference (cosine)");
-
->>> lines(alignment$index1,alignment$index2,col="red",lwd=2);
-
-
-
-
-An hand-checkable example
-
->>> ldist = matrix(1,nrow=6,ncol=6);  # Matrix of ones
->>> ldist[2,] = 0; ldist[,5] = 0;      # Mark a clear path of zeroes
->>> ldist[2,5] = .01;		 # Forcely cut the corner
-
->>> ds = dtw(ldist);			 # DTW with user-supplied local
->>>                                  #   cost matrix
->>> da = dtw(ldist,step=asymmetric);	 # Also compute the asymmetric 
->>> plot(ds$index1,ds$index2,pch=3); # Symmetric: alignment follows
->>>                                  #   the low-distance marked path
->>> points(da$index1,da$index2,col="red");  # Asymmetric: visiting
->>>                                         #   1 is required twice
-
->>> ds$distance;
->>> da$distance;
-
-
 
 
 

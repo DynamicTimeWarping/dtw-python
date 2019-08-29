@@ -18,7 +18,6 @@
 ##
 
 
-from .dtw import DTW
 import numpy
 
 
@@ -48,7 +47,6 @@ of the final result.
 
 
 
-
 Parameters
 ----------
 d : 
@@ -68,13 +66,15 @@ The number of paths.
 
 
 
-
 Examples
 --------
 
->>>   ds = dtw(1:7+2,1:8,keep=True,step=asymmetric);
->>>   countPaths(ds)
->>>   ## Result: 126
+>>> from dtwr import *
+>>> ds = dtw( numpy.arange(3,10), numpy.arange(1,9),
+...           keep_internals=True, step_pattern=asymmetric);
+>>> countPaths(ds)
+126.0
+
 
 
 
