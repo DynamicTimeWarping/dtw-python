@@ -243,15 +243,15 @@ References
 
 1. Toni Giorgino. *Computing and Visualizing Dynamic Time Warping
    Alignments in R: The dtw Package.* Journal of Statistical Software,
-   31(7), 1-24. http://www_jstatsoft_org/v31/i07/
+   31(7), 1-24. http://www.jstatsoft.org/v31/i07/
 2. Tormene, P.; Giorgino, T.; Quaglini, S. & Stefanelli, M. *Matching
    incomplete time series with dynamic time warping: an algorithm and an
    application to post-stroke rehabilitation.* Artif Intell Med, 2009,
-   45, 11-34. http://dx_doi_org/10_1016/j_artmed_2008_11_007
+   45, 11-34. http://dx.doi.org/10.1016/j.artmed.2008.11.007
 3. Sakoe, H.; Chiba, S., *Dynamic programming algorithm optimization for
    spoken word recognition,* Acoustics, Speech, and Signal Processing,
-   IEEE Transactions on , vol_26, no_1, pp. 43-49, Feb 1978.
-   http://ieeexplore_ieee_org/xpls/abs_all_jsp?arnumber=1163055
+   IEEE Transactions on , vol.26, no.1, pp. 43-49, Feb 1978.
+   http://ieeexplore.ieee.org/xpls/abs_all.jsp?arnumber=1163055
 4. Mori, A.; Uchida, S.; Kurazume, R.; Taniguchi, R.; Hasegawa, T. &
    Sakoe, H. *Early Recognition and Prediction of Gestures* Proc. 18th
    International Conference on Pattern Recognition ICPR 2006, 2006, 3,
@@ -264,7 +264,7 @@ References
    Acoust., Speech, Signal Process., 26(6), 575-582. ISSN 0096-3518.
 7. Muller M. *Dynamic Time Warping* in *Information Retrieval for Music
    and Motion*. Springer Berlin Heidelberg; 2007. p. 69-84.
-   http://link_springer_com/chapter/10_1007/978-3-540-74048-3_4
+   http://link.springer.com/chapter/10.1007/978-3-540-74048-3_4
 
 Examples
 --------
@@ -328,17 +328,19 @@ keep = True so we can look into the cost matrix
 A hand-checkable example
 
 >>> ldist = np.ones((6,6))             # Matrix of ones
->>> ldist[1,:] = 0; ldist[:,4] = 0;      # Mark a clear path of zeroes
+>>> ldist[1,:] = 0; ldist[:,4] = 0;    # Mark a clear path of zeroes
 >>> ldist[1,4] = .01;		       # Forcely cut the corner
 
->>> ds = dtw(ldist);			 # DTW with user-supplied local
+>>> ds = dtw(ldist);		       # DTW with user-supplied local
 
 >>> da = dtw(ldist,step_pattern=asymmetric);	 # Also compute the asymmetric 
 
 Symmetric: alignment follows the low-distance marked path
+
 >>> #TODO plot(ds.index1,ds.index2,pch=3)
 
 Asymmetric: visiting 1 is required twice
+
 >>> #TODO points(da.index1,da.index2,col="red");  
 
 >>> ds.distance
