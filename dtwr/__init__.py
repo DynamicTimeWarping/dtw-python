@@ -9,7 +9,7 @@ __version__ = '0.1.1'
 
 from .dtw import *
 from .stepPattern import *
-from .aami import *
+from .data import *
 from .countPaths import *
 from .dtwPlot import *
 from .mvm import *

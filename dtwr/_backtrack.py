@@ -20,6 +20,7 @@
 
 import numpy
 
+_INT_MIN = numpy.iinfo(numpy.int32).min
 
 # This is O(n). Let's not make it unreadable.
 def _backtrack(gcm):
@@ -53,7 +54,7 @@ def _backtrack(gcm):
         # Direction taken, 1-based
         s = gcm.directionMatrix[i, j]
 
-        if s != s: break  # nan
+        if s == _INT_MIN: break  # int nan in R
 
         # undo the steps
         ss.insert(0, s)
