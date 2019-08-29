@@ -322,7 +322,7 @@ Find the best match
 Display the mapping, AKA warping function - may be multiple-valued
 Equivalent to: plot(alignment,type="alignment")
 
->> plot(alignment$index1,alignment$index2,main="Warping function");
+>> plot(alignment.index1,alignment.index2,main="Warping function");
 
 
 Partial alignments are allowed.
@@ -341,11 +341,11 @@ See first example below.
 
 Most useful: plot the warped query along with reference 
 >> plot(reference)
->> lines(query[alignment$index1]~alignment$index2,col="blue")
+>> lines(query[alignment.index1]~alignment.index2,col="blue")
 
 Plot the (unwarped) query and the inverse-warped reference
 >> plot(query,type="l",col="blue")
->> points(reference[alignment$index2]~alignment$index1)
+>> points(reference[alignment.index2]~alignment.index1)
 
 
 
@@ -358,14 +358,13 @@ See more plots in ?plot.dtw
 keep = True so we can look into the cost matrix
 
 
->>> alignment = dtw(query,reference,keep=True);
+>>> alignment = dtw(query,reference,keep_internals=True);
 
 
->>> contour(alignment$costMatrix,col=terrain_colors(100),x=1:100,y=1:100,
->>> xlab="Query (noisy sine)",ylab="Reference (cosine)");
+>> contour(alignment.costMatrix,col=terrain_colors(100),x=1:100,y=1:100, xlab="Query (noisy sine)",ylab="Reference (cosine)");
 
 
->>> lines(alignment$index1,alignment$index2,col="red",lwd=2);
+>> lines(alignment.index1,alignment.index2,col="red",lwd=2);
 
 
 
@@ -374,7 +373,7 @@ keep = True so we can look into the cost matrix
 A hand-checkable example
 
 >>> ldist = np.ones((6,6))             # Matrix of ones
->>> ldist[1,] = 0; ldist[,4] = 0;      # Mark a clear path of zeroes
+>>> ldist[1,:] = 0; ldist[:,4] = 0;      # Mark a clear path of zeroes
 >>> ldist[1,4] = .01;		       # Forcely cut the corner
 
 >>> ds = dtw(ldist);			 # DTW with user-supplied local
@@ -382,13 +381,15 @@ A hand-checkable example
 >>> da = dtw(ldist,step_pattern=asymmetric);	 # Also compute the asymmetric 
 
 Symmetric: alignment follows the low-distance marked path
->> plot(ds$index1,ds$index2,pch=3)
+>> plot(ds.index1,ds.index2,pch=3)
 
 Asymmetric: visiting 1 is required twice
->> points(da$index1,da$index2,col="red");  
+>> points(da.index1,da.index2,col="red");  
 
 >>> ds.distance
+2.0
 >>> da.distance
+2.0
 
 
 

@@ -418,6 +418,34 @@ ylab :
 
 
 
+Examples
+--------
+>>> from dtwr import *
+
+A study of the "Itakura" parallelogram
+
+A widely held misconception is that the "Itakura parallelogram" (as
+described in the original article) is a global constraint.  Instead,
+it arises from local slope restrictions. Anyway, an "itakuraWindow",
+is provided in this package. A comparison between the two follows.
+
+
+The local constraint: three sides of the parallelogram are seen
+>>> (query, reference) = sin_cos_data()
+>>> ita = dtw(query, reference, keep_internals=True, step_pattern=typeIIIc)
+
+>> dtwPlotDensity(ita)
+
+
+Symmetric step with global parallelogram-shaped constraint. Note how
+long (>2 steps) horizontal stretches are allowed within the window.
+
+>>> ita = dtw(query, reference, keep_internals=True, window_type=itakuraWindow)
+
+>> dtwPlotDensity(ita)
+
+
+
 
 """
     # ENDIMPORT

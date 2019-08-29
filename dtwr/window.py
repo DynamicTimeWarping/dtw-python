@@ -143,8 +143,8 @@ def sakoeChibaWindow(iw, jw, query_size, reference_size, window_size):
 
 
 def itakuraWindow(iw, jw, query_size, reference_size):
-    n < -query_size
-    m < -reference_size
+    n = query_size
+    m = reference_size
     ok = (jw < 2 * iw) and \
          (iw <= 2 * jw) and \
          (iw >= n - 1 - 2 * (m - jw)) and \
