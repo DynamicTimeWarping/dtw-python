@@ -47,7 +47,7 @@ setup(
     description="A comprehensive implementation of dynamic time warping (DTW) algorithms in R. DTW computes the optimal (least cumulative distance) alignment between points of two time series. Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions, normalizations, minimum variance matching, and so on. Provides cumulative distances, alignments, specialized plot styles, etc.",
     entry_points={
         'console_scripts': [
-            'dtw=dtwr._cli:_main',
+            'dtw=dtwr._cli:main',
         ],
     },
     install_requires=install_requirements,
@@ -63,7 +63,7 @@ setup(
     setup_requires=setup_requirements,
     test_suite='tests',
     tests_require=test_requirements,
-    url='https://github.com/tonigi/dtwr-py',
+    url='https://DynamicTimeWarping.github.io',
     version='0.3.1',
     zip_safe=False,
 )
