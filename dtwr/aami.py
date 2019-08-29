@@ -81,17 +81,17 @@ Examples
 --------
 >>> data(aami3a);
 >>> data(aami3b);
->>> 
->>> ## Plot both as a multivariate TS object
->>> ##  only extract the first 10 seconds
->>> 
+
+Plot both as a multivariate TS object
+only extract the first 10 seconds
+
 >>> plot( main="ECG (mV)",
 >>>  window(
 >>>   cbind(aami3a,aami3b)   ,end=10)
 >>> )
->>> 
->>> 
->>> 
+
+
+
 
 
 

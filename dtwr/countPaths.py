@@ -71,7 +71,7 @@ The number of paths.
 
 Examples
 --------
->>> 
+
 >>>   ds = dtw(1:7+2,1:8,keep=True,step=asymmetric);
 >>>   countPaths(ds)
 >>>   ## Result: 126

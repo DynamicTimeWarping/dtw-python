@@ -103,7 +103,16 @@ def getex(n):
             o =  "Examples\n"
             o += "--------\n"
             for l in f:
-                o+=">>> "+l
+                if l.startswith("##"):
+                    l = l.replace("#","")
+                    l = l.lstrip()
+                elif re.match(r'^ *$',l):
+                    l = "\n"
+                else:
+                    l = dot_underscore(l)
+                    l = unarrow(l)
+                    l = ">>> "+l
+                o+=l
             o += "\n\n"
     except:
         print("No examples")
@@ -158,8 +167,6 @@ for k in roxy:
         ex = roxy[k].rx2("examples")[0]
     except:
         continue
-    ex = dot_underscore(ex)
-    ex = unarrow(ex)
     with open(f"maintainer/examples/{k}.ex", "w") as f:
         print(f"Writing example: {k}")
         f.write(ex)

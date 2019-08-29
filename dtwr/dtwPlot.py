@@ -79,29 +79,30 @@ in the underlying `plot` call
 
 Examples
 --------
->>> 
->>> ## Same example as in dtw
->>> 
+
+Same example as in dtw
+
 >>> idx = seq(0,6_28,len=100);
 >>> query = sin(idx)+runif(100)/10;
 >>> reference = cos(idx)
->>> 
+
 >>> alignment = dtw(query,reference,keep=True);
->>> 
+
 >>> # A sample of the plot styles. See individual plotting functions for details
->>> 
+
 >>> plot(alignment, type="alignment",
 >>>   main="DTW sine/cosine: simple alignment plot")
->>>   
+
 >>> plot(alignment, type="twoway",
 >>>   main="DTW sine/cosine: dtwPlotTwoWay")
->>> 
+
 >>> plot(alignment, type="threeway",
 >>>   main="DTW sine/cosine: dtwPlotThreeWay")
->>>   
+
 >>> plot(alignment, type="density",
 >>>   main="DTW sine/cosine: dtwPlotDensity")
->>>   
+
+
 
 
 """
@@ -209,39 +210,39 @@ When ``offset`` is set values on the left axis only apply to the query.
 
 Examples
 --------
->>> 
->>> 
->>> ## A noisy sine wave as query
->>> ## A cosine is for reference; sin and cos are offset by 25 samples
->>> 
+
+
+A noisy sine wave as query
+A cosine is for reference; sin and cos are offset by 25 samples
+
 >>> idx = seq(0,6_28,len=100);
 >>> query = sin(idx)+runif(100)/10;
 >>> reference = cos(idx)
 >>> dtw(query,reference,step=asymmetricP1,keep=True)->alignment;
->>> 
->>> 
->>> ## Equivalent to plot(alignment,type="two");
+
+
+Equivalent to plot(alignment,type="two");
 >>> dtwPlotTwoWay(alignment);
->>> 
->>> 
->>> ## Highlight matches of chosen QUERY indices. We will do some index
->>> ## arithmetics to recover the corresponding indices along the warping
->>> ## curve
->>> 
+
+
+Highlight matches of chosen QUERY indices. We will do some index
+arithmetics to recover the corresponding indices along the warping
+curve
+
 >>> hq  =  (0:8)/8              
 >>> hq  =  round(hq*100)      #  indices in query for  pi/4 .. 7/4 pi
->>> 
+
 >>> hw  =  (alignment$index1 \%in\% hq)   # where are they on the w. curve?
 >>> hi  =  (1:length(alignment$index1))[hw];   # get the indices of True elems
->>> 
->>> 
->>> ## Beware of the reference's y axis, may be confusing
+
+
+Beware of the reference's y axis, may be confusing
 >>> plot(alignment,offset=-2,type="two", lwd=3, match_col="grey50",
 >>>      match_indices=hi,main="Match lines shown every pi/4 on query");
->>> 
+
 >>> legend("topright",c("Query","Reference (rt. axis)"), pch=21, col=1:6)
->>> 
->>> 
+
+
 
 
 
@@ -385,32 +386,32 @@ title_margin :
 
 Examples
 --------
->>> 
->>> 
->>> ## A noisy sine wave as query
->>> ## A cosine is for reference; sin and cos are offset by 25 samples
->>> 
+
+
+A noisy sine wave as query
+A cosine is for reference; sin and cos are offset by 25 samples
+
 >>> idx = seq(0,6_28,len=100);
 >>> query = sin(idx)+runif(100)/10;
 >>> reference = cos(idx)
 >>> dtw(query,reference,keep=True)->alignment;
->>> 
->>> 
->>> ## Beware of the reference's y axis, may be confusing
->>> ## Equivalent to plot(alignment,type="three");
+
+
+Beware of the reference's y axis, may be confusing
+Equivalent to plot(alignment,type="three");
 >>> dtwPlotThreeWay(alignment);
->>> 
->>> 
->>> ## Highlight matches of chosen QUERY indices. We will do some index
->>> ## arithmetics to recover the corresponding indices along the warping
->>> ## curve
->>> 
+
+
+Highlight matches of chosen QUERY indices. We will do some index
+arithmetics to recover the corresponding indices along the warping
+curve
+
 >>> hq  =  (0:8)/8              
 >>> hq  =  round(hq*100)      #  indices in query for  pi/4 .. 7/4 pi
->>> 
+
 >>> hw  =  (alignment$index1 \%in\% hq)   # where are they on the w. curve?
 >>> hi  =  (1:length(alignment$index1))[hw];   # get the indices of True elems
->>> 
+
 >>> dtwPlotThreeWay(alignment,match_indices=hi);
 
 
@@ -522,25 +523,24 @@ ylab :
 
 Examples
 --------
->>> 
->>> ## A study of the "Itakura" parallelogram
->>> ##
->>> ## A widely held misconception is that the "Itakura parallelogram" (as
->>> ## described in the original article) is a global constraint.  Instead,
->>> ## it arises from local slope restrictions. Anyway, an "itakuraWindow",
->>> ## is provided in this package. A comparison between the two follows.
->>> 
->>> ## The local constraint: three sides of the parallelogram are seen
+
+A study of the "Itakura" parallelogram
+A widely held misconception is that the "Itakura parallelogram" (as
+described in the original article) is a global constraint.  Instead,
+it arises from local slope restrictions. Anyway, an "itakuraWindow",
+is provided in this package. A comparison between the two follows.
+
+The local constraint: three sides of the parallelogram are seen
 >>> idx = seq(0,6_28,len=100);
 >>> query = sin(idx)+runif(100)/10;
 >>> reference = cos(idx)
->>> 
+
 >>> ita  =  dtw(query,reference,keep=True,step=typeIIIc)
 >>> dtwPlotDensity(ita, main="Slope-limited asymmetric step (Itakura)")
->>> 
->>> ## Symmetric step with global parallelogram-shaped constraint. Note how
->>> ## long (>2 steps) horizontal stretches are allowed within the window.
->>> 
+
+Symmetric step with global parallelogram-shaped constraint. Note how
+long (>2 steps) horizontal stretches are allowed within the window.
+
 >>> dtw(query,reference,keep=True,window=itakuraWindow)->ita;
 >>> dtwPlotDensity(ita,
 >>>         main="Symmetric step with Itakura parallelogram window")

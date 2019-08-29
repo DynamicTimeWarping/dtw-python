@@ -132,28 +132,28 @@ References
 
 Examples
 --------
->>> 
->>> 
->>> ## Display some windowing functions
+
+
+Display some windowing functions
 >>> dtwWindow_plot(itakuraWindow, main="So-called Itakura parallelogram window")
 >>> dtwWindow_plot(slantedBandWindow, window_size=2,
 >>>   reference=13, query=17, main="The slantedBandWindow at window_size=2")
->>> 
->>> 
->>> ## Asymmetric step with Sakoe-Chiba band
->>> 
+
+
+Asymmetric step with Sakoe-Chiba band
+
 >>> idx = seq(0,6_28,len=100); 
 >>> query = sin(idx)+runif(100)/10;
 >>> reference = cos(idx);
->>> 
+
 >>> asyband = dtw(query,reference,keep=True,
 >>>              step=asymmetric,
 >>>              window_type=sakoeChibaWindow,
 >>>              window_size=30                  );
->>> 
+
 >>> dtwPlot(asyband,type="density",main="Sine/cosine: asymmetric step, S-C window")
->>> 
->>> 
+
+
 
 
 
