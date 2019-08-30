@@ -10,7 +10,7 @@ import Cython
 #from numpy.distutils.misc_util import Configuration
 import numpy
 
-    
+
 with open('README.rst') as readme_file:
     readme = readme_file.read()
 
@@ -18,25 +18,19 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
 
-install_requirements = [  'numpy', 'scipy' ]
-
-setup_requirements = [ 'cython', 'numpy' ]
-
-test_requirements = [ 'numpy' ]
-
-ext=[ Extension('dtwr._dtw_utils',
-                sources=['dtwr/dtw_computeCM.c','dtwr/_dtw_utils.pyx'],
-                include_dirs=[numpy.get_include()] ) ]
+ext = [Extension('dtwr._dtw_utils',
+                 sources=['dtwr/dtw_computeCM.c', 'dtwr/_dtw_utils.pyx'],
+                 include_dirs=[numpy.get_include()])]
 
 
 setup(
     author="Toni Giorgino",
     author_email='toni.giorgino@gmail.com',
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Science/Research',
-        'Topic :: Scientific/Engineering :: Bio-Informatics',
-        'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+        'Topic :: Scientific/Engineering',
+        'License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.4',
@@ -50,24 +44,21 @@ setup(
             'dtw=dtwr._cli:main',
         ],
     },
-    install_requires=install_requirements,
+    install_requires=['numpy', 'scipy'],
     license="GNU General Public License v3",
     long_description=readme + '\n\n' + history,
     include_package_data=True,
     keywords='dtwr',
     name='dtwr',
-#    packages=find_packages(include=['dtwr']),
+    #    packages=find_packages(include=['dtwr']),
     packages=['dtwr'],
     package_data={'dtwr': ['data/*.csv']},
     ext_modules=cythonize(ext),
-    setup_requires=setup_requirements,
+    setup_requires=['cython', 'numpy'],
     cmdclass={'build_ext': Cython.Build.build_ext},
     test_suite='tests',
-    tests_require=test_requirements,
+    tests_require=[],
     url='https://DynamicTimeWarping.github.io',
     version='0.3.6',
     zip_safe=False,
 )
-
-
-
