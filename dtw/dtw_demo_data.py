@@ -65,17 +65,16 @@ References
 
 Examples
 --------
->>> from dtw import *
->>> (aami3a, aami3b) = aami_data()
->>> aami3a
+>>> import dtw
+>>> (aami3a, aami3b) = dtw.data.aami_data()
+
+Timestamps (ms) are in the first row, values (mV) in the second.
+
+>>> aami3a[1,:]
 array([ 0.185,  0.185,  0.169, ...,  0.208,  0.208,  0.208])
->>> aami3b
+
+>>> aami3a[0,:]
 array([ 0.192,  0.192,  0.192, ...,  0.192,  0.2  ,  0.2  ])
-
-Compute timestamps
-
->>> aami3a_time_ms = numpy.arange(len(aami3a))/720.*1000.
->>> 
 
 """
     # ENDIMPORT
@@ -96,7 +95,8 @@ Compute timestamps
 def sin_cos_data():
     """Noisy sine vs cosine demo data.
 
-Returns a tuple (query, reference) used in various examples:
+Returns a tuple (query, reference) used in various examples, defined
+as follows:
 
     _idx = numpy.linspace(0,6.28,num=100)
     query = numpy.sin(_idx) + numpy.random.uniform(0,0.1,len(_idx)),

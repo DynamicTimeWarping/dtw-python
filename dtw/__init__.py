@@ -15,13 +15,13 @@ __version__ = '0.3.10'
 from .dtw import *
 from .stepPattern import *
 #from .data import *
-import dtw.data
 from .countPaths import *
 from .dtwPlot import *
 from .mvm import *
 from .warp import *
 from .warpArea import *
 from .window import *
+import dtw.dtw_demo_data
 
 import __main__ as main
 if not hasattr(main, '__file__'):

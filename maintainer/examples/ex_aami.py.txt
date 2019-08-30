@@ -1,5 +1,5 @@
 >>> from dtw import *
->>> (aami3a, aami3b) = aami_data()
+>>> (aami3a, aami3b) = dtw_demo_data.aami()
 
 Timestamps (ms) are in the first row, values (mV) in the second.
 
