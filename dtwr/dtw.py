@@ -122,7 +122,7 @@ in the underlying `plot` call
 
 """
         # ENDIMPORT
-        dtwPlot(self, type, **kwargs)
+        return dtwPlot(self, type, **kwargs)
 
 
 # --------------------

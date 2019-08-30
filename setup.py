@@ -20,7 +20,7 @@ with open('HISTORY.rst') as history_file:
 
 install_requirements = [  'numpy', 'scipy' ]
 
-setup_requirements = [ 'cython>=0.x', 'numpy' ]
+setup_requirements = [ 'cython', 'numpy' ]
 
 test_requirements = [ 'numpy' ]
 

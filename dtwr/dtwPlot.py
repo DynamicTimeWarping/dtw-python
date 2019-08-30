@@ -66,13 +66,13 @@ in the underlying `plot` call
     # ENDIMPORT
 
     if type == "alignment":
-        dtwPlotAlignment(x, **kwargs)
+        return dtwPlotAlignment(x, **kwargs)
     elif type == "twoway":
-        dtwPlotTwoWay(x, **kwargs)
+        return dtwPlotTwoWay(x, **kwargs)
     elif type == "threeway":
-        dtwPlotThreeWay(x, **kwargs)
+        return dtwPlotThreeWay(x, **kwargs)
     elif type == "density":
-        dtwPlotDensity(x, **kwargs)
+        return dtwPlotDensity(x, **kwargs)
 
 
 def dtwPlotAlignment(d, xlab="Query index", ylab="Reference index", **kwargs):
@@ -206,7 +206,7 @@ When ``offset`` is set values on the left axis only apply to the query.
     ax.add_collection(lc)
 
     plt.show()
-    return ax, ax2
+    return ax
 
 
 def dtwPlotThreeWay(d, xts=None, yts=None,
@@ -322,7 +322,7 @@ title_margin :
     ax.add_collection(lc)
 
     plt.show()
-    return fig
+    return ax
 
 
 def dtwPlotDensity(d, normalize=False,
