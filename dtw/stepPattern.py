@@ -17,7 +17,10 @@
 ## along with DTW.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-"""Step Pattern handling"""
+"""Step Pattern handling
+
+See documentation for the StepPattern class.
+"""
 
 import numpy
 import sys
@@ -435,13 +438,10 @@ class _P:
 
 
 def rabinerJuangStepPattern(ptype, slope_weighting="d", smoothed=False):
-    # IMPORT_RDOCSTRING rabinerJuangStepPattern
-    """
+    """Construct a pattern classified according to the Rabiner-Juang scheme (Rabiner1993)
 
-**Details**
-
+See documentation for the StepPattern class.
 """
-    # ENDIMPORT
 
     f = {
         1: _RJtypeI,
