@@ -4,7 +4,7 @@
 
 __author__ = """Toni Giorgino"""
 __email__ = 'toni.giorgino@gmail.com'
-__version__ = '0.3.9'
+__version__ = '0.3.10'
 
 
 from .dtw import *
