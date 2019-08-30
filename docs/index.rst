@@ -1,17 +1,11 @@
 
-.. include:: ../README.rst
+.. include:: python.rst
 
 .. toctree::
-   :maxdepth: 1
-   :caption: Contents:
+   :maxdepth: 2
 
-   readme
-   installation
-   usage
-   modules
-   contributing
-   authors
-   history
+   Homepage <https://dynamictimewarping.github.io>	     
+   Function index <modules>
 
 Indices and tables
 ==================
