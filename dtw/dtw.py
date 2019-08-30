@@ -37,7 +37,7 @@ from dtw._globalCostMatrix import _globalCostMatrix
 from dtw.window import *
 from dtw.dtwPlot import *
 
-from scipy.spatial.distance import cdist
+import scipy.spatial.distance
 
 
 # --------------------
@@ -363,7 +363,7 @@ Asymmetric: visiting 1 is required twice
             x = x.T
         if y.shape[0] == 1:
             y = y.T
-        lm = cdist(x, y, metric=dist_method)
+        lm = scipy.spatial.distance.cdist(x, y, metric=dist_method)
 
     wfun = _canonicalizeWindowFunction(window_type)
 

@@ -20,7 +20,7 @@
 """Warp one timeseries into the other"""
 
 import numpy
-from scipy.interpolate import interp1d
+import scipy.interpolate 
 
 
 def warp(d, index_reference=False):
@@ -98,7 +98,7 @@ exactly one image (q->t is a function)
     # interp1d is buggy. it does not deal with duplicated values of x
     # leading. it returns different values depending on the dtypes of
     # arguments.
-    ifun = interp1d(x=jset, y=iset)
+    ifun = scipy.interpolate.interp1d(x=jset, y=iset)
     ii = ifun(numpy.arange(jmax))
 
     # Quick fix for bug

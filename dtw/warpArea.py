@@ -20,7 +20,7 @@
 """Warping path area computation"""
 
 import numpy
-from scipy.interpolate import interp1d
+import  scipy.interpolate 
 
 
 def warpArea(d):
@@ -84,7 +84,7 @@ used in the scipy.interpolate.interp1d funtion.
     # interp1d is buggy. it does not deal with duplicated values of x
     # leading. it returns different values depending on the dtypes of
     # arguments.
-    ifun = interp1d(x=d.index1, y=d.index2)
+    ifun = scipy.interpolate.interp1d(x=d.index1, y=d.index2)
     ii = ifun(numpy.arange(d.N))
 
     # Kludge

@@ -27,10 +27,10 @@ import sphinx_bootstrap_theme
 
 html_theme_options = {
     # Navigation bar title. (Default: ``project`` value)
-    # 'navbar_title': "The Comprehensive DTW library",
+    'navbar_title': "dtw-python",
 
     # Tab name for entire site. (Default: "Site")
-    # 'navbar_site_name': "Site",
+    'navbar_site_name': "Docs",
 
     # A list of tuples containing pages or urls to link to.
     # Valid tuples should be in the following forms:
@@ -40,8 +40,7 @@ html_theme_options = {
     # Note the "1" or "True" value above as the third argument to indicate
     # an arbitrary url.
     'navbar_links': [
-        ("The Comprehensive<br>DTW library", "https://dynamictimewarping.github.io", True),
-        ("Function index", "modules")
+        ("The Comprehensive<br>DTW library homepage", "https://dynamictimewarping.github.io", True),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)
@@ -55,7 +54,7 @@ html_theme_options = {
 
     # Global TOC depth for "site" navbar tab. (Default: 1)
     # Switching to -1 shows all levels.
-    'globaltoc_depth': 2,
+    'globaltoc_depth': -1,
 
     # Include hidden TOCs in Site navbar?
     #
@@ -97,7 +96,6 @@ html_theme_options = {
 }
 
 
-
 import dtw
 
 # -- General configuration ---------------------------------------------
@@ -110,7 +108,8 @@ mytitle = u"The dtw-python package"
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 'sphinx.ext.napoleon', 'recommonmark']
+extensions = ['sphinx_automodapi.automodapi',
+              ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -122,7 +121,7 @@ source_suffix = ['.rst', '.md']
 # source_suffix = '.rst'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = 'api'
 
 # General information about the project.
 project = mytitle
