@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
 
-"""Top-level package for Python port of R's Comprehensive Dynamic Time Warp algorithm package."""
+"""Top-level package for the Comprehensive Dynamic Time Warp library.
+
+Please see the help for the dtw.dtw() function which is the package's
+main entry point.
+
+"""
 
 __author__ = """Toni Giorgino"""
 __email__ = 'toni.giorgino@gmail.com'
@@ -9,7 +14,8 @@ __version__ = '0.3.10'
 
 from .dtw import *
 from .stepPattern import *
-from .data import *
+#from .data import *
+import dtw.data
 from .countPaths import *
 from .dtwPlot import *
 from .mvm import *

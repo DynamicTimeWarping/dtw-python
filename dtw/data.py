@@ -75,13 +75,20 @@ array([ 0.192,  0.192,  0.192, ...,  0.192,  0.2  ,  0.2  ])
 Compute timestamps
 
 >>> aami3a_time_ms = numpy.arange(len(aami3a))/720.*1000.
->>> aami3b_time_ms = numpy.arange(len(aami3b))/720.*1000.
+>>> 
 
 """
     # ENDIMPORT
 
-    aami3a = numpy.fromstring(resource_string(__name__, 'data/aami3a.csv'), sep="\n")
-    aami3b = numpy.fromstring(resource_string(__name__, 'data/aami3b.csv'), sep="\n")
+    from collections import namedtuple
+
+    ts = lambda v: numpy.arange(len(v))/720.*1000.
+    a3a = numpy.fromstring(resource_string(__name__, 'data/aami3a.csv'), sep="\n")
+    a3b = numpy.fromstring(resource_string(__name__, 'data/aami3b.csv'), sep="\n")
+
+    aami3a = numpy.vstack([ts(a3a),a3a])
+    aami3b = numpy.vstack([ts(a3b),a3b])
+    
     return (aami3a, aami3b)
 
 
