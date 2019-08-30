@@ -23,7 +23,7 @@
 import numpy
 from pkg_resources import resource_string
 
-def aami_data():
+def aami():
     # IMPORT_RDOCSTRING aami
     """ANSI/AAMI EC13 Test Waveforms, 3a and 3b
 
@@ -65,8 +65,8 @@ References
 
 Examples
 --------
->>> import dtw
->>> (aami3a, aami3b) = dtw.data.aami_data()
+>>> from dtw import *
+>>> (aami3a, aami3b) = dtw_test_data.aami()
 
 Timestamps (ms) are in the first row, values (mV) in the second.
 
@@ -74,12 +74,11 @@ Timestamps (ms) are in the first row, values (mV) in the second.
 array([ 0.185,  0.185,  0.169, ...,  0.208,  0.208,  0.208])
 
 >>> aami3a[0,:]
-array([ 0.192,  0.192,  0.192, ...,  0.192,  0.2  ,  0.2  ])
+array([  0.00000000e+00,   1.38888889e+00,   2.77777778e+00, ...,
+         5.98305556e+04,   5.98319444e+04,   5.98333333e+04])
 
 """
     # ENDIMPORT
-
-    from collections import namedtuple
 
     ts = lambda v: numpy.arange(len(v))/720.*1000.
     a3a = numpy.fromstring(resource_string(__name__, 'data/aami3a.csv'), sep="\n")
@@ -92,7 +91,7 @@ array([ 0.192,  0.192,  0.192, ...,  0.192,  0.2  ,  0.2  ])
 
 
 
-def sin_cos_data():
+def sin_cos():
     """Noisy sine vs cosine demo data.
 
 Returns a tuple (query, reference) used in various examples, defined

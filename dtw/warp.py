@@ -61,7 +61,7 @@ Examples
 
 Default test data
 
->>> (query, reference) = sin_cos_data()
+>>> (query, reference) = dtw_test_data.sin_cos()
 
 >>> alignment = dtw(query,reference);
 

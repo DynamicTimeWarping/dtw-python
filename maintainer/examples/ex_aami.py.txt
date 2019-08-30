@@ -1,5 +1,5 @@
 >>> from dtw import *
->>> (aami3a, aami3b) = dtw_demo_data.aami()
+>>> (aami3a, aami3b) = dtw_test_data.aami()
 
 Timestamps (ms) are in the first row, values (mV) in the second.
 
@@ -7,4 +7,5 @@ Timestamps (ms) are in the first row, values (mV) in the second.
 array([ 0.185,  0.185,  0.169, ...,  0.208,  0.208,  0.208])
 
 >>> aami3a[0,:]
-array([ 0.192,  0.192,  0.192, ...,  0.192,  0.2  ,  0.2  ])
+array([  0.00000000e+00,   1.38888889e+00,   2.77777778e+00, ...,
+         5.98305556e+04,   5.98319444e+04,   5.98333333e+04])

@@ -31,7 +31,7 @@ The well-known plotting style for step patterns
 
 Same example seen in ?dtw , now with asymmetric step pattern
 
->>> (query, reference) = sin_cos_data()
+>>> (query, reference) = dtw_test_data.sin_cos()
 
 Do the computation
 

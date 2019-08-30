@@ -14,14 +14,14 @@ __version__ = '0.3.10'
 
 from .dtw import *
 from .stepPattern import *
-#from .data import *
 from .countPaths import *
 from .dtwPlot import *
 from .mvm import *
 from .warp import *
 from .warpArea import *
 from .window import *
-import dtw.dtw_demo_data
+from . import dtw_test_data
+# import dtw.dtw_test_data
 
 import __main__ as main
 if not hasattr(main, '__file__'):

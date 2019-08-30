@@ -369,7 +369,7 @@ is provided in this package. A comparison between the two follows.
 
 The local constraint: three sides of the parallelogram are seen
 
->>> (query, reference) = sin_cos_data()
+>>> (query, reference) = dtw_test_data.sin_cos()
 >>> ita = dtw(query, reference, keep_internals=True, step_pattern=typeIIIc)
 
 >>> #TODO dtwPlotDensity(ita)
