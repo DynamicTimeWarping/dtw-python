@@ -13,3 +13,6 @@ recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif
 global-include dtwr/*.c
 global-include dtwr/*.h
 global-include dtwr/*.pyx
+
+recursive-include data
+
