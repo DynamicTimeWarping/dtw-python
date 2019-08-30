@@ -56,7 +56,7 @@ A list of indices to subscript the timeseries.
 
 Examples
 --------
->>> from dtwr import *
+>>> from dtw import *
 >>> import numpy as np
 
 Default test data

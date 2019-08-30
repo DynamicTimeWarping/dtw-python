@@ -1,7 +1,7 @@
 
 
 >>> import numpy as np
->>> from dtwr import *
+>>> from dtw import *
 
 The hand-checkable example given in Fig. 5, ref. [1] above
 

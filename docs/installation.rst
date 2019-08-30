@@ -12,7 +12,7 @@ To install Python port of R's Comprehensive Dynamic Time Warp algorithm package,
 
 .. code-block:: console
 
-    $ pip install dtwr
+    $ pip install dtw
 
 This is the preferred method to install Python port of R's Comprehensive Dynamic Time Warp algorithm package, as it will always install the most recent stable release.
 
@@ -32,13 +32,13 @@ You can either clone the public repository:
 
 .. code-block:: console
 
-    $ git clone git://github.com/tonigi/dtwr
+    $ git clone git://github.com/tonigi/dtw
 
 Or download the `tarball`_:
 
 .. code-block:: console
 
-    $ curl  -OL https://github.com/tonigi/dtwr/tarball/master
+    $ curl  -OL https://github.com/tonigi/dtw/tarball/master
 
 Once you have a copy of the source, you can install it with:
 
@@ -47,5 +47,5 @@ Once you have a copy of the source, you can install it with:
     $ python setup.py install
 
 
-.. _Github repo: https://github.com/tonigi/dtwr
-.. _tarball: https://github.com/tonigi/dtwr/tarball/master
+.. _Github repo: https://github.com/tonigi/dtw
+.. _tarball: https://github.com/tonigi/dtw/tarball/master

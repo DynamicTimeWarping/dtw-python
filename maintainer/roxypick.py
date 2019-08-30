@@ -191,7 +191,7 @@ print("\n\n")
 # ==================================================
 # Process all the python files
 
-plist = glob.glob("dtwr/*.py")
+plist = glob.glob("dtw/*.py")
 
 for pfile in plist:
     print(f"Modifying {pfile}...")

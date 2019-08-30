@@ -20,7 +20,7 @@
 """Minimum Variance Matching pattern"""
 
 
-from dtwr.stepPattern import StepPattern
+from dtw.stepPattern import StepPattern
 import numpy
 
 def mvmStepPattern(elasticity=20):
@@ -69,7 +69,7 @@ Examples
 --------
 
 >>> import numpy as np
->>> from dtwr import *
+>>> from dtw import *
 
 The hand-checkable example given in Fig. 5, ref. [1] above
 

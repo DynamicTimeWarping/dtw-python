@@ -358,7 +358,7 @@ ylab :
 
 Examples
 --------
->>> from dtwr import *
+>>> from dtw import *
 
 A study of the "Itakura" parallelogram
 

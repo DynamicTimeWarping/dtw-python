@@ -3,14 +3,14 @@ The Comprehensive Dynamic Time Warp package (Python bindings)
 ====================================================================
 
 
-.. image:: https://img.shields.io/pypi/v/dtwr.svg
-        :target: https://pypi.python.org/pypi/dtwr
+.. image:: https://img.shields.io/pypi/v/dtw.svg
+        :target: https://pypi.python.org/pypi/dtw
 
-.. image:: https://img.shields.io/travis/tonigi/dtwr.svg
-        :target: https://travis-ci.org/tonigi/dtwr
+.. image:: https://img.shields.io/travis/tonigi/dtw.svg
+        :target: https://travis-ci.org/tonigi/dtw
 
-.. image:: https://readthedocs.org/projects/dtwr/badge/?version=latest
-        :target: https://dtwr.readthedocs.io/en/latest/?badge=latest
+.. image:: https://readthedocs.org/projects/dtw/badge/?version=latest
+        :target: https://dtw.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
 

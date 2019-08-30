@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""Tests for `dtwr` package."""
+"""Tests for `dtw` package."""
 
 
 import unittest
 
-from dtwr import _cli
+from dtw import _cli
 
 
 class TestCLI(unittest.TestCase):
-    """Tests for `dtwr` package."""
+    """Tests for `dtw` package."""
 
     def test_command_line_interface(self):
         """Test the CLI."""

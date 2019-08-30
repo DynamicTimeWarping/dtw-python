@@ -65,7 +65,7 @@ References
 
 Examples
 --------
->>> from dtwr import *
+>>> from dtw import *
 >>> (aami3a, aami3b) = aami_data()
 >>> aami3a
 array([ 0.185,  0.185,  0.169, ...,  0.208,  0.208,  0.208])
@@ -76,6 +76,7 @@ Compute timestamps
 
 >>> aami3a_time_ms = numpy.arange(len(aami3a))/720.*1000.
 >>> aami3b_time_ms = numpy.arange(len(aami3b))/720.*1000.
+
 """
     # ENDIMPORT
 

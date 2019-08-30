@@ -6,19 +6,19 @@
         "depends": [
             "/Users/toni/anaconda3/lib/python3.6/site-packages/numpy/core/include/numpy/arrayobject.h",
             "/Users/toni/anaconda3/lib/python3.6/site-packages/numpy/core/include/numpy/ufuncobject.h",
-            "dtwr/dtw_computeCM.h"
+            "dtw/dtw_computeCM.h"
         ],
         "include_dirs": [
-            "dtwr",
+            "dtw",
             "/Users/toni/anaconda3/lib/python3.6/site-packages/numpy/core/include"
         ],
-        "name": "dtwr._dtw_utils",
+        "name": "dtw._dtw_utils",
         "sources": [
-            "dtwr/_dtw_utils.pyx",
-            "dtwr/dtw_computeCM.c"
+            "dtw/_dtw_utils.pyx",
+            "dtw/dtw_computeCM.c"
         ]
     },
-    "module_name": "dtwr._dtw_utils"
+    "module_name": "dtw._dtw_utils"
 }
 END: Cython Metadata */
 
@@ -612,8 +612,8 @@ static CYTHON_INLINE float __PYX_NAN() {
   #endif
 #endif
 
-#define __PYX_HAVE__dtwr___dtw_utils
-#define __PYX_HAVE_API__dtwr___dtw_utils
+#define __PYX_HAVE__dtw___dtw_utils
+#define __PYX_HAVE_API__dtw___dtw_utils
 /* Early includes */
 #include <string.h>
 #include <stdio.h>
@@ -853,7 +853,7 @@ static const char *__pyx_filename;
 
 
 static const char *__pyx_f[] = {
-  "dtwr/_dtw_utils.pyx",
+  "dtw/_dtw_utils.pyx",
   "__init__.pxd",
   "array.pxd",
   "stringsource",
@@ -2329,7 +2329,7 @@ static CYTHON_INLINE char *__pyx_f_5numpy__util_dtypestring(PyArray_Descr *, cha
 static PyTypeObject *__pyx_ptype_7cpython_5array_array = 0;
 static CYTHON_INLINE int __pyx_f_7cpython_5array_extend_buffer(arrayobject *, char *, Py_ssize_t); /*proto*/
 
-/* Module declarations from 'dtwr._dtw_utils' */
+/* Module declarations from 'dtw._dtw_utils' */
 static PyTypeObject *__pyx_array_type = 0;
 static PyTypeObject *__pyx_MemviewEnum_type = 0;
 static PyTypeObject *__pyx_memoryview_type = 0;
@@ -2376,11 +2376,11 @@ static void __pyx_memoryview__slice_assign_scalar(char *, Py_ssize_t *, Py_ssize
 static PyObject *__pyx_unpickle_Enum__set_state(struct __pyx_MemviewEnum_obj *, PyObject *); /*proto*/
 static __Pyx_TypeInfo __Pyx_TypeInfo_int = { "int", NULL, sizeof(int), { 0 }, 0, IS_UNSIGNED(int) ? 'U' : 'I', IS_UNSIGNED(int), 0 };
 static __Pyx_TypeInfo __Pyx_TypeInfo_double = { "double", NULL, sizeof(double), { 0 }, 0, 'R', 0, 0 };
-#define __Pyx_MODULE_NAME "dtwr._dtw_utils"
-extern int __pyx_module_is_main_dtwr___dtw_utils;
-int __pyx_module_is_main_dtwr___dtw_utils = 0;
+#define __Pyx_MODULE_NAME "dtw._dtw_utils"
+extern int __pyx_module_is_main_dtw___dtw_utils;
+int __pyx_module_is_main_dtw___dtw_utils = 0;
 
-/* Implementation of 'dtwr._dtw_utils' */
+/* Implementation of 'dtw._dtw_utils' */
 static PyObject *__pyx_builtin_range;
 static PyObject *__pyx_builtin_ValueError;
 static PyObject *__pyx_builtin_RuntimeError;
@@ -2477,19 +2477,19 @@ static const char __pyx_k_pyx_checksum[] = "__pyx_checksum";
 static const char __pyx_k_stringsource[] = "stringsource";
 static const char __pyx_k_pyx_getbuffer[] = "__pyx_getbuffer";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
+static const char __pyx_k_dtw__dtw_utils[] = "dtw._dtw_utils";
 static const char __pyx_k_test_computeCM[] = "_test_computeCM";
 static const char __pyx_k_View_MemoryView[] = "View.MemoryView";
 static const char __pyx_k_allocate_buffer[] = "allocate_buffer";
 static const char __pyx_k_directionMatrix[] = "directionMatrix";
-static const char __pyx_k_dtwr__dtw_utils[] = "dtwr._dtw_utils";
 static const char __pyx_k_dtype_is_object[] = "dtype_is_object";
 static const char __pyx_k_pyx_PickleError[] = "__pyx_PickleError";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_computeCM_wrapper[] = "_computeCM_wrapper";
 static const char __pyx_k_pyx_unpickle_Enum[] = "__pyx_unpickle_Enum";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
+static const char __pyx_k_dtw__dtw_utils_pyx[] = "dtw/_dtw_utils.pyx";
 static const char __pyx_k_strided_and_direct[] = "<strided and direct>";
-static const char __pyx_k_dtwr__dtw_utils_pyx[] = "dtwr/_dtw_utils.pyx";
 static const char __pyx_k_strided_and_indirect[] = "<strided and indirect>";
 static const char __pyx_k_contiguous_and_direct[] = "<contiguous and direct>";
 static const char __pyx_k_MemoryView_of_r_object[] = "<MemoryView of %r object>";
@@ -2569,8 +2569,8 @@ static PyObject *__pyx_n_s_dict;
 static PyObject *__pyx_n_s_dir;
 static PyObject *__pyx_n_s_directionMatrix;
 static PyObject *__pyx_n_s_double;
-static PyObject *__pyx_n_s_dtwr__dtw_utils;
-static PyObject *__pyx_kp_s_dtwr__dtw_utils_pyx;
+static PyObject *__pyx_n_s_dtw__dtw_utils;
+static PyObject *__pyx_kp_s_dtw__dtw_utils_pyx;
 static PyObject *__pyx_n_s_dtype;
 static PyObject *__pyx_n_s_dtype_is_object;
 static PyObject *__pyx_n_s_encode;
@@ -2654,8 +2654,8 @@ static PyObject *__pyx_n_s_update;
 static PyObject *__pyx_n_s_warnings;
 static PyObject *__pyx_n_s_wm;
 static PyObject *__pyx_n_s_zeros;
-static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_wm, __Pyx_memviewslice __pyx_v_lm, __Pyx_memviewslice __pyx_v_nstepsp, __Pyx_memviewslice __pyx_v_dir, __Pyx_memviewslice __pyx_v_cm, __Pyx_memviewslice __pyx_v_sm); /* proto */
-static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_TS); /* proto */
+static PyObject *__pyx_pf_3dtw_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_wm, __Pyx_memviewslice __pyx_v_lm, __Pyx_memviewslice __pyx_v_nstepsp, __Pyx_memviewslice __pyx_v_dir, __Pyx_memviewslice __pyx_v_cm, __Pyx_memviewslice __pyx_v_sm); /* proto */
+static PyObject *__pyx_pf_3dtw_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_TS); /* proto */
 static int __pyx_pf_5numpy_7ndarray___getbuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info, int __pyx_v_flags); /* proto */
 static void __pyx_pf_5numpy_7ndarray_2__releasebuffer__(PyArrayObject *__pyx_v_self, Py_buffer *__pyx_v_info); /* proto */
 static int __pyx_pf_7cpython_5array_5array___getbuffer__(arrayobject *__pyx_v_self, Py_buffer *__pyx_v_info, CYTHON_UNUSED int __pyx_v_flags); /* proto */
@@ -2756,7 +2756,7 @@ static PyObject *__pyx_codeobj__33;
 static PyObject *__pyx_codeobj__40;
 /* Late includes */
 
-/* "dtwr/_dtw_utils.pyx":60
+/* "dtw/_dtw_utils.pyx":60
  * 
  * 
  * def _computeCM_wrapper(int [:,::1] wm not None,             # <<<<<<<<<<<<<<
@@ -2765,9 +2765,9 @@ static PyObject *__pyx_codeobj__40;
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4dtwr_10_dtw_utils_1_computeCM_wrapper(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_4dtwr_10_dtw_utils_1_computeCM_wrapper = {"_computeCM_wrapper", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_4dtwr_10_dtw_utils_1_computeCM_wrapper, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4dtwr_10_dtw_utils_1_computeCM_wrapper(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3dtw_10_dtw_utils_1_computeCM_wrapper(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_3dtw_10_dtw_utils_1_computeCM_wrapper = {"_computeCM_wrapper", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_3dtw_10_dtw_utils_1_computeCM_wrapper, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_3dtw_10_dtw_utils_1_computeCM_wrapper(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   __Pyx_memviewslice __pyx_v_wm = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_lm = { 0, 0, { 0 }, { 0 }, { 0 } };
   __Pyx_memviewslice __pyx_v_nstepsp = { 0, 0, { 0 }, { 0 }, { 0 } };
@@ -2867,7 +2867,7 @@ static PyObject *__pyx_pw_4dtwr_10_dtw_utils_1_computeCM_wrapper(PyObject *__pyx
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("_computeCM_wrapper", 0, 5, 6, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 60, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("dtwr._dtw_utils._computeCM_wrapper", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("dtw._dtw_utils._computeCM_wrapper", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
@@ -2886,7 +2886,7 @@ static PyObject *__pyx_pw_4dtwr_10_dtw_utils_1_computeCM_wrapper(PyObject *__pyx
   if (unlikely(((PyObject *)__pyx_v_cm.memview) == Py_None)) {
     PyErr_Format(PyExc_TypeError, "Argument '%.200s' must not be None", "cm"); __PYX_ERR(0, 64, __pyx_L1_error)
   }
-  __pyx_r = __pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(__pyx_self, __pyx_v_wm, __pyx_v_lm, __pyx_v_nstepsp, __pyx_v_dir, __pyx_v_cm, __pyx_v_sm);
+  __pyx_r = __pyx_pf_3dtw_10_dtw_utils__computeCM_wrapper(__pyx_self, __pyx_v_wm, __pyx_v_lm, __pyx_v_nstepsp, __pyx_v_dir, __pyx_v_cm, __pyx_v_sm);
 
   /* function exit code */
   goto __pyx_L0;
@@ -2897,7 +2897,7 @@ static PyObject *__pyx_pw_4dtwr_10_dtw_utils_1_computeCM_wrapper(PyObject *__pyx
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_wm, __Pyx_memviewslice __pyx_v_lm, __Pyx_memviewslice __pyx_v_nstepsp, __Pyx_memviewslice __pyx_v_dir, __Pyx_memviewslice __pyx_v_cm, __Pyx_memviewslice __pyx_v_sm) {
+static PyObject *__pyx_pf_3dtw_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED PyObject *__pyx_self, __Pyx_memviewslice __pyx_v_wm, __Pyx_memviewslice __pyx_v_lm, __Pyx_memviewslice __pyx_v_nstepsp, __Pyx_memviewslice __pyx_v_dir, __Pyx_memviewslice __pyx_v_cm, __Pyx_memviewslice __pyx_v_sm) {
   PyObject *__pyx_v_st = NULL;
   __Pyx_memviewslice __pyx_v_s = { 0, 0, { 0 }, { 0 }, { 0 } };
   PyObject *__pyx_r = NULL;
@@ -2923,7 +2923,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
   Py_ssize_t __pyx_t_19;
   __Pyx_RefNannySetupContext("_computeCM_wrapper", 0);
 
-  /* "dtwr/_dtw_utils.pyx":68
+  /* "dtw/_dtw_utils.pyx":68
  * 
  *     # Memory ordering is transposed (fortran-like in R).
  *     st = np.array([wm.shape[1],             # <<<<<<<<<<<<<<
@@ -2938,7 +2938,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
   __pyx_t_1 = PyInt_FromSsize_t((__pyx_v_wm.shape[1])); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 68, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
 
-  /* "dtwr/_dtw_utils.pyx":69
+  /* "dtw/_dtw_utils.pyx":69
  *     # Memory ordering is transposed (fortran-like in R).
  *     st = np.array([wm.shape[1],
  *                    wm.shape[0]], dtype=np.int32)             # <<<<<<<<<<<<<<
@@ -2948,7 +2948,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
   __pyx_t_3 = PyInt_FromSsize_t((__pyx_v_wm.shape[0])); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
 
-  /* "dtwr/_dtw_utils.pyx":68
+  /* "dtw/_dtw_utils.pyx":68
  * 
  *     # Memory ordering is transposed (fortran-like in R).
  *     st = np.array([wm.shape[1],             # <<<<<<<<<<<<<<
@@ -2969,7 +2969,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
   PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_t_4);
   __pyx_t_4 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":69
+  /* "dtw/_dtw_utils.pyx":69
  *     # Memory ordering is transposed (fortran-like in R).
  *     st = np.array([wm.shape[1],
  *                    wm.shape[0]], dtype=np.int32)             # <<<<<<<<<<<<<<
@@ -2986,7 +2986,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
   if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_dtype, __pyx_t_5) < 0) __PYX_ERR(0, 69, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":68
+  /* "dtw/_dtw_utils.pyx":68
  * 
  *     # Memory ordering is transposed (fortran-like in R).
  *     st = np.array([wm.shape[1],             # <<<<<<<<<<<<<<
@@ -3001,7 +3001,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
   __pyx_v_st = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":70
+  /* "dtw/_dtw_utils.pyx":70
  *     st = np.array([wm.shape[1],
  *                    wm.shape[0]], dtype=np.int32)
  *     cdef int [:] s = st             # <<<<<<<<<<<<<<
@@ -3013,7 +3013,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
   __pyx_t_6.memview = NULL;
   __pyx_t_6.data = NULL;
 
-  /* "dtwr/_dtw_utils.pyx":72
+  /* "dtw/_dtw_utils.pyx":72
  *     cdef int [:] s = st
  * 
  *     sm = np.full_like(lm.base, -1, dtype=np.int32)             # <<<<<<<<<<<<<<
@@ -3059,7 +3059,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
   __pyx_t_7.memview = NULL;
   __pyx_t_7.data = NULL;
 
-  /* "dtwr/_dtw_utils.pyx":74
+  /* "dtw/_dtw_utils.pyx":74
  *     sm = np.full_like(lm.base, -1, dtype=np.int32)
  * 
  *     computeCM(&s[0],             # <<<<<<<<<<<<<<
@@ -3077,7 +3077,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
     __PYX_ERR(0, 74, __pyx_L1_error)
   }
 
-  /* "dtwr/_dtw_utils.pyx":75
+  /* "dtw/_dtw_utils.pyx":75
  * 
  *     computeCM(&s[0],
  *               &wm[0,0],             # <<<<<<<<<<<<<<
@@ -3100,7 +3100,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
     __PYX_ERR(0, 75, __pyx_L1_error)
   }
 
-  /* "dtwr/_dtw_utils.pyx":76
+  /* "dtw/_dtw_utils.pyx":76
  *     computeCM(&s[0],
  *               &wm[0,0],
  *               &lm[0,0],             # <<<<<<<<<<<<<<
@@ -3123,7 +3123,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
     __PYX_ERR(0, 76, __pyx_L1_error)
   }
 
-  /* "dtwr/_dtw_utils.pyx":77
+  /* "dtw/_dtw_utils.pyx":77
  *               &wm[0,0],
  *               &lm[0,0],
  *               &nstepsp[0],             # <<<<<<<<<<<<<<
@@ -3141,7 +3141,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
     __PYX_ERR(0, 77, __pyx_L1_error)
   }
 
-  /* "dtwr/_dtw_utils.pyx":78
+  /* "dtw/_dtw_utils.pyx":78
  *               &lm[0,0],
  *               &nstepsp[0],
  *               &dir[0],             # <<<<<<<<<<<<<<
@@ -3159,7 +3159,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
     __PYX_ERR(0, 78, __pyx_L1_error)
   }
 
-  /* "dtwr/_dtw_utils.pyx":79
+  /* "dtw/_dtw_utils.pyx":79
  *               &nstepsp[0],
  *               &dir[0],
  *               &cm[0,0],             # <<<<<<<<<<<<<<
@@ -3182,7 +3182,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
     __PYX_ERR(0, 79, __pyx_L1_error)
   }
 
-  /* "dtwr/_dtw_utils.pyx":80
+  /* "dtw/_dtw_utils.pyx":80
  *               &dir[0],
  *               &cm[0,0],
  *               &sm[0,0])             # <<<<<<<<<<<<<<
@@ -3205,7 +3205,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
     __PYX_ERR(0, 80, __pyx_L1_error)
   }
 
-  /* "dtwr/_dtw_utils.pyx":74
+  /* "dtw/_dtw_utils.pyx":74
  *     sm = np.full_like(lm.base, -1, dtype=np.int32)
  * 
  *     computeCM(&s[0],             # <<<<<<<<<<<<<<
@@ -3214,7 +3214,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
  */
   computeCM((&(*((int *) ( /* dim=0 */ (__pyx_v_s.data + __pyx_t_8 * __pyx_v_s.strides[0]) )))), (&(*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_wm.data + __pyx_t_10 * __pyx_v_wm.strides[0]) )) + __pyx_t_11)) )))), (&(*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_lm.data + __pyx_t_12 * __pyx_v_lm.strides[0]) )) + __pyx_t_13)) )))), (&(*((int *) ( /* dim=0 */ (__pyx_v_nstepsp.data + __pyx_t_14 * __pyx_v_nstepsp.strides[0]) )))), (&(*((double *) ( /* dim=0 */ ((char *) (((double *) __pyx_v_dir.data) + __pyx_t_15)) )))), (&(*((double *) ( /* dim=1 */ ((char *) (((double *) ( /* dim=0 */ (__pyx_v_cm.data + __pyx_t_16 * __pyx_v_cm.strides[0]) )) + __pyx_t_17)) )))), (&(*((int *) ( /* dim=1 */ ((char *) (((int *) ( /* dim=0 */ (__pyx_v_sm.data + __pyx_t_18 * __pyx_v_sm.strides[0]) )) + __pyx_t_19)) )))));
 
-  /* "dtwr/_dtw_utils.pyx":82
+  /* "dtw/_dtw_utils.pyx":82
  *               &sm[0,0])
  * 
  *     return { 'costMatrix': cm.base,             # <<<<<<<<<<<<<<
@@ -3232,7 +3232,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
   if (PyDict_SetItem(__pyx_t_1, __pyx_n_s_costMatrix, __pyx_t_5) < 0) __PYX_ERR(0, 82, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":83
+  /* "dtw/_dtw_utils.pyx":83
  * 
  *     return { 'costMatrix': cm.base,
  *              'directionMatrix': sm.base }             # <<<<<<<<<<<<<<
@@ -3250,7 +3250,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "dtwr/_dtw_utils.pyx":60
+  /* "dtw/_dtw_utils.pyx":60
  * 
  * 
  * def _computeCM_wrapper(int [:,::1] wm not None,             # <<<<<<<<<<<<<<
@@ -3267,7 +3267,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
   __Pyx_XDECREF(__pyx_t_5);
   __PYX_XDEC_MEMVIEW(&__pyx_t_6, 1);
   __PYX_XDEC_MEMVIEW(&__pyx_t_7, 1);
-  __Pyx_AddTraceback("dtwr._dtw_utils._computeCM_wrapper", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("dtw._dtw_utils._computeCM_wrapper", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_st);
@@ -3283,7 +3283,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
   return __pyx_r;
 }
 
-/* "dtwr/_dtw_utils.pyx":88
+/* "dtw/_dtw_utils.pyx":88
  * 
  * 
  * def _test_computeCM(TS=5):             # <<<<<<<<<<<<<<
@@ -3292,9 +3292,9 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils__computeCM_wrapper(CYTHON_UNUSED Py
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_4dtwr_10_dtw_utils_3_test_computeCM(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static PyMethodDef __pyx_mdef_4dtwr_10_dtw_utils_3_test_computeCM = {"_test_computeCM", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_4dtwr_10_dtw_utils_3_test_computeCM, METH_VARARGS|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_4dtwr_10_dtw_utils_3_test_computeCM(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_3dtw_10_dtw_utils_3_test_computeCM(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static PyMethodDef __pyx_mdef_3dtw_10_dtw_utils_3_test_computeCM = {"_test_computeCM", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_3dtw_10_dtw_utils_3_test_computeCM, METH_VARARGS|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_3dtw_10_dtw_utils_3_test_computeCM(PyObject *__pyx_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_TS = 0;
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
@@ -3337,18 +3337,18 @@ static PyObject *__pyx_pw_4dtwr_10_dtw_utils_3_test_computeCM(PyObject *__pyx_se
   __pyx_L5_argtuple_error:;
   __Pyx_RaiseArgtupleInvalid("_test_computeCM", 0, 0, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 88, __pyx_L3_error)
   __pyx_L3_error:;
-  __Pyx_AddTraceback("dtwr._dtw_utils._test_computeCM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("dtw._dtw_utils._test_computeCM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(__pyx_self, __pyx_v_TS);
+  __pyx_r = __pyx_pf_3dtw_10_dtw_utils_2_test_computeCM(__pyx_self, __pyx_v_TS);
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_TS) {
+static PyObject *__pyx_pf_3dtw_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_TS) {
   PyObject *__pyx_v_DTYPE = NULL;
   PyObject *__pyx_v_twm = NULL;
   PyObject *__pyx_v_tlm = NULL;
@@ -3372,7 +3372,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   int __pyx_t_10;
   __Pyx_RefNannySetupContext("_test_computeCM", 0);
 
-  /* "dtwr/_dtw_utils.pyx":90
+  /* "dtw/_dtw_utils.pyx":90
  * def _test_computeCM(TS=5):
  * 
  *     DTYPE = np.int32             # <<<<<<<<<<<<<<
@@ -3387,7 +3387,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   __pyx_v_DTYPE = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":92
+  /* "dtw/_dtw_utils.pyx":92
  *     DTYPE = np.int32
  * 
  *     twm = np.ones((TS, TS), dtype=DTYPE)             # <<<<<<<<<<<<<<
@@ -3423,7 +3423,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   __pyx_v_twm = __pyx_t_4;
   __pyx_t_4 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":94
+  /* "dtw/_dtw_utils.pyx":94
  *     twm = np.ones((TS, TS), dtype=DTYPE)
  * 
  *     tlm = np.zeros( (TS,TS), dtype=np.double)             # <<<<<<<<<<<<<<
@@ -3465,7 +3465,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   __pyx_v_tlm = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":95
+  /* "dtw/_dtw_utils.pyx":95
  * 
  *     tlm = np.zeros( (TS,TS), dtype=np.double)
  *     for i in range(TS):             # <<<<<<<<<<<<<<
@@ -3517,7 +3517,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
     __Pyx_XDECREF_SET(__pyx_v_i, __pyx_t_5);
     __pyx_t_5 = 0;
 
-    /* "dtwr/_dtw_utils.pyx":96
+    /* "dtw/_dtw_utils.pyx":96
  *     tlm = np.zeros( (TS,TS), dtype=np.double)
  *     for i in range(TS):
  *         for j in range(TS):             # <<<<<<<<<<<<<<
@@ -3569,7 +3569,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
       __Pyx_XDECREF_SET(__pyx_v_j, __pyx_t_5);
       __pyx_t_5 = 0;
 
-      /* "dtwr/_dtw_utils.pyx":97
+      /* "dtw/_dtw_utils.pyx":97
  *     for i in range(TS):
  *         for j in range(TS):
  *             tlm[i,j]=(i+1)*(j+1)             # <<<<<<<<<<<<<<
@@ -3596,7 +3596,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-      /* "dtwr/_dtw_utils.pyx":96
+      /* "dtw/_dtw_utils.pyx":96
  *     tlm = np.zeros( (TS,TS), dtype=np.double)
  *     for i in range(TS):
  *         for j in range(TS):             # <<<<<<<<<<<<<<
@@ -3606,7 +3606,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
     }
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-    /* "dtwr/_dtw_utils.pyx":95
+    /* "dtw/_dtw_utils.pyx":95
  * 
  *     tlm = np.zeros( (TS,TS), dtype=np.double)
  *     for i in range(TS):             # <<<<<<<<<<<<<<
@@ -3616,7 +3616,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   }
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":99
+  /* "dtw/_dtw_utils.pyx":99
  *             tlm[i,j]=(i+1)*(j+1)
  * 
  *     tnstepsp = np.array([6], dtype=DTYPE)             # <<<<<<<<<<<<<<
@@ -3649,7 +3649,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   __pyx_v_tnstepsp = __pyx_t_2;
   __pyx_t_2 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":101
+  /* "dtw/_dtw_utils.pyx":101
  *     tnstepsp = np.array([6], dtype=DTYPE)
  * 
  *     tdir = np.array( (1, 1, 2, 2, 3, 3, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0,-1, 1,-1, 1,-1, 1),             # <<<<<<<<<<<<<<
@@ -3662,7 +3662,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":102
+  /* "dtw/_dtw_utils.pyx":102
  * 
  *     tdir = np.array( (1, 1, 2, 2, 3, 3, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0,-1, 1,-1, 1,-1, 1),
  *                                      dtype=np.double)             # <<<<<<<<<<<<<<
@@ -3679,7 +3679,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_dtype, __pyx_t_3) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":101
+  /* "dtw/_dtw_utils.pyx":101
  *     tnstepsp = np.array([6], dtype=DTYPE)
  * 
  *     tdir = np.array( (1, 1, 2, 2, 3, 3, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0,-1, 1,-1, 1,-1, 1),             # <<<<<<<<<<<<<<
@@ -3693,7 +3693,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   __pyx_v_tdir = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":104
+  /* "dtw/_dtw_utils.pyx":104
  *                                      dtype=np.double)
  * 
  *     tcm = np.full_like(tlm, np.nan, dtype=np.double)             # <<<<<<<<<<<<<<
@@ -3735,7 +3735,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   __pyx_v_tcm = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":105
+  /* "dtw/_dtw_utils.pyx":105
  * 
  *     tcm = np.full_like(tlm, np.nan, dtype=np.double)
  *     tcm[0,0] = tlm[0,0]             # <<<<<<<<<<<<<<
@@ -3747,7 +3747,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   if (unlikely(PyObject_SetItem(__pyx_v_tcm, __pyx_tuple__4, __pyx_t_5) < 0)) __PYX_ERR(0, 105, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":107
+  /* "dtw/_dtw_utils.pyx":107
  *     tcm[0,0] = tlm[0,0]
  * 
  *     out = _computeCM_wrapper(twm,             # <<<<<<<<<<<<<<
@@ -3757,7 +3757,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_computeCM_wrapper); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 107, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
 
-  /* "dtwr/_dtw_utils.pyx":111
+  /* "dtw/_dtw_utils.pyx":111
  *                              tnstepsp,
  *                              tdir,
  *                              tcm)             # <<<<<<<<<<<<<<
@@ -3821,7 +3821,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   __pyx_v_out = __pyx_t_5;
   __pyx_t_5 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":112
+  /* "dtw/_dtw_utils.pyx":112
  *                              tdir,
  *                              tcm)
  *     return out             # <<<<<<<<<<<<<<
@@ -3833,7 +3833,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   __pyx_r = __pyx_v_out;
   goto __pyx_L0;
 
-  /* "dtwr/_dtw_utils.pyx":88
+  /* "dtw/_dtw_utils.pyx":88
  * 
  * 
  * def _test_computeCM(TS=5):             # <<<<<<<<<<<<<<
@@ -3848,7 +3848,7 @@ static PyObject *__pyx_pf_4dtwr_10_dtw_utils_2_test_computeCM(CYTHON_UNUSED PyOb
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_5);
-  __Pyx_AddTraceback("dtwr._dtw_utils._test_computeCM", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_AddTraceback("dtw._dtw_utils._test_computeCM", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_DTYPE);
@@ -19855,7 +19855,7 @@ static PyBufferProcs __pyx_tp_as_buffer_array = {
 
 static PyTypeObject __pyx_type___pyx_array = {
   PyVarObject_HEAD_INIT(0, 0)
-  "dtwr._dtw_utils.array", /*tp_name*/
+  "dtw._dtw_utils.array", /*tp_name*/
   sizeof(struct __pyx_array_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_array, /*tp_dealloc*/
@@ -19966,7 +19966,7 @@ static PyMethodDef __pyx_methods_Enum[] = {
 
 static PyTypeObject __pyx_type___pyx_MemviewEnum = {
   PyVarObject_HEAD_INIT(0, 0)
-  "dtwr._dtw_utils.Enum", /*tp_name*/
+  "dtw._dtw_utils.Enum", /*tp_name*/
   sizeof(struct __pyx_MemviewEnum_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_Enum, /*tp_dealloc*/
@@ -20219,7 +20219,7 @@ static PyBufferProcs __pyx_tp_as_buffer_memoryview = {
 
 static PyTypeObject __pyx_type___pyx_memoryview = {
   PyVarObject_HEAD_INIT(0, 0)
-  "dtwr._dtw_utils.memoryview", /*tp_name*/
+  "dtw._dtw_utils.memoryview", /*tp_name*/
   sizeof(struct __pyx_memoryview_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc_memoryview, /*tp_dealloc*/
@@ -20349,7 +20349,7 @@ static struct PyGetSetDef __pyx_getsets__memoryviewslice[] = {
 
 static PyTypeObject __pyx_type___pyx_memoryviewslice = {
   PyVarObject_HEAD_INIT(0, 0)
-  "dtwr._dtw_utils._memoryviewslice", /*tp_name*/
+  "dtw._dtw_utils._memoryviewslice", /*tp_name*/
   sizeof(struct __pyx_memoryviewslice_obj), /*tp_basicsize*/
   0, /*tp_itemsize*/
   __pyx_tp_dealloc__memoryviewslice, /*tp_dealloc*/
@@ -20509,8 +20509,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_dir, __pyx_k_dir, sizeof(__pyx_k_dir), 0, 0, 1, 1},
   {&__pyx_n_s_directionMatrix, __pyx_k_directionMatrix, sizeof(__pyx_k_directionMatrix), 0, 0, 1, 1},
   {&__pyx_n_s_double, __pyx_k_double, sizeof(__pyx_k_double), 0, 0, 1, 1},
-  {&__pyx_n_s_dtwr__dtw_utils, __pyx_k_dtwr__dtw_utils, sizeof(__pyx_k_dtwr__dtw_utils), 0, 0, 1, 1},
-  {&__pyx_kp_s_dtwr__dtw_utils_pyx, __pyx_k_dtwr__dtw_utils_pyx, sizeof(__pyx_k_dtwr__dtw_utils_pyx), 0, 0, 1, 0},
+  {&__pyx_n_s_dtw__dtw_utils, __pyx_k_dtw__dtw_utils, sizeof(__pyx_k_dtw__dtw_utils), 0, 0, 1, 1},
+  {&__pyx_kp_s_dtw__dtw_utils_pyx, __pyx_k_dtw__dtw_utils_pyx, sizeof(__pyx_k_dtw__dtw_utils_pyx), 0, 0, 1, 0},
   {&__pyx_n_s_dtype, __pyx_k_dtype, sizeof(__pyx_k_dtype), 0, 0, 1, 1},
   {&__pyx_n_s_dtype_is_object, __pyx_k_dtype_is_object, sizeof(__pyx_k_dtype_is_object), 0, 0, 1, 1},
   {&__pyx_n_s_encode, __pyx_k_encode, sizeof(__pyx_k_encode), 0, 0, 1, 1},
@@ -20616,7 +20616,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
-  /* "dtwr/_dtw_utils.pyx":101
+  /* "dtw/_dtw_utils.pyx":101
  *     tnstepsp = np.array([6], dtype=DTYPE)
  * 
  *     tdir = np.array( (1, 1, 2, 2, 3, 3, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0, 0,-1, 1,-1, 1,-1, 1),             # <<<<<<<<<<<<<<
@@ -20630,7 +20630,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
-  /* "dtwr/_dtw_utils.pyx":105
+  /* "dtw/_dtw_utils.pyx":105
  * 
  *     tcm = np.full_like(tlm, np.nan, dtype=np.double)
  *     tcm[0,0] = tlm[0,0]             # <<<<<<<<<<<<<<
@@ -20910,7 +20910,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__29);
   __Pyx_GIVEREF(__pyx_tuple__29);
 
-  /* "dtwr/_dtw_utils.pyx":60
+  /* "dtw/_dtw_utils.pyx":60
  * 
  * 
  * def _computeCM_wrapper(int [:,::1] wm not None,             # <<<<<<<<<<<<<<
@@ -20920,9 +20920,9 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__30 = PyTuple_Pack(8, __pyx_n_s_wm, __pyx_n_s_lm, __pyx_n_s_nstepsp, __pyx_n_s_dir, __pyx_n_s_cm, __pyx_n_s_sm, __pyx_n_s_st, __pyx_n_s_s); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__30);
   __Pyx_GIVEREF(__pyx_tuple__30);
-  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(6, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_dtwr__dtw_utils_pyx, __pyx_n_s_computeCM_wrapper, 60, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(6, 0, 8, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_dtw__dtw_utils_pyx, __pyx_n_s_computeCM_wrapper, 60, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 60, __pyx_L1_error)
 
-  /* "dtwr/_dtw_utils.pyx":88
+  /* "dtw/_dtw_utils.pyx":88
  * 
  * 
  * def _test_computeCM(TS=5):             # <<<<<<<<<<<<<<
@@ -20932,7 +20932,7 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __pyx_tuple__32 = PyTuple_Pack(10, __pyx_n_s_TS, __pyx_n_s_DTYPE, __pyx_n_s_twm, __pyx_n_s_tlm, __pyx_n_s_i, __pyx_n_s_j, __pyx_n_s_tnstepsp, __pyx_n_s_tdir, __pyx_n_s_tcm, __pyx_n_s_out); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__32);
   __Pyx_GIVEREF(__pyx_tuple__32);
-  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(1, 0, 10, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_dtwr__dtw_utils_pyx, __pyx_n_s_test_computeCM, 88, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(1, 0, 10, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_dtw__dtw_utils_pyx, __pyx_n_s_test_computeCM, 88, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(0, 88, __pyx_L1_error)
 
   /* "View.MemoryView":286
  *         return self.name
@@ -21358,14 +21358,14 @@ if (!__Pyx_RefNanny) {
   #if PY_MAJOR_VERSION < 3 && (__PYX_DEFAULT_STRING_ENCODING_IS_ASCII || __PYX_DEFAULT_STRING_ENCODING_IS_DEFAULT)
   if (__Pyx_init_sys_getdefaultencoding_params() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
-  if (__pyx_module_is_main_dtwr___dtw_utils) {
+  if (__pyx_module_is_main_dtw___dtw_utils) {
     if (PyObject_SetAttr(__pyx_m, __pyx_n_s_name_2, __pyx_n_s_main) < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   }
   #if PY_MAJOR_VERSION >= 3
   {
     PyObject *modules = PyImport_GetModuleDict(); if (unlikely(!modules)) __PYX_ERR(0, 1, __pyx_L1_error)
-    if (!PyDict_GetItemString(modules, "dtwr._dtw_utils")) {
-      if (unlikely(PyDict_SetItemString(modules, "dtwr._dtw_utils", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
+    if (!PyDict_GetItemString(modules, "dtw._dtw_utils")) {
+      if (unlikely(PyDict_SetItemString(modules, "dtw._dtw_utils", __pyx_m) < 0)) __PYX_ERR(0, 1, __pyx_L1_error)
     }
   }
   #endif
@@ -21386,7 +21386,7 @@ if (!__Pyx_RefNanny) {
   if (__Pyx_patch_abc() < 0) __PYX_ERR(0, 1, __pyx_L1_error)
   #endif
 
-  /* "dtwr/_dtw_utils.pyx":32
+  /* "dtw/_dtw_utils.pyx":32
  * 
  * 
  * import warnings             # <<<<<<<<<<<<<<
@@ -21398,7 +21398,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_warnings, __pyx_t_1) < 0) __PYX_ERR(0, 32, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":34
+  /* "dtw/_dtw_utils.pyx":34
  * import warnings
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
@@ -21410,7 +21410,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_np, __pyx_t_1) < 0) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":41
+  /* "dtw/_dtw_utils.pyx":41
  * 
  * 
  * __all__ = ["_computeCM_wrapper"]             # <<<<<<<<<<<<<<
@@ -21425,7 +21425,7 @@ if (!__Pyx_RefNanny) {
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_all, __pyx_t_1) < 0) __PYX_ERR(0, 41, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":65
+  /* "dtw/_dtw_utils.pyx":65
  *                        double [::1] dir not None,
  *                        double [:,::1] cm not None,
  *                        int [:,::1] sm = None  ):             # <<<<<<<<<<<<<<
@@ -21437,31 +21437,31 @@ if (!__Pyx_RefNanny) {
   __pyx_t_2.memview = NULL;
   __pyx_t_2.data = NULL;
 
-  /* "dtwr/_dtw_utils.pyx":60
+  /* "dtw/_dtw_utils.pyx":60
  * 
  * 
  * def _computeCM_wrapper(int [:,::1] wm not None,             # <<<<<<<<<<<<<<
  *                        double [:,::1] lm not None,
  *                        int [:] nstepsp not None,
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_4dtwr_10_dtw_utils_1_computeCM_wrapper, NULL, __pyx_n_s_dtwr__dtw_utils); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3dtw_10_dtw_utils_1_computeCM_wrapper, NULL, __pyx_n_s_dtw__dtw_utils); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_computeCM_wrapper, __pyx_t_1) < 0) __PYX_ERR(0, 60, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":88
+  /* "dtw/_dtw_utils.pyx":88
  * 
  * 
  * def _test_computeCM(TS=5):             # <<<<<<<<<<<<<<
  * 
  *     DTYPE = np.int32
  */
-  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_4dtwr_10_dtw_utils_3_test_computeCM, NULL, __pyx_n_s_dtwr__dtw_utils); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+  __pyx_t_1 = PyCFunction_NewEx(&__pyx_mdef_3dtw_10_dtw_utils_3_test_computeCM, NULL, __pyx_n_s_dtw__dtw_utils); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_test_computeCM, __pyx_t_1) < 0) __PYX_ERR(0, 88, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-  /* "dtwr/_dtw_utils.pyx":1
+  /* "dtw/_dtw_utils.pyx":1
  * ##             # <<<<<<<<<<<<<<
  * ## Copyright (c) 2006-2019 of Toni Giorgino
  * ##
@@ -21632,11 +21632,11 @@ if (!__Pyx_RefNanny) {
   __PYX_XDEC_MEMVIEW(&__pyx_t_2, 1);
   if (__pyx_m) {
     if (__pyx_d) {
-      __Pyx_AddTraceback("init dtwr._dtw_utils", __pyx_clineno, __pyx_lineno, __pyx_filename);
+      __Pyx_AddTraceback("init dtw._dtw_utils", __pyx_clineno, __pyx_lineno, __pyx_filename);
     }
     Py_CLEAR(__pyx_m);
   } else if (!PyErr_Occurred()) {
-    PyErr_SetString(PyExc_ImportError, "init dtwr._dtw_utils");
+    PyErr_SetString(PyExc_ImportError, "init dtw._dtw_utils");
   }
   __pyx_L0:;
   __Pyx_RefNannyFinishContext();

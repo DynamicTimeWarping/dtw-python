@@ -5,8 +5,8 @@ import numpy as np
 from numpy import nan
 from numpy.testing import *
 
-from dtwr import *
-from dtwr.countPaths import *
+from dtw import *
+from dtw.countPaths import *
 
 
 class Test_countPaths(unittest.TestCase):

@@ -1,25 +1,24 @@
 # -*- coding: utf-8 -*-
 
-"""Console script for dtwr."""
+"""Console script for dtw."""
 import sys
 import numpy
-import dtwr
+import dtw
 import argparse
 
 
 def main2(query, reference, step_pattern):
-    """Console script for dtwr."""
+    """Console script for dtw."""
 
     q = numpy.genfromtxt(query)
     r = numpy.genfromtxt(reference)
-    al = dtwr.dtw(q, r, step_pattern=step_pattern)
+    al = dtw.dtw(q, r, step_pattern=step_pattern)
 
     wp = numpy.vstack([al.index1, al.index2])
 
-    try:
+    out = ""
+    if hasattr(al,"normalizedDistance"):
         out += f"Normalized distance: {al.normalizedDistance:.4g}\n\n"
-    except:
-        pass
 
     out += f"Distance: {al.distance:.4g}\n\n"
     out += f"Warping path: {wp}\n\n"

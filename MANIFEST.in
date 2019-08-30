@@ -9,10 +9,10 @@ recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
 
 recursive-include docs *.rst conf.py Makefile make.bat *.jpg *.png *.gif
-recursive-include dtwr/data *
+recursive-include dtw/data *
 
-global-include dtwr/*.c
-global-include dtwr/*.h
-global-include dtwr/*.pyx
+global-include dtw/*.c
+global-include dtw/*.h
+global-include dtw/*.pyx
 
 

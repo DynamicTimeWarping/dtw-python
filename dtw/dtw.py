@@ -31,11 +31,11 @@
 import numpy
 import sys
 
-from dtwr.stepPattern import *
-from dtwr._backtrack import _backtrack
-from dtwr._globalCostMatrix import _globalCostMatrix
-from dtwr.window import *
-from dtwr.dtwPlot import *
+from dtw.stepPattern import *
+from dtw._backtrack import _backtrack
+from dtw._globalCostMatrix import _globalCostMatrix
+from dtw.window import *
+from dtw.dtwPlot import *
 
 from scipy.spatial.distance import cdist
 
@@ -270,7 +270,7 @@ Examples
 --------
 
 >>> import numpy as np
->>> from dtwr import *
+>>> from dtw import *
 
 A noisy sine wave as query
 
@@ -474,7 +474,7 @@ def _canonicalizeStepPattern(s):
     if hasattr(s,"mx"):
         return s
     else:
-        return getattr(sys.modules["dtwr.stepPattern"], s)
+        return getattr(sys.modules["dtw.stepPattern"], s)
 
 
 # Kludge because lambda: raise doesn't work

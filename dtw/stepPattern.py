@@ -219,7 +219,7 @@ References
 
 Examples
 --------
->>> from dtwr import *
+>>> from dtw import *
 >>> import numpy as np
 
 The usual (normalizable) symmetric step pattern

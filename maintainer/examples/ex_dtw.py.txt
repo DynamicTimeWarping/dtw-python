@@ -1,7 +1,7 @@
 
 
 >>> import numpy as np
->>> from dtwr import *
+>>> from dtw import *
 
 A noisy sine wave as query
 

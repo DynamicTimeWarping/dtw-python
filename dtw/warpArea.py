@@ -59,7 +59,7 @@ considering the envelope of the path.
 
 Examples
 --------
->>> from dtwr import *
+>>> from dtw import *
 
 >>> ds = dtw( [1,2,3,4], [1,2,3,4,5,6,7,8]);
 
