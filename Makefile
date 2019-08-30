@@ -91,3 +91,7 @@ install: clean ## install the package to the active Python's site-packages
 docstrings:
 	python maintainer/roxypick.py
 
+bump:
+	git commit -a -m "make release"
+	bumpversion patch
+
