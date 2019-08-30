@@ -44,7 +44,7 @@ setup(
             'dtw=dtwr._cli:main',
         ],
     },
-    install_requires=['numpy', 'scipy', 'cython'],
+    install_requires=['numpy>=1.12', 'scipy>=1.1', 'cython>=0.29'],
 #    setup_requires=['cython', 'numpy'],
 #    tests_require=[],
     license="GNU General Public License v3",

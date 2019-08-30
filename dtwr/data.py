@@ -66,8 +66,8 @@ References
 """
     # ENDIMPORT
 
-    aami3a = numpy.fromstring(resource_string(__name__, '../data/aami3a.csv'), sep="\n")
-    aami3b = numpy.fromstring(resource_string(__name__, '../data/aami3b.csv'), sep="\n")
+    aami3a = numpy.fromstring(resource_string(__name__, 'data/aami3a.csv'), sep="\n")
+    aami3b = numpy.fromstring(resource_string(__name__, 'data/aami3b.csv'), sep="\n")
     return (aami3a, aami3b)
 
 
