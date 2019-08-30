@@ -27,15 +27,15 @@ def main2(query, reference, step_pattern):
     return out
 
 def main():
-    parser = argparse.ArgumentParser(description='Command line DTW utility.')
-    parser.add_argument("--query",  help="Query timeseries (tsv)")
-    parser.add_argument("--reference",  help="Reference timeseries (tsv)")
+    parser = argparse.ArgumentParser(description='Command line DTW utility.',
+                                     epilog="\nThe Python and R interfaces provide the full functionality, including plots.\n"+\
+                                     "See https://dynamictimewarping.github.io/\n\n")
+    parser.add_argument("query",  help="Query timeseries (tsv)")
+    parser.add_argument("reference",  help="Reference timeseries (tsv)")
     parser.add_argument("--step_pattern", default="symmetric2", help="Step pattern, aka recursion rule. E.g. symmetric2, asymmetric, ...")
 
     if len(sys.argv)==1:
         parser.print_help(sys.stderr)
-        sys.stderr.write("\nThe Python and R interface provide the full functionality, including plots.\n"+\
-                         "See https://dynamictimewarping.github.io/\n\n")
         sys.exit(1)
         
     opts = parser.parse_args()
