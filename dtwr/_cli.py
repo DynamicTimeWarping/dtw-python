@@ -10,9 +10,6 @@ import argparse
 def main2(query, reference, step_pattern):
     """Console script for dtwr."""
 
-    out = "The Python and R interface provide the full functionality, including plots.\n"+\
-          "See http://dtw.r-forge.r-project.org/\n\n"
-
     q = numpy.genfromtxt(query)
     r = numpy.genfromtxt(reference)
     al = dtwr.dtw(q, r, step_pattern=step_pattern)
@@ -31,12 +28,19 @@ def main2(query, reference, step_pattern):
 
 def main():
     parser = argparse.ArgumentParser(description='Command line DTW utility.')
-    parser.add_argument("--query", default="query.csv", help="Query timeseries (tsv)")
-    parser.add_argument("--reference", default="reference.csv", help="Reference timeseries (tsv)")
+    parser.add_argument("--query",  help="Query timeseries (tsv)")
+    parser.add_argument("--reference",  help="Reference timeseries (tsv)")
     parser.add_argument("--step_pattern", default="symmetric2", help="Step pattern, aka recursion rule. E.g. symmetric2, asymmetric, ...")
-    opts = parser.parse_args(sys.argv[1:])
-    
+
+    if len(sys.argv)==1:
+        parser.print_help(sys.stderr)
+        sys.stderr.write("\nThe Python and R interface provide the full functionality, including plots.\n"+\
+                         "See https://dynamictimewarping.github.io/\n\n")
+        sys.exit(1)
+        
+    opts = parser.parse_args()
     out=main2(opts.query, opts.reference, opts.step_pattern)
+    
     print(out)
     
 

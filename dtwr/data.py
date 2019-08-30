@@ -63,6 +63,19 @@ References
    Standard (ANSI/AAMI EC13:2002). Arlington, VA: Association for the
    Advancement of Medical Instrumentation, 2002.
 
+Examples
+--------
+>>> from dtwr import *
+>>> (aami3a, aami3b) = aami_data()
+>>> aami3a
+array([ 0.185,  0.185,  0.169, ...,  0.208,  0.208,  0.208])
+>>> aami3b
+array([ 0.192,  0.192,  0.192, ...,  0.192,  0.2  ,  0.2  ])
+
+Compute timestamps
+
+>>> aami3a_time_ms = numpy.arange(len(aami3a))/720.*1000.
+>>> aami3b_time_ms = numpy.arange(len(aami3b))/720.*1000.
 """
     # ENDIMPORT
 
