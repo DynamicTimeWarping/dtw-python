@@ -9,7 +9,7 @@ main entry point.
 
 __author__ = """Toni Giorgino"""
 __email__ = 'toni.giorgino@gmail.com'
-__version__ = '0.4.0'
+__version__ = '0.5.0'
 
 
 from .dtw import *
