@@ -57,8 +57,7 @@ ylab :
 type : 
     general style for the plot, see below
 plot_type : 
-    type of line to be drawn, used as the `type` argument
-in the underlying `plot` call
+    type of line to be drawn, used as the `type` argument in the underlying `plot` call
 ... : 
     additional arguments, passed to plotting functions
 
@@ -137,8 +136,7 @@ match_col,match_lty :
 match_indices : 
     indices for which to draw a visual guide
 ts_type,pch : 
-    graphical parameters for timeseries plotting, passed to
-`matplot`
+    graphical parameters for timeseries plotting, passed to `matplot`
 ... : 
     additional arguments, passed to `matplot`
 

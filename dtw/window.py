@@ -72,8 +72,7 @@ query_size :
 reference_size : 
     size of the reference time series -- automatically set
 window_size : 
-    window size, used by some windowing functions -- must be
-set
+    window size, used by some windowing functions -- must be set
 fun : 
     a windowing function
 ... : 

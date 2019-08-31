@@ -46,8 +46,7 @@ Parameters
 d : 
     `dtw` object specifying the warping curve to apply
 index_reference : 
-    `TRUE` to warp a reference, `FALSE` to warp
-a query
+    `True` to warp a reference, `False` to warp a query
 
 Returns
 -------

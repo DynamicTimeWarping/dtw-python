@@ -115,8 +115,7 @@ ylab :
 type : 
     general style for the plot, see below
 plot_type : 
-    type of line to be drawn, used as the `type` argument
-in the underlying `plot` call
+    type of line to be drawn, used as the `type` argument in the underlying `plot` call
 ... : 
     additional arguments, passed to plotting functions
 

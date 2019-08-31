@@ -40,8 +40,10 @@ def getParameters(k):
     for i in range(1,len(k)+1):
         if k.rx(i).names[0] == "param":
             pn = dot_underscore(k.rx(i)[0][0][0])
+            pd = dot_underscore(k.rx(i)[0][1][0])
+            pd = pd.replace("\n"," ")
             o.append(pn + " : ")
-            o.append( "    " + k.rx(i)[0][1][0] )
+            o.append( "    " + pd )
     if len(o) > 0:
         out =  "Parameters\n"
         out += "----------\n"
