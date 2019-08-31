@@ -56,6 +56,6 @@ setup(
     cmdclass={'build_ext': Cython.Build.build_ext},
     test_suite='tests',
     url='https://DynamicTimeWarping.github.io',
-    version='0.5.2',
+    version='1.0.0',
     zip_safe=False,
 )
