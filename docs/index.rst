@@ -36,8 +36,9 @@ matching, open-end variants for real-time use, interplay between
 recursion types and length normalization, history, etc.
 
 **Note**: **R** is the preferred environment for the DTW
-project. Python's docstrings and the documentation below are generated
-automatically.
+project. Python's docstrings and the API below are generated
+automatically for the sake of consistency and maintainability, and may
+not be as pretty.
 
 
 Citation

@@ -121,7 +121,7 @@ source_suffix = ['.rst', '.md']
 # source_suffix = '.rst'
 
 # The master toctree document.
-master_doc = 'api'
+master_doc = 'index'
 
 # General information about the project.
 project = mytitle
