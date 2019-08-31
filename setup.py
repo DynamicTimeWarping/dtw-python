@@ -14,9 +14,6 @@ import numpy
 with open('README.rst') as readme_file:
     readme = readme_file.read()
 
-with open('HISTORY.rst') as history_file:
-    history = history_file.read()
-
 
 ext = [Extension('dtw._dtw_utils',
                  sources=['dtw/dtw_computeCM.c', 'dtw/_dtw_utils.pyx'],
@@ -38,7 +35,7 @@ setup(
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
-    description="A comprehensive implementation of dynamic time warping (DTW) algorithms in R. DTW computes the optimal (least cumulative distance) alignment between points of two time series. Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions, normalizations, minimum variance matching, and so on. Provides cumulative distances, alignments, specialized plot styles, etc.",
+    description="A comprehensive implementation of dynamic time warping (DTW) algorithms. DTW computes the optimal (least cumulative distance) alignment between points of two time series. Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions, normalizations, minimum variance matching, and so on. Provides cumulative distances, alignments, specialized plot styles, etc.",
     entry_points={
         'console_scripts': [
             'dtw=dtw._cli:main',
@@ -48,7 +45,7 @@ setup(
 #    setup_requires=['cython', 'numpy'],
 #    tests_require=[],
     license="GNU General Public License v3",
-    long_description=readme + '\n\n' + history,
+    long_description=readme,
     include_package_data=True,
     keywords='dtw',
     name='dtw-python',

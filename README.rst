@@ -1,42 +1,8 @@
-====================================================================
-The Comprehensive Dynamic Time Warp package (Python bindings)
-====================================================================
+Welcome to the dtw-python package
+=================================
 
-
-.. image:: https://img.shields.io/pypi/v/dtw.svg
-        :target: https://pypi.python.org/pypi/dtw
-
-.. image:: https://img.shields.io/travis/tonigi/dtw.svg
-        :target: https://travis-ci.org/tonigi/dtw
-
-.. image:: https://readthedocs.org/projects/dtw/badge/?version=latest
-        :target: https://dtw.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
-
-Comprehensive implementation of Dynamic Time Warping algorithms.
-Supports arbitrary local (eg symmetric, asymmetric, slope-limited) and
-global (windowing) constraints, fast native code, several plot styles,
-and more.
-
-
-Welcome
-~~~~~~~
-
-This package provides
-the most complete, freely-available (GPL) implementation of Dynamic Time
-Warping-type (DTW) algorithms up to date. It is a faithful Python equivalent
-of `R's DTW package <http://dtw.r-forge.r-project.org/>`__.
-
-
-The package is described in a `companion
-paper <http://www.jstatsoft.org/v31/i07/>`__, including detailed
-instructions and extensive background on things like multivariate
-matching, open-end variants for real-time use, interplay between
-recursion types and length normalization, history, etc.
-
-Description
-~~~~~~~~~~~
+Comprehensive implementation of `Dynamic Time Warping algorithms
+<https://dynamictimewarping.github.io>`__.
 
 DTW is a family of algorithms which compute the local stretch or
 compression to apply to the time axes of two timeseries in order to
@@ -46,8 +12,51 @@ mapping itself (warping function). DTW is widely used e.g. for
 classification and clustering tasks in econometrics, chemometrics and
 general timeseries mining.
 
-The R implementation in `dtw <http://www.jstatsoft.org/v31/i07/>`__
-provides:
+This package provides the most complete, freely-available (GPL)
+implementation of Dynamic Time Warping-type (DTW) algorithms up to
+date. It is a faithful Python equivalent of `R's DTW package on CRAN
+<https://cran.r-project.org/package=dtw>`__.  Supports arbitrary local (e.g.
+symmetric, asymmetric, slope-limited) and global (windowing)
+constraints, fast native code, several plot styles, and more.
+
+
+
+Documentation
+~~~~~~~~~~~~~
+
+Please refer to the main `DTW project homepage
+<https://dynamictimewarping.github.io>`__ for the full documentation
+and background.
+
+The best place to learn how to use the package (and a hopefully a
+decent deal of background on DTW) is the companion paper `Computing
+and Visualizing Dynamic Time Warping Alignments in R: The dtw Package
+<http://www.jstatsoft.org/v31/i07/>`__, which the Journal of
+Statistical Software makes available for free.  It includes detailed
+instructions and extensive background on things like multivariate
+matching, open-end variants for real-time use, interplay between
+recursion types and length normalization, history, etc.
+
+To have a look at how the *dtw* package is used in domains ranging from
+bioinformatics to chemistry to data mining, have a look at the list of
+`citing
+papers <http://scholar.google.it/scholar?oi=bibs&hl=it&cites=5151555337428350289>`__.
+
+Links to prebuilt documentation are available
+`for R <http://www.rdocumentation.org/packages/dtw>`__
+and
+`Python <https://dynamictimewarping.github.io/py-api/html/>`__.
+
+**Note**: **R** is the preferred environment for the DTW
+project. Python's docstrings and the API below are generated
+automatically for the sake of consistency and maintainability, and may
+not be as pretty.
+
+
+Features
+~~~~~~~~
+
+The implementation provides:
 
 -  arbitrary windowing functions (global constraints), eg. the
    `Sakoe-Chiba
@@ -82,46 +91,39 @@ In addition to computing alignments, the package provides:
    classic styles (see plot gallery);
 -  graphical representation of step patterns;
 -  functions for applying a warping function, either direct or inverse;
--  both fast native (C) and interpreted (R) cores.
+-  a fast native (C) core.
 
-Documentation
-~~~~~~~~~~~~~
 
-The best place to learn how to use the package (and a hopefully a decent
-deal of background on DTW) is the companion paper `Computing and
-Visualizing Dynamic Time Warping Alignments in R: The dtw
-Package <http://www.jstatsoft.org/v31/i07/>`__, which the Journal of
-Statistical Software makes available for free.
-
-To have a look at how the *dtw* package is used in domains ranging from
-bioinformatics to chemistry to data mining, have a look at the list of
-`citing
-papers <http://scholar.google.it/scholar?oi=bibs&hl=it&cites=5151555337428350289>`__.
-
-A link to prebuilt documentation is
-`here <http://www.rdocumentation.org/packages/dtw>`__.
-
+   
 Citation
 ~~~~~~~~
 
-If you use *dtw*, do cite it in any publication reporting results
-obtained with this software. Please follow the directions given in
-``citation("dtw")``, i.e. cite:
+When using in academic works please cite:
 
-   Toni Giorgino (2009). *Computing and Visualizing Dynamic Time Warping
-   Alignments in R: The dtw Package.* Journal of Statistical Software,
-   31(7), 1-24,
-   `doi:10.18637/jss.v031.i07 <http://dx.doi.org/10.18637/jss.v031.i07>`__.
+* T. Giorgino. Computing and Visualizing Dynamic Time Warping Alignments in R: The dtw Package. J. Stat. Soft., 31 (2009) `doi:10.18637/jss.v031.i07 <https://www.jstatsoft.org/article/view/v031i07>`__.
 
-When using partial matching (unconstrained endpoints via the
-``open.begin``/``open.end`` options) and/or normalization strategies,
-please also cite:
+When using partial matching (unconstrained endpoints via the open.begin/open.end options) and/or normalization strategies, please also cite:
 
-   Paolo Tormene, Toni Giorgino, Silvana Quaglini, Mario Stefanelli
-   (2008). Matching Incomplete Time Series with Dynamic Time Warping: An
-   Algorithm and an Application to Post-Stroke Rehabilitation.
-   Artificial Intelligence in Medicine, 45(1), 11-34.
-   `doi:10.1016/j.artmed.2008.11.007 <http://dx.doi.org/10.1016/j.artmed.2008.11.007>`__
+* P. Tormene, T. Giorgino, S. Quaglini, M. Stefanelli (2008). Matching Incomplete Time Series with Dynamic Time Warping: An Algorithm and an Application to Post-Stroke Rehabilitation. Artificial Intelligence in Medicine, 45(1), 11-34. `doi:10.1016/j.artmed.2008.11.007 <http://dx.doi.org/10.1016/j.artmed.2008.11.007>`__
+
+  
+License
+~~~~~~~
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+
 
 
 Credits
