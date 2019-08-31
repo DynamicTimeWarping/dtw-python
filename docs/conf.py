@@ -40,7 +40,7 @@ html_theme_options = {
     # Note the "1" or "True" value above as the third argument to indicate
     # an arbitrary url.
     'navbar_links': [
-        ("The Comprehensive<br>DTW library homepage", "https://dynamictimewarping.github.io", True),
+        ("&#127968; The DTW project", "https://dynamictimewarping.github.io", True),
     ],
 
     # Render the next and previous page links in navbar. (Default: true)
