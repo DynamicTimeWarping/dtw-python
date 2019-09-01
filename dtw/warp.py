@@ -67,11 +67,15 @@ Default test data
 >>> wq = warp(alignment,index_reference=False)
 >>> wt = warp(alignment,index_reference=True)
 
->>> #TODO plot(reference,main="Warping query");
->>> #TODO lines(query[wq],col="blue");
+>>> import matplotlib.pyplot as plt;		# doctest: +SKIP
+... plt.plot(reference);
+... plt.plot(query[wq]); 
+... plt.gca().set_title("Warping query")
 
->>> #TODO plot(query,type="l",col="blue", main="Warping reference");
->>> #TODO points(reference[wt]);
+>>> import matplotlib.pyplot as plt;		# doctest: +SKIP
+... plt.plot(query);
+... plt.plot(reference[wt]); 
+... plt.gca().set_title("Warping reference")
 
 Asymmetric step makes it "natural" to warp
 the reference, because every query index has

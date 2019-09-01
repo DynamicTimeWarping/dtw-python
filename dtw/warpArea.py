@@ -63,7 +63,8 @@ Examples
 
 >>> ds = dtw( [1,2,3,4], [1,2,3,4,5,6,7,8]);
 
->>> #TODO plot(ds);lines(seq(1,8,len=4),col="red");
+>>> import matplotlib.pyplot as plt;
+... ds.plot(); plt.plot([0,2.3,4.7,7])		# doctest: +SKIP
 
 >>> warpArea(ds)
 8.0

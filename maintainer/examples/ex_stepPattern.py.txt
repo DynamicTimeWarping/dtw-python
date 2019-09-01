@@ -37,7 +37,7 @@ Same example seen in ?dtw , now with asymmetric step pattern
 Do the computation
 
 >>> asy = dtw(query, reference, keep_internals=True,
-    	  	     step_pattern=asymmetric);
+... 	  	     step_pattern=asymmetric);
 
 
 >>> dtwPlot(asy,type="density"			# doctest: +SKIP
