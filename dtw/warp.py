@@ -103,4 +103,4 @@ exactly one image (q->t is a function)
     # Quick fix for bug
     if numpy.isnan(ii[0]):
         ii[numpy.isnan(ii)] = iset[0]
-    return ii
+    return ii.astype(int)

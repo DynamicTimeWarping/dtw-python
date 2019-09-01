@@ -12,13 +12,16 @@ Default test data
 >>> wt = warp(alignment,index_reference=True)
 
 
+>>> import matplotlib.pyplot as plt;		# doctest: +SKIP
+... plt.plot(reference);
+... plt.plot(query[wq]); 
+... plt.gca().set_title("Warping query")
 
->>> #TODO plot(reference,main="Warping query");
->>> #TODO lines(query[wq],col="blue");
+>>> import matplotlib.pyplot as plt;		# doctest: +SKIP
+... plt.plot(query);
+... plt.plot(reference[wt]); 
+... plt.gca().set_title("Warping reference")
 
-
->>> #TODO plot(query,type="l",col="blue", main="Warping reference");
->>> #TODO points(reference[wt]);
 
 
 

@@ -356,13 +356,12 @@ Asymmetric: visiting 1 is required twice
             _error("A 2D local distance matrix was expected")
         lm = numpy.array(x)
     else:
-        x = numpy.atleast_2d(x)
-        y = numpy.atleast_2d(y)
-        if x.shape[0] == 1:
-            x = x.T
-        if y.shape[0] == 1:
-            y = y.T
-        lm = scipy.spatial.distance.cdist(x, y, metric=dist_method)
+        x2, y2 = numpy.atleast_2d(x), numpy.atleast_2d(y)
+        if x2.shape[0] == 1:
+            x2 = x2.T
+        if y2.shape[0] == 1:
+            y2 = y2.T
+        lm = scipy.spatial.distance.cdist(x2, y2, metric=dist_method)
 
     wfun = _canonicalizeWindowFunction(window_type)
 

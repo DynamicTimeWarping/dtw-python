@@ -11,6 +11,7 @@ __author__ = """Toni Giorgino"""
 __email__ = 'toni.giorgino@gmail.com'
 __version__ = '1.0.0'
 
+# There are no comments in this package because it mirrors closely the R sources.
 
 from .dtw import *
 from .stepPattern import *
@@ -21,7 +22,7 @@ from .warp import *
 from .warpArea import *
 from .window import *
 from . import dtw_test_data
-# import dtw.dtw_test_data
+
 
 import __main__ as main
 if not hasattr(main, '__file__'):

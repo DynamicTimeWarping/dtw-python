@@ -159,12 +159,12 @@ When ``offset`` is set values on the left axis only apply to the query.
             raise ValueError("Original timeseries are required")
 
     # ytso = yts + offset
-    ytso = yts
+    offset = -offset
 
-    maxlen = max(len(xts), len(ytso))
+    maxlen = max(len(xts), len(yts))
     times = numpy.arange(maxlen)
-    # xts = numpy.pad(xts,maxlen)
-    # ytso = numpy.pad(ytso.maxlen)
+    xts = numpy.pad(xts,(0,maxlen-len(xts)),"constant",constant_values=numpy.nan)
+    yts = numpy.pad(yts,(0,maxlen-len(yts)),"constant",constant_values=numpy.nan)
 
     fig, ax = plt.subplots()
     if offset != 0:

@@ -20,7 +20,7 @@
 """Warping path area computation"""
 
 import numpy
-import  scipy.interpolate 
+import scipy.interpolate 
 
 
 def warpArea(d):
