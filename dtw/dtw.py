@@ -268,6 +268,8 @@ References
 Examples
 --------
 
+
+
 >>> import numpy as np
 >>> from dtw import *
 
@@ -287,60 +289,54 @@ Find the best match
 Display the mapping, AKA warping function - may be multiple-valued
 Equivalent to: plot(alignment,type="alignment")
 
->>> #TODO plot(alignment.index1,alignment.index2,main="Warping function");
+>>> import matplotlib.pyplot as plt;
+... plt.plot(alignment.index1, alignment.index2)	# doctest: +SKIP
+
 
 Partial alignments are allowed.
 
 >>> alignmentOBE = dtw(query[44:88], reference,
 ...                      keep_internals=True,
 ...                      step_pattern=asymmetric,
-...                      open_end=True,open_begin=True);
+...                      open_end=True,open_begin=True)
 
->>> #TODO plot(alignmentOBE,type="two",off=1);
+>>> alignmentOBE.plot(type="twoway",offset=1)		# doctest: +SKIP
+
 
 Subsetting allows warping and unwarping of
 timeseries according to the warping curve. 
 See first example below.
 
 Most useful: plot the warped query along with reference 
-
->>> #TODO plot(reference)
->>> #TODO lines(query[alignment.index1]~alignment.index2,col="blue")
+>>> plt.plot(reference);
+... plt.plot(alignment.index2,query[alignment.index1])	# doctest: +SKIP
 
 Plot the (unwarped) query and the inverse-warped reference
+>>> plt.plot(query)					# doctest: +SKIP
+... plt.plot(alignment.index1,reference[alignment.index2]) 
 
->>> #TODO plot(query,type="l",col="blue")
->>> #TODO points(reference[alignment.index2]~alignment.index1)
 
-Contour plots of the cumulative cost matrix
-similar to: plot(alignment,type="density") or
-dtwPlotDensity(alignment)
-See more plots in ?plot.dtw 
-keep = True so we can look into the cost matrix
 
->>> alignment = dtw(query,reference,keep_internals=True);
 
->>> #TODO contour(alignment.costMatrix,col=terrain_colors(100),x=1:100,y=1:100, xlab="Query (noisy sine)",ylab="Reference (cosine)");
 
->>> #TODO lines(alignment.index1,alignment.index2,col="red",lwd=2);
+
+
 
 A hand-checkable example
 
->>> ldist = np.ones((6,6))             # Matrix of ones
->>> ldist[1,:] = 0; ldist[:,4] = 0;    # Mark a clear path of zeroes
->>> ldist[1,4] = .01;		       # Forcely cut the corner
+>>> ldist = np.ones((6,6))		      # Matrix of ones
+>>> ldist[1,:] = 0; ldist[:,4] = 0;           # Mark a clear path of zeroes
+>>> ldist[1,4] = .01;		              # Forcely cut the corner
 
->>> ds = dtw(ldist);		       # DTW with user-supplied local
+>>> ds = dtw(ldist);			      # DTW with user-supplied local
 
->>> da = dtw(ldist,step_pattern=asymmetric);	 # Also compute the asymmetric 
+>>> da = dtw(ldist,step_pattern=asymmetric)   # Also compute the asymmetric 
 
 Symmetric: alignment follows the low-distance marked path
-
->>> #TODO plot(ds.index1,ds.index2,pch=3)
+>>> plt.plot(ds.index1,ds.index2)	      # doctest: +SKIP
 
 Asymmetric: visiting 1 is required twice
-
->>> #TODO points(da.index1,da.index2,col="red");  
+>>> plt.plot(da.index1,da.index2,'ro')	      # doctest: +SKIP	
 
 >>> ds.distance
 2.0
