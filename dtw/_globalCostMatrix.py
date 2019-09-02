@@ -30,7 +30,6 @@ def _globalCostMatrix(lm,
         cm = numpy.full_like(lm, numpy.nan, dtype=numpy.double)
         cm[0, 0] = lm[0, 0]
 
-    sm = numpy.full_like(lm, numpy.nan, dtype=numpy.double)
     # All input arguments
     out = _computeCM_wrapper(wm,
                              lm,

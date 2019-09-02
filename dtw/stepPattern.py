@@ -23,7 +23,6 @@ See documentation for the StepPattern class.
 """
 
 import numpy
-import sys
 
 
 class StepPattern:
@@ -325,7 +324,7 @@ Hand-checkable example given in [Myers1980] p 61 - see JSS paper
         """Provide a visual description of a StepPattern object"""
         import matplotlib.pyplot as plt
         x = self.mx
-        pats = 1 + numpy.arange(self.get_n_patterns() + 1)
+        pats = numpy.arange(1, 1 + self.get_n_patterns())
 
         alpha = .5
         fudge = [0, 0]

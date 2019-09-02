@@ -414,7 +414,7 @@ Asymmetric: visiting 1 is required twice
 
     gcm.distance = gcm.costMatrix[-1, gcm.jmin]
 
-    if gcm.distance != gcm.distance:  # nan
+    if numpy.isnan(gcm.distance):
         _error("No warping path found compatible with the local constraints")
 
     if step_pattern.hint != "NA":
