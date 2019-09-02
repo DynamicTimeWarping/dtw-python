@@ -65,17 +65,16 @@ References
 
 Examples
 --------
->>> from dtw import *
+>>> from dtw import *; import numpy as np
 >>> (aami3a, aami3b) = dtw_test_data.aami()
 
 Timestamps (ms) are in the first row, values (mV) in the second.
 
->>> aami3a[1,:]
-array([ 0.185,  0.185,  0.169, ...,  0.208,  0.208,  0.208])
+>>> with np.printoptions(precision=3): print(aami3a[0,:])   # doctest: +NORMALIZE_WHITESPACE
+[0.000e+00 1.389e+00 2.778e+00 ... 5.983e+04 5.983e+04 5.983e+04]
 
->>> aami3a[0,:]
-array([  0.00000000e+00,   1.38888889e+00,   2.77777778e+00, ...,
-         5.98305556e+04,   5.98319444e+04,   5.98333333e+04])
+>>> with np.printoptions(precision=3): print(aami3a[1,:])   # doctest: +NORMALIZE_WHITESPACE
+[0.185 0.185 0.169 ... 0.208 0.208 0.208]
 
 """
     # ENDIMPORT
