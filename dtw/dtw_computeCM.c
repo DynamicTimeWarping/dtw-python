@@ -22,7 +22,12 @@
 // Define R-like functions - a bad idea
      #include <limits.h>
      #define R_NaInt INT_MIN
-     #define R_alloc(n,size) alloca((n)*(size))
+     #if _WIN32
+        #include <malloc.h>
+        #define R_alloc(n,size) _alloca((n)*(size))
+     #else
+        #define R_alloc(n,size) alloca((n)*(size))
+     #endif
      #define error(...) { fprintf (stderr, __VA_ARGS__); exit(-1); }
      #define EXPORT_FLAG
 #else
