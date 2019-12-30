@@ -94,7 +94,7 @@ In addition to computing alignments, the package provides:
 -  a fast native (C) core.
 
 
-   
+
 Citation
 ~~~~~~~~
 
@@ -106,7 +106,15 @@ When using partial matching (unconstrained endpoints via the open.begin/open.end
 
 * P. Tormene, T. Giorgino, S. Quaglini, M. Stefanelli (2008). Matching Incomplete Time Series with Dynamic Time Warping: An Algorithm and an Application to Post-Stroke Rehabilitation. Artificial Intelligence in Medicine, 45(1), 11-34. `doi:10.1016/j.artmed.2008.11.007 <http://dx.doi.org/10.1016/j.artmed.2008.11.007>`__
 
-  
+
+Source code
+~~~~~~~~~~~
+
+Releases (stable versions) are available in the `dtw-python project on 
+PyPi <https://pypi.org/project/dtw-python/>`__. Development
+occurs on GitHub at <https://github.com/DynamicTimeWarping/dtw-python>.
+
+
 License
 ~~~~~~~
 

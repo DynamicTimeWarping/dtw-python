@@ -460,7 +460,7 @@ def _canonicalizeWindowFunction(window_type):
         "sakoechiba": sakoeChibaWindow,
         "itakura": itakuraWindow,
         "slantedband": slantedBandWindow
-    }.get(w, lambda: _error("Window function undefined"))
+    }.get(window_type, lambda: _error("Window function undefined"))
 
 
 def _canonicalizeStepPattern(s):
