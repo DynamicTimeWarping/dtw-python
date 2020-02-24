@@ -410,7 +410,7 @@ Asymmetric: visiting 1 is required twice
     if open_end:
         if norm == "NA":
             _error("Open-end alignments require normalizable step patterns")
-        gcm.jmin = numpy.argmin(lastcol)
+        gcm.jmin = numpy.nanargmin(lastcol)
 
     gcm.distance = gcm.costMatrix[-1, gcm.jmin]
 
