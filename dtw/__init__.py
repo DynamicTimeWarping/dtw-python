@@ -9,7 +9,7 @@ main entry point.
 
 __author__ = """Toni Giorgino"""
 __email__ = 'toni.giorgino@gmail.com'
-__version__ = '1.0.4'
+__version__ = '1.0.5'
 
 # There are no comments in this package because it mirrors closely the R sources.
 
