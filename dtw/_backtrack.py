@@ -37,22 +37,20 @@ def _backtrack(gcm):
 
     # Drop null deltas
     dir = gcm.stepPattern.mx
-    dir = dir[numpy.bitwise_or(dir[:, 1] != 0,
+    tmp = dir[numpy.bitwise_or(dir[:, 1] != 0,
                                dir[:, 2] != 0), :]
 
     # Split by 1st column
     npat = gcm.stepPattern.get_n_patterns()
     stepsCache = dict()
     for q in range(1, npat + 1):
-        tmp = dir[dir[:, 0] == q,]
-        stepsCache[q] = numpy.array(tmp[:, [1, 2]],
-                                    dtype=numpy.int)
-
+        stepsCache[q] = _extractPattern(tmp, q)
+        
     while True:
         if i == 0 and j == 0: break
 
         # Direction taken, 1-based
-        s = gcm.directionMatrix[i, j]
+        s = gcm.directionMatrix[int(i), int(j)]
 
         if s == _INT_MIN: break  # int nan in R
 
@@ -78,3 +76,12 @@ def _backtrack(gcm):
            'stepsTaken': numpy.array(ss)}
 
     return (out)
+
+
+def _extractPattern(sp,sn):
+    sbs = sp[:,0] == sn
+    spl = sp[sbs,1:]
+    nr = len(spl)
+    spl = spl[sorted(range(0,nr),reverse=True),:]
+    return(spl)
+
