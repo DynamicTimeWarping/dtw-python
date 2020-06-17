@@ -47,6 +47,7 @@ def _backtrack(gcm):
         tmp = dir[dir[:, 0] == q,]
         stepsCache[q] = numpy.array(tmp[:, [1, 2]],
                                     dtype=numpy.int)
+        stepsCache[q] = numpy.flip(stepsCache[q],0)
 
     while True:
         if i == 0 and j == 0: break
