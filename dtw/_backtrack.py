@@ -24,16 +24,10 @@ _INT_MIN = numpy.iinfo(numpy.int32).min
 
 # This is O(n). Let's not make it unreadable.
 def _backtrack(gcm):
-    n = gcm.N
-    m = gcm.M
+    n = gcm.costMatrix.shape[0]
+    m = gcm.costMatrix.shape[1]
     i = n - 1
     j = gcm.jmin
-
-    iis = [i]
-    ii = [i]
-    jjs = [j]
-    jj = [j]
-    ss = []
 
     # Drop null deltas
     dir = gcm.stepPattern.mx
@@ -48,6 +42,13 @@ def _backtrack(gcm):
         stepsCache[q] = numpy.array(tmp[:, [1, 2]],
                                     dtype=numpy.int)
         stepsCache[q] = numpy.flip(stepsCache[q],0)
+
+    # Mapping lists
+    iis = [i]
+    ii = [i]
+    jjs = [j]
+    jj = [j]
+    ss = []
 
     while True:
         if i == 0 and j == 0: break
