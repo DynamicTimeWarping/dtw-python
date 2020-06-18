@@ -67,7 +67,6 @@ setup(
     package_data={'dtw': ['data/*.csv']},
     ext_modules=ext,
     # cmdclass={'build_ext': Cython.Build.build_ext},
-    test_suite='tests',
     url='https://DynamicTimeWarping.github.io',
     version='1.1.0',
     zip_safe=False,
