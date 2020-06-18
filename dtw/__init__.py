@@ -13,15 +13,15 @@ __version__ = '1.0.6'
 
 # There are no comments in this package because it mirrors closely the R sources.
 
-from .dtw import *
-from .stepPattern import *
-from .countPaths import *
-from .dtwPlot import *
-from .mvm import *
-from .warp import *
-from .warpArea import *
-from .window import *
-from . import dtw_test_data
+from dtw.dtw import *
+from dtw.stepPattern import *
+from dtw.countPaths import *
+from dtw.dtwPlot import *
+from dtw.mvm import *
+from dtw.warp import *
+from dtw.warpArea import *
+from dtw.window import *
+from dtw import dtw_test_data
 
 
 import __main__ as main
