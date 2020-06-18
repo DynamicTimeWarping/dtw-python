@@ -29,11 +29,9 @@ setup(
         'Topic :: Scientific/Engineering',
         'License :: OSI Approved :: GNU Lesser General Public License v2 or later (LGPLv2+)',
         'Natural Language :: English',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
     description="A comprehensive implementation of dynamic time warping (DTW) algorithms. DTW computes the optimal (least cumulative distance) alignment between points of two time series. Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions, normalizations, minimum variance matching, and so on. Provides cumulative distances, alignments, specialized plot styles, etc.",
     entry_points={
@@ -42,8 +40,9 @@ setup(
         ],
     },
     install_requires=['numpy>=1.12', 'scipy>=1.1'],
-#    setup_requires=['cython', 'numpy'],
-    tests_require=["pytest"],
+    #    setup_requires=['cython', 'numpy'],  # Deprecated for toml
+    tests_require=["pytest"],                 # Obsolete
+    python_requires='>=3.6',
     license="GNU General Public License v3",
     long_description=readme,
     include_package_data=True,
