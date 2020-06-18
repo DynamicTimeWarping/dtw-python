@@ -1,5 +1,8 @@
 name: Build and upload to PyPI
 
+# https://github.com/joerick/cibuildwheel/blob/master/examples/github-deploy.yml
+# https://cibuildwheel.readthedocs.io/en/stable/options/#build-skip
+
 on: [push, pull_request]
 
 env:
@@ -7,11 +10,10 @@ env:
   CIBW_TEST_COMMAND: "pytest {project}/tests"
   CIBW_BUILD: cp36-* cp37-* cp38-*
 
-# https://github.com/joerick/cibuildwheel/blob/master/examples/github-deploy.yml
 
 jobs:
   build_wheels:
-    name: Build wheel on ${{ matrix.os }}
+    name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -34,13 +36,12 @@ jobs:
 #      run: |
 #        choco install vcpython27 -f -y
 
-    - name: Build wheel
+    - name: Build wheels
       run: |
         python -m cibuildwheel --output-dir wheelhouse
 
     - uses: actions/upload-artifact@v2
       with:
-        name: wheels
         path: ./wheelhouse/*.whl
 
 
@@ -66,9 +67,9 @@ jobs:
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
     # upload to PyPI on every tag starting with 'v'
-    # if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags/v')
     # alternatively, to publish when a GitHub Release is created, use the following rule:
-    if: github.event_name == 'release' && github.event.action == 'published'
+    # if: github.event_name == 'release' && github.event.action == 'published'
     steps:
       - uses: actions/download-artifact@v2
         with:
