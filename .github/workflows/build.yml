@@ -7,7 +7,7 @@ on: [push, pull_request]
 
 env:
   CIBW_TEST_REQUIRES: pytest
-  CIBW_TEST_COMMAND: "pytest --import-mode=append --doctest-modules {project}/tests {project}/dtw"
+  CIBW_TEST_COMMAND: "pytest {project}/tests"
   CIBW_BUILD: cp36-* cp37-* cp38-*
 
 
