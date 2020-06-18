@@ -2,6 +2,13 @@ name: Build
 
 on: [push, pull_request]
 
+env:
+  CIBW_TEST_REQUIRES: pytest
+  CIBW_TEST_COMMAND: "pytest {project}/tests"
+  CIBW_SKIP: cp27-*
+
+  
+
 jobs:
   build_wheels:
     name: Build wheel on ${{ matrix.os }}
