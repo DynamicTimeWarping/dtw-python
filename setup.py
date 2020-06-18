@@ -5,6 +5,9 @@
 
 from setuptools import setup, find_packages
 from setuptools.extension import Extension
+from setuptools import dist
+dist.Distribution().fetch_build_eggs(['numpy>=1.14'])
+
 import numpy
 
 try:
@@ -50,7 +53,7 @@ setup(
         ],
     },
     install_requires=['numpy>=1.12', 'scipy>=1.1'],
-    #    setup_requires=['cython', 'numpy'],  # Deprecated for toml
+    # setup_requires=['cython', 'numpy'],  # In principle deprecated for toml, but actually used by sdist
     tests_require=["pytest"],                 # Obsolete
     python_requires='>=3.6',
     license="GNU General Public License v3",
