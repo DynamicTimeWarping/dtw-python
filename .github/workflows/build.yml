@@ -4,9 +4,9 @@ on: [push, pull_request]
 
 env:
   CIBW_TEST_REQUIRES: pytest
-  CIBW_TEST_COMMAND: "pwd && ls -lR && ls -lR {project} && pytest {project}/tests"
+  CIBW_TEST_COMMAND: "cd {project} && pytest {project}/tests"
   CIBW_BUILD: cp36-* cp37-* cp38-*
-#  CIBW_BUILD_VERBOSITY: 2
+
 
 jobs:
   build_wheels:
