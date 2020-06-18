@@ -3,18 +3,22 @@
 
 """Tests for `dtw` package."""
 
+import os.path
 
 import unittest
 
 from dtw import _cli
 
+here = os.path.dirname(os.path.abspath(__file__))
 
 class TestCLI(unittest.TestCase):
     """Tests for `dtw` package."""
 
     def test_command_line_interface(self):
         """Test the CLI."""
-        out = _cli.main2("tests/query.csv","tests/reference.csv","symmetric2")
+        out = _cli.main2(os.path.join(here,"query.csv"),
+                         os.path.join(here,"reference.csv"),
+                         "symmetric2")
         assert '0.1292' in out
 
         
