@@ -16,7 +16,7 @@ with open('README.rst') as readme_file:
 
 
 ext = [Extension('dtw._dtw_utils',
-                 sources=['dtw/dtw_computeCM.c', 'dtw/_dtw_utils.pyx'],
+                 sources=['dtw/_dtw_utils.pyx', 'dtw/dtw_computeCM.c'],
                  include_dirs=[numpy.get_include()])]
 
 
