@@ -22,7 +22,7 @@ except:
 
 
 with open('README.rst') as readme_file:
-    readme = readme_file.read()
+    readme_rst = readme_file.read()
 
 
 ext = [Extension('dtw._dtw_utils',
@@ -57,7 +57,8 @@ setup(
     tests_require=["pytest"],                 # Obsolete
     python_requires='>=3.6',
     license="GNU General Public License v3",
-    long_description=readme,
+    long_description=readme_rst,
+    long_description_content_type="text/x-rst",
     include_package_data=True,
     keywords='dtw',
     name='dtw-python',
