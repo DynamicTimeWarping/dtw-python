@@ -1,6 +1,6 @@
 import numpy
-from .window import noWindow
-from ._dtw_utils import _computeCM_wrapper
+from dtw.window import noWindow
+from dtw._dtw_utils import _computeCM_wrapper
 
 
 def _globalCostMatrix(lm,
