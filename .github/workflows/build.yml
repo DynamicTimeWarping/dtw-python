@@ -6,7 +6,7 @@ env:
   CIBW_TEST_REQUIRES: pytest
   CIBW_TEST_COMMAND: "pytest {project}/tests"
   CIBW_BUILD: cp36-* cp37-* cp38-*
-  
+  CIBW_BUILD_VERBOSITY: 3
 
 jobs:
   build_wheels:
