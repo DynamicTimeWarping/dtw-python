@@ -16,7 +16,7 @@ with open('README.rst') as readme_file:
 
 
 ext = [Extension('dtw._dtw_utils',
-                 sources=['dtw/dtw_computeCM.c', 'dtw/_dtw_utils.pyx'],
+                 sources=['dtw/_dtw_utils.pyx', 'dtw/dtw_computeCM.c'],
                  include_dirs=[numpy.get_include()])]
 
 
@@ -41,9 +41,9 @@ setup(
             'dtw=dtw._cli:main',
         ],
     },
-    install_requires=['numpy>=1.12', 'scipy>=1.1', 'cython>=0.29'],
+    install_requires=['numpy>=1.12', 'scipy>=1.1'],
 #    setup_requires=['cython', 'numpy'],
-#    tests_require=[],
+    tests_require=["pytest"],
     license="GNU General Public License v3",
     long_description=readme,
     include_package_data=True,

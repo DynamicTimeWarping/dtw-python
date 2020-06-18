@@ -17,6 +17,7 @@
 ## along with DTW.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
+# cython: language_level=3
 
 """Utility functions for DTW alignments."""
 

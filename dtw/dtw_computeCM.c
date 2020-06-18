@@ -39,7 +39,7 @@
 
 
 #ifndef NAN
-#error "This code requires native IEEE NAN support. Possible solutions: 1) verify you are using gcc with -std=gnu99; 2) use the fallback interpreted DTW version (should happen automatically); 3) ask the author"
+#error "This code requires native IEEE NAN support. Verify you are using gcc with -std=gnu99 or recent compilers."
 #endif
 
 
