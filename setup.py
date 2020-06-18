@@ -5,10 +5,17 @@
 
 from setuptools import setup, find_packages
 from setuptools.extension import Extension
-from Cython.Build import cythonize
-import Cython
-#from numpy.distutils.misc_util import Configuration
 import numpy
+
+try:
+    from Cython.Build import cythonize
+    import Cython
+    have_cython = True
+    ext = "pyx"
+except:
+    have_cython = False
+    ext = "c"
+    
 
 
 with open('README.rst') as readme_file:
@@ -16,8 +23,11 @@ with open('README.rst') as readme_file:
 
 
 ext = [Extension('dtw._dtw_utils',
-                 sources=['dtw/_dtw_utils.pyx', 'dtw/dtw_computeCM.c'],
+                 sources=['dtw/_dtw_utils.'+ext, 'dtw/dtw_computeCM.c'],
                  include_dirs=[numpy.get_include()])]
+
+if have_cython:
+    ext = cythonize(ext)
 
 
 setup(
@@ -51,8 +61,8 @@ setup(
     #    packages=find_packages(include=['dtw']),
     packages=['dtw'],
     package_data={'dtw': ['data/*.csv']},
-    ext_modules=cythonize(ext),
-    cmdclass={'build_ext': Cython.Build.build_ext},
+    ext_modules=ext,
+    # cmdclass={'build_ext': Cython.Build.build_ext},
     test_suite='tests',
     url='https://DynamicTimeWarping.github.io',
     version='1.0.6',
