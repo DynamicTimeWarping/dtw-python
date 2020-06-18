@@ -7,7 +7,7 @@ on: [push, pull_request]
 
 env:
   CIBW_TEST_REQUIRES: pytest
-  CIBW_TEST_COMMAND: "pytest {project}/tests"
+  CIBW_TEST_COMMAND: "pytest {project}/tests {project}/dtw"
   CIBW_BUILD: cp36-* cp37-* cp38-*
 
 

@@ -3,12 +3,12 @@
 
 """The setup script."""
 
+import numpy
 from setuptools import setup, find_packages
 from setuptools.extension import Extension
 from setuptools import dist
 dist.Distribution().fetch_build_eggs(['numpy>=1.14'])
 
-import numpy
 
 try:
     from Cython.Build import cythonize
@@ -18,7 +18,6 @@ try:
 except:
     have_cython = False
     ext = "c"
-    
 
 
 with open('README.rst') as readme_file:
@@ -60,7 +59,7 @@ setup(
     long_description=readme_rst,
     long_description_content_type="text/x-rst",
     include_package_data=True,
-    keywords='dtw',
+    keywords=['dtw', 'timeseries'],
     name='dtw-python',
     #    packages=find_packages(include=['dtw']),
     packages=['dtw'],
