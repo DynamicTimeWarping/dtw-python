@@ -8,7 +8,7 @@ from setuptools.extension import Extension
 from setuptools import dist
 
 dist.Distribution().fetch_build_eggs(['numpy>=1.14'])
-import numpy
+import numpy                    # autopep8 breaks this!
 
 
 try:
