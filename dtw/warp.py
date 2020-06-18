@@ -23,6 +23,18 @@ import numpy
 import scipy.interpolate 
 
 
+# Ties in x are removed and their y mean is used
+def _solveTies(x,y):
+    n = numpy.bincount(x)
+    s = numpy.bincount(x,y)
+    return numpy.arange(len(n)), s/n
+
+# Should mimic R's stats::approx as closely as possible
+def _interp(x, y):
+    xt, yt = _solveTies(x,y)
+    return scipy.interpolate.interp1d(xt, yt)
+    
+
 def warp(d, index_reference=False):
     # IMPORT_RDOCSTRING warp
     """Apply a warping to a given timeseries
@@ -77,17 +89,16 @@ Default test data
 ... plt.plot(reference[wt]); 
 ... plt.gca().set_title("Warping reference")
 
-Asymmetric step makes it "natural" to warp
-the reference, because every query index has
-exactly one image (q->t is a function)
+Asymmetric step makes it "natural" to warp the reference, because
+every query index has exactly one image (q->t is a function)
 
 >>> alignment = dtw(query,reference,step_pattern=asymmetric)
 >>> wt = warp(alignment,index_reference=True);
 
->>> #TODO plot(query,type="l",col="blue")
->>> #TODO points(reference[wt]);
+>>> plt.plot(query, "b-")               	# doctest: +SKIP
+... plt.plot(reference[wt], "ok", facecolors='none')
 
-"""
+    """
     # ENDIMPORT
     if not index_reference:
         iset = d.index1
@@ -98,10 +109,10 @@ exactly one image (q->t is a function)
 
     jmax = numpy.max(jset)
 
-    # interp1d is buggy. it does not deal with duplicated values of x
-    # leading. it returns different values depending on the dtypes of
-    # arguments.
-    ifun = scipy.interpolate.interp1d(x=jset, y=iset)
+    # Scipy interp1d is buggy. it does not deal with leading
+    # duplicated values of x. It returns different values
+    # depending on the dtypes of arguments.
+    ifun = _interp(x=jset, y=iset)
     ii = ifun(numpy.arange(jmax))
 
     # Quick fix for bug
