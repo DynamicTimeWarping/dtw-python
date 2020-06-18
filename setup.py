@@ -43,7 +43,7 @@ setup(
     },
     install_requires=['numpy>=1.12', 'scipy>=1.1'],
 #    setup_requires=['cython', 'numpy'],
-#    tests_require=[],
+    tests_require=["pytest"],
     license="GNU General Public License v3",
     long_description=readme,
     include_package_data=True,
