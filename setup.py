@@ -3,11 +3,12 @@
 
 """The setup script."""
 
-import numpy
 from setuptools import setup, find_packages
 from setuptools.extension import Extension
 from setuptools import dist
+
 dist.Distribution().fetch_build_eggs(['numpy>=1.14'])
+import numpy
 
 
 try:
