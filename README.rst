@@ -111,6 +111,14 @@ When using partial matching (unconstrained endpoints via the open.begin/open.end
 
 
 
+Source code
+~~~~~~~~~~~
+
+Releases (stable versions) are available in the `dtw-python project on 
+PyPi <https://pypi.org/project/dtw-python/>`__. Development
+occurs on GitHub at <https://github.com/DynamicTimeWarping/dtw-python>.
+
+
 License
 ~~~~~~~
 
