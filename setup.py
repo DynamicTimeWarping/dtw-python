@@ -7,10 +7,12 @@ from setuptools import setup, find_packages
 from setuptools.extension import Extension
 from setuptools import dist
 
+# Numpy is required even to build source ----------
 dist.Distribution().fetch_build_eggs(['numpy>=1.14'])
 import numpy                    # autopep8 breaks this!
 
 
+# Cython is optional ----------
 try:
     from Cython.Build import cythonize
     import Cython
@@ -20,17 +22,17 @@ except:
     have_cython = False
     ext = "c"
 
-
-with open('README.rst') as readme_file:
-    readme_rst = readme_file.read()
-
-
 ext = [Extension('dtw._dtw_utils',
                  sources=['dtw/_dtw_utils.'+ext, 'dtw/dtw_computeCM.c'],
                  include_dirs=[numpy.get_include()])]
 
 if have_cython:
     ext = cythonize(ext)
+
+
+# --------------------    
+with open('README.rst') as readme_file:
+    readme_rst = readme_file.read()
 
 
 setup(
@@ -66,7 +68,7 @@ setup(
     packages=['dtw'],
     package_data={'dtw': ['data/*.csv']},
     ext_modules=ext,
-    # cmdclass={'build_ext': Cython.Build.build_ext},
+    cmdclass={'build_cython': Cython.Build.build_ext},
     url='https://DynamicTimeWarping.github.io',
     version='1.1.4',
     zip_safe=False,
