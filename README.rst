@@ -20,6 +20,14 @@ symmetric, asymmetric, slope-limited) and global (windowing)
 constraints, fast native code, several plot styles, and more.
 
 
+.. image:: https://github.com/DynamicTimeWarping/dtw-python/workflows/Build%20and%20upload%20to%20PyPI/badge.svg
+   :target: https://github.com/DynamicTimeWarping/dtw-python/actions
+.. image:: https://badge.fury.io/py/dtw-python.svg
+   :target: https://badge.fury.io/py/dtw-python
+.. image:: https://codecov.io/gh/DynamicTimeWarping/dtw-python/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/DynamicTimeWarping/dtw-python
+
+
 
 Documentation
 ~~~~~~~~~~~~~
