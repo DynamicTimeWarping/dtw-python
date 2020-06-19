@@ -24,7 +24,7 @@ constraints, fast native code, several plot styles, and more.
 Documentation
 ~~~~~~~~~~~~~
 
-Please refer to the main `DTW project homepage
+Please refer to the main `DTW suite homepage
 <https://dynamictimewarping.github.io>`__ for the full documentation
 and background.
 
@@ -42,15 +42,10 @@ bioinformatics to chemistry to data mining, have a look at the list of
 `citing
 papers <http://scholar.google.it/scholar?oi=bibs&hl=it&cites=5151555337428350289>`__.
 
-Links to prebuilt documentation are available
-`for R <http://www.rdocumentation.org/packages/dtw>`__
-and
-`Python <https://dynamictimewarping.github.io/py-api/html/>`__.
-
-**Note**: **R** is the preferred environment for the DTW
-project. Python's docstrings and the API below are generated
+**Note**: **R** is the prime environment for the DTW
+suite. Python's docstrings and the API below are generated
 automatically for the sake of consistency and maintainability, and may
-not be as pretty.
+not be as pretty. 
 
 
 Features
@@ -81,10 +76,6 @@ The implementation provides:
 -  the Minimum Variance Matching (MVM) algorithm `(Latecki et
    al.) <http://dx.doi.org/10.1016/j.patcog.2007.03.004>`__
 
-Multivariate timeseries can be aligned with arbitrary local distance
-definitions, leveraging the *{proxy}dist* function. DTW itself becomes a
-distance function with the *dist* semantics.
-
 In addition to computing alignments, the package provides:
 
 -  methods for plotting alignments and warping functions in several
@@ -93,6 +84,10 @@ In addition to computing alignments, the package provides:
 -  functions for applying a warping function, either direct or inverse;
 -  a fast native (C) core.
 
+
+Multivariate timeseries can be aligned with arbitrary local distance
+definitions, leveraging the [`proxy::dist`](https://www.rdocumentation.org/packages/proxy/versions/0.4-23/topics/dist) (R) or
+[`scipy.spatial.distance.cdist`](https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html) (Python) functions. 
 
 
 Citation
@@ -106,13 +101,6 @@ When using partial matching (unconstrained endpoints via the open.begin/open.end
 
 * P. Tormene, T. Giorgino, S. Quaglini, M. Stefanelli (2008). Matching Incomplete Time Series with Dynamic Time Warping: An Algorithm and an Application to Post-Stroke Rehabilitation. Artificial Intelligence in Medicine, 45(1), 11-34. `doi:10.1016/j.artmed.2008.11.007 <http://dx.doi.org/10.1016/j.artmed.2008.11.007>`__
 
-
-Source code
-~~~~~~~~~~~
-
-Releases (stable versions) are available in the `dtw-python project on 
-PyPi <https://pypi.org/project/dtw-python/>`__. Development
-occurs on GitHub at <https://github.com/DynamicTimeWarping/dtw-python>.
 
 
 License
