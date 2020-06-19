@@ -49,7 +49,7 @@ setup(
     description="A comprehensive implementation of dynamic time warping (DTW) algorithms. DTW computes the optimal (least cumulative distance) alignment between points of two time series. Common DTW variants covered include local (slope) and global (window) constraints, subsequence matches, arbitrary distance definitions, normalizations, minimum variance matching, and so on. Provides cumulative distances, alignments, specialized plot styles, etc.",
     entry_points={
         'console_scripts': [
-            'dtw=dtw._cli:main',
+            'dtw=dtw.__main__:main',
         ],
     },
     install_requires=['numpy>=1.12', 'scipy>=1.1'],

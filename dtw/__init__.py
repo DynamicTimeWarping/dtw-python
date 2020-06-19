@@ -13,6 +13,7 @@ __version__ = '1.1.3'
 
 # There are no comments in this package because it mirrors closely the R sources.
 
+# List of things to export on "from dtw import *"
 from dtw.dtw import *
 from dtw.stepPattern import *
 from dtw.countPaths import *
@@ -24,6 +25,8 @@ from dtw.window import *
 from dtw import dtw_test_data
 
 
+# Only print in interactive mode
+# https://stackoverflow.com/questions/2356399/tell-if-python-is-in-interactive-mode/2356427#2356427
 import __main__ as main
 if not hasattr(main, '__file__'):
     print("""Importing the dtw module. When using in academic works please cite:
