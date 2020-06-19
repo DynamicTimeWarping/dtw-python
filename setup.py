@@ -13,21 +13,22 @@ import numpy                    # autopep8 breaks this!
 
 
 # Cython is optional ----------
+have_cython = False
 try:
     from Cython.Build import cythonize
     import Cython
-    have_cython = True
-    ext = "pyx"
-except:
-    have_cython = False
-    ext = "c"
 
-ext = [Extension('dtw._dtw_utils',
-                 sources=['dtw/_dtw_utils.'+ext, 'dtw/dtw_computeCM.c'],
+    ext = [Extension('dtw._dtw_utils',
+                 sources=['dtw/_dtw_utils.pyx', 'dtw/dtw_computeCM.c'],
                  include_dirs=[numpy.get_include()])]
-
-if have_cython:
     ext = cythonize(ext)
+    cmdclass={'build_cython': Cython.Build.build_ext}
+    have_cython = True
+except:
+    ext = [Extension('dtw._dtw_utils',
+                 sources=['dtw/_dtw_utils.c', 'dtw/dtw_computeCM.c'],
+                 include_dirs=[numpy.get_include()])]
+    cmdclass = {}
 
 
 # --------------------    
@@ -68,7 +69,7 @@ setup(
     packages=['dtw'],
     package_data={'dtw': ['data/*.csv']},
     ext_modules=ext,
-    cmdclass={'build_cython': Cython.Build.build_ext},
+    cmdclass=cmdclass,
     url='https://DynamicTimeWarping.github.io',
     version='1.1.4',
     zip_safe=False,
