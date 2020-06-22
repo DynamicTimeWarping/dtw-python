@@ -21,7 +21,7 @@
 
 
 import numpy
-from pkg_resources import resource_string
+from pkgutil import get_data
 
 def aami():
     # IMPORT_RDOCSTRING aami
@@ -80,8 +80,8 @@ Timestamps (ms) are in the first row, values (mV) in the second.
     # ENDIMPORT
 
     ts = lambda v: numpy.arange(len(v))/720.*1000.
-    a3a = numpy.fromstring(resource_string(__name__, 'data/aami3a.csv'), sep="\n")
-    a3b = numpy.fromstring(resource_string(__name__, 'data/aami3b.csv'), sep="\n")
+    a3a = numpy.fromstring(get_data(__name__, 'data/aami3a.csv'), sep="\n")
+    a3b = numpy.fromstring(get_data(__name__, 'data/aami3b.csv'), sep="\n")
 
     aami3a = numpy.vstack([ts(a3a),a3a])
     aami3b = numpy.vstack([ts(a3b),a3b])
