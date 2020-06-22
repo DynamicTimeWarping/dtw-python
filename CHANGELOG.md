@@ -2,6 +2,17 @@ Changelog
 =========
 
 
+(unreleased)
+------------
+- Remove runtime dep on setuptools. [Toni]
+- Badges. [Toni]
+- Codecov. [Toni]
+- Codecov. [Toni]
+- Codecov. [Toni]
+- Codecov. [Toni]
+- Changelog. [Toni]
+
+
 v1.1.4 (2020-06-19)
 -------------------
 - Add callable main. cleanups. [Toni]
