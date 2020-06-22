@@ -71,6 +71,6 @@ setup(
     ext_modules=ext,
     cmdclass=cmdclass,
     url='https://DynamicTimeWarping.github.io',
-    version='1.1.4',
+    version='1.1.5',
     zip_safe=False,
 )
