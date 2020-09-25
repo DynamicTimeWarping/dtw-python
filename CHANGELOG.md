@@ -4,6 +4,11 @@ Changelog
 
 (unreleased)
 ------------
+- Merged with R. [Toni]
+
+
+v1.1.5 (2020-06-22)
+-------------------
 - Remove runtime dep on setuptools. [Toni]
 - Badges. [Toni]
 - Codecov. [Toni]

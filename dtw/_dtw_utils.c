@@ -6,7 +6,7 @@
         "depends": [
             "/Users/toni/Apps/anaconda/envs/dtw/lib/python3.7/site-packages/numpy/core/include/numpy/arrayobject.h",
             "/Users/toni/Apps/anaconda/envs/dtw/lib/python3.7/site-packages/numpy/core/include/numpy/ufuncobject.h",
-            "dtw/dtw_computeCM.h"
+            "dtw/dtw_core.h"
         ],
         "include_dirs": [
             "dtw",
@@ -15,7 +15,7 @@
         "name": "dtw._dtw_utils",
         "sources": [
             "dtw/_dtw_utils.pyx",
-            "dtw/dtw_computeCM.c"
+            "dtw/dtw_core.c"
         ]
     },
     "module_name": "dtw._dtw_utils"
@@ -628,7 +628,7 @@ static CYTHON_INLINE float __PYX_NAN() {
 #include "numpy/arrayobject.h"
 #include "numpy/ufuncobject.h"
 #include "pythread.h"
-#include "dtw_computeCM.h"
+#include "dtw_core.h"
 #include <stdlib.h>
 #include "pystate.h"
 #ifdef _OPENMP
