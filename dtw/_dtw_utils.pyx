@@ -43,7 +43,7 @@ __all__ = ["_computeCM_wrapper"]
 
 
 
-cdef extern from "dtw_computeCM.h":
+cdef extern from "dtw_core.h":
   void computeCM(			
 	       const int *s,		
 	       const int *wm,		

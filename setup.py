@@ -19,14 +19,14 @@ try:
     import Cython
 
     ext = [Extension('dtw._dtw_utils',
-                 sources=['dtw/_dtw_utils.pyx', 'dtw/dtw_computeCM.c'],
+                 sources=['dtw/_dtw_utils.pyx', 'dtw/dtw_core.c'],
                  include_dirs=[numpy.get_include()])]
     ext = cythonize(ext)
     cmdclass={'build_cython': Cython.Build.build_ext}
     have_cython = True
 except:
     ext = [Extension('dtw._dtw_utils',
-                 sources=['dtw/_dtw_utils.c', 'dtw/dtw_computeCM.c'],
+                 sources=['dtw/_dtw_utils.c', 'dtw/dtw_core.c'],
                  include_dirs=[numpy.get_include()])]
     cmdclass = {}
 
