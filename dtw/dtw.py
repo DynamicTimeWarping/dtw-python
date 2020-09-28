@@ -308,10 +308,12 @@ timeseries according to the warping curve.
 See first example below.
 
 Most useful: plot the warped query along with reference 
+
 >>> plt.plot(reference);
 ... plt.plot(alignment.index2,query[alignment.index1])	# doctest: +SKIP
 
 Plot the (unwarped) query and the inverse-warped reference
+
 >>> plt.plot(query)					# doctest: +SKIP
 ... plt.plot(alignment.index1,reference[alignment.index2]) 
 
@@ -333,9 +335,11 @@ A hand-checkable example
 >>> da = dtw(ldist,step_pattern=asymmetric)   # Also compute the asymmetric 
 
 Symmetric: alignment follows the low-distance marked path
+
 >>> plt.plot(ds.index1,ds.index2)	      # doctest: +SKIP
 
 Asymmetric: visiting 1 is required twice
+
 >>> plt.plot(da.index1,da.index2,'ro')	      # doctest: +SKIP	
 
 >>> ds.distance
