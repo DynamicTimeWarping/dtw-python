@@ -1,7 +1,6 @@
 sep 2020
 
 The roxygen2 api changed. Also, some examples needed manual tweaking anyway.
-So, abandoning the auto-conversion script.
 
 
 
@@ -11,4 +10,4 @@ The roxypick script
  - writes examples in examples/*.R
  - writes also in examples/*.py.draft after minor conversions
  - puts sections (converted in rst) in-place in the python files, at RIMPORT
- - adds an example section from examples/*.py , if found
+ - adds an example section from examples/*.py.txt , if found

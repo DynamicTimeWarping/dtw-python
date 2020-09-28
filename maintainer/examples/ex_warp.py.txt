@@ -35,11 +35,8 @@ exactly one image (q->t is a function)
 >>> wt = warp(alignment,index_reference=True);
 
 
->>> #TODO plot(query,type="l",col="blue")
->>> #TODO points(reference[wt]);
-
-
-
+>>> plt.plot(query, "b-")               	# doctest: +SKIP
+... plt.plot(reference[wt], "ok", facecolors='none')
 
 
 

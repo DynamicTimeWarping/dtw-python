@@ -29,6 +29,15 @@ def dot_underscore(s):
     s = s.replace("FALSE","False")
     return s
 
+def sanitize_rd_commands(s):
+    """E.g. \doi"""
+    import re
+    s = re.sub('\\\\url{(.+?)}','<\\1>',s)
+    s = re.sub('\\\\doi{(.+?)}','[doi:\\1](https://doi.org/\\1)',s)
+    return s
+
+
+
 def unarrow(s):
     s=s.replace("<-"," = ")
     return s
@@ -37,13 +46,16 @@ def unarrow(s):
 def getParameters(k):
     """Print out parameters list"""
     o=[]
-    for i in range(1,len(k)+1):
-        if k.rx(i).names[0] == "param":
-            pn = dot_underscore(k.rx(i)[0][0][0])
-            pd = dot_underscore(k.rx(i)[0][1][0])
-            pd = pd.replace("\n"," ")
-            o.append(pn + " : ")
-            o.append( "    " + pd )
+
+    if "param" not in k:
+        return ""
+    
+    for p in k['param']:
+        pn = dot_underscore(p.rx2('name')[0])
+        pd = dot_underscore(p.rx2('description')[0])
+        pd = pd.replace("\n"," ")
+        o.append(pn + " : ")
+        o.append( "    " + pd )
     if len(o) > 0:
         out =  "Parameters\n"
         out += "----------\n"
@@ -57,8 +69,9 @@ def getParameters(k):
 def p(k,w,h=None):
     """Get section w of key k"""
     try:
-        txt = k.rx2(w)[0]
+        txt = "\n".join(k[w])
         txt = dot_underscore(txt)
+        txt = sanitize_rd_commands(txt)
         txt_m = pypandoc.convert_text(txt,'rst',format="md")
         out = ""
         if h is not None:
@@ -154,19 +167,30 @@ for rfile in rlist:
     print(f"Parsing {rfile}...")
 
     elts = r2.parse_file(rfile)
-    for k in elts:
+    for i,k in enumerate(elts):
+        tagdict = {}
+        for tag_r in k.rx2("tags"):
+            tag = tag_r.rx2("tag")[0]
+            val = tag_r.rx2("val")
+            if tag not in tagdict:
+                tagdict[tag] = []
+            if tag == "param":
+                tagdict[tag].append(val)
+            else:
+                tagdict[tag].append(val[0])
         try:
-            # ex = k.rx2('export')[0]
             ex = k.rx2('object').rx2('alias')[0]
-            print("found... "+ex)
+            wh = "alias"
         except:
-            
             try:
-                print("Using instead: "+k.rx2('name')[0])
-                ex = k.rx2('name')[0]
+                ex = tagdict['name'][0]
+                wh = "@name"
             except:
-                print("Real missing: "+rfile)
-        roxy[ex] = k
+                print(f"  {i} NOT FOUND")
+                continue
+        
+        print(f"  {i} found {wh}... "+ex)
+        roxy[ex] = tagdict
 
 print("\n\n")
 
@@ -176,7 +200,7 @@ print("\n\n")
 # Write examples
 for k in roxy:
     try:
-        ex = roxy[k].rx2("examples")[0]
+        ex = roxy[k]["examples"][0]
     except:
         continue
     with open(f"maintainer/examples/ex_{k}.R", "w") as f:

@@ -89,8 +89,9 @@ Default test data
 ... plt.plot(reference[wt]); 
 ... plt.gca().set_title("Warping reference")
 
-Asymmetric step makes it "natural" to warp the reference, because
-every query index has exactly one image (q->t is a function)
+Asymmetric step makes it "natural" to warp
+the reference, because every query index has
+exactly one image (q->t is a function)
 
 >>> alignment = dtw(query,reference,step_pattern=asymmetric)
 >>> wt = warp(alignment,index_reference=True);
@@ -98,7 +99,7 @@ every query index has exactly one image (q->t is a function)
 >>> plt.plot(query, "b-")               	# doctest: +SKIP
 ... plt.plot(reference[wt], "ok", facecolors='none')
 
-    """
+"""
     # ENDIMPORT
     if not index_reference:
         iset = d.index1

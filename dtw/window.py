@@ -102,12 +102,12 @@ References
 
 1. Sakoe, H.; Chiba, S., *Dynamic programming algorithm optimization for
    spoken word recognition,* Acoustics, Speech, and Signal Processing,
-   IEEE Transactions on , vol.26, no.1, pp. 43-49, Feb 1978 URL:
-   http://ieeexplore_ieee_org/xpls/abs_all_jsp?arnumber=1163055
+   IEEE Transactions on , vol.26, no.1, pp. 43-49, Feb 1978
+   `doi:10.1109/TASSP.1978.1163055 <https://doi.org/10.1109/TASSP.1978.1163055>`__
 2. Itakura, F., *Minimum prediction residual principle applied to speech
    recognition,* Acoustics, Speech, and Signal Processing, IEEE
-   Transactions on , vol.23, no.1, pp. 67-72, Feb 1975. URL:
-   http://ieeexplore_ieee_org/xpls/abs_all_jsp?arnumber=1162641
+   Transactions on , vol.23, no.1, pp. 67-72, Feb 1975.
+   `doi:10.1109/TASSP.1975.1162641 <https://doi.org/10.1109/TASSP.1975.1162641>`__
 
 Examples
 --------
