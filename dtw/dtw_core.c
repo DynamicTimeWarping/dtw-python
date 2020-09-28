@@ -23,18 +23,19 @@
 #include <math.h>
 
 
+// Define R-like functions - Memory alloc'd by R_alloc is automatically freed
 #ifdef DTW_R
 #include <R.h>
+#define dtw_alloc(n,size) (R_alloc(n,size))
 #else
 // Either standalone or Python
-// Define R-like functions - a bad idea
 #include <limits.h>
 #define R_NaInt INT_MIN
 #if _WIN32
 #include <malloc.h>
-#define R_alloc(n,size) _alloca((n)*(size))
+#define dtw_alloc(n,size) (_alloca((n)*(size)))
 #else
-#define R_alloc(n,size) alloca((n)*(size))
+#define dtw_alloc(n,size) (alloca((n)*(size)))
 #endif
 #define error(...) { fprintf (stderr, __VA_ARGS__); exit(-1); }
 #endif
@@ -116,10 +117,10 @@ void computeCM(			/* IN */
     int *pn,*di,*dj;
     double *sc;
 
-    pn=(int*) R_alloc((size_t)nsteps,sizeof(int)); /* pattern id */
-    di=(int*) R_alloc((size_t)nsteps,sizeof(int)); /* delta i */
-    dj=(int*) R_alloc((size_t)nsteps,sizeof(int)); /* delta j */
-    sc=(double*) R_alloc((size_t)nsteps,sizeof(double)); /* step cost */
+    pn=(int*) dtw_alloc((size_t)nsteps,sizeof(int)); /* pattern id */
+    di=(int*) dtw_alloc((size_t)nsteps,sizeof(int)); /* delta i */
+    dj=(int*) dtw_alloc((size_t)nsteps,sizeof(int)); /* delta j */
+    sc=(double*) dtw_alloc((size_t)nsteps,sizeof(double)); /* step cost */
 
     for(int i=0; i<nsteps; i++) {
         pn[i]=(int)dir[EP(i,0)]-1;	/* Indexing C-way */
@@ -138,7 +139,7 @@ void computeCM(			/* IN */
 
     /* prepare a cost list per pattern */
     double *clist=(double*)
-                  R_alloc((size_t)npats,sizeof(double));
+                  dtw_alloc((size_t)npats,sizeof(double));
 
     /* we do not initialize the seed - the caller is supposed
        to do so
@@ -185,7 +186,6 @@ void computeCM(			/* IN */
             }
         }
     }
-    /* Memory alloc'd by R_alloc is automatically freed */
 }
 
 
@@ -318,7 +318,7 @@ void test_computeCM()
     tsm=malloc(TSS*sizeof(int));
 
 
-    double r=-2;
+//  double r=-2;
 
 //  tm_print(ts,tlm,&r);
 
@@ -336,7 +336,6 @@ void test_computeCM()
 }
 
 
-# include <assert.h>
 
 void test_argmin()
 {
