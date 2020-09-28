@@ -1,3 +1,10 @@
+sep 2020
+
+The roxygen2 api changed. Also, some examples needed manual tweaking anyway.
+So, abandoning the auto-conversion script.
+
+
+
 The roxypick script
 
  - extract roxygen2 strings

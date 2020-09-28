@@ -138,13 +138,13 @@ def getex(n):
 
 
 
-
-
 roxy = {}
 pyex = {}
 
 # ========================================
 # Parse the roxygen headers
+
+# For roxygen 7.1.1 this became elts[0].rx2("tags")[2].rx2("val")
 
 rlist = glob.glob("../dtw/R/*.R")
 
@@ -157,9 +157,10 @@ for rfile in rlist:
     for k in elts:
         try:
             # ex = k.rx2('export')[0]
-            ex = k.slots['object'].rx2('alias')[0]
+            ex = k.rx2('object').rx2('alias')[0]
             print("found... "+ex)
         except:
+            
             try:
                 print("Using instead: "+k.rx2('name')[0])
                 ex = k.rx2('name')[0]
