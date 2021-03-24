@@ -30,6 +30,7 @@ jobs:
         CIBW_TEST_REQUIRES: pytest
         CIBW_TEST_COMMAND: "pytest {project}/tests"
         CIBW_BUILD: cp36-* cp37-* cp38-* cp39-*
+        CIBW_ARCHS_MACOS: "x86_64 universal2 arm64"
 
     - uses: actions/upload-artifact@v2
       with:
