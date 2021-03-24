@@ -98,4 +98,4 @@ bump: changelog
 	git push
 
 changelog:
-	gitchangelog > CHANGELOG.md
+	-gitchangelog > CHANGELOG.md

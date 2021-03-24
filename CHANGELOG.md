@@ -4,6 +4,21 @@ Changelog
 
 (unreleased)
 ------------
+- Add universal binaries. [Toni G]
+- Update cibuildwheel (#10) [Toni G]
+
+  * Update build.yml
+
+  * Update build.yml
+- Roxygen works again, revamped docs. [Toni]
+- New maint code. [Toni]
+- Note on abandoning autogen. [Toni]
+- Merge from R. [Toni]
+
+
+v1.1.6 (2020-09-25)
+-------------------
+- Last before bumpversion. [Toni]
 - Merged with R. [Toni]
 
 
