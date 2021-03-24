@@ -4,6 +4,7 @@ Changelog
 
 (unreleased)
 ------------
+- Last before bumpversion. [Toni]
 - Add universal binaries. [Toni G]
 - Update cibuildwheel (#10) [Toni G]
 
