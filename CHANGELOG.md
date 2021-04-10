@@ -2,8 +2,17 @@ Changelog
 =========
 
 
-(unreleased)
-------------
+v1.1.8 (2021-04-10)
+-------------------
+- Last before bumpversion. [Toni]
+- Update cython. fix np.int warning. [Toni]
+- Update setup.py. [Toni G]
+- Raise numpy requirements. [Toni G]
+
+
+v1.1.7 (2021-03-24)
+-------------------
+- Last before bumpversion. [Toni]
 - Last before bumpversion. [Toni]
 - Add universal binaries. [Toni G]
 - Update cibuildwheel (#10) [Toni G]
