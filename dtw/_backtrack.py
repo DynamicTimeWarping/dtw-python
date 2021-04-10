@@ -40,7 +40,7 @@ def _backtrack(gcm):
     for q in range(1, npat + 1):
         tmp = dir[dir[:, 0] == q,]
         stepsCache[q] = numpy.array(tmp[:, [1, 2]],
-                                    dtype=numpy.int)
+                                    dtype=int)
         stepsCache[q] = numpy.flip(stepsCache[q],0)
 
     # Mapping lists
