@@ -4,6 +4,15 @@ Changelog
 
 (unreleased)
 ------------
+- Maint. [Toni]
+- Maint. [Toni]
+- Maintenance. [Toni]
+- Build maintenance. [Toni]
+
+
+v1.1.9 (2021-04-10)
+-------------------
+- Last before bumpversion. [Toni]
 - Made cython necessary for building. [Toni]
 - Revert misguided Makefile. [Toni]
 
