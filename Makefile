@@ -92,9 +92,11 @@ install: clean ## install the package to the active Python's site-packages
 docstrings:
 	python maintainer/roxypick.py
 
-bump: changelog
+bump:
 	git commit -a -m "last before bumpversion"
 	bumpversion patch
+	-gitchangelog > CHANGELOG.md
+	git commit --amend 
 	git push
 
 changelog:
