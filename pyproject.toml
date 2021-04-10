@@ -1,5 +1,10 @@
 [build-system]
 # Minimum requirements for the build system to execute.
 # PEP 508 specifications.
-requires = ["setuptools", "wheel", "Cython", "numpy>1.19", "Cython>=0.29.21"]
+requires = ["setuptools", 
+    "wheel",
+    "Cython",
+    "oldest-supported-numpy"
+]
+
 build-backend = "setuptools.build_meta"
