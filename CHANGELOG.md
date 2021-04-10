@@ -2,8 +2,15 @@ Changelog
 =========
 
 
+(unreleased)
+------------
+- Made cython necessary for building. [Toni]
+- Revert misguided Makefile. [Toni]
+
+
 v1.1.8 (2021-04-10)
 -------------------
+- Changelog. [Toni]
 - Last before bumpversion. [Toni]
 - Update cython. fix np.int warning. [Toni]
 - Update setup.py. [Toni G]
