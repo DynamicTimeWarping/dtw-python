@@ -8,7 +8,7 @@ from setuptools.extension import Extension
 from setuptools import dist
 
 # Numpy is required even to build source ----------
-dist.Distribution().fetch_build_eggs(['numpy>=1.20'])
+dist.Distribution().fetch_build_eggs(['numpy>=1.19'])
 import numpy                    # autopep8 breaks this!
 
 
@@ -56,7 +56,7 @@ setup(
             'dtw=dtw.__main__:main',
         ],
     },
-    install_requires=['numpy>=1.20', 'scipy>=1.1'],
+    install_requires=['numpy>=1.19', 'scipy>=1.1'],
     # setup_requires=['cython', 'numpy'],  # In principle deprecated for toml, but actually used by sdist
     tests_require=["pytest"],                 # Obsolete
     python_requires='>=3.6',
