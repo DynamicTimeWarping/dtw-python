@@ -5,30 +5,9 @@
 
 from setuptools import setup, find_packages
 from setuptools.extension import Extension
-from setuptools import dist
+from Cython.Build import cythonize
+import numpy
 
-# Numpy is required even to build source ----------
-dist.Distribution().fetch_build_eggs(['numpy>=1.19'])
-import numpy                    # autopep8 breaks this!
-
-
-# Cython is optional ----------
-have_cython = False
-try:
-    from Cython.Build import cythonize
-    import Cython
-
-    ext = [Extension('dtw._dtw_utils',
-                 sources=['dtw/_dtw_utils.pyx', 'dtw/dtw_core.c'],
-                 include_dirs=[numpy.get_include()])]
-    ext = cythonize(ext)
-    cmdclass={'build_cython': Cython.Build.build_ext}
-    have_cython = True
-except:
-    ext = [Extension('dtw._dtw_utils',
-                 sources=['dtw/_dtw_utils.c', 'dtw/dtw_core.c'],
-                 include_dirs=[numpy.get_include()])]
-    cmdclass = {}
 
 
 # --------------------    
@@ -69,8 +48,9 @@ setup(
     #    packages=find_packages(include=['dtw']),
     packages=['dtw'],
     package_data={'dtw': ['data/*.csv']},
-    ext_modules=ext,
-    cmdclass=cmdclass,
+    include_dirs=numpy.get_include(),
+    ext_modules=cythonize([Extension('dtw._dtw_utils',
+                 sources=['dtw/_dtw_utils.pyx', 'dtw/dtw_core.c'])]),
     url='https://DynamicTimeWarping.github.io',
     version='1.1.8',
     zip_safe=False,

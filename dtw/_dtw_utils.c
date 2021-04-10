@@ -4,16 +4,10 @@
 {
     "distutils": {
         "depends": [
-            "/Users/toni/work/dtw/dtw-python/.eggs/numpy-1.20.2-py3.9-macosx-10.9-x86_64.egg/numpy/core/include/numpy/arrayobject.h",
-            "/Users/toni/work/dtw/dtw-python/.eggs/numpy-1.20.2-py3.9-macosx-10.9-x86_64.egg/numpy/core/include/numpy/arrayscalars.h",
-            "/Users/toni/work/dtw/dtw-python/.eggs/numpy-1.20.2-py3.9-macosx-10.9-x86_64.egg/numpy/core/include/numpy/ndarrayobject.h",
-            "/Users/toni/work/dtw/dtw-python/.eggs/numpy-1.20.2-py3.9-macosx-10.9-x86_64.egg/numpy/core/include/numpy/ndarraytypes.h",
-            "/Users/toni/work/dtw/dtw-python/.eggs/numpy-1.20.2-py3.9-macosx-10.9-x86_64.egg/numpy/core/include/numpy/ufuncobject.h",
             "dtw/dtw_core.h"
         ],
         "include_dirs": [
-            "dtw",
-            "/Users/toni/work/dtw/dtw-python/.eggs/numpy-1.20.2-py3.9-macosx-10.9-x86_64.egg/numpy/core/include"
+            "dtw"
         ],
         "name": "dtw._dtw_utils",
         "sources": [
