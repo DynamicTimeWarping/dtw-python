@@ -172,7 +172,10 @@ When ``offset`` is set values on the left axis only apply to the query.
         ax2.tick_params('y', colors='b')
     else:
         ax2 = ax
-
+    
+    ax.set_xlabel(xlab)
+    ax.set_ylabel(ylab)
+    
     ax.plot(times, xts, color='k', **kwargs)
     ax2.plot(times, yts, **kwargs)
 
