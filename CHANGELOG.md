@@ -4,6 +4,12 @@ Changelog
 
 (unreleased)
 ------------
+- Fix license. [Toni]
+
+
+v1.1.11 (2022-01-14)
+--------------------
+- Last before bumpversion. [Toni]
 - Vectorized window functions. [Toni]
 
 
