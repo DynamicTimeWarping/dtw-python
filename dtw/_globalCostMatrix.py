@@ -8,17 +8,19 @@ def _globalCostMatrix(lm,
                       window_function,
                       seed,
                       win_args):
-    ITYPE = numpy.int32
 
-    wm = numpy.full_like(lm, True, dtype=ITYPE)
-    n, m = wm.shape
-    if window_function != noWindow:  # for performance
-        for i in range(n):
-            for j in range(m):
-                wm[i, j] = window_function(i, j,
-                                           query_size=n,
-                                           reference_size=m,
-                                           **win_args)
+    ITYPE = numpy.int32
+    n, m = lm.shape
+
+    if window_function == noWindow:  # for performance
+        wm = numpy.full_like(lm, 1, dtype=ITYPE)
+    else:
+        ix, jx = numpy.indices((n,m))
+        wm = window_function(ix, jx,
+                             query_size=n,
+                             reference_size=m,
+                             **win_args)
+        wm = wm.astype(ITYPE)   # Convert False/True to 0/1
 
     nsteps = numpy.array([step_pattern.get_n_rows()], dtype=ITYPE)
 

@@ -137,8 +137,11 @@ Display some windowing functions
 # ENDIMPORT
 
 
+
+# The functions must be vectorized! The first 2 args are matrices of row and column indices.
+
 def noWindow(iw, jw, query_size, reference_size):
-    return True
+    return (iw | True)
 
 
 def sakoeChibaWindow(iw, jw, query_size, reference_size, window_size):
@@ -149,9 +152,9 @@ def sakoeChibaWindow(iw, jw, query_size, reference_size, window_size):
 def itakuraWindow(iw, jw, query_size, reference_size):
     n = query_size
     m = reference_size
-    ok = (jw < 2 * iw) and \
-         (iw <= 2 * jw) and \
-         (iw >= n - 1 - 2 * (m - jw)) and \
+    ok = (jw < 2 * iw) & \
+         (iw <= 2 * jw) & \
+         (iw >= n - 1 - 2 * (m - jw)) & \
          (jw > m - 1 - 2 * (n - iw))
     return ok
 
