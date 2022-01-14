@@ -4,6 +4,12 @@ Changelog
 
 (unreleased)
 ------------
+- Vectorized window functions. [Toni]
+
+
+v1.1.10 (2021-04-10)
+--------------------
+- Last before bumpversion. [Toni]
 - Maint. [Toni]
 - Maint. [Toni]
 - Maintenance. [Toni]
