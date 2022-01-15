@@ -18,7 +18,7 @@ jobs:
         env:
           CIBW_TEST_REQUIRES: pytest
           CIBW_TEST_COMMAND: "pytest {project}/tests"
-          CIBW_SKIP: pp*
+          CIBW_SKIP: "pp* *musllinux*"
           CIBW_ARCHS: auto64
           # CIBW_ARCHS_MACOS: "x86_64 universal2"
           # CIBW_ARCHS_WINDOWS: auto64
