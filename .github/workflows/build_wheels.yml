@@ -19,8 +19,10 @@ jobs:
           CIBW_TEST_REQUIRES: pytest
           CIBW_TEST_COMMAND: "pytest {project}/tests"
           CIBW_SKIP: pp*
-          CIBW_ARCHS_MACOS: "x86_64 universal2"
-          CIBW_ARCHS_WINDOWS: auto64
+          CIBW_ARCHS: auto64
+          # CIBW_ARCHS_MACOS: "x86_64 universal2"
+          # CIBW_ARCHS_WINDOWS: auto64
+          # CIBW_ARCHS_LINUX: auto64
 
       - uses: actions/upload-artifact@v2
         with:
