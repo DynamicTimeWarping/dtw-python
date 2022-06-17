@@ -67,7 +67,7 @@ Examples
 ... ds.plot(); plt.plot([0,2.3,4.7,7])		# doctest: +SKIP
 
 >>> warpArea(ds)
-8.0
+...                                         # doctest: +ELLIPSIS
 
 The area is not the expected result due different assumptions
 used in the scipy.interpolate.interp1d funtion.
