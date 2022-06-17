@@ -95,6 +95,7 @@ docstrings:
 bump: changelog
 	git commit -a -m "last before bumpversion"
 	bumpversion patch
+	git push --tags
 	git push
 
 changelog:
