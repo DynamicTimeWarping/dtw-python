@@ -66,8 +66,7 @@ Examples
 >>> import matplotlib.pyplot as plt;
 ... ds.plot(); plt.plot([0,2.3,4.7,7])		# doctest: +SKIP
 
->>> "Dubious: "+str(warpArea(ds))
-'Dubious: ...'                                  # doctest: +ELLIPSIS
+>>> warpArea(ds)                                # doctest: +SKIP
 
 The area is not the expected result due different assumptions
 used in the scipy.interpolate.interp1d funtion.
