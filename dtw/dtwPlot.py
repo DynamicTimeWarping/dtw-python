@@ -167,27 +167,19 @@ When ``offset`` is set values on the left axis only apply to the query.
     yts = numpy.pad(yts,(0,maxlen-len(yts)),"constant",constant_values=numpy.nan)
 
     fig, ax = plt.subplots()
-    if offset != 0:
-        ax2 = ax.twinx()
-        ax2.tick_params('y', colors='b')
-    else:
-        ax2 = ax
     
     ax.set_xlabel(xlab)
     ax.set_ylabel(ylab)
     
     ax.plot(times, xts, color='k', **kwargs)
-    ax2.plot(times, yts, **kwargs)
+    ax.plot(times, yts - offset, **kwargs)      # Plot with offset applied
 
-    ql, qh = ax.get_ylim()
-    rl, rh = ax2.get_ylim()
-
-    if offset > 0:
-        ax.set_ylim(ql - offset, qh)
-        ax2.set_ylim(rl, rh + offset)
-    elif offset < 0:
-        ax.set_ylim(ql, qh - offset)
-        ax2.set_ylim(rl + offset, rh)
+    if offset != 0:
+        # Create an offset axis
+        ax2 = ax.twinx()
+        ax2.tick_params('y', colors='b')
+        ql, qh = ax.get_ylim()
+        ax2.set_ylim(ql + offset, qh + offset)
 
     # https://stackoverflow.com/questions/21352580/matplotlib-plotting-numerous-disconnected-line-segments-with-different-colors
     if match_indices is None:
