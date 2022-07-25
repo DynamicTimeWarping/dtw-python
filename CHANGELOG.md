@@ -2,8 +2,22 @@ Changelog
 =========
 
 
-(unreleased)
-------------
+v1.1.15 (2022-07-25)
+--------------------
+- Fix license. [Toni]
+- Fix license files. [Toni]
+- Reference time series is now plotted on the same (#23) [Nicholas
+  Livingstone, Nicholas Livingstone]
+
+  axis as the query. In the event of a non-zero offset, the reference
+  values are adjusted by the offset and an offset twin axis is generated with the
+  same scale of the original axis.
+- Update build_wheels.yml. [Toni G]
+
+
+v1.1.14 (2022-06-17)
+--------------------
+- Last before bumpversion. [Toni]
 - Push tags. [Toni]
 - Disable warparea test. [Toni]
 - Disable warparea test. [Toni]
