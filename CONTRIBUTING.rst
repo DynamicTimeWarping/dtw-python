@@ -4,6 +4,15 @@
 Contributing
 ============
 
+First of all, note that this code aims at feature-parity with R's
+dtw package. This includes documentation. 
+
+The current codes focus on exhaustive implementation of the
+"normal" DTW algorithm. What algorithm is in and out is an
+admittedly opinionated choice. New features will be
+accepted in exceptional cases, as long as R-Python feature-parity 
+is preserved.
+
 Contributions are welcome, and they are greatly appreciated! Every little bit
 helps, and credit will always be given.
 
@@ -113,16 +122,3 @@ To run a subset of tests::
 
 
     $ python -m unittest tests.test_dtw
-
-Deploying
----------
-
-A reminder for the maintainers on how to deploy.
-Make sure all your changes are committed (including an entry in HISTORY.rst).
-Then run::
-
-$ bumpversion patch # possible: major / minor / patch
-$ git push
-$ git push --tags
-
-Travis will then deploy to PyPI if tests pass.

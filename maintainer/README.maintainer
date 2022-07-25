@@ -1,13 +1,28 @@
-sep 2020
 
-The roxygen2 api changed. Also, some examples needed manual tweaking anyway.
+Deploying
+---------
 
+A reminder for the maintainers on how to deploy.
+Make sure all your changes are committed (including an entry in HISTORY.rst).
+Then run::
+
+$ bumpversion patch # possible: major / minor / patch
+$ git push
+$ git push --tags
+
+Travis will then deploy to PyPI if tests pass.
 
 
 The roxypick script
+------------
 
  - extract roxygen2 strings
  - writes examples in examples/*.R
  - writes also in examples/*.py.draft after minor conversions
  - puts sections (converted in rst) in-place in the python files, at RIMPORT
  - adds an example section from examples/*.py.txt , if found
+
+sep 2020
+
+The roxygen2 api changed. Also, some examples needed manual tweaking anyway.
+
