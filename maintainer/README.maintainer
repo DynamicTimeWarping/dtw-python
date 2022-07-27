@@ -1,3 +1,9 @@
+Notes to self
+=============
+
+
+
+
 
 Deploying
 ---------
@@ -11,6 +17,20 @@ $ git push
 $ git push --tags
 
 Travis will then deploy to PyPI if tests pass.
+
+
+Misc stuff
+----------
+
+Uses cibuildwheel on GH actions https://cibuildwheel.readthedocs.io/en/stable/setup/#github-actions
+
+
+
+Poetry
+------
+
+Nice, but cython support is not stable.
+
 
 
 The roxypick script
