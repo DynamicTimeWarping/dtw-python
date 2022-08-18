@@ -82,7 +82,6 @@ def dtwPlotAlignment(d, xlab="Query index", ylab="Reference index", **kwargs):
     ax.set_xlabel(xlab)
     ax.set_ylabel(ylab)
 
-    plt.show()
     return ax
 
 
@@ -198,7 +197,6 @@ When ``offset`` is set values on the left axis only apply to the query.
     lc = mc.LineCollection(col, linewidths=1, linestyles=":", colors=match_col)
     ax.add_collection(lc)
 
-    plt.show()
     return ax
 
 
@@ -314,7 +312,6 @@ title_margin :
     lc = mc.LineCollection(col, linewidths=1, linestyles=":", colors=match_col)
     ax.add_collection(lc)
 
-    plt.show()
     return ax
 
 
@@ -406,5 +403,4 @@ long (>2 steps) horizontal stretches are allowed within the window.
     ax.set_xlabel(xlab)
     ax.set_ylabel(ylab)
 
-    plt.show()
     return ax

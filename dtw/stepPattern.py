@@ -355,7 +355,6 @@ Hand-checkable example given in [Myers1980] p 61 - see JSS paper
         ax.set_ylabel("Reference index")
         ax.set_xticks(numpy.unique(-x[:, 1]))
         ax.set_yticks(numpy.unique(-x[:, 2]))
-        plt.show()
         return ax
 
     def _extractpattern(self, sn):
