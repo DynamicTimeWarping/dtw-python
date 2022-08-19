@@ -21,7 +21,7 @@
 
 import numpy
 
-def dtwPlot(x, type, **kwargs):
+def dtwPlot(x, type="alignment", **kwargs):
     # IMPORT_RDOCSTRING plot.dtw
     """Plotting of dynamic time warp results
 
@@ -72,6 +72,8 @@ plot_type :
         return dtwPlotThreeWay(x, **kwargs)
     elif type == "density":
         return dtwPlotDensity(x, **kwargs)
+    else:
+        raise ValueError("Unknown plot type: " + type)
 
 
 def dtwPlotAlignment(d, xlab="Query index", ylab="Reference index", **kwargs):
