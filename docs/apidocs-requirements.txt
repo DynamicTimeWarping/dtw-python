@@ -1,0 +1,5 @@
+sphinx
+sphinx-automodapi
+sphinx-bootstrap-theme
+numpy
+scipy
