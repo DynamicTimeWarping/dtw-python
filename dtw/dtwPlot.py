@@ -161,18 +161,16 @@ When ``offset`` is set values on the left axis only apply to the query.
     # ytso = yts + offset
     offset = -offset
 
-    maxlen = max(len(xts), len(yts))
-    times = numpy.arange(maxlen)
-    xts = numpy.pad(xts,(0,maxlen-len(xts)),"constant",constant_values=numpy.nan)
-    yts = numpy.pad(yts,(0,maxlen-len(yts)),"constant",constant_values=numpy.nan)
+    xtimes = numpy.arange(len(xts))
+    ytimes = numpy.arange(len(yts))
 
     fig, ax = plt.subplots()
     
     ax.set_xlabel(xlab)
     ax.set_ylabel(ylab)
     
-    ax.plot(times, xts, color='k', **kwargs)
-    ax.plot(times, yts - offset, **kwargs)      # Plot with offset applied
+    ax.plot(xtimes, xts, color='k', **kwargs)
+    ax.plot(ytimes, yts - offset, **kwargs)      # Plot with offset applied
 
     if offset != 0:
         # Create an offset axis
