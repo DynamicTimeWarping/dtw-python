@@ -170,8 +170,8 @@ When ``offset`` is set values on the left axis only apply to the query.
     ax.set_xlabel(xlab)
     ax.set_ylabel(ylab)
     
-    ax.plot(xtimes, xts, color='k', **kwargs)
-    ax.plot(ytimes, yts - offset, **kwargs)      # Plot with offset applied
+    ax.plot(xtimes, numpy.array(xts), color='k', **kwargs)
+    ax.plot(ytimes, numpy.array(yts) - offset, **kwargs)      # Plot with offset applied
 
     if offset != 0:
         # Create an offset axis
