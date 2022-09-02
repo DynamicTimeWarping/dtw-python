@@ -2,6 +2,95 @@ Changelog
 =========
 
 
+(unreleased)
+------------
+- Plot two way now converts xts to numpy. [Toni]
+- Fix https://github.com/DynamicTimeWarping/dtw-python/issues/33. [Toni]
+- Apidocs reqs. [Toni]
+- Different detection whether running interactively. [Toni G]
+- Delete .travis.yml. [Toni G]
+- Bump pypa/cibuildwheel from 2.8.1 to 2.9.0 (#30) [Toni G,
+  dependabot[bot], dependabot[bot]]
+
+  * Bump pypa/cibuildwheel from 2.8.1 to 2.9.0
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.8.1 to 2.9.0.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.8.1...v2.9.0)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+
+
+v1.2.2 (2022-07-27)
+-------------------
+- Bump pypa/gh-action-pypi-publish from 1.5.0 to 1.5.1 (#25)
+  [dependabot[bot]]
+
+  Bumps [pypa/gh-action-pypi-publish](https://github.com/pypa/gh-action-pypi-publish) from 1.5.0 to 1.5.1.
+  - [Release notes](https://github.com/pypa/gh-action-pypi-publish/releases)
+  - [Commits](https://github.com/pypa/gh-action-pypi-publish/compare/v1.5.0...v1.5.1)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/gh-action-pypi-publish
+    dependency-type: direct:production
+    update-type: version-update:semver-patch
+  ...
+- Bump actions/checkout from 2 to 3 (#26) [dependabot[bot]]
+
+  Bumps [actions/checkout](https://github.com/actions/checkout) from 2 to 3.
+  - [Release notes](https://github.com/actions/checkout/releases)
+  - [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)
+  - [Commits](https://github.com/actions/checkout/compare/v2...v3)
+
+  ---
+  updated-dependencies:
+  - dependency-name: actions/checkout
+    dependency-type: direct:production
+    update-type: version-update:semver-major
+  ...
+- Bump actions/setup-python from 2 to 4 (#27) [dependabot[bot]]
+
+  Bumps [actions/setup-python](https://github.com/actions/setup-python) from 2 to 4.
+  - [Release notes](https://github.com/actions/setup-python/releases)
+  - [Commits](https://github.com/actions/setup-python/compare/v2...v4)
+
+  ---
+  updated-dependencies:
+  - dependency-name: actions/setup-python
+    dependency-type: direct:production
+    update-type: version-update:semver-major
+  ...
+- Bump codecov/codecov-action from 2 to 3 (#28) [dependabot[bot]]
+
+  Bumps [codecov/codecov-action](https://github.com/codecov/codecov-action) from 2 to 3.
+  - [Release notes](https://github.com/codecov/codecov-action/releases)
+  - [Changelog](https://github.com/codecov/codecov-action/blob/master/CHANGELOG.md)
+  - [Commits](https://github.com/codecov/codecov-action/compare/v2...v3)
+
+  ---
+  updated-dependencies:
+  - dependency-name: codecov/codecov-action
+    dependency-type: direct:production
+    update-type: version-update:semver-major
+  ...
+- Create dependabot.yml. [Toni G]
+- Update build_wheels.yml. [Toni G]
+- Update build_wheels.yml. [Toni G]
+- Update build_wheels.yml. [Toni G]
+
+
+v1.2.0 (2022-07-25)
+-------------------
+- Changelog. [Toni]
+
+
 v1.1.15 (2022-07-25)
 --------------------
 - Fix license. [Toni]
