@@ -285,12 +285,14 @@ Hand-checkable example given in [Myers1980] p 61 - see JSS paper
 
     def T(self):
         """Transpose a step pattern."""
-        tsp = self
-        tsp.mx = tsp.mx[:, [0, 2, 1, 3]]
-        if tsp.hint == "N":
-            tsp.hint = "M"
-        elif tsp.hint == "M":
-            tsp.hint = "N"
+        tmx = self.mx.copy()
+        tmx = tmx[:, [0, 2, 1, 3]]
+        th = self.hint
+        if th == "N":
+            th = "M"
+        elif th == "M":
+            th = "N"
+        tsp = StepPattern(tmx, th)
         return tsp
 
     def __str__(self):
