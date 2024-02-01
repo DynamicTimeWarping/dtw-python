@@ -170,8 +170,8 @@ When ``offset`` is set values on the left axis only apply to the query.
     ax.set_xlabel(xlab)
     ax.set_ylabel(ylab)
     
-    ax.plot(xtimes, numpy.array(xts), color='k', **kwargs)
-    ax.plot(ytimes, numpy.array(yts) - offset, **kwargs)      # Plot with offset applied
+    ax.plot(d.xidx, numpy.array(xts), color='k', **kwargs)
+    ax.plot(d.yidx, numpy.array(yts) - offset, **kwargs)      # Plot with offset applied
 
     if offset != 0:
         # Create an offset axis
@@ -191,8 +191,8 @@ When ``offset`` is set values on the left axis only apply to the query.
 
     col = []
     for i in idx:
-        col.append([(d.index1[i], xts[d.index1[i]]),
-                    (d.index2[i], -offset + yts[d.index2[i]])])
+        col.append([(d.xidx[d.index1[i]], xts[d.index1[i]]),
+                    (d.yidx[d.index2[i]], -offset + yts[d.index2[i]])])
 
     lc = mc.LineCollection(col, linewidths=1, linestyles=":", colors=match_col)
     ax.add_collection(lc)
@@ -285,14 +285,14 @@ title_margin :
     ax = plt.subplot(gs[1])
     axq = plt.subplot(gs[3])
 
-    axq.plot(nn1, xts)  # query, horizontal, bottom
+    axq.plot(d.xidx, xts)  # query, horizontal, bottom
     axq.set_xlabel(xlab)
 
-    axr.plot(yts, mm1)  # ref, vertical
+    axr.plot(yts, d.yidx)  # ref, vertical
     axr.invert_xaxis()
     axr.set_ylabel(ylab)
 
-    ax.plot(d.index1, d.index2)
+    ax.plot(d.xidx[d.index1], d.yidx[d.index2])
 
     if match_indices is None:
         idx = []

@@ -128,6 +128,7 @@ plot_type :
 
 
 def dtw(x, y=None,
+	xidx=None, yidx=None,
         dist_method="euclidean",
         step_pattern="symmetric2",
         window_type=None,
@@ -199,6 +200,10 @@ x :
     query vector *or* local cost matrix
 y : 
     reference vector, unused if `x` given as cost matrix
+xidx:
+    time-indexed sequence corresponding to the query vector
+yidx:
+    time-indexed sequence corresponding to the reference vector
 dist_method : 
     pointwise (local) distance function to use. 
 step_pattern : 
@@ -388,6 +393,13 @@ Asymmetric: visiting 1 is required twice
                             seed=precm,
                             win_args=window_args)
     gcm = DTW(gcm)  # turn into an object, use dot to access properties
+    
+    if xidx is None or yidx is None:
+        gcm.xidx = numpy.arange(len(x))
+        gcm.yidx = numpy.arange(len(y))
+    else:
+        gcm.xidx = numpy.array(xidx)
+        gcm.yidx = numpy.array(yidx)
 
     gcm.N = n
     gcm.M = m
