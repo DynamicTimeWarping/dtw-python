@@ -114,7 +114,7 @@ exactly one image (q->t is a function)
     # duplicated values of x. It returns different values
     # depending on the dtypes of arguments.
     ifun = _interp(x=jset, y=iset)
-    ii = ifun(numpy.arange(jmax))
+    ii = ifun(numpy.arange(jmax+1))
 
     # Quick fix for bug
     if numpy.isnan(ii[0]):
