@@ -13,7 +13,7 @@ A clear and concise description of what the bug is.
 **To Reproduce**
 Steps to reproduce the behavior:
 
-Please provide a **self-contained** example. A colab may also be ok.
+*Important:* Please provide a self-contained example. A colab may also be ok.
 
 **Version**
 Please state the version of dtw-python (as reported by pip or conda).
