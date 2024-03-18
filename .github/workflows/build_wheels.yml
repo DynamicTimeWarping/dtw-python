@@ -65,4 +65,8 @@ jobs:
         name: artifact
         path: dist
     - uses: pypa/gh-action-pypi-publish@v1.8.14
-  
+
+concurrency: 
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+
