@@ -4,6 +4,465 @@ Changelog
 
 (unreleased)
 ------------
+- Update build_wheels.yml. [Toni G]
+
+
+v1.4.1 (2024-03-18)
+-------------------
+- Update build_wheels.yml. [Toni G]
+- Update build_wheels.yml. [Toni G]
+
+  concurrency
+- Update build_wheels.yml. [Toni G]
+
+  cancel-in-progress: true
+- Update build_wheels.yml. [Toni G]
+
+  fix artifact name?
+- Update build_wheels.yml. [Toni G]
+- Merge pull request #88 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/gh-action-pypi-
+  publish-1.8.14. [Toni G]
+
+  Bump pypa/gh-action-pypi-publish from 1.8.11 to 1.8.14
+- Bump pypa/gh-action-pypi-publish from 1.8.11 to 1.8.14.
+  [dependabot[bot]]
+
+  Bumps [pypa/gh-action-pypi-publish](https://github.com/pypa/gh-action-pypi-publish) from 1.8.11 to 1.8.14.
+  - [Release notes](https://github.com/pypa/gh-action-pypi-publish/releases)
+  - [Commits](https://github.com/pypa/gh-action-pypi-publish/compare/v1.8.11...v1.8.14)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/gh-action-pypi-publish
+    dependency-type: direct:production
+    update-type: version-update:semver-patch
+  ...
+- Merge pull request #89 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.17.0.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.16.5 to 2.17.0
+- Bump pypa/cibuildwheel from 2.16.5 to 2.17.0. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.16.5 to 2.17.0.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.16.5...v2.17.0)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+- Delete .github/ISSUE_TEMPLATE.md. [Toni G]
+- Update issue templates. [Toni G]
+
+
+v1.4.0 (2024-03-18)
+-------------------
+- Fix off-by-one in warp. [Toni]
+- Merge pull request #85 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.16.5.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.16.2 to 2.16.5
+- Bump pypa/cibuildwheel from 2.16.2 to 2.16.5. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.16.2 to 2.16.5.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.16.2...v2.16.5)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-patch
+  ...
+- Squashed commit of the following: [Toni]
+
+  commit 7a3b4fd2689e0652b21d16469ae6406ba66125c3
+- Use trusted PyPI uploads. [Toni G]
+- Update build_wheels.yml. [Toni G]
+
+
+v1.3.1 (2023-12-20)
+-------------------
+- Fix transpose. [Toni]
+- Merge pull request #80 from
+  DynamicTimeWarping/dependabot/github_actions/actions/download-
+  artifact-4. [Toni G]
+
+  Bump actions/download-artifact from 3 to 4
+- Bump actions/download-artifact from 3 to 4. [dependabot[bot]]
+
+  Bumps [actions/download-artifact](https://github.com/actions/download-artifact) from 3 to 4.
+  - [Release notes](https://github.com/actions/download-artifact/releases)
+  - [Commits](https://github.com/actions/download-artifact/compare/v3...v4)
+
+  ---
+  updated-dependencies:
+  - dependency-name: actions/download-artifact
+    dependency-type: direct:production
+    update-type: version-update:semver-major
+  ...
+- Merge pull request #79 from
+  DynamicTimeWarping/dependabot/github_actions/actions/setup-python-5.
+  [Toni G]
+
+  Bump actions/setup-python from 4 to 5
+- Bump actions/setup-python from 4 to 5. [dependabot[bot]]
+
+  Bumps [actions/setup-python](https://github.com/actions/setup-python) from 4 to 5.
+  - [Release notes](https://github.com/actions/setup-python/releases)
+  - [Commits](https://github.com/actions/setup-python/compare/v4...v5)
+
+  ---
+  updated-dependencies:
+  - dependency-name: actions/setup-python
+    dependency-type: direct:production
+    update-type: version-update:semver-major
+  ...
+- Merge pull request #75 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.16.2.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.16.0 to 2.16.2
+- Bump pypa/cibuildwheel from 2.16.0 to 2.16.2. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.16.0 to 2.16.2.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.16.0...v2.16.2)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-patch
+  ...
+- Merge pull request #78 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/gh-action-pypi-
+  publish-1.8.11. [Toni G]
+
+  Bump pypa/gh-action-pypi-publish from 1.8.10 to 1.8.11
+- Bump pypa/gh-action-pypi-publish from 1.8.10 to 1.8.11.
+  [dependabot[bot]]
+
+  Bumps [pypa/gh-action-pypi-publish](https://github.com/pypa/gh-action-pypi-publish) from 1.8.10 to 1.8.11.
+  - [Release notes](https://github.com/pypa/gh-action-pypi-publish/releases)
+  - [Commits](https://github.com/pypa/gh-action-pypi-publish/compare/v1.8.10...v1.8.11)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/gh-action-pypi-publish
+    dependency-type: direct:production
+    update-type: version-update:semver-patch
+  ...
+- Merge pull request #69 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/gh-action-pypi-
+  publish-1.8.10. [Toni G]
+
+  Bump pypa/gh-action-pypi-publish from 1.8.6 to 1.8.10
+- Bump pypa/gh-action-pypi-publish from 1.8.6 to 1.8.10.
+  [dependabot[bot]]
+
+  Bumps [pypa/gh-action-pypi-publish](https://github.com/pypa/gh-action-pypi-publish) from 1.8.6 to 1.8.10.
+  - [Release notes](https://github.com/pypa/gh-action-pypi-publish/releases)
+  - [Commits](https://github.com/pypa/gh-action-pypi-publish/compare/v1.8.6...v1.8.10)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/gh-action-pypi-publish
+    dependency-type: direct:production
+    update-type: version-update:semver-patch
+  ...
+- Merge pull request #70 from
+  DynamicTimeWarping/dependabot/github_actions/actions/checkout-4. [Toni
+  G]
+
+  Bump actions/checkout from 3 to 4
+- Bump actions/checkout from 3 to 4. [dependabot[bot]]
+
+  Bumps [actions/checkout](https://github.com/actions/checkout) from 3 to 4.
+  - [Release notes](https://github.com/actions/checkout/releases)
+  - [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)
+  - [Commits](https://github.com/actions/checkout/compare/v3...v4)
+
+  ---
+  updated-dependencies:
+  - dependency-name: actions/checkout
+    dependency-type: direct:production
+    update-type: version-update:semver-major
+  ...
+- Merge pull request #71 from
+  DynamicTimeWarping/dependabot/github_actions/codecov/codecov-action-4.
+  [Toni G]
+
+  Bump codecov/codecov-action from 3 to 4
+- Bump codecov/codecov-action from 3 to 4. [dependabot[bot]]
+
+  Bumps [codecov/codecov-action](https://github.com/codecov/codecov-action) from 3 to 4.
+  - [Release notes](https://github.com/codecov/codecov-action/releases)
+  - [Changelog](https://github.com/codecov/codecov-action/blob/main/CHANGELOG.md)
+  - [Commits](https://github.com/codecov/codecov-action/compare/v3...v4)
+
+  ---
+  updated-dependencies:
+  - dependency-name: codecov/codecov-action
+    dependency-type: direct:production
+    update-type: version-update:semver-major
+  ...
+- Merge pull request #73 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.16.0.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.13.1 to 2.16.0
+- Bump pypa/cibuildwheel from 2.13.1 to 2.16.0. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.13.1 to 2.16.0.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.13.1...v2.16.0)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+- Merge pull request #61 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.13.1.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.12.3 to 2.13.1
+- Bump pypa/cibuildwheel from 2.12.3 to 2.13.1. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.12.3 to 2.13.1.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.12.3...v2.13.1)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+- Merge pull request #58 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/gh-action-pypi-
+  publish-1.8.6. [Toni G]
+
+  Bump pypa/gh-action-pypi-publish from 1.6.4 to 1.8.6
+- Bump pypa/gh-action-pypi-publish from 1.6.4 to 1.8.6.
+  [dependabot[bot]]
+
+  Bumps [pypa/gh-action-pypi-publish](https://github.com/pypa/gh-action-pypi-publish) from 1.6.4 to 1.8.6.
+  - [Release notes](https://github.com/pypa/gh-action-pypi-publish/releases)
+  - [Commits](https://github.com/pypa/gh-action-pypi-publish/compare/v1.6.4...v1.8.6)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/gh-action-pypi-publish
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+- Merge pull request #57 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.12.3.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.12.0 to 2.12.3
+- Bump pypa/cibuildwheel from 2.12.0 to 2.12.3. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.12.0 to 2.12.3.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.12.0...v2.12.3)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-patch
+  ...
+- Merge pull request #47 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.12.0.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.11.3 to 2.12.0
+- Bump pypa/cibuildwheel from 2.11.3 to 2.12.0. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.11.3 to 2.12.0.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.11.3...v2.12.0)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+- Merge pull request #45 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/gh-action-pypi-
+  publish-1.6.4. [Toni G]
+
+  Bump pypa/gh-action-pypi-publish from 1.6.1 to 1.6.4
+- Bump pypa/gh-action-pypi-publish from 1.6.1 to 1.6.4.
+  [dependabot[bot]]
+
+  Bumps [pypa/gh-action-pypi-publish](https://github.com/pypa/gh-action-pypi-publish) from 1.6.1 to 1.6.4.
+  - [Release notes](https://github.com/pypa/gh-action-pypi-publish/releases)
+  - [Commits](https://github.com/pypa/gh-action-pypi-publish/compare/v1.6.1...v1.6.4)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/gh-action-pypi-publish
+    dependency-type: direct:production
+    update-type: version-update:semver-patch
+  ...
+- Merge pull request #43 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/gh-action-pypi-
+  publish-1.6.1. [Toni G]
+
+  Bump pypa/gh-action-pypi-publish from 1.5.1 to 1.6.1
+- Bump pypa/gh-action-pypi-publish from 1.5.1 to 1.6.1.
+  [dependabot[bot]]
+
+  Bumps [pypa/gh-action-pypi-publish](https://github.com/pypa/gh-action-pypi-publish) from 1.5.1 to 1.6.1.
+  - [Release notes](https://github.com/pypa/gh-action-pypi-publish/releases)
+  - [Commits](https://github.com/pypa/gh-action-pypi-publish/compare/v1.5.1...v1.6.1)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/gh-action-pypi-publish
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+- Merge pull request #44 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.11.3.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.11.2 to 2.11.3
+- Bump pypa/cibuildwheel from 2.11.2 to 2.11.3. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.11.2 to 2.11.3.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.11.2...v2.11.3)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-patch
+  ...
+- Merge pull request #41 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.11.2.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.11.1 to 2.11.2
+- Bump pypa/cibuildwheel from 2.11.1 to 2.11.2. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.11.1 to 2.11.2.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.11.1...v2.11.2)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-patch
+  ...
+- Merge pull request #40 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.11.1.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.10.2 to 2.11.1
+- Bump pypa/cibuildwheel from 2.10.2 to 2.11.1. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.10.2 to 2.11.1.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.10.2...v2.11.1)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+- Update issue templates. [Toni G]
+- Merge pull request #37 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.10.2.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.10.1 to 2.10.2
+- Bump pypa/cibuildwheel from 2.10.1 to 2.10.2. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.10.1 to 2.10.2.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.10.1...v2.10.2)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-patch
+  ...
+- Merge pull request #35 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.10.1.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.10.0 to 2.10.1
+- Bump pypa/cibuildwheel from 2.10.0 to 2.10.1. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.10.0 to 2.10.1.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.10.0...v2.10.1)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-patch
+  ...
+- Merge pull request #34 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.10.0.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.9.0 to 2.10.0
+- Bump pypa/cibuildwheel from 2.9.0 to 2.10.0. [dependabot[bot]]
+
+  Bumps [pypa/cibuildwheel](https://github.com/pypa/cibuildwheel) from 2.9.0 to 2.10.0.
+  - [Release notes](https://github.com/pypa/cibuildwheel/releases)
+  - [Changelog](https://github.com/pypa/cibuildwheel/blob/main/docs/changelog.md)
+  - [Commits](https://github.com/pypa/cibuildwheel/compare/v2.9.0...v2.10.0)
+
+  ---
+  updated-dependencies:
+  - dependency-name: pypa/cibuildwheel
+    dependency-type: direct:production
+    update-type: version-update:semver-minor
+  ...
+
+
+v1.3.0 (2022-09-02)
+-------------------
+- Raise error if unknown plot type. [Toni]
+- Coverage. [Toni]
+- Do not call plt.show() [Toni]
+- Ignore backup files. [Toni]
+
+
+v1.2.3 (2022-09-02)
+-------------------
+- Last before bumpversion. [Toni]
 - Plot two way now converts xts to numpy. [Toni]
 - Fix https://github.com/DynamicTimeWarping/dtw-python/issues/33. [Toni]
 - Apidocs reqs. [Toni]
@@ -267,6 +726,10 @@ v1.0.4 (2019-12-30)
 -------------------
 - Fixes https://github.com/DynamicTimeWarping/dtw-python/issues/1.
   [Toni]
+
+
+v1.0.3 (2019-10-31)
+-------------------
 - Possible fix for windows. [Toni]
 - Conda env. [Toni]
 
@@ -351,6 +814,10 @@ v0.2.0 (2019-08-29)
 - Test cli. [Toni]
 - Cli ok. [Toni]
 - Attempt at reformat. [Toni]
+
+
+v0.1.1 (2019-08-27)
+-------------------
 - Underscore. [Toni]
 - Density. [Toni]
 - W2 works. [Toni]
