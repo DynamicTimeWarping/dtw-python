@@ -58,7 +58,7 @@ Examples
 >>> ds = dtw( numpy.arange(3,10), numpy.arange(1,9),
 ...           keep_internals=True, step_pattern=asymmetric);
 >>> countPaths(ds)
-126.0
+126
 
 """
     # ENDIMPORT
@@ -104,6 +104,7 @@ Examples
         return m
 
     if d.openEnd:
-        return numpy.sum(m[-1,])
+        r = numpy.sum(m[-1,])
     else:
-        return m[-1, -1]
+        r = m[-1, -1]
+    return int(r)

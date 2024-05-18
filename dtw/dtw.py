@@ -342,9 +342,9 @@ Asymmetric: visiting 1 is required twice
 
 >>> plt.plot(da.index1,da.index2,'ro')	      # doctest: +SKIP	
 
->>> ds.distance
+>>> float(ds.distance)
 2.0
->>> da.distance
+>>> float(da.distance)
 2.0
 
 """
