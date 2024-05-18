@@ -55,6 +55,6 @@ setup(
     ext_modules=cythonize([Extension('dtw._dtw_utils',
                  sources=['dtw/_dtw_utils.pyx', 'dtw/dtw_core.c'])]),
     url='https://DynamicTimeWarping.github.io',
-    version='1.4.2',
+    version='1.4.3',
     zip_safe=False,
 )
