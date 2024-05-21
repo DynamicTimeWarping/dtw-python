@@ -6,4 +6,5 @@ API
 ===
 
 .. automodapi:: dtw
-		
+   :no-inheritance-diagram:
+
