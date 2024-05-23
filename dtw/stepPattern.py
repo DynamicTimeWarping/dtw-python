@@ -566,7 +566,7 @@ symmetric1 = StepPattern(_c(
     2, 0, 0, 1,
     3, 1, 0, -1,
     3, 0, 0, 1
-));
+))
 
 ## Normal symmetric
 ## normalization: N+M
@@ -577,7 +577,7 @@ symmetric2 = StepPattern(_c(
     2, 0, 0, 1,
     3, 1, 0, -1,
     3, 0, 0, 1
-), "N+M");
+), "N+M")
 
 ## classic asymmetric pattern: max slope 2, min slope 0
 ## normalization: N
@@ -588,7 +588,7 @@ asymmetric = StepPattern(_c(
     2, 0, 0, 1,
     3, 1, 2, -1,
     3, 0, 0, 1
-), "N");
+), "N")
 
 # % \item{\code{symmetricVelichkoZagoruyko}}{symmetric, reproduced from %
 # [Sakoe1978]. Use distance matrix \code{1-d}}
@@ -601,7 +601,7 @@ _symmetricVelichkoZagoruyko = StepPattern(_c(
     1, 0, 1, -1,
     2, 1, 1, -1,
     2, 0, 0, -1.001,
-    3, 1, 0, -1));
+    3, 1, 0, -1))
 
 # % \item{\code{asymmetricItakura}}{asymmetric, slope contrained 0.5 -- 2
 # from reference [Itakura1975]. This is the recursive definition % that
@@ -622,7 +622,7 @@ _asymmetricItakura = StepPattern(_c(
     4, 2, 2, -1,
     4, 1, 0, 1,
     4, 0, 0, 1
-));
+))
 
 #############################
 ## Slope-limited versions
@@ -636,7 +636,7 @@ _asymmetricItakura = StepPattern(_c(
 
 
 ## Row P=0
-symmetricP0 = symmetric2;
+symmetricP0 = symmetric2
 
 ## normalization: N ?
 asymmetricP0 = StepPattern(_c(
@@ -646,7 +646,7 @@ asymmetricP0 = StepPattern(_c(
     2, 0, 0, 1,
     3, 1, 0, -1,
     3, 0, 0, 1
-), "N");
+), "N")
 
 ## alternative implementation
 _asymmetricP0b = StepPattern(_c(
@@ -655,7 +655,7 @@ _asymmetricP0b = StepPattern(_c(
     2, 0, 0, 1,
     3, 1, 0, -1,
     3, 0, 0, 1
-), "N");
+), "N")
 
 ## Row P=1/2
 symmetricP05 = StepPattern(_c(
@@ -675,7 +675,7 @@ symmetricP05 = StepPattern(_c(
     5, 2, 0, 2,
     5, 1, 0, 1,
     5, 0, 0, 1
-), "N+M");
+), "N+M")
 
 asymmetricP05 = StepPattern(_c(
     1, 1, 3, -1,
@@ -694,7 +694,7 @@ asymmetricP05 = StepPattern(_c(
     5, 2, 0, 1,
     5, 1, 0, 1,
     5, 0, 0, 1
-), "N");
+), "N")
 
 ## Row P=1
 ## Implementation of Sakoe's P=1, Symmetric algorithm
@@ -708,7 +708,7 @@ symmetricP1 = StepPattern(_c(
     3, 2, 1, -1,  # Third branch: g(i-2,j-1)+
     3, 1, 0, 2,  # + 2d(i-1,j)
     3, 0, 0, 1  # +  d(  i,j)
-), "N+M");
+), "N+M")
 
 asymmetricP1 = StepPattern(_c(
     1, 1, 2, -1,
@@ -719,7 +719,7 @@ asymmetricP1 = StepPattern(_c(
     3, 2, 1, -1,
     3, 1, 0, 1,
     3, 0, 0, 1
-), "N");
+), "N")
 
 ## Row P=2
 symmetricP2 = StepPattern(_c(
@@ -733,7 +733,7 @@ symmetricP2 = StepPattern(_c(
     3, 2, 1, 2,
     3, 1, 0, 2,
     3, 0, 0, 1
-), "N+M");
+), "N+M")
 
 asymmetricP2 = StepPattern(_c(
     1, 2, 3, -1,
@@ -746,7 +746,7 @@ asymmetricP2 = StepPattern(_c(
     3, 2, 1, 1,
     3, 1, 0, 1,
     3, 0, 0, 1
-), "N");
+), "N")
 
 ################################
 ## Taken from Table III, page 49.
@@ -791,7 +791,7 @@ typeIa = StepPattern(_c(
     3, 1, 2, -1,
     3, 0, 1, 1,
     3, 0, 0, 0
-));
+))
 
 typeIb = StepPattern(_c(
     1, 2, 1, -1,
@@ -802,7 +802,7 @@ typeIb = StepPattern(_c(
     3, 1, 2, -1,
     3, 0, 1, 1,
     3, 0, 0, 1
-));
+))
 
 typeIc = StepPattern(_c(
     1, 2, 1, -1,
@@ -813,7 +813,7 @@ typeIc = StepPattern(_c(
     3, 1, 2, -1,
     3, 0, 1, 1,
     3, 0, 0, 0
-), "N");
+), "N")
 
 typeId = StepPattern(_c(
     1, 2, 1, -1,
@@ -824,7 +824,7 @@ typeId = StepPattern(_c(
     3, 1, 2, -1,
     3, 0, 1, 2,
     3, 0, 0, 1
-), "N+M");
+), "N+M")
 
 ## ----------
 ## smoothed variants of above
@@ -838,7 +838,7 @@ typeIas = StepPattern(_c(
     3, 1, 2, -1,
     3, 0, 1, .5,
     3, 0, 0, .5
-));
+))
 
 typeIbs = StepPattern(_c(
     1, 2, 1, -1,
@@ -849,7 +849,7 @@ typeIbs = StepPattern(_c(
     3, 1, 2, -1,
     3, 0, 1, 1,
     3, 0, 0, 1
-));
+))
 
 typeIcs = StepPattern(_c(
     1, 2, 1, -1,
@@ -860,7 +860,7 @@ typeIcs = StepPattern(_c(
     3, 1, 2, -1,
     3, 0, 1, .5,
     3, 0, 0, .5
-), "N");
+), "N")
 
 typeIds = StepPattern(_c(
     1, 2, 1, -1,
@@ -871,7 +871,7 @@ typeIds = StepPattern(_c(
     3, 1, 2, -1,
     3, 0, 1, 1.5,
     3, 0, 0, 1.5
-), "N+M");
+), "N+M")
 
 ## ----------
 
@@ -882,7 +882,7 @@ typeIIa = StepPattern(_c(
     2, 0, 0, 1,
     3, 2, 1, -1,
     3, 0, 0, 1
-));
+))
 
 typeIIb = StepPattern(_c(
     1, 1, 1, -1,
@@ -891,7 +891,7 @@ typeIIb = StepPattern(_c(
     2, 0, 0, 2,
     3, 2, 1, -1,
     3, 0, 0, 2
-));
+))
 
 typeIIc = StepPattern(_c(
     1, 1, 1, -1,
@@ -900,7 +900,7 @@ typeIIc = StepPattern(_c(
     2, 0, 0, 1,
     3, 2, 1, -1,
     3, 0, 0, 2
-), "N");
+), "N")
 
 typeIId = StepPattern(_c(
     1, 1, 1, -1,
@@ -909,7 +909,7 @@ typeIId = StepPattern(_c(
     2, 0, 0, 3,
     3, 2, 1, -1,
     3, 0, 0, 3
-), "N+M");
+), "N+M")
 
 ## ----------
 
@@ -926,7 +926,7 @@ typeIIIc = StepPattern(_c(
     4, 2, 2, -1,
     4, 1, 0, 1,
     4, 0, 0, 1
-), "N");
+), "N")
 
 ## ----------
 
@@ -960,7 +960,7 @@ typeIVc = StepPattern(_c(
     9, 2, 0, 1,
     9, 1, 0, 1,
     9, 0, 0, 1
-), "N");
+), "N")
 
 #############################
 ## 
@@ -982,7 +982,7 @@ mori2006 = StepPattern(_c(
     3, 1, 2, -1,
     3, 0, 1, 3,
     3, 0, 0, 3
-), "M");
+), "M")
 
 ## Completely unflexible: fixed slope 1. Only makes sense with
 ## open.begin and open.end

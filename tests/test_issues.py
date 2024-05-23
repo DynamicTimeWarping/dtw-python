@@ -1,9 +1,8 @@
 import unittest
 
 import numpy as np
-from numpy import nan
 from numpy.testing import (assert_approx_equal, assert_equal,
-                           assert_array_equal, assert_raises)
+                           assert_array_equal)
 from dtw import *
 
 

@@ -39,7 +39,7 @@ def _globalCostMatrix(lm,
                              dir,
                              cm)
 
-    out['stepPattern'] = step_pattern;
+    out['stepPattern'] = step_pattern
     return out
 
 

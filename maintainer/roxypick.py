@@ -2,11 +2,9 @@
 
 
 
-import rpy2
 from rpy2.robjects.packages import importr
 
 import glob
-import sys
 import re
 import os
 import pypandoc

@@ -1,10 +1,112 @@
+# https://packaging.python.org/en/latest/guides/writing-pyproject-toml/
+
+
 [build-system]
 # Minimum requirements for the build system to execute.
 # PEP 508 specifications.
 requires = ["setuptools", 
     "wheel",
     "Cython",
-    "oldest-supported-numpy"
+    'numpy>=2.0.0rc1; python_version>="3.9"',
+    'numpy; python_version<"3.9"',
+]
+build-backend = "setuptools.build_meta"
+
+
+# https://numpy.org/devdocs/dev/depending_on_numpy.html#for-downstream-package-authors
+
+[project]
+name = "dtw-python"
+dynamic = ["version"]
+dependencies = [
+  'numpy>=1.23.5; python_version>="3.9"',
+  'numpy; python_version<"3.9"',
+  "scipy"
+]
+requires-python = ">= 3.6"
+authors = [
+    {name = "Toni Giorgino", email = "toni.giorgino@gmail.com"},
+]
+description = "A comprehensive implementation of dynamic time warping (DTW) algorithms."
+readme = "README.rst"
+license = {file = "COPYING"}
+keywords = ["timeseries", "alignment"]
+classifiers = [
+        'Development Status :: 4 - Beta',
+        'Intended Audience :: Science/Research',
+        'Topic :: Scientific/Engineering',
+        'License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)',
+        'Natural Language :: English',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+    ]
+
+
+[project.urls]
+Homepage = "https://dynamictimewarping.github.io/"
+Repository = "https://github.com/DynamicTimeWarping/dtw-python"
+Documentation = "https://dynamictimewarping.github.io/python/"
+
+
+[project.scripts]
+dtw = "dtw.__main__:main"
+
+[project.optional-dependencies]
+test = ["numpy"]
+
+
+
+
+[tool.setuptools.packages.find]
+# https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+namespaces = true
+where = ["."]
+
+[tool.setuptools.package-data]
+"dtw.data" = ["*.csv"]
+
+[tool.distutils.bdist_wheel]
+universal = true
+
+[tool.pytest.ini_options]
+# https://docs.pytest.org/en/7.3.x/reference/customize.html
+addopts = "--import-mode=importlib"
+
+[tool.ruff]
+# https://docs.astral.sh/ruff/configuration/
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+    "docs",
 ]
 
-build-backend = "setuptools.build_meta"

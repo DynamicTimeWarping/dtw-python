@@ -8,7 +8,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-20.04, windows-2019, macos-11]
+        os: [ubuntu-latest, windows-latest, macos-13, macos-14]
 
     steps:
       - uses: actions/checkout@v4
@@ -16,8 +16,7 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.18.1
         env:
-          CIBW_SKIP: "pp* *musllinux*"
-          # CIBW_TEST_SKIP: "cp311*"
+          CIBW_SKIP: "cp36* pp* *musllinux*"
           CIBW_TEST_REQUIRES: pytest
           CIBW_TEST_COMMAND: "pytest {project}/tests"
           CIBW_ARCHS: auto64

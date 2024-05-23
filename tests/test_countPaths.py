@@ -2,7 +2,6 @@
 import unittest
 
 import numpy as np
-from numpy import nan
 from numpy.testing import *
 
 from dtw import *
