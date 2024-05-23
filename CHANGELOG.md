@@ -2,8 +2,34 @@ Changelog
 =========
 
 
-(unreleased)
-------------
+v1.5.0 (2024-05-23)
+-------------------
+- Modernize build and    attempt to numpy 2. [Toni]
+- Merge pull request #93 from
+  DynamicTimeWarping/dependabot/github_actions/pypa/cibuildwheel-2.18.1.
+  [Toni G]
+
+  Bump pypa/cibuildwheel from 2.17.0 to 2.18.1
+- --- updated-dependencies: - dependency-name: pypa/cibuildwheel
+  dependency-type: direct:production   update-type: version-
+  update:semver-minor ... [dependabot[bot]]
+- No inh diag. [Toni]
+
+
+v1.4.4 (2024-05-18)
+-------------------
+- Update cython 3. [Toni]
+
+
+v1.4.3 (2024-05-18)
+-------------------
+- Fix test for numpy2. [Toni]
+- List new Python versions. [Toni]
+
+
+v1.4.2 (2024-03-19)
+-------------------
+- Changelog. [Toni]
 - Update build_wheels.yml. [Toni G]
 
 
