@@ -35,13 +35,9 @@ import warnings
 import numpy as np
 cimport numpy as np
 
-from cpython cimport array
-
-
+# from cpython cimport array
 
 __all__ = ["_computeCM_wrapper"]
-
-
 
 cdef extern from "dtw_core.h":
   void computeCM(			
