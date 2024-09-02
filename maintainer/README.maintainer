@@ -13,6 +13,7 @@ Then run::
 
 $ bumpversion patch # possible: major / minor / patch
 $ git push --follow-tags
+$ v=$(git tag --points-at HEAD) && gh release create $v --title $v
 
 Actions will then deploy to PyPI if tests pass.
 
