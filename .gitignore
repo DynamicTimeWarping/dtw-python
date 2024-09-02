@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+dtw/_dtw_utils.c
+
 # C extensions
 *.so
 
@@ -103,3 +105,4 @@ ENV/
 
 *~
 .DS_Store
+
