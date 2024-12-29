@@ -1,5 +1,5 @@
 //
-// Copyright (c) 2006-2019 of Toni Giorgino
+// Copyright (c) 2006-2022 of Toni Giorgino
 //
 // This file is part of the DTW package.
 //
@@ -17,6 +17,8 @@
 // along with DTW.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+
+// If you copy this algorithm, please cite doi:10.18637/jss.v031.i07
 
 #include <stdlib.h>
 #include <stdio.h>
