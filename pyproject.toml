@@ -7,7 +7,7 @@
 requires = ["setuptools", 
     "wheel",
     "Cython",
-    'numpy>=2.0.0rc1; python_version>="3.9"',
+    'numpy>=2.0; python_version>="3.9"',
     'numpy; python_version<"3.9"',
 ]
 build-backend = "setuptools.build_meta"
@@ -75,7 +75,7 @@ universal = true
 
 [tool.pytest.ini_options]
 # https://docs.pytest.org/en/7.3.x/reference/customize.html
-addopts = "--import-mode=importlib"
+#addopts = "--import-mode=importlib"
 
 [tool.ruff]
 # https://docs.astral.sh/ruff/configuration/
