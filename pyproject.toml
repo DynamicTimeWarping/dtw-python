@@ -110,3 +110,8 @@ exclude = [
     "docs",
 ]
 
+[dependency-groups]
+dev = [
+    "pytest>=7.0.1",
+]
+
