@@ -20,6 +20,6 @@ setup(
         force=True,
     ),
     url="https://DynamicTimeWarping.github.io",
-    version="1.7.1",
+    version="1.7.2",
     zip_safe=False,
 )
