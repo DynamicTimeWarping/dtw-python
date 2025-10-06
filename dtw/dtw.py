@@ -351,17 +351,18 @@ Asymmetric: visiting 1 is required twice
 
 
     if y is None:
-        x = numpy.array(x)
-        if len(x.shape) != 2:
-            _error("A 2D local distance matrix was expected")
         lm = numpy.array(x)
+        if lm.ndim != 2:
+            _error("A 2D local distance matrix was expected")
     else:
-        x2, y2 = numpy.atleast_2d(x), numpy.atleast_2d(y)
-        if x2.shape[0] == 1:
-            x2 = x2.T
-        if y2.shape[0] == 1:
-            y2 = y2.T
-        lm = scipy.spatial.distance.cdist(x2, y2, metric=dist_method)
+        x, y = numpy.asarray(x), numpy.asarray(y)
+        if x.ndim > 2 or y.ndim > 2:
+            _error("Input arrays should be 1 or 2 dimensional")
+        if x.ndim == 1:
+            x = numpy.atleast_2d(x).T
+        if y.ndim == 1:
+            y = numpy.atleast_2d(y).T
+        lm = scipy.spatial.distance.cdist(x, y, metric=dist_method)
 
     wfun = _canonicalizeWindowFunction(window_type)
 
