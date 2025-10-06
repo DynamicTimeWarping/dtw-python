@@ -1,6 +1,10 @@
 import numpy
 from dtw.window import noWindow
-from dtw._dtw_utils import _computeCM_wrapper
+
+try:  # pragma: no cover - exercised in tests via the compiled module
+    from dtw._dtw_utils import _computeCM_wrapper
+except ModuleNotFoundError:  # pragma: no cover - exercised when extension missing
+    from dtw._dtw_utils_py import _computeCM_wrapper
 
 
 def _globalCostMatrix(lm,

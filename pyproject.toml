@@ -6,6 +6,7 @@
 # PEP 508 specifications.
 requires = [
     "meson-python>=0.15",
+    "meson>=1.4.0",
     "Cython",
     'numpy>=2.0.0rc1; python_version>="3.9"',
     'numpy; python_version<"3.9"',

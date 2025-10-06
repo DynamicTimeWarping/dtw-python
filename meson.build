@@ -7,6 +7,7 @@ py.install_sources(
   'dtw/__main__.py',
   'dtw/_backtrack.py',
   'dtw/_globalCostMatrix.py',
+  'dtw/_dtw_utils_py.py',
   'dtw/countPaths.py',
   'dtw/dtw.py',
   'dtw/dtwPlot.py',
