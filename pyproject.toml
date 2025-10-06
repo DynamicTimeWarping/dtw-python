@@ -29,13 +29,12 @@ authors = [
 ]
 description = "A comprehensive implementation of dynamic time warping (DTW) algorithms."
 readme = "README.rst"
-license = {file = "COPYING"}
+license = "GPL-3.0-or-later"
 keywords = ["timeseries", "alignment"]
 classifiers = [
         'Development Status :: 4 - Beta',
         'Intended Audience :: Science/Research',
         'Topic :: Scientific/Engineering',
-        'License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)',
         'Natural Language :: English',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
