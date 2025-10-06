@@ -3,6 +3,7 @@
 ## Setup commands
 - Install deps: `uv sync`
 - Run tests: `uv run -m pytest`
+- Coverage: `uv run -m pytest --cov`
 
 ## Instructions specific for codex
 
