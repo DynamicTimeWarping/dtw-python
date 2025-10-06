@@ -112,5 +112,6 @@ exclude = [
 [dependency-groups]
 dev = [
     "pytest>=7.0.1",
+    "pytest-cov>=7.0.0",
 ]
 
