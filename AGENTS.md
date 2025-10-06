@@ -4,10 +4,9 @@
 - Install deps: `uv sync`
 - Run tests: `uv run -m pytest`
 
-## Codex specific instructions
+## Instructions specific for codex
 
-Set the UV_CACHE_DIR directory to the repository's `.uv-cache` directory to workaround 
-sandboxing issues.
+When running `uv`, set the `UV_CACHE_DIR` environment variable to the repository's `.uv-cache` directory in order to workaround sandboxing issues.
 
 
 
