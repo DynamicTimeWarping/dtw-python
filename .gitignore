@@ -1,4 +1,5 @@
 uv.lock
+.uv-cache/
 .vscode/
 
 
