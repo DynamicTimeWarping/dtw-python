@@ -4,20 +4,20 @@
 [build-system]
 # Minimum requirements for the build system to execute.
 # PEP 508 specifications.
-requires = ["setuptools", 
-    "wheel",
+requires = [
+    "meson-python>=0.15",
     "Cython",
     'numpy>=2.0.0rc1; python_version>="3.9"',
     'numpy; python_version<"3.9"',
 ]
-build-backend = "setuptools.build_meta"
+build-backend = "mesonpy"
 
 
 # https://numpy.org/devdocs/dev/depending_on_numpy.html#for-downstream-package-authors
 
 [project]
 name = "dtw-python"
-dynamic = ["version"]
+version = "1.5.3"
 dependencies = [
   'numpy>=1.23.5; python_version>="3.9"',
   'numpy; python_version<"3.9"',
@@ -113,5 +113,8 @@ exclude = [
 [dependency-groups]
 dev = [
     "pytest>=7.0.1",
+    "build>=1.2.1; python_version>='3.8'",
+    "Cython>=3.0; python_version>='3.8'",
+    "meson>=1.4.0; python_version>='3.8'",
 ]
 
