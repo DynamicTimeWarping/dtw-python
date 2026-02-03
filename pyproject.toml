@@ -55,8 +55,7 @@ Documentation = "https://dynamictimewarping.github.io/python/"
 dtw = "dtw.__main__:main"
 
 [project.optional-dependencies]
-test = ["numpy"]
-
+plots = ["matplotlib"]
 
 
 
@@ -113,5 +112,7 @@ dev = [
     "bump2version>=1.0.1",
     "pytest>=7.0.1",
     "pytest-cov>=7.0.0",
+    "ipython",
+    "matplotlib"
 ]
 

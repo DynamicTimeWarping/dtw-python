@@ -15,7 +15,7 @@ jobs:
       run: |
         pip install pytest
         pip install pytest-cov
-        pip install -e .
+        pip install -e ".[plots]"
         pytest --cov=dtw --cov-report=xml
 
     - name: Upload coverage to Codecov
