@@ -338,7 +338,7 @@ Hand-checkable example given in [Myers1980] p 61 - see JSS paper
         for i in pats:
             ss = x[:, 0] == i
             ax.plot(-x[ss, 1], -x[ss, 2], lw=2, color="tab:blue")
-            ax.plot(-x[ss, 1], -x[ss, 2], 'o', color="black", marker="o", fillstyle="none")
+            ax.plot(-x[ss, 1], -x[ss, 2], 'o', color="black", fillstyle="none")
 
             if numpy.sum(ss) == 1: continue
 
