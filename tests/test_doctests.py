@@ -1,4 +1,3 @@
-
 import unittest
 import doctest
 import glob
@@ -17,7 +16,7 @@ def run_suite():
 class TestDoctests(unittest.TestCase):
     def test_doctests(self):
         r = run_suite()
-        assert len(r.failures)==0
+        assert len(r.failures) == 0
 
 
 if __name__ == "__main__":

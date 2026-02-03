@@ -1,4 +1,3 @@
-
 import unittest
 
 import numpy as np
@@ -6,15 +5,17 @@ from dtw import *
 
 try:
     import matplotlib
+
     matplotlib.use("Agg")
-    matplotlib_available=True
+    matplotlib_available = True
 except:
-    matplotlib_available=False
+    matplotlib_available = False
 
 
 """ 
 From the "quickstart" examples.
 """
+
 
 @unittest.skipUnless(matplotlib_available, "Could not import matplotlib")
 class TestPlot(unittest.TestCase):

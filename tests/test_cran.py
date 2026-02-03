@@ -1,19 +1,18 @@
 import unittest
 
 import numpy as np
-from numpy.testing import (assert_approx_equal, assert_equal,
-                           assert_array_equal)
+from numpy.testing import assert_approx_equal, assert_equal, assert_array_equal
 from dtw import *
 
 
 def i(l):
-    return np.array([int(x) for x in l.split()], dtype=int)-1
+    return np.array([int(x) for x in l.split()], dtype=int) - 1
 
 
 ldist = np.full((6, 6), 1.0)
 ldist[1, :] = 0
 ldist[:, 4] = 0
-ldist[1, 4] = .01
+ldist[1, 4] = 0.01
 
 
 """Same tests as CRAN checks"""
@@ -25,13 +24,20 @@ class TestCRAN(unittest.TestCase):
         assert_equal(ds.distance, 2)
         assert_array_equal(ds.index1, i("1 2 2 2 3 4 5 6 6"))
         assert_array_equal(ds.index2, i("1 2 3 4 5 5 5 5 6"))
-        assert_array_equal(ds.costMatrix, np.array(
-            [[1,   2,   3,   4, 4.00, 5.00],
-             [1,   1,   1,   1, 1.01, 1.01],
-             [2,   2,   2,   2, 1.00, 2.00],
-             [3,   3,   3,   3, 1.00, 2.00],
-             [4,   4,   4,   4, 1.00, 2.00],
-             [5,   5,   5,   5, 1.00, 2.00]], dtype=float))
+        assert_array_equal(
+            ds.costMatrix,
+            np.array(
+                [
+                    [1, 2, 3, 4, 4.00, 5.00],
+                    [1, 1, 1, 1, 1.01, 1.01],
+                    [2, 2, 2, 2, 1.00, 2.00],
+                    [3, 3, 3, 3, 1.00, 2.00],
+                    [4, 4, 4, 4, 1.00, 2.00],
+                    [5, 5, 5, 5, 1.00, 2.00],
+                ],
+                dtype=float,
+            ),
+        )
 
     def test_ldist_asymmetric(self):
         ds = dtw(ldist, keep_internals=True, step_pattern=asymmetric)
@@ -56,11 +62,9 @@ class TestCRAN(unittest.TestCase):
     # Count paths is in another file
 
     def test_open_begin_end(self):
-        query = np.arange(2, 4)+.01
-        ref = np.arange(4)+1
-        obe = dtw(query, ref,
-                  open_begin=True, open_end=True,
-                  step_pattern=asymmetric)
+        query = np.arange(2, 4) + 0.01
+        ref = np.arange(4) + 1
+        obe = dtw(query, ref, open_begin=True, open_end=True, step_pattern=asymmetric)
         assert_approx_equal(obe.distance, 0.02)
         assert_array_equal(obe.index2, i("2 3"))
 
@@ -68,7 +72,7 @@ class TestCRAN(unittest.TestCase):
         from scipy.spatial.distance import cdist
 
         query = np.vstack([np.arange(1, 11), np.ones(10)]).T
-        ref = np.vstack([np.arange(11, 16), 2*np.ones(5)]).T
+        ref = np.vstack([np.arange(11, 16), 2 * np.ones(5)]).T
 
         cxdist = cdist(query, ref, metric="cityblock")
 
