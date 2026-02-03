@@ -159,6 +159,9 @@ When ``offset`` is set values on the left axis only apply to the query.
         except:
             raise ValueError("Original timeseries are required")
 
+    if xts.shape[1] != 1 or yts.shape[1] != 1:
+        raise ValueError("Only single-variate timeseries can be plotted in the two-way style")
+
     # ytso = yts + offset
     offset = -offset
 
@@ -191,8 +194,8 @@ When ``offset`` is set values on the left axis only apply to the query.
 
     col = []
     for i in idx:
-        col.append([(d.index1[i], xts[d.index1[i]]),
-                    (d.index2[i], -offset + yts[d.index2[i]])])
+        col.append([(float(d.index1[i]), xts[d.index1[i],0]),
+                    (float(d.index2[i]), -offset + yts[d.index2[i],0])])
 
     lc = mc.LineCollection(col, linewidths=1, linestyles=":", colors=match_col)
     ax.add_collection(lc)
