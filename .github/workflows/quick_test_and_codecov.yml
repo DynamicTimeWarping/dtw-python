@@ -3,7 +3,7 @@ name: Quick build and test
 on: push
 
 jobs:
-  test:
+  uv_test:
     name: Test with UV
     runs-on: ubuntu-latest
     steps:
@@ -24,10 +24,32 @@ jobs:
         run: uv run pytest
 
 
+  check_coverage:
+    name: Generate codecov
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+
+    - uses: actions/setup-python@v6
+      name: Install Python
+
+    - name: Generate coverage report
+      run: |
+        pip install pytest
+        pip install pytest-cov
+        pip install -e ".[plots]"
+        pytest --cov=dtw --cov-report=xml
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}    
+
 
   build_wheels:
     name: Build wheels on ubuntu only
     runs-on: ubuntu-latest
+    needs: uv_test
 
     steps:
       - uses: actions/checkout@v6
@@ -49,23 +71,7 @@ jobs:
           name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
           path: ./wheelhouse/*.whl
 
-          
-  make_sdist:
-    name: Make SDist
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v6
-      with:
-        fetch-depth: 0  # Optional, use if you use setuptools_scm
-        submodules: true  # Optional, use if you have submodules
-
-    - name: Build SDist
-      run: pipx run build --sdist
-
-    - uses: actions/upload-artifact@v6
-      with:
-        name: cibw-sdist
-        path: dist/*.tar.gz
+      
 
         
 concurrency:
