@@ -67,9 +67,6 @@ where = ["."]
 [tool.setuptools.package-data]
 "dtw.data" = ["*.csv"]
 
-[tool.distutils.bdist_wheel]
-universal = true
-
 [tool.pytest.ini_options]
 # https://docs.pytest.org/en/7.3.x/reference/customize.html
 #addopts = "--import-mode=importlib"
