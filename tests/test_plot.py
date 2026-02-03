@@ -40,6 +40,18 @@ class TestPlot(unittest.TestCase):
             step_pattern=rabinerJuangStepPattern(6, "c"),
         ).plot(type="twoway", offset=-2)
 
+    def test_plot_twoway_multivariate_raises(self):
+        """Test the two-way plot rejects multivariate time series."""
+        query = np.column_stack((self.query, self.query * 0.5))
+        template = np.column_stack((self.template, self.template * 0.5))
+        alignment = dtw(query, template, keep_internals=True)
+
+        with self.assertRaisesRegex(
+            ValueError,
+            "Only single-variate timeseries can be plotted in the two-way style",
+        ):
+            alignment.plot(type="twoway")
+
     def test_plot_step_pattern(self):
         """Test the step pattern plot."""
         # See the recursion relation, as formula and diagram
