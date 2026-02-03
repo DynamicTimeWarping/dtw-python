@@ -109,7 +109,7 @@ exclude = [
 
 [dependency-groups]
 dev = [
-    "bump2version>=1.0.1",
+    "bump-my-version",
     "pytest>=7.0.1",
     "pytest-cov>=7.0.0",
     "ipython",
