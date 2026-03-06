@@ -81,7 +81,7 @@ jobs:
           # CIBW_ARCHS_LINUX: auto64
           # CIBW_TEST_SKIP: "cp311*" due to scipy not finding openblas to build from source. may be removed when 311 released.
 
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
           path: ./wheelhouse/*.whl
