@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Build wheels
-        uses: pypa/cibuildwheel@v3.3.1
+        uses: pypa/cibuildwheel@v3.4.0
         env:
           CIBW_SKIP: "*musllinux*"
           CIBW_TEST_REQUIRES: pytest
