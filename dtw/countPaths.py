@@ -58,7 +58,7 @@ Examples
 >>> ds = dtw( numpy.arange(3,10), numpy.arange(1,9),
 ...           keep_internals=True, step_pattern=asymmetric);
 >>> countPaths(ds)
-126
+126.0
 
 """
     # ENDIMPORT

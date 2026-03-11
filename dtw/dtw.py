@@ -93,13 +93,13 @@ Methods for plotting dynamic time warp alignment objects returned by
 Various plotting styles are available, passing strings to the ``type``
 argument (may be abbreviated):
 
--  ``alignment`` plots the warping curve in ``d``;
--  ``twoway`` plots a point-by-point comparison, with matching lines;
-   see [dtwPlotTwoWay()];
--  ``threeway`` vis-a-vis inspection of the timeseries and their warping
-   curve; see [dtwPlotThreeWay()];
--  ``density`` displays the cumulative cost landscape with the warping
-   path overimposed; see [dtwPlotDensity()]
+- ``alignment`` plots the warping curve in ``d``;
+- ``twoway`` plots a point-by-point comparison, with matching lines; see
+  [dtwPlotTwoWay()];
+- ``threeway`` vis-a-vis inspection of the timeseries and their warping
+  curve; see [dtwPlotThreeWay()];
+- ``density`` displays the cumulative cost landscape with the warping
+  path overimposed; see [dtwPlotDensity()]
 
 Additional parameters are passed to the plotting functions: use with
 care.
