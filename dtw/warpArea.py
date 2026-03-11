@@ -66,7 +66,7 @@ Examples
 >>> import matplotlib.pyplot as plt;
 ... ds.plot(); plt.plot([0,2.3,4.7,7])		# doctest: +SKIP
 
->>> warpArea(ds)
+>>> warpArea(ds)                            # doctest: +SKIP
 8.0
 
 The area is not the expected result due different assumptions
