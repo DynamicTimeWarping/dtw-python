@@ -68,7 +68,7 @@ jobs:
         pattern: cibw-*
         path: dist
         merge-multiple: true        
-    - uses: pypa/gh-action-pypi-publish@v1.14.1
+    - uses: pypa/gh-action-pypi-publish@v1.14.2
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
