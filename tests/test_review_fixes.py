@@ -1,0 +1,22 @@
+import unittest
+
+import numpy as np
+from numpy.testing import assert_approx_equal, assert_array_equal
+from dtw import *
+from dtw.window import itakuraWindow
+
+
+class TestReviewFixes(unittest.TestCase):
+    def setUp(self):
+        self.q, self.r = dtw_test_data.sin_cos()
+
+    def test_warp_gaps_interpolated(self):
+        w = warp(dtw([0, 2], [0, 1, 2], step_pattern="asymmetric"))
+        assert_array_equal(w, [0, 0, 1])
+        w = warp(dtw(self.q, self.r, step_pattern=asymmetric))
+        self.assertTrue(np.all(w >= 0) and np.all(w < len(self.q)))
+
+    def test_warp_open_begin_monotonic(self):
+        a = dtw(self.q[40:80], self.r, step_pattern=asymmetric,
+                open_begin=True, open_end=True)
+        self.assertTrue(np.all(np.diff(warp(a)) >= 0))

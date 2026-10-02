@@ -20,20 +20,21 @@
 """Warp one timeseries into the other"""
 
 import numpy
-import scipy.interpolate 
 
 
 # Ties in x are removed and their y mean is used
 def _solveTies(x,y):
-    n = numpy.bincount(x)
-    s = numpy.bincount(x,y)
-    return numpy.arange(len(n)), s/n
+    xt, inv = numpy.unique(x, return_inverse=True)
+    yt = numpy.bincount(inv, y) / numpy.bincount(inv)
+    return xt, yt
 
-# Should mimic R's stats::approx as closely as possible
+# Should mimic R's stats::approx(ties=mean) as closely as possible.
+# Points outside the range of x are clamped to the first/last value
+# (R would return NA instead).
 def _interp(x, y):
     xt, yt = _solveTies(x,y)
-    return scipy.interpolate.interp1d(xt, yt)
-    
+    return lambda xnew: numpy.interp(xnew, xt, yt)
+
 
 def warp(d, index_reference=False):
     # IMPORT_RDOCSTRING warp
@@ -110,13 +111,7 @@ exactly one image (q->t is a function)
 
     jmax = numpy.max(jset)
 
-    # Scipy interp1d is buggy. it does not deal with leading
-    # duplicated values of x. It returns different values
-    # depending on the dtypes of arguments.
     ifun = _interp(x=jset, y=iset)
     ii = ifun(numpy.arange(jmax+1))
 
-    # Quick fix for bug
-    if numpy.isnan(ii[0]):
-        ii[numpy.isnan(ii)] = iset[0]
     return ii.astype(int)
