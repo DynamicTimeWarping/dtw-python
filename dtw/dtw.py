@@ -495,20 +495,25 @@ def _canonicalizeWindowFunction(window_type):
     if window_type is None:
         return noWindow
 
-    return {
+    windows = {
         "none": noWindow,
         "sakoechiba": sakoeChibaWindow,
         "itakura": itakuraWindow,
         "slantedband": slantedBandWindow
-    }.get(window_type, lambda: _error("Window function undefined"))
+    }
+    if window_type not in windows:
+        _error("Window function undefined: %s" % window_type)
+    return windows[window_type]
 
 
 def _canonicalizeStepPattern(s):
     """Return object by string"""
     if hasattr(s,"mx"):
         return s
-    else:
-        return getattr(sys.modules["dtw.stepPattern"], s)
+    p = getattr(sys.modules["dtw.stepPattern"], s, None)
+    if not isinstance(p, StepPattern):
+        _error("Step pattern undefined: %s" % s)
+    return p
 
 
 # Kludge because lambda: raise doesn't work

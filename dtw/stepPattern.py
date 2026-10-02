@@ -449,7 +449,7 @@ def rabinerJuangStepPattern(ptype, slope_weighting="d", smoothed=False):
 See documentation for the StepPattern class.
 """
 
-    f = {
+    types = {
         1: _RJtypeI,
         2: _RJtypeII,
         3: _RJtypeIII,
@@ -457,9 +457,11 @@ See documentation for the StepPattern class.
         5: _RJtypeV,
         6: _RJtypeVI,
         7: _RJtypeVII
-    }.get(ptype, lambda: _error("Invalid type"))
+    }
+    if ptype not in types:
+        _error("Invalid type")
 
-    r = f(slope_weighting, smoothed)
+    r = types[ptype](slope_weighting, smoothed)
     norm = "NA"
     if slope_weighting == "c":
         norm = "N"

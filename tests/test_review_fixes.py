@@ -37,3 +37,11 @@ class TestReviewFixes(unittest.TestCase):
         a = dtw(self.q[40:80], self.r, **kw)
         b = dtw(self.q[40:80], self.r, distance_only=True, **kw)
         assert_approx_equal(a.distance, b.distance)
+
+    def test_unknown_names_raise_valueerror(self):
+        with self.assertRaises(ValueError):
+            dtw(self.q, self.r, window_type="nonexistent")
+        with self.assertRaises(ValueError):
+            rabinerJuangStepPattern(8)
+        with self.assertRaises(ValueError):
+            dtw(self.q, self.r, step_pattern="numpy")
