@@ -50,3 +50,9 @@ class TestReviewFixes(unittest.TestCase):
         a = dtw(self.q, self.r, window_type="sakoe", window_args={"window_size": 5})
         b = dtw(self.q, self.r, window_type="sakoechiba", window_args={"window_size": 5})
         assert_approx_equal(a.distance, b.distance)
+
+    def test_cost_matrix_dtype_and_layout(self):
+        dtw(np.ones((5, 5), dtype=int))
+        dtw([[0, 1], [1, 0]])
+        dtw(np.eye(2, dtype=np.float32))
+        dtw(np.asfortranarray(np.random.rand(5, 6)))

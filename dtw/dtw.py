@@ -385,7 +385,7 @@ Equivalent precomputed local cost matrix:
 
 
     if y is None:
-        lm = numpy.array(x)
+        lm = numpy.ascontiguousarray(x, dtype=numpy.double)
         if lm.ndim != 2:
             _error("A 2D local distance matrix was expected")
     else:
