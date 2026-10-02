@@ -23,3 +23,7 @@ class TestReviewFixes(unittest.TestCase):
 
     def test_warpArea_averages_ties(self):
         assert_approx_equal(warpArea(dtw([1, 2, 3, 4], [1, 2, 3, 4, 5, 6, 7, 8])), 6.0)
+
+    def test_slantedband_reaches_corner(self):
+        lm = np.random.default_rng(0).random((10, 100))
+        dtw(lm, window_type="slantedband", window_args={"window_size": 5})

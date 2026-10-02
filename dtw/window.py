@@ -160,5 +160,9 @@ def itakuraWindow(iw, jw, query_size, reference_size):
 
 
 def slantedBandWindow(iw, jw, query_size, reference_size, window_size):
-    diagj = (iw * reference_size / query_size)
+    # Diagonal from corner (0,0) to (query_size-1, reference_size-1)
+    if query_size > 1:
+        diagj = iw * (reference_size - 1) / (query_size - 1)
+    else:
+        diagj = iw * 0.0
     return abs(jw - diagj) <= window_size
