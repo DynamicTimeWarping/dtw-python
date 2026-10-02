@@ -31,3 +31,9 @@ class TestReviewFixes(unittest.TestCase):
     def test_itakura_origin_and_corner(self):
         self.assertTrue(itakuraWindow(0, 0, 20, 30))
         self.assertTrue(itakuraWindow(19, 29, 20, 30))
+
+    def test_open_begin_distance_only(self):
+        kw = dict(step_pattern=asymmetric, open_begin=True, open_end=True)
+        a = dtw(self.q[40:80], self.r, **kw)
+        b = dtw(self.q[40:80], self.r, distance_only=True, **kw)
+        assert_approx_equal(a.distance, b.distance)
