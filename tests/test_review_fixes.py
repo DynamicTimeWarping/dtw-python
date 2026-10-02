@@ -27,3 +27,7 @@ class TestReviewFixes(unittest.TestCase):
     def test_slantedband_reaches_corner(self):
         lm = np.random.default_rng(0).random((10, 100))
         dtw(lm, window_type="slantedband", window_args={"window_size": 5})
+
+    def test_itakura_origin_and_corner(self):
+        self.assertTrue(itakuraWindow(0, 0, 20, 30))
+        self.assertTrue(itakuraWindow(19, 29, 20, 30))
