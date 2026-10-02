@@ -56,3 +56,8 @@ class TestReviewFixes(unittest.TestCase):
         dtw([[0, 1], [1, 0]])
         dtw(np.eye(2, dtype=np.float32))
         dtw(np.asfortranarray(np.random.rand(5, 6)))
+
+    def test_twoway_plot_accepts_vectors(self):
+        import matplotlib
+        matplotlib.use("Agg")
+        dtwPlotTwoWay(dtw([0, 1], [0, 1]), xts=np.array([0, 1]), yts=np.array([0, 1]))

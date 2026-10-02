@@ -159,6 +159,13 @@ When ``offset`` is set values on the left axis only apply to the query.
         except:
             raise ValueError("Original timeseries are required")
 
+    xts = numpy.asarray(xts)
+    yts = numpy.asarray(yts)
+    if xts.ndim == 1:
+        xts = xts.reshape(-1, 1)
+    if yts.ndim == 1:
+        yts = yts.reshape(-1, 1)
+
     if xts.shape[1] != 1 or yts.shape[1] != 1:
         raise ValueError("Only single-variate timeseries can be plotted in the two-way style")
 
