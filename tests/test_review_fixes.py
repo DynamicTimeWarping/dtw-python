@@ -20,3 +20,6 @@ class TestReviewFixes(unittest.TestCase):
         a = dtw(self.q[40:80], self.r, step_pattern=asymmetric,
                 open_begin=True, open_end=True)
         self.assertTrue(np.all(np.diff(warp(a)) >= 0))
+
+    def test_warpArea_averages_ties(self):
+        assert_approx_equal(warpArea(dtw([1, 2, 3, 4], [1, 2, 3, 4, 5, 6, 7, 8])), 6.0)

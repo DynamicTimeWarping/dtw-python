@@ -20,7 +20,7 @@
 """Warping path area computation"""
 
 import numpy
-import scipy.interpolate 
+from dtw.warp import _interp
 
 
 def warpArea(d):
@@ -66,11 +66,8 @@ Examples
 >>> import matplotlib.pyplot as plt;
 ... ds.plot(); plt.plot([0,2.3,4.7,7])		# doctest: +SKIP
 
->>> warpArea(ds)                            # doctest: +SKIP
-8.0
-
-The area is not the expected result due different assumptions
-used in the scipy.interpolate.interp1d funtion.
+>>> float(warpArea(ds))
+6.0
 
 >>> ## Result: 6
 >>> ##  index 2 is 2 while diag is 3_3  (+1_3)
@@ -82,15 +79,8 @@ used in the scipy.interpolate.interp1d funtion.
 """
     # ENDIMPORT
 
-    # interp1d is buggy. it does not deal with duplicated values of x
-    # leading. it returns different values depending on the dtypes of
-    # arguments.
-    ifun = scipy.interpolate.interp1d(x=d.index1, y=d.index2)
+    ifun = _interp(x=d.index1, y=d.index2)
     ii = ifun(numpy.arange(d.N))
-
-    # Kludge
-    if numpy.isnan(ii[0]):
-        ii[numpy.isnan(ii)] = d.index2[0]
 
     dg = numpy.linspace(0, d.M - 1, num=d.N)
 
