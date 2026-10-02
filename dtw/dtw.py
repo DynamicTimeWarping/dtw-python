@@ -501,9 +501,13 @@ def _canonicalizeWindowFunction(window_type):
         "itakura": itakuraWindow,
         "slantedband": slantedBandWindow
     }
-    if window_type not in windows:
-        _error("Window function undefined: %s" % window_type)
-    return windows[window_type]
+    # Unique prefixes are accepted, as in R's match.arg
+    matches = [k for k in windows if k.startswith(str(window_type))]
+    if window_type in windows:
+        matches = [window_type]
+    if len(matches) != 1:
+        _error("Window function undefined or ambiguous: %s" % window_type)
+    return windows[matches[0]]
 
 
 def _canonicalizeStepPattern(s):

@@ -45,3 +45,8 @@ class TestReviewFixes(unittest.TestCase):
             rabinerJuangStepPattern(8)
         with self.assertRaises(ValueError):
             dtw(self.q, self.r, step_pattern="numpy")
+
+    def test_window_abbreviation(self):
+        a = dtw(self.q, self.r, window_type="sakoe", window_args={"window_size": 5})
+        b = dtw(self.q, self.r, window_type="sakoechiba", window_args={"window_size": 5})
+        assert_approx_equal(a.distance, b.distance)
