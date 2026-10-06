@@ -34,7 +34,7 @@ jobs:
           name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
           path: ./wheelhouse/*.whl
 
-          
+
   make_sdist:
     name: Make SDist
     runs-on: ubuntu-latest
@@ -52,7 +52,7 @@ jobs:
         name: cibw-sdist
         path: dist/*.tar.gz
 
-        
+
   upload_all:
     needs: [build_wheels, make_sdist]
     runs-on: ubuntu-latest
@@ -67,7 +67,7 @@ jobs:
       with:
         pattern: cibw-*
         path: dist
-        merge-multiple: true        
+        merge-multiple: true
     - uses: pypa/gh-action-pypi-publish@v1.14.2
 
 concurrency:
