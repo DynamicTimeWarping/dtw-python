@@ -17,7 +17,7 @@
 ## along with DTW.  If not, see <http://www.gnu.org/licenses/>.
 ##
 
-# cython: language_level=3
+# cython: language_level=3, freethreading_compatible=True
 
 """Utility functions for DTW alignments."""
 
@@ -30,10 +30,7 @@
 #    1548-7660. doi:10.18637/jss.v031.i07. http://www.jstatsoft.org/v31/i07/
 
 
-import warnings
-
 import numpy as np
-cimport numpy as np
 
 # from cpython cimport array
 
@@ -48,7 +45,7 @@ cdef extern from "dtw_core.h":
 	       const double *dir,	
 	       double *cm,      # IN+OUT
 	       int *sm          # OUT
-  ) 
+  ) noexcept nogil
 
 
 
@@ -61,20 +58,34 @@ def _computeCM_wrapper(int [:,::1] wm not None,
                        double [:,::1] cm not None,
                        int [:,::1] sm = None  ):
 
-    # Memory ordering is transposed (fortran-like in R). 
+    # computeCM trusts its inputs: check them here, where we can raise.
+    if not (wm.shape[0] == lm.shape[0] == cm.shape[0] and
+            wm.shape[1] == lm.shape[1] == cm.shape[1]):
+        raise ValueError("Window, local cost and cost matrices must have the same shape")
+
+    cdef int nsteps = nstepsp[0]
+    if nsteps < 1 or dir.shape[0] != 4 * nsteps:
+        raise ValueError("Malformed step pattern description")
+    pn = np.asarray(dir[:nsteps])
+    if (np.any(pn != np.floor(pn)) or pn[0] < 1 or pn[-1] > nsteps or
+            np.any(np.diff(pn) < 0)):
+        raise ValueError("Step pattern numbers must be integers in ascending order, from 1")
+
+    # Memory ordering is transposed (fortran-like in R).
     st = np.array([wm.shape[1],
                    wm.shape[0]], dtype=np.int32)
     cdef int [:] s = st
 
     sm = np.full_like(lm.base, -1, dtype=np.int32)
 
-    computeCM(&s[0],
-              &wm[0,0],
-              &lm[0,0],
-              &nstepsp[0],
-              &dir[0],
-              &cm[0,0],
-              &sm[0,0])
+    with nogil:
+        computeCM(&s[0],
+                  &wm[0,0],
+                  &lm[0,0],
+                  &nstepsp[0],
+                  &dir[0],
+                  &cm[0,0],
+                  &sm[0,0])
 
     return { 'costMatrix': cm.base,
              'directionMatrix': sm.base }

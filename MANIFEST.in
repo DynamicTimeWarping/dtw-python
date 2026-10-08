@@ -11,5 +11,6 @@ recursive-exclude * *.py[co]
 global-include dtw/*.c
 global-include dtw/*.h
 global-include dtw/*.pyx
+exclude dtw/_dtw_utils.c
 
 

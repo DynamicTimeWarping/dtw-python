@@ -5,11 +5,8 @@
 # Minimum requirements for the build system to execute.
 # PEP 508 specifications.
 requires = [
-    "setuptools>=69", 
-    "wheel",
-    "Cython>=3",
-    'numpy>=2.0; python_version>="3.9"',
-    'numpy; python_version<"3.9"',
+    "setuptools>=77",
+    "Cython>=3.1",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -62,6 +59,13 @@ include = ["dtw", "dtw.*"]
 
 [tool.setuptools.package-data]
 "dtw.data" = ["*.csv"]
+
+[tool.setuptools.exclude-package-data]
+# Build sources; MANIFEST.in puts them in the sdist only
+dtw = ["*.c", "*.h", "*.pyx"]
+
+[tool.setuptools.dynamic]
+version = {attr = "dtw.__version__"}
 
 [tool.pytest.ini_options]
 # https://docs.pytest.org/en/7.3.x/reference/customize.html
