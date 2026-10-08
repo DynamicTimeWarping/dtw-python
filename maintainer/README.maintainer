@@ -15,11 +15,13 @@ Deploying
 ---------
 
 Make sure all your changes are committed (including an entry in HISTORY.rst).
-Then run::
+Then run:
 
-$ uvx bump-my-version bump patch    # possible: major / minor / patch
-$ git push --follow-tags
-$ v=$(git tag --points-at HEAD) && gh release create $v --title $v
+```bash
+uvx bump-my-version bump patch    # possible: major / minor / patch
+git push --follow-tags
+v=$(git tag --points-at HEAD) && gh release create $v --title $v
+```
 
 Actions will then deploy to PyPI if tests pass.
 
@@ -29,16 +31,12 @@ Misc stuff
 
 Uses cibuildwheel on GH actions https://cibuildwheel.readthedocs.io/en/stable/setup/#github-actions
 
-Instructions specific for codex
--------------------
-
-When running `uv`, set the `UV_CACHE_DIR` environment variable to the repository's `.uv-cache` directory in order to workaround sandboxing issues.
-
+ 
 
 Poetry
 ------
 
-Nice, but cython support is not stable.
+Nice, but cython support is not stable?
 
 
 
