@@ -98,5 +98,7 @@ bump: changelog
 	git push --tags
 	git push
 
-changelog:
-	-gitchangelog > CHANGELOG.md
+changelog: ## regenerate CHANGELOG.md; leaves it untouched if gitchangelog fails
+	uvx gitchangelog > CHANGELOG.md.tmp
+	test -s CHANGELOG.md.tmp
+	mv CHANGELOG.md.tmp CHANGELOG.md
