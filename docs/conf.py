@@ -169,6 +169,11 @@ html_theme = 'bootstrap'
 #
 # html_theme_options = {}
 
+# Sphinx's default sidebar includes relations.html, but the bootstrap
+# theme's version emits bare <li> items meant for the navbar, which show
+# up as a stray bullet ("countPaths »") below the sidebar box.
+html_sidebars = {'**': ['localtoc.html', 'sourcelink.html', 'searchbox.html']}
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
