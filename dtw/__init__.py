@@ -17,6 +17,9 @@ __version__ = '1.9.0'
 from dtw.dtw import *
 from dtw.stepPattern import *
 from dtw.countPaths import *
+from dtw.nearOptimalPaths import *
+from dtw.permutationTest import *
+from dtw.dtwDist import *
 from dtw.dtwPlot import *
 from dtw.mvm import *
 from dtw.warp import *

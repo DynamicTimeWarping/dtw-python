@@ -69,6 +69,9 @@ function.
 - ``costMatrix`` if ``keep_internals=True``, the cumulative cost matrix
 - ``query, reference`` if ``keep_internals=True`` and passed as the
   ``x`` and ``y`` arguments, the query and reference timeseries.
+- ``windowFunction, windowArgs`` the windowing function and its
+  additional arguments
+- ``distanceMethod`` the distance method used for timeseries input
 
 """
     
@@ -413,13 +416,15 @@ Equivalent precomputed local cost matrix:
         np = n + 1
         precm = numpy.full_like(lm, numpy.nan, dtype=numpy.double)
         precm[0, :] = 0
+        gwfun = _openBeginWindowFunction(wfun)
     else:
         precm = None
         np = n
+        gwfun = wfun
 
     gcm = _globalCostMatrix(lm,
                             step_pattern=step_pattern,
-                            window_function=wfun,
+                            window_function=gwfun,
                             seed=precm,
                             win_args=window_args)
     gcm = DTW(gcm)  # turn into an object, use dot to access properties
@@ -431,6 +436,7 @@ Equivalent precomputed local cost matrix:
     gcm.openBegin = open_begin
     gcm.windowFunction = wfun
     gcm.windowArgs = window_args  # py
+    gcm.distanceMethod = dist_method
 
     # misnamed
     lastcol = gcm.costMatrix[-1,]
@@ -449,6 +455,8 @@ Equivalent precomputed local cost matrix:
     if open_end:
         if norm == "NA":
             _error("Open-end alignments require normalizable step patterns")
+        if numpy.all(numpy.isnan(lastcol)):
+            _error("No warping path found compatible with the local constraints")
         gcm.jmin = numpy.nanargmin(lastcol)
 
     gcm.distance = gcm.costMatrix[-1, gcm.jmin]
@@ -508,6 +516,24 @@ def _canonicalizeWindowFunction(window_type):
     if len(matches) != 1:
         _error("Window function undefined or ambiguous: %s" % window_type)
     return windows[matches[0]]
+
+
+# With open_begin, evaluate the window on the unpadded grid; the
+# prepended null row is always allowed
+def _openBeginWindowFunction(wfun):
+    if wfun == noWindow:
+        return wfun
+
+    def gwfun(iw, jw, query_size, reference_size, **kwargs):
+        ok = wfun(iw - 1, jw,
+                  query_size=query_size - 1,
+                  reference_size=reference_size,
+                  **kwargs)
+        ok = numpy.array(numpy.broadcast_to(ok, numpy.shape(iw)), dtype=bool)
+        ok[iw == 0] = True
+        return ok
+
+    return gwfun
 
 
 def _canonicalizeStepPattern(s):

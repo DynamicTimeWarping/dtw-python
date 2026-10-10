@@ -63,3 +63,17 @@ class TestPlot(unittest.TestCase):
         # See the recursion relation, as formula and diagram
         print(rabinerJuangStepPattern(6, "c"))
         rabinerJuangStepPattern(6, "c").plot()
+
+    def test_plot_window(self):
+        """Test the windowing function plot."""
+        ax = dtwWindow_plot(itakuraWindow, main="So-called Itakura parallelogram window")
+        self.assertEqual(ax.get_title(), "So-called Itakura parallelogram window")
+        dtwWindow_plot(slantedBandWindow, window_size=2,
+                       reference_size=13, query_size=17)
+        dtwWindow_plot(noWindow, query_size=5, reference_size=6)
+
+    def test_plot_near_optimal_paths(self):
+        """Near-optimal paths can be plotted like alignments."""
+        alignment = dtw(self.query[:30], self.template[:30], keep_internals=True)
+        for p in nearOptimalPaths(alignment, alignment.distance + 0.01)[:20]:
+            dtwPlotAlignment(p)

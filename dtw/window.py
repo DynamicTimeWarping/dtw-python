@@ -129,12 +129,15 @@ Asymmetric step with Sakoe-Chiba band
 
 Display some windowing functions 
 
->>> #TODO dtwWindow_plot(itakuraWindow, main="So-called Itakura parallelogram window")
->>> #TODO dtwWindow_plot(slantedBandWindow, window_size=2,
->>> #TODO reference=13, query=17, main="The slantedBandWindow at window_size=2")
+>>> dtwWindow_plot(itakuraWindow, main="So-called Itakura parallelogram window")  # doctest: +SKIP
+>>> dtwWindow_plot(slantedBandWindow, window_size=2,             # doctest: +SKIP
+...                reference_size=13, query_size=17,
+...                main="The slantedBandWindow at window_size=2")
 
 """
 # ENDIMPORT
+
+import numpy
 
 
 
@@ -167,3 +170,33 @@ def slantedBandWindow(iw, jw, query_size, reference_size, window_size):
     else:
         diagj = iw * 0.0
     return abs(jw - diagj) <= window_size
+
+
+def dtwWindow_plot(fun, query_size=200, reference_size=220, main=None, **kwargs):
+    """Plot a windowing function
+
+Displays the cells of a ``query_size`` x ``reference_size`` grid
+allowed by the windowing function ``fun``. Additional arguments, such as
+``window_size``, are passed to ``fun``. ``main`` sets the plot
+title. See [dtwWindowingFunctions] for details and examples.
+
+Returns the matplotlib axes.
+"""
+    import matplotlib.pyplot as plt
+
+    n = query_size
+    m = reference_size
+    ix, jx = numpy.indices((n, m))
+    wm = numpy.broadcast_to(fun(ix, jx,
+                                query_size=n,
+                                reference_size=m,
+                                **kwargs), (n, m))
+
+    fig, ax = plt.subplots(figsize=(6, 6))
+    ax.imshow(wm.T.astype(float), origin="lower", cmap=plt.get_cmap("YlOrRd"),
+              vmin=0, vmax=1)
+    ax.set_xlabel("Query: samples 0..%d" % (n - 1))
+    ax.set_ylabel("Reference: samples 0..%d" % (m - 1))
+    if main is not None:
+        ax.set_title(main)
+    return ax

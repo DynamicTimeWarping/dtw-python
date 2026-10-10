@@ -65,6 +65,45 @@ class TestReviewFixes(unittest.TestCase):
         dtw(np.eye(2, dtype=np.float32))
         dtw(np.asfortranarray(np.random.rand(5, 6)))
 
+    # The window is evaluated on the query's own indices, as in R >= 2.1.0
+    def test_open_begin_window_not_shifted(self):
+        kw = dict(step_pattern=asymmetric, open_begin=True, open_end=True,
+                  keep_internals=True)
+        a = dtw(self.r[40:80], self.r, window_type="sakoechiba",
+                window_args={"window_size": 0}, **kw)
+        assert_array_equal(a.index1, a.index2)
+        # Reference values from R
+        b = dtw(self.r[40:80], self.r, window_type="slantedband",
+                window_args={"window_size": 15}, **kw)
+        assert_approx_equal(b.distance, 12.7820288528437, significant=13)
+        self.assertEqual((b.index2[0], b.index2[-1]), (15, 84))
+        self.assertEqual(countPaths(b), 1698285235)
+        c = dtw(self.r[40:80], self.r, window_type="sakoechiba",
+                window_args={"window_size": 5}, **kw)
+        assert_approx_equal(c.distance, 37.3696634881292, significant=13)
+        self.assertEqual((c.index2[0], c.index2[-1]), (5, 34))
+        assert_approx_equal(countPaths(c), 8.99959481628819e18, significant=14)
+
+    # Open-begin paths cannot start outside the window (reference values from R)
+    def test_open_begin_countPaths_window(self):
+        a = dtw(np.ones((4, 5)), step_pattern=asymmetric, open_begin=True,
+                keep_internals=True, window_type="sakoechiba",
+                window_args={"window_size": 1})
+        self.assertEqual(countPaths(a), 9)
+        b = dtw(np.ones((4, 5)), step_pattern=asymmetric, open_begin=True,
+                keep_internals=True)
+        self.assertEqual(countPaths(b), 23)
+
+    def test_open_end_no_path(self):
+        with self.assertRaisesRegex(ValueError, "No warping path"):
+            dtw(self.r[40:80], self.r, step_pattern=asymmetric, open_begin=True,
+                open_end=True, window_type="itakura")
+
+    def test_distance_method_stored(self):
+        self.assertEqual(dtw([1, 2], [1, 2, 3]).distanceMethod, "euclidean")
+        self.assertEqual(dtw([1, 2], [1, 2, 3], dist_method="cityblock").distanceMethod,
+                         "cityblock")
+
     @unittest.skipUnless(matplotlib_available, "Could not import matplotlib")
     def test_twoway_plot_accepts_vectors(self):
         dtwPlotTwoWay(dtw([0, 1], [0, 1]), xts=np.array([0, 1]), yts=np.array([0, 1]))

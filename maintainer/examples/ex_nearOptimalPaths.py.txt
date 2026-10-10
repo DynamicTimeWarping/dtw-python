@@ -1,0 +1,32 @@
+>>> from dtw import *
+>>> import numpy as np
+
+Compute the optimal alignment
+
+>>> ds = dtw(np.arange(1, 8) + 2, np.arange(1, 9),
+...          keep_internals=True, step_pattern=asymmetric)
+
+There are 126 possible paths. List them all.
+
+>>> allPaths = nearOptimalPaths(ds, threshold=np.inf)
+>>> len(allPaths) == countPaths(ds)
+True
+
+How many paths have each distance
+
+>>> np.unique([p.distance for p in allPaths], return_counts=True)[1]
+array([ 1,  6, 10, 10, 11, 12, 13, 13, 12, 11,  9,  7,  5,  3,  2,  1])
+
+The best path is the one found by dtw()
+
+>>> np.array_equal(allPaths[0].index2, ds.index2)
+True
+
+Paths at most 1 unit worse than the optimum
+
+>>> nearPaths = nearOptimalPaths(ds, threshold=ds.distance + 1)
+>>> import matplotlib.pyplot as plt                 # doctest: +SKIP
+>>> for p in nearPaths:                             # doctest: +SKIP
+...     plt.plot(p.index1, p.index2, color="grey")
+>>> plt.plot(ds.index1, ds.index2, color="red", lw=2)  # doctest: +SKIP
+>>> plt.xlabel("Query index"); plt.ylabel("Reference index")  # doctest: +SKIP
