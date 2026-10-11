@@ -59,24 +59,24 @@ def _backtrack(gcm):
         if s == _INT_MIN: break  # int nan in R
 
         # undo the steps
-        ss.insert(0, s)
+        ss.append(s)
         steps = stepsCache[s]
 
         ns = steps.shape[0]
         for k in range(ns):
-            ii.insert(0, i - steps[k, 0])
-            jj.insert(0, j - steps[k, 1])
+            ii.append(i - steps[k, 0])
+            jj.append(j - steps[k, 1])
 
         i -= steps[k, 0]
         j -= steps[k, 1]
 
-        iis.insert(0, i)
-        jjs.insert(0, j)
+        iis.append(i)
+        jjs.append(j)
 
-    out = {'index1': numpy.array(ii),
-           'index2': numpy.array(jj),
-           'index1s': numpy.array(iis),
-           'index2s': numpy.array(jjs),
-           'stepsTaken': numpy.array(ss)}
+    out = {'index1': numpy.array(ii[::-1]),
+           'index2': numpy.array(jj[::-1]),
+           'index1s': numpy.array(iis[::-1]),
+           'index2s': numpy.array(jjs[::-1]),
+           'stepsTaken': numpy.array(ss[::-1])}
 
     return (out)
