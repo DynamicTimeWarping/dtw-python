@@ -67,7 +67,8 @@ class PermutationTestResult:
 def _permute_derivative(x, rng):
     if x.shape[0] <= 1:
         return x
-    x = numpy.asarray(x, dtype=numpy.double)
+    if numpy.issubdtype(x.dtype, numpy.integer):
+        x = numpy.asarray(x, dtype=numpy.double)
     dx = numpy.diff(x, axis=0)
     ridx = rng.permutation(dx.shape[0])
     return numpy.cumsum(numpy.vstack([x[:1, :], dx[ridx, :]]), axis=0)
