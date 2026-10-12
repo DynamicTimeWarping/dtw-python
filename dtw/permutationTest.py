@@ -21,6 +21,7 @@
 
 import numbers
 import warnings
+from functools import wraps
 
 import numpy
 import scipy.spatial.distance
@@ -122,6 +123,23 @@ def _rank_integer_walk(x):
     return ranks[inverse]
 
 
+def _mixed_object_metric(metric, dtype):
+    @wraps(metric)
+    def mixed_metric(a, b):
+        try:
+            return metric(a, b)
+        except TypeError as error:
+            # Preserve object-safe callables and application errors. Retry only
+            # NumPy's unsupported object-ufunc dispatch with inexact operands.
+            if ((a.dtype != object and b.dtype != object) or
+                    not str(error).startswith(("loop of ufunc ", "ufunc '"))):
+                raise
+            a = a.astype(dtype) if a.dtype == object else a
+            b = b.astype(dtype) if b.dtype == object else b
+            return metric(a, b)
+    return mixed_metric
+
+
 def _compute_statistic(al, statistic, query, reference):
     if statistic == "distance":
         return al.distance
@@ -137,12 +155,12 @@ def _compute_statistic(al, statistic, query, reference):
             if len(wq) < 2:
                 return numpy.nan
             if statistic == "pearson":
-                # Exact integer walks may exceed the original dtype's range.
-                # Keep them exact for the metric, but corrcoef needs numeric arrays.
-                if wq.dtype == object:
-                    wq = wq.astype(numpy.double)
-                if wr.dtype == object:
-                    wr = wr.astype(numpy.double)
+                # Center exactly before conversion so narrow integer variation
+                # near native bounds is retained by corrcoef's numeric arrays.
+                if wq.dtype == object or numpy.issubdtype(wq.dtype, numpy.integer):
+                    wq = (wq.astype(object) - int(wq[0])).astype(numpy.double)
+                if wr.dtype == object or numpy.issubdtype(wr.dtype, numpy.integer):
+                    wr = (wr.astype(object) - int(wr[0])).astype(numpy.double)
                 return numpy.corrcoef(wq, wr)[0, 1]
             else:
                 if wq.dtype == object or numpy.issubdtype(wq.dtype, numpy.integer):
@@ -508,23 +526,22 @@ Each observed distance is compared with its own permutation distribution.
                 newq, newr = _integer_metric_pair(newq, newr,
                                                 allow_unsigned=unsigned_inputs)
             costq, costr = newq, newr
+            cost_metric = alignment.distanceMethod
             if callable_distance:
                 # Mixed integer/inexact arithmetic originally promotes to the
                 # inexact kind. Objects would break numeric ufuncs in the metric.
                 if (numpy.issubdtype(query.dtype, numpy.inexact) or
                         numpy.issubdtype(reference.dtype, numpy.inexact)):
                     promoted = numpy.result_type(query.dtype, reference.dtype)
-                    if costq.dtype == object:
-                        costq = costq.astype(promoted)
-                    if costr.dtype == object:
-                        costr = costr.astype(promoted)
+                    if costq.dtype == object or costr.dtype == object:
+                        cost_metric = _mixed_object_metric(cost_metric, promoted)
             else:
                 # Named metrics need doubles, but rank statistics need exact walks.
                 if numpy.issubdtype(query.dtype, numpy.integer):
                     costq = newq.astype(numpy.double, copy=False)
                 if numpy.issubdtype(reference.dtype, numpy.integer):
                     costr = newr.astype(numpy.double, copy=False)
-            plcm = scipy.spatial.distance.cdist(costq, costr, metric=alignment.distanceMethod)
+            plcm = scipy.spatial.distance.cdist(costq, costr, metric=cost_metric)
         pal = align(plcm)
         distribution[i] = check_statistic(_compute_statistic(pal, statistic, newq, newr),
                                           "Permutation %d" % (i + 1))

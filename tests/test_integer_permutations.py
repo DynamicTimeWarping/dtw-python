@@ -412,6 +412,61 @@ def test_callable_mixed_inexact_beyond_integer_range(dtype, integer_side):
     np.testing.assert_array_equal(result.null_distribution, [expected])
 
 
+@pytest.mark.parametrize("dtype", [np.int64, np.uint64])
+def test_pearson_preserves_narrow_out_of_range_walk(dtype):
+    limit = int(np.iinfo(dtype).max)
+    offsets = list(range(1026)) + list(range(1024, -1, -1))
+    query = np.array([limit - x for x in offsets], dtype=dtype)
+    alignment = dtw(query, query, keep_internals=True,
+                    window_type="sakoechiba", window_args={"window_size": 0})
+    result = permutationTest(alignment, R=1, permute_side="query",
+                             permute_what="increments", statistic="pearson",
+                             return_distribution=True, rng=11)
+    increments = [a - b for a, b in zip(offsets, offsets[1:])]
+    centered = [0]
+    for i in np.random.default_rng(11).permutation(len(increments)):
+        centered.append(centered[-1] + increments[i])
+    expected = np.corrcoef(centered, [-x for x in offsets])[0, 1]
+    np.testing.assert_allclose(result.null_distribution, [expected],
+                               rtol=0, atol=1e-15)
+
+
+@pytest.mark.parametrize("side", ["query", "reference"])
+def test_object_safe_mixed_callable_keeps_integer_low_bits(side):
+    limit = int(np.iinfo(np.uint64).max)
+    integer = np.array([limit, 0, limit, 0], dtype=np.uint64)
+    floating = np.arange(4, dtype=float)
+
+    def metric(a, b):
+        return float((int(a[0]) ^ int(b[0])) & 1)
+
+    series = [integer, floating] if side == "query" else [floating, integer]
+    alignment = dtw(*series, dist_method=metric, keep_internals=True,
+                    window_type="sakoechiba", window_args={"window_size": 0})
+    result = permutationTest(alignment, R=1, permute_side=side,
+                             permute_what="increments",
+                             return_distribution=True, rng=11)
+    # max, 2*max, max, 0 have odd/even/odd/even parity. Every diagonal
+    # mismatch costs one; symmetric2 uses weights 1, 2, 2, 2.
+    np.testing.assert_array_equal(result.null_distribution, [7.0])
+
+
+def test_mixed_callable_application_type_error_is_not_retried():
+    limit = np.iinfo(np.uint64).max
+
+    def metric(a, b):
+        if a.dtype == object:
+            raise TypeError("custom application error")
+        return np.abs(np.sin(a - b)).sum()
+
+    alignment = dtw(np.array([limit, 0, limit, 0], dtype=np.uint64),
+                    np.arange(4, dtype=float), dist_method=metric,
+                    keep_internals=True)
+    with pytest.raises(TypeError, match="custom application error"):
+        permutationTest(alignment, R=1, permute_side="query",
+                        permute_what="increments", rng=11)
+
+
 @pytest.mark.parametrize("side", ["query", "reference", "both"])
 def test_exact_out_of_range_spearman_ranks(side):
     from scipy import stats
