@@ -67,11 +67,14 @@ class PermutationTestResult:
 def _permute_derivative(x, rng):
     if x.shape[0] <= 1:
         return x
-    if numpy.issubdtype(x.dtype, numpy.integer):
-        x = numpy.asarray(x, dtype=numpy.double)
+    integer_input = numpy.issubdtype(x.dtype, numpy.integer)
+    if integer_input:
+        # Keep differences exact, including small increments above 2**53.
+        x = x.astype(object)
     dx = numpy.diff(x, axis=0)
     ridx = rng.permutation(dx.shape[0])
-    return numpy.cumsum(numpy.vstack([x[:1, :], dx[ridx, :]]), axis=0)
+    result = numpy.cumsum(numpy.vstack([x[:1, :], dx[ridx, :]]), axis=0)
+    return result.astype(numpy.double) if integer_input else result
 
 
 def _compute_statistic(al, statistic, query, reference):
