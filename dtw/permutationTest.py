@@ -79,9 +79,12 @@ def _permute_derivative(x, rng, keep_integer=False):
         if keep_integer:
             # Callable metrics may require integers. Avoid wrapping surrogates
             # that leave the original dtype's range.
-            bounds = numpy.iinfo(dtype)
-            if numpy.all(result >= bounds.min) and numpy.all(result <= bounds.max):
-                return result.astype(dtype)
+            # Numeric ufuncs reject objects, so use a wider native integer
+            # before falling back to Python integers beyond native ranges.
+            for candidate in (dtype, numpy.int64, numpy.uint64):
+                bounds = numpy.iinfo(candidate)
+                if numpy.all(result >= bounds.min) and numpy.all(result <= bounds.max):
+                    return result.astype(candidate)
             return result
         return result.astype(numpy.double)
     return result

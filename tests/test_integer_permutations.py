@@ -165,6 +165,55 @@ def test_integer_callable_out_of_range_correlations(side, statistic):
     np.testing.assert_allclose(result.null_distribution, expected, atol=1e-15)
 
 
+@pytest.mark.parametrize("dtype", [np.uint8, np.int8, np.uint16, np.int16])
+@pytest.mark.parametrize("side", ["query", "reference", "both"])
+def test_integer_callable_numeric_ufunc(dtype, side):
+    limits = np.iinfo(dtype)
+    query = np.array([limits.max, limits.min, limits.max, limits.min],
+                     dtype=dtype)
+    reference = query[::-1].copy()
+
+    def metric(a, b):
+        return np.abs(np.sin(a, dtype=np.float64)
+                      - np.sin(b, dtype=np.float64)).sum()
+
+    alignment = dtw(query, reference, dist_method=metric, keep_internals=True)
+    result = permutationTest(alignment, R=19, permute_side=side,
+                             permute_what="increments",
+                             return_distribution=True, rng=17)
+    rng = np.random.default_rng(17)
+    expected = []
+    for _ in range(19):
+        series = []
+        for values, name in [(query, "query"), (reference, "reference")]:
+            integers = [int(value) for value in values]
+            if side in (name, "both"):
+                increments = [b - a for a, b in zip(integers, integers[1:])]
+                permuted = [integers[0]]
+                for index in rng.permutation(len(increments)):
+                    permuted.append(permuted[-1] + increments[index])
+                integers = permuted
+            series.append(np.array(integers, dtype=np.int64))
+        expected.append(dtw(*series, dist_method=metric).distance)
+    np.testing.assert_allclose(result.null_distribution, expected, atol=1e-15)
+
+
+def test_integer_walk_beyond_native_range():
+    from dtw.permutationTest import _permute_derivative
+
+    limit = np.iinfo(np.uint64).max
+    query = np.array([[limit], [0], [limit], [0]], dtype=np.uint64)
+
+    class Reordered:
+        def permutation(self, size):
+            assert size == 3
+            return np.array([1, 0, 2])
+
+    result = _permute_derivative(query, Reordered(), keep_integer=True)
+    assert result.dtype == object
+    assert result[:, 0].tolist() == [limit, 2 * int(limit), limit, 0]
+
+
 @pytest.mark.parametrize("side", ["query", "reference", "both"])
 def test_exact_out_of_range_spearman_ranks(side):
     from scipy import stats
