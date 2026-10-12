@@ -125,9 +125,9 @@ def _rank_integer_walk(x):
 
 def _mixed_object_metric(metric, dtype):
     @wraps(metric)
-    def mixed_metric(a, b):
+    def mixed_metric(a, b, **kwargs):
         try:
-            return metric(a, b)
+            return metric(a, b, **kwargs)
         except TypeError as error:
             # Preserve object-safe callables and application errors. Retry only
             # NumPy's unsupported object-ufunc dispatch with inexact operands.
@@ -136,7 +136,7 @@ def _mixed_object_metric(metric, dtype):
                 raise
             a = a.astype(dtype) if a.dtype == object else a
             b = b.astype(dtype) if b.dtype == object else b
-            return metric(a, b)
+            return metric(a, b, **kwargs)
     return mixed_metric
 
 

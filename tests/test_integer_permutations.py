@@ -467,6 +467,22 @@ def test_mixed_callable_application_type_error_is_not_retried():
                         permute_what="increments", rng=11)
 
 
+def test_mixed_callable_preserves_scipy_metric_keywords():
+    from scipy.spatial.distance import mahalanobis
+
+    limit = int(np.iinfo(np.uint64).max)
+    query = np.array([limit, 0, limit, 0], dtype=np.uint64)
+    reference = np.arange(4, dtype=float)
+    alignment = dtw(query, reference, dist_method=mahalanobis,
+                    keep_internals=True)
+    result = permutationTest(alignment, R=1, permute_side="query",
+                             permute_what="increments",
+                             return_distribution=True, rng=11)
+    widened = np.array([limit, 2 * limit, limit, 0], dtype=float)
+    expected = dtw(widened, reference, dist_method=mahalanobis).distance
+    np.testing.assert_allclose(result.null_distribution, [expected])
+
+
 @pytest.mark.parametrize("side", ["query", "reference", "both"])
 def test_exact_out_of_range_spearman_ranks(side):
     from scipy import stats
