@@ -93,7 +93,7 @@ def _permute_derivative(x, rng, keep_integer=False):
     return result
 
 
-def _integer_metric_pair(query, reference):
+def _integer_metric_pair(query, reference, allow_unsigned=False):
     # Signed/unsigned NumPy promotion can choose double and lose low bits.
     # Give callable metrics one common exact dtype for both operands.
     dtype = numpy.result_type(query.dtype, reference.dtype)
@@ -101,7 +101,12 @@ def _integer_metric_pair(query, reference):
         bounds = numpy.iinfo(numpy.int64)
         smallest = min(int(query.min()), int(reference.min()))
         largest = max(int(query.max()), int(reference.max()))
-        dtype = numpy.int64 if bounds.min <= smallest and largest <= bounds.max else object
+        if bounds.min <= smallest and largest <= bounds.max:
+            dtype = numpy.int64
+        elif allow_unsigned and 0 <= smallest and largest <= numpy.iinfo(numpy.uint64).max:
+            dtype = numpy.uint64
+        else:
+            dtype = object
     return query.astype(dtype, copy=False), reference.astype(dtype, copy=False)
 
 
@@ -489,7 +494,11 @@ Each observed distance is compared with its own permutation distribution.
                     numpy.issubdtype(query.dtype, numpy.integer) and
                     numpy.issubdtype(reference.dtype, numpy.integer) and
                     newq.dtype != newr.dtype):
-                newq, newr = _integer_metric_pair(newq, newr)
+                unsigned_inputs = (
+                    numpy.issubdtype(query.dtype, numpy.unsignedinteger) and
+                    numpy.issubdtype(reference.dtype, numpy.unsignedinteger))
+                newq, newr = _integer_metric_pair(newq, newr,
+                                                allow_unsigned=unsigned_inputs)
             plcm = scipy.spatial.distance.cdist(newq, newr, metric=alignment.distanceMethod)
         pal = align(plcm)
         distribution[i] = check_statistic(_compute_statistic(pal, statistic, newq, newr),

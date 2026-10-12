@@ -264,6 +264,25 @@ def test_signed_callable_beyond_int64_stays_signed():
     np.testing.assert_array_equal(result.null_distribution, [2.0])
 
 
+def test_unsigned_callable_pair_can_use_uint64():
+    query = np.array([255, 0, 255, 0], dtype=np.uint8)
+    reference = np.full(4, 2**63 + 1, dtype=np.uint64)
+
+    def metric(a, b):
+        return np.abs(np.sin(a, dtype=np.float64)
+                      - np.sin(b, dtype=np.float64)).sum()
+
+    alignment = dtw(query, reference, dist_method=metric, keep_internals=True)
+    result = permutationTest(alignment, R=1, permute_side="query",
+                             permute_what="increments",
+                             return_distribution=True, rng=11)
+    # The widened positive query and the held unsigned reference jointly fit
+    # uint64, allowing numeric ufuncs that cannot operate on objects.
+    expected = dtw(np.array([255, 510, 255, 0], dtype=np.uint64), reference,
+                   dist_method=metric).distance
+    np.testing.assert_array_equal(result.null_distribution, [expected])
+
+
 @pytest.mark.parametrize("side", ["query", "reference", "both"])
 def test_exact_out_of_range_spearman_ranks(side):
     from scipy import stats
