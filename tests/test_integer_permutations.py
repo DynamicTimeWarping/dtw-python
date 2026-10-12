@@ -318,6 +318,30 @@ def test_callable_preserves_unchanged_mixed_integer_dtypes(dtypes, side):
     assert result.p_value == 1
 
 
+@pytest.mark.parametrize("reference_dtype", [np.int16, np.uint16])
+def test_callable_preserves_compatible_held_reference(reference_dtype):
+    query = np.array([255, 0, 255, 0], dtype=np.uint8)
+    reference = np.array([0, 255, 0, 255], dtype=reference_dtype)
+
+    def metric(a, b):
+        assert b.dtype == reference_dtype
+        return np.count_nonzero(np.bitwise_xor(a, b))
+
+    alignment = dtw(query, reference, dist_method=metric, keep_internals=True)
+    result = permutationTest(alignment, R=19, permute_side="query",
+                             permute_what="increments",
+                             return_distribution=True, rng=17)
+    expected = []
+    rng = np.random.default_rng(17)
+    for _ in range(19):
+        out = [255]
+        for i in rng.permutation(3):
+            out.append(out[-1] + [-255, 255, -255][i])
+        cost = [[float(a != int(b)) for b in reference] for a in out]
+        expected.append(dtw(np.array(cost)).distance)
+    np.testing.assert_array_equal(result.null_distribution, expected)
+
+
 @pytest.mark.parametrize("side", ["query", "reference", "both"])
 def test_exact_out_of_range_spearman_ranks(side):
     from scipy import stats

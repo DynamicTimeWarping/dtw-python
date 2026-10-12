@@ -97,6 +97,10 @@ def _integer_metric_pair(query, reference, allow_unsigned=False):
     # Signed/unsigned NumPy promotion can choose double and lose low bits.
     # Give callable metrics one common exact dtype for both operands.
     dtype = numpy.result_type(query.dtype, reference.dtype)
+    if not numpy.issubdtype(dtype, numpy.floating):
+        # Compatible integer/object promotion already keeps values exact and
+        # permits metrics with a fixed dtype contract for the held operand.
+        return query, reference
     if numpy.issubdtype(dtype, numpy.floating):
         bounds = numpy.iinfo(numpy.int64)
         smallest = min(int(query.min()), int(reference.min()))
