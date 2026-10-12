@@ -383,6 +383,35 @@ def test_kendall_walk_beyond_native_integer_range(side):
                                rtol=0, atol=1e-15)
 
 
+@pytest.mark.parametrize("dtype", [
+    np.float32, np.float64, np.complex64, np.complex128])
+@pytest.mark.parametrize("integer_side", ["query", "reference"])
+def test_callable_mixed_inexact_beyond_integer_range(dtype, integer_side):
+    limit = int(np.iinfo(np.uint64).max)
+    integer = np.array([limit, 0, limit, 0], dtype=np.uint64)
+    inexact = np.arange(4).astype(dtype)
+    if np.issubdtype(dtype, np.complexfloating):
+        inexact += 0.25j
+
+    def metric(a, b):
+        return np.abs(np.sin(a - b)).sum()
+
+    series = ([integer, inexact] if integer_side == "query"
+              else [inexact, integer])
+    alignment = dtw(*series, dist_method=metric, keep_internals=True)
+    result = permutationTest(alignment, R=1, permute_side=integer_side,
+                             permute_what="increments",
+                             return_distribution=True, rng=11)
+    # Match the original pair's inexact arithmetic promotion. Retained exact
+    # samples for correlation statistics are independent of these cost inputs.
+    promoted = np.result_type(integer.dtype, inexact.dtype)
+    widened = np.array([limit, 2 * limit, limit, 0], dtype=promoted)
+    expected_series = ([widened, inexact] if integer_side == "query"
+                       else [inexact, widened])
+    expected = dtw(*expected_series, dist_method=metric).distance
+    np.testing.assert_array_equal(result.null_distribution, [expected])
+
+
 @pytest.mark.parametrize("side", ["query", "reference", "both"])
 def test_exact_out_of_range_spearman_ranks(side):
     from scipy import stats

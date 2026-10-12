@@ -508,7 +508,17 @@ Each observed distance is compared with its own permutation distribution.
                 newq, newr = _integer_metric_pair(newq, newr,
                                                 allow_unsigned=unsigned_inputs)
             costq, costr = newq, newr
-            if not callable_distance:
+            if callable_distance:
+                # Mixed integer/inexact arithmetic originally promotes to the
+                # inexact kind. Objects would break numeric ufuncs in the metric.
+                if (numpy.issubdtype(query.dtype, numpy.inexact) or
+                        numpy.issubdtype(reference.dtype, numpy.inexact)):
+                    promoted = numpy.result_type(query.dtype, reference.dtype)
+                    if costq.dtype == object:
+                        costq = costq.astype(promoted)
+                    if costr.dtype == object:
+                        costr = costr.astype(promoted)
+            else:
                 # Named metrics need doubles, but rank statistics need exact walks.
                 if numpy.issubdtype(query.dtype, numpy.integer):
                     costq = newq.astype(numpy.double, copy=False)
