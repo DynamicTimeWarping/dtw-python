@@ -343,6 +343,47 @@ def test_callable_preserves_compatible_held_reference(reference_dtype):
 
 
 @pytest.mark.parametrize("side", ["query", "reference", "both"])
+def test_kendall_walk_beyond_native_integer_range(side):
+    limit = int(np.iinfo(np.uint64).max)
+    query = np.array([limit, 0, limit, 0], dtype=np.uint64)
+    reference = np.arange(4, dtype=np.uint64)
+
+    def metric(a, b):
+        return abs(int(a[0]) - int(b[0]))
+
+    alignment = dtw(query, reference, dist_method=metric, keep_internals=True,
+                    window_type="sakoechiba", window_args={"window_size": 0})
+    result = permutationTest(alignment, R=19, permute_side=side,
+                             permute_what="increments", statistic="kendall",
+                             return_distribution=True, rng=11)
+    expected = []
+    rng = np.random.default_rng(11)
+    for _ in range(19):
+        series = []
+        for values, name in [(query, "query"), (reference, "reference")]:
+            out = [int(value) for value in values]
+            if side in (name, "both"):
+                increments = [b - a for a, b in zip(out, out[1:])]
+                out = [out[0]]
+                for i in rng.permutation(len(increments)):
+                    out.append(out[-1] + increments[i])
+            series.append(out)
+        score, non_tied_q, non_tied_r = 0, 0, 0
+        for i in range(4):
+            for j in range(i):
+                qi, qj = series[0][i], series[0][j]
+                ri, rj = series[1][i], series[1][j]
+                q = (qi > qj) - (qi < qj)
+                r = (ri > rj) - (ri < rj)
+                score += q * r
+                non_tied_q += q != 0
+                non_tied_r += r != 0
+        expected.append(score / np.sqrt(non_tied_q * non_tied_r))
+    np.testing.assert_allclose(result.null_distribution, expected,
+                               rtol=0, atol=1e-15)
+
+
+@pytest.mark.parametrize("side", ["query", "reference", "both"])
 def test_exact_out_of_range_spearman_ranks(side):
     from scipy import stats
 

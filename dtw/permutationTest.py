@@ -144,14 +144,15 @@ def _compute_statistic(al, statistic, query, reference):
                 if wr.dtype == object:
                     wr = wr.astype(numpy.double)
                 return numpy.corrcoef(wq, wr)[0, 1]
-            elif statistic == "spearman":
+            else:
                 if wq.dtype == object or numpy.issubdtype(wq.dtype, numpy.integer):
                     wq = _rank_integer_walk(wq)
                 if wr.dtype == object or numpy.issubdtype(wr.dtype, numpy.integer):
                     wr = _rank_integer_walk(wr)
-                return scipy.stats.spearmanr(wq, wr)[0]
-            else:
-                return scipy.stats.kendalltau(wq, wr)[0]
+                if statistic == "spearman":
+                    return scipy.stats.spearmanr(wq, wr)[0]
+                else:
+                    return scipy.stats.kendalltau(wq, wr)[0]
     else:
         raise ValueError("Internal error: unexpected statistic argument")
 
