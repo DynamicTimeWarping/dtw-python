@@ -81,13 +81,28 @@ def _permute_derivative(x, rng, keep_integer=False):
             # that leave the original dtype's range.
             # Numeric ufuncs reject objects, so use a wider native integer
             # before falling back to Python integers beyond native ranges.
-            for candidate in (dtype, numpy.int64, numpy.uint64):
+            candidates = (dtype, numpy.int64)
+            if numpy.issubdtype(dtype, numpy.unsignedinteger):
+                candidates += (numpy.uint64,)
+            for candidate in candidates:
                 bounds = numpy.iinfo(candidate)
                 if numpy.all(result >= bounds.min) and numpy.all(result <= bounds.max):
                     return result.astype(candidate)
             return result
         return result.astype(numpy.double)
     return result
+
+
+def _integer_metric_pair(query, reference):
+    # Signed/unsigned NumPy promotion can choose double and lose low bits.
+    # Give callable metrics one common exact dtype for both operands.
+    dtype = numpy.result_type(query.dtype, reference.dtype)
+    if numpy.issubdtype(dtype, numpy.floating):
+        bounds = numpy.iinfo(numpy.int64)
+        smallest = min(int(query.min()), int(reference.min()))
+        largest = max(int(query.max()), int(reference.max()))
+        dtype = numpy.int64 if bounds.min <= smallest and largest <= bounds.max else object
+    return query.astype(dtype, copy=False), reference.astype(dtype, copy=False)
 
 
 def _rank_integer_walk(x):
@@ -470,6 +485,11 @@ Each observed distance is compared with its own permutation distribution.
             if permute_reference:
                 newr = _permute_derivative(reference, rng,
                                            keep_integer=callable(alignment.distanceMethod))
+            if (callable(alignment.distanceMethod) and
+                    numpy.issubdtype(query.dtype, numpy.integer) and
+                    numpy.issubdtype(reference.dtype, numpy.integer) and
+                    newq.dtype != newr.dtype):
+                newq, newr = _integer_metric_pair(newq, newr)
             plcm = scipy.spatial.distance.cdist(newq, newr, metric=alignment.distanceMethod)
         pal = align(plcm)
         distribution[i] = check_statistic(_compute_statistic(pal, statistic, newq, newr),

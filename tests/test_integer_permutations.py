@@ -215,6 +215,56 @@ def test_integer_walk_beyond_native_range():
 
 
 @pytest.mark.parametrize("side", ["query", "reference", "both"])
+def test_uint64_callable_widened_pair(side):
+    start = 2**53 + 1
+    query = np.array([start, 0, start, 0], dtype=np.uint64)
+    reference = np.array([0, start, 0, start], dtype=np.uint64)
+
+    def metric(a, b):
+        return np.count_nonzero(np.bitwise_xor(a, b))
+
+    alignment = dtw(query, reference, dist_method=metric, keep_internals=True)
+    result = permutationTest(alignment, R=19, permute_side=side,
+                             permute_what="increments",
+                             return_distribution=True, rng=17)
+    rng = np.random.default_rng(17)
+    expected = []
+    for _ in range(19):
+        series = []
+        for values, name in [(query, "query"), (reference, "reference")]:
+            integers = [int(value) for value in values]
+            if side in (name, "both"):
+                increments = [b - a for a, b in zip(integers, integers[1:])]
+                out = [integers[0]]
+                for index in rng.permutation(len(increments)):
+                    out.append(out[-1] + increments[index])
+                integers = out
+            series.append(integers)
+        cost = [[float(a != b) for b in series[1]] for a in series[0]]
+        expected.append(dtw(np.array(cost)).distance)
+    np.testing.assert_array_equal(result.null_distribution, expected)
+
+
+def test_signed_callable_beyond_int64_stays_signed():
+    limit = np.iinfo(np.int64).max
+    query = np.array([limit, 1, limit, 0], dtype=np.int64)
+    reference = np.array([limit, 0, limit, 0], dtype=np.int64)
+
+    def metric(a, b):
+        return np.abs(a - b).sum()
+
+    alignment = dtw(query, reference, dist_method=metric, keep_internals=True,
+                    window_type="sakoechiba", window_args={"window_size": 0})
+    result = permutationTest(alignment, R=1, permute_side="both",
+                             permute_what="increments",
+                             return_distribution=True, rng=11)
+    # Seed 11 permutes both increment sequences in order [1, 0, 2]. The two
+    # reconstructed walks differ by one at the first interior point. symmetric2
+    # weights that diagonal cost by two.
+    np.testing.assert_array_equal(result.null_distribution, [2.0])
+
+
+@pytest.mark.parametrize("side", ["query", "reference", "both"])
 def test_exact_out_of_range_spearman_ranks(side):
     from scipy import stats
 
