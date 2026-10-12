@@ -127,3 +127,79 @@ def test_integer_callable_out_of_range_increment_permutations():
             series.append(np.array(permuted, dtype=object))
         expected.append(dtw(*series, dist_method=metric).distance)
     np.testing.assert_array_equal(result.null_distribution, expected)
+
+
+@pytest.mark.parametrize("side", ["query", "reference", "both"])
+@pytest.mark.parametrize("statistic", ["pearson", "spearman", "kendall"])
+def test_integer_callable_out_of_range_correlations(side, statistic):
+    query = np.array([255, 0, 255, 0], dtype=np.uint8)
+    reference = np.array([0, 255, 0, 255], dtype=np.uint8)
+
+    def metric(a, b):
+        return abs(int(a[0]) - int(b[0]))
+
+    alignment = dtw(query, reference, dist_method=metric, keep_internals=True)
+    result = permutationTest(alignment, R=19, permute_side=side,
+                             permute_what="increments", statistic=statistic,
+                             return_distribution=True, rng=17)
+    rng = np.random.default_rng(17)
+    expected = []
+    from scipy import stats
+    for _ in range(19):
+        series = []
+        for values, name in [(query, "query"), (reference, "reference")]:
+            integers = [int(value) for value in values]
+            if side in (name, "both"):
+                increments = [b - a for a, b in zip(integers, integers[1:])]
+                permuted = [integers[0]]
+                for index in rng.permutation(len(increments)):
+                    permuted.append(permuted[-1] + increments[index])
+                integers = permuted
+            series.append(np.array(integers, dtype=object))
+        warped = dtw(*series, dist_method=metric)
+        q = np.array(series[0][warped.index1], dtype=float)
+        r = np.array(series[1][warped.index2], dtype=float)
+        expected.append(
+            getattr(stats, statistic + "r")(q, r)[0] if statistic != "kendall"
+            else stats.kendalltau(q, r)[0])
+    np.testing.assert_allclose(result.null_distribution, expected, atol=1e-15)
+
+
+@pytest.mark.parametrize("side", ["query", "reference", "both"])
+def test_exact_out_of_range_spearman_ranks(side):
+    from scipy import stats
+
+    limit = np.iinfo(np.int64).max
+    query = np.array([limit - 1, limit, limit - 1, limit], dtype=np.int64)
+    reference = query[::-1].copy()
+
+    def metric(a, b):
+        return abs(int(a[0]) - int(b[0]))
+
+    def exact_ranks(values):
+        # Independent pairwise ordinal counts, avoiding any floating cast.
+        return [1 + sum(y < x for y in values)
+                + (sum(y == x for y in values) - 1) / 2 for x in values]
+
+    alignment = dtw(query, reference, dist_method=metric, keep_internals=True)
+    result = permutationTest(alignment, R=19, permute_side=side,
+                             permute_what="increments", statistic="spearman",
+                             return_distribution=True, rng=17)
+    rng = np.random.default_rng(17)
+    expected = []
+    for _ in range(19):
+        series = []
+        for values, name in [(query, "query"), (reference, "reference")]:
+            integers = [int(value) for value in values]
+            if side in (name, "both"):
+                increments = [b - a for a, b in zip(integers, integers[1:])]
+                permuted = [integers[0]]
+                for index in rng.permutation(len(increments)):
+                    permuted.append(permuted[-1] + increments[index])
+                integers = permuted
+            series.append(np.array(integers, dtype=object))
+        warped = dtw(*series, dist_method=metric)
+        q = exact_ranks(series[0][warped.index1].tolist())
+        r = exact_ranks(series[1][warped.index2].tolist())
+        expected.append(stats.spearmanr(q, r)[0])
+    np.testing.assert_allclose(result.null_distribution, expected, atol=1e-15)

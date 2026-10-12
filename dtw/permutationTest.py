@@ -87,6 +87,14 @@ def _permute_derivative(x, rng, keep_integer=False):
     return result
 
 
+def _rank_integer_walk(x):
+    # scipy's rankdata rejects object arrays. Rank exact Python integers before
+    # converting to floating ranks, preserving ties and ordering above 2**53.
+    _, inverse, counts = numpy.unique(x, return_inverse=True, return_counts=True)
+    ranks = numpy.cumsum(counts) - (counts - 1) / 2
+    return ranks[inverse]
+
+
 def _compute_statistic(al, statistic, query, reference):
     if statistic == "distance":
         return al.distance
@@ -102,8 +110,18 @@ def _compute_statistic(al, statistic, query, reference):
             if len(wq) < 2:
                 return numpy.nan
             if statistic == "pearson":
+                # Exact integer walks may exceed the original dtype's range.
+                # Keep them exact for the metric, but corrcoef needs numeric arrays.
+                if wq.dtype == object:
+                    wq = wq.astype(numpy.double)
+                if wr.dtype == object:
+                    wr = wr.astype(numpy.double)
                 return numpy.corrcoef(wq, wr)[0, 1]
             elif statistic == "spearman":
+                if wq.dtype == object or numpy.issubdtype(wq.dtype, numpy.integer):
+                    wq = _rank_integer_walk(wq)
+                if wr.dtype == object or numpy.issubdtype(wr.dtype, numpy.integer):
+                    wr = _rank_integer_walk(wr)
                 return scipy.stats.spearmanr(wq, wr)[0]
             else:
                 return scipy.stats.kendalltau(wq, wr)[0]
