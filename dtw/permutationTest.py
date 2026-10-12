@@ -473,6 +473,8 @@ Each observed distance is compared with its own permutation distribution.
     permute_reference = permute_side in ("reference", "both")
     n, m = lcm.shape
     distribution = numpy.empty(R)
+    callable_distance = callable(getattr(alignment, "distanceMethod", None))
+    retain_integer_walks = callable_distance or correlation
     for i in range(R):
         newq = query
         newr = reference
@@ -486,20 +488,28 @@ Each observed distance is compared with its own permutation distribution.
         else:
             if permute_query:
                 newq = _permute_derivative(query, rng,
-                                           keep_integer=callable(alignment.distanceMethod))
+                                           keep_integer=retain_integer_walks)
             if permute_reference:
                 newr = _permute_derivative(reference, rng,
-                                           keep_integer=callable(alignment.distanceMethod))
-            if (callable(alignment.distanceMethod) and
+                                           keep_integer=retain_integer_walks)
+            if (callable_distance and
                     numpy.issubdtype(query.dtype, numpy.integer) and
                     numpy.issubdtype(reference.dtype, numpy.integer) and
-                    newq.dtype != newr.dtype):
+                    newq.dtype != newr.dtype and
+                    (newq.dtype != query.dtype or newr.dtype != reference.dtype)):
                 unsigned_inputs = (
                     numpy.issubdtype(query.dtype, numpy.unsignedinteger) and
                     numpy.issubdtype(reference.dtype, numpy.unsignedinteger))
                 newq, newr = _integer_metric_pair(newq, newr,
                                                 allow_unsigned=unsigned_inputs)
-            plcm = scipy.spatial.distance.cdist(newq, newr, metric=alignment.distanceMethod)
+            costq, costr = newq, newr
+            if not callable_distance:
+                # Named metrics need doubles, but rank statistics need exact walks.
+                if numpy.issubdtype(query.dtype, numpy.integer):
+                    costq = newq.astype(numpy.double, copy=False)
+                if numpy.issubdtype(reference.dtype, numpy.integer):
+                    costr = newr.astype(numpy.double, copy=False)
+            plcm = scipy.spatial.distance.cdist(costq, costr, metric=alignment.distanceMethod)
         pal = align(plcm)
         distribution[i] = check_statistic(_compute_statistic(pal, statistic, newq, newr),
                                           "Permutation %d" % (i + 1))

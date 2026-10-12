@@ -283,6 +283,41 @@ def test_unsigned_callable_pair_can_use_uint64():
     np.testing.assert_array_equal(result.null_distribution, [expected])
 
 
+@pytest.mark.parametrize("dtype", [np.int64, np.uint64])
+@pytest.mark.parametrize("side", ["query", "reference", "both"])
+@pytest.mark.parametrize("statistic", ["spearman", "kendall"])
+def test_named_metric_preserves_exact_integer_ranks(dtype, side, statistic):
+    query = np.array([2**53, 2**53 + 1, 2**53 + 2], dtype=dtype)
+    alignment = dtw(query, query, keep_internals=True,
+                    window_type="sakoechiba", window_args={"window_size": 0})
+    result = permutationTest(alignment, R=7, permute_side=side,
+                             permute_what="increments", statistic=statistic,
+                             return_distribution=True, rng=11)
+    np.testing.assert_allclose(result.null_distribution, 1, rtol=0, atol=1e-15)
+    assert result.p_value == 1
+
+
+@pytest.mark.parametrize("dtypes", [
+    (np.int8, np.int16), (np.int16, np.int8),
+    (np.uint8, np.uint16), (np.uint16, np.uint8)])
+@pytest.mark.parametrize("side", ["query", "reference", "both"])
+def test_callable_preserves_unchanged_mixed_integer_dtypes(dtypes, side):
+    query = np.arange(4, dtype=dtypes[0])
+    reference = np.arange(4, dtype=dtypes[1])
+
+    def metric(a, b):
+        assert a.dtype == dtypes[0]
+        assert b.dtype == dtypes[1]
+        return sum(abs(int(x) - int(y)) for x, y in zip(a, b))
+
+    alignment = dtw(query, reference, dist_method=metric, keep_internals=True)
+    result = permutationTest(alignment, R=7, permute_side=side,
+                             permute_what="increments",
+                             return_distribution=True, rng=11)
+    np.testing.assert_array_equal(result.null_distribution, np.zeros(7))
+    assert result.p_value == 1
+
+
 @pytest.mark.parametrize("side", ["query", "reference", "both"])
 def test_exact_out_of_range_spearman_ranks(side):
     from scipy import stats
