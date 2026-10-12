@@ -64,17 +64,27 @@ class PermutationTestResult:
 
 
 # Shuffle increment rows, retaining matrix dimensions even for singleton input.
-def _permute_derivative(x, rng):
+def _permute_derivative(x, rng, keep_integer=False):
     if x.shape[0] <= 1:
         return x
     integer_input = numpy.issubdtype(x.dtype, numpy.integer)
+    dtype = x.dtype
     if integer_input:
         # Keep differences exact, including small increments above 2**53.
         x = x.astype(object)
     dx = numpy.diff(x, axis=0)
     ridx = rng.permutation(dx.shape[0])
     result = numpy.cumsum(numpy.vstack([x[:1, :], dx[ridx, :]]), axis=0)
-    return result.astype(numpy.double) if integer_input else result
+    if integer_input:
+        if keep_integer:
+            # Callable metrics may require integers. Avoid wrapping surrogates
+            # that leave the original dtype's range.
+            bounds = numpy.iinfo(dtype)
+            if numpy.all(result >= bounds.min) and numpy.all(result <= bounds.max):
+                return result.astype(dtype)
+            return result
+        return result.astype(numpy.double)
+    return result
 
 
 def _compute_statistic(al, statistic, query, reference):
@@ -434,9 +444,11 @@ Each observed distance is compared with its own permutation distribution.
                 newr = reference[ri, :]
         else:
             if permute_query:
-                newq = _permute_derivative(query, rng)
+                newq = _permute_derivative(query, rng,
+                                           keep_integer=callable(alignment.distanceMethod))
             if permute_reference:
-                newr = _permute_derivative(reference, rng)
+                newr = _permute_derivative(reference, rng,
+                                           keep_integer=callable(alignment.distanceMethod))
             plcm = scipy.spatial.distance.cdist(newq, newr, metric=alignment.distanceMethod)
         pal = align(plcm)
         distribution[i] = check_statistic(_compute_statistic(pal, statistic, newq, newr),

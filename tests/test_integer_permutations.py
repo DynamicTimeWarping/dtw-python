@@ -81,3 +81,49 @@ def test_large_integer_constant_increments(dtype, side):
     np.testing.assert_array_equal(result.null_distribution,
                                   np.full(19, alignment.distance))
     assert result.p_value == 1
+
+
+@pytest.mark.parametrize("dtype", [np.int16, np.int64, np.uint64])
+@pytest.mark.parametrize("side", ["query", "reference", "both"])
+def test_integer_callable_increment_permutations(dtype, side):
+    start = 2**53 if dtype != np.int16 else 0
+    query = np.array([start + i for i in range(4)], dtype=dtype)
+    reference = np.full(4, start, dtype=dtype)
+
+    def metric(a, b):
+        assert a.dtype == b.dtype == dtype
+        return float(np.bitwise_xor(a, b).sum())
+
+    alignment = dtw(query, reference, dist_method=metric, keep_internals=True)
+    result = permutationTest(alignment, R=9, permute_side=side,
+                             permute_what="increments",
+                             return_distribution=True, rng=17)
+    np.testing.assert_array_equal(result.null_distribution,
+                                  np.full(9, alignment.distance))
+    assert result.p_value == 1
+
+
+def test_integer_callable_out_of_range_increment_permutations():
+    query = np.array([255, 0, 255, 0], dtype=np.uint8)
+    reference = np.array([0, 255, 0, 255], dtype=np.uint8)
+
+    def metric(a, b):
+        return abs(int(a[0]) - int(b[0]))
+
+    alignment = dtw(query, reference, dist_method=metric, keep_internals=True)
+    result = permutationTest(alignment, R=19, permute_side="both",
+                             permute_what="increments",
+                             return_distribution=True, rng=17)
+    rng = np.random.default_rng(17)
+    expected = []
+    for _ in range(19):
+        series = []
+        for values in (query, reference):
+            integers = [int(value) for value in values]
+            increments = [b - a for a, b in zip(integers, integers[1:])]
+            permuted = [integers[0]]
+            for index in rng.permutation(len(increments)):
+                permuted.append(permuted[-1] + increments[index])
+            series.append(np.array(permuted, dtype=object))
+        expected.append(dtw(*series, dist_method=metric).distance)
+    np.testing.assert_array_equal(result.null_distribution, expected)
